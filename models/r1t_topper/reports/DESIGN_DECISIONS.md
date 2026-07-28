@@ -34,3 +34,12 @@
 - Source rasters are not redistributed. The reference package records URLs,
   SHA-256 fingerprints, page/crop identity, normalized landmarks, uncertainty,
   and project-authored derived linework.
+- Step 5 selects a minimal sparse styling delta: the rear section's full
+  shoulder width changes from `1630 mm` to `1600 mm`; the other profile
+  coordinates remain unchanged. The resulting front-normalized rear-shoulder
+  ratio is `0.946746`, inside the photo-derived `0.930..0.955` band. All five
+  other target checks remain inside their bands, with no deliberate exception.
+- The Step 5 return artifact remains `ESTIMATED`, exterior-silhouette-only
+  input. The existing CAD and STEP remain the verified baseline. Step 6 must
+  review and rebuild the sparse curves into authoritative engineered CAD; no
+  mesh-to-STEP path, fitment inference, or interface change is accepted here.

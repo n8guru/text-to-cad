@@ -9,19 +9,20 @@
   2025 upfitting guide.
 - Replace the block cab envelope with scanned rear-wall and roof-trailing
   sections. The provisional rear-surface angle is not yet applied.
-- Replace the conceptual topper width, front height, crown, R1S-like roofline
-  and rear-corner taper, and zero-offset front/rear layout planes only after the
-  bed rails, tailgate, and cab trailing section are captured in one scan
-  coordinate system.
-- Replace all five visual silhouette station rows with registered scan sections;
-  the present rows are editable estimates traced from perspective reference
-  images, not reverse-engineered body surfaces.
+- Continue shell, structure, hatch, module, seal, mounting, integrated-system,
+  tooling, and assembly design from the explicitly provisional photo-derived
+  geometry. Physical scans and hard dimensions are a late bounded calibration
+  input, not a gate for completing the design.
+- Reconcile the selected Step 5 sparse aesthetic sections into the
+  authoritative CAD shell in Step 6. Retain `ESTIMATED` provenance and
+  parameterized interfaces until late calibration.
 - Confirm tailgate and rear-light swept envelopes.
 - Confirm all bed-anchor, control-button, and factory-crossbar interfaces.
-- Determine the engineered cab/topper shadow-gap or aerodynamic bridge only
-  after cab/body relative-motion requirements are known.
-- Do not begin the detailed roof envelope, hard points, hatch, module seals, or
-  tooling from the present reference dimensions.
+- Parameterize the engineered cab/topper shadow-gap or aerodynamic bridge now;
+  calibrate it against cab/body relative-motion and hard-measurement inputs
+  before fabrication release.
+- Do not claim production fitment, sealing, structural capacity, or fabrication
+  release until the late calibration and independent final verification pass.
 
 No geometric contradiction prevents a reference-envelope checkpoint. The
 model deliberately contains no fitted topper geometry yet.

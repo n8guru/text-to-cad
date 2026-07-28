@@ -1,0 +1,122 @@
+{
+  "schema": "r1t-topper-sparse-sections-v1",
+  "status": "ESTIMATED_PHOTO_DERIVED_STYLE",
+  "provenance": "ESTIMATED",
+  "baseline_source_checkpoint": "d9417481e4b5c9817e8fa80ec13cd967d7c0f9a9",
+  "visual_target_source_commit": "6bdffc9d243200e25a148173e72062b86763219f",
+  "units": "mm",
+  "axes": {
+    "x": "+X rearward",
+    "y": "+Y driver side",
+    "z": "+Z up"
+  },
+  "origin": "vehicle centerline at forward edge of bed-rail mounting plane",
+  "selection": {
+    "method": "sparse profile styling against the Step 4 photo-derived target bands",
+    "changed_from_baseline": [
+      "STATION_04_REAR shoulder width: 1630 mm to 1600 mm"
+    ],
+    "rationale": "The narrower rear shoulder yields a 0.946746 front-normalized ratio, resolving the sole Step 4 mismatch while retaining a broad R1S-like rear and concentrating visible taper after x=0.78.",
+    "deliberate_target_exceptions": []
+  },
+  "authority_boundary": [
+    "These curves define aesthetic exterior silhouette only.",
+    "CAD remains authoritative for scale, axes, datum, engineered surfaces, thickness, flanges, seals, hatches, keep-outs, mounts, hardpoints, tooling, and validation.",
+    "The unchanged full-width base is a visual design footprint and does not imply rail contact, sealing, clearance, or production fitment.",
+    "Step 6 must review and rebuild these sparse curves as the authoritative engineered CAD shell; dense mesh-to-STEP conversion is prohibited."
+  ],
+  "profiles": [
+    {
+      "name": "STYLE_STATION_00_FRONT",
+      "x_mm": 0.0,
+      "closed": true,
+      "points_mm": [
+        [0.0, -865.0, 0.0],
+        [0.0, 865.0, 0.0],
+        [0.0, 845.0, 547.2],
+        [0.0, 785.0, 725.0],
+        [0.0, 0.0, 760.0],
+        [0.0, -785.0, 725.0],
+        [0.0, -845.0, 547.2]
+      ]
+    },
+    {
+      "name": "STYLE_STATION_01_22PCT",
+      "x_mm": 321.64,
+      "closed": true,
+      "points_mm": [
+        [321.64, -865.0, 0.0],
+        [321.64, 865.0, 0.0],
+        [321.64, 844.0, 546.48],
+        [321.64, 784.5, 724.0],
+        [321.64, 0.0, 759.0],
+        [321.64, -784.5, 724.0],
+        [321.64, -844.0, 546.48]
+      ]
+    },
+    {
+      "name": "STYLE_STATION_02_52PCT",
+      "x_mm": 760.24,
+      "closed": true,
+      "points_mm": [
+        [760.24, -865.0, 0.0],
+        [760.24, 865.0, 0.0],
+        [760.24, 842.0, 545.76],
+        [760.24, 783.0, 723.0],
+        [760.24, 0.0, 758.0],
+        [760.24, -783.0, 723.0],
+        [760.24, -842.0, 545.76]
+      ]
+    },
+    {
+      "name": "STYLE_STATION_03_78PCT",
+      "x_mm": 1140.36,
+      "closed": true,
+      "points_mm": [
+        [1140.36, -865.0, 0.0],
+        [1140.36, 865.0, 0.0],
+        [1140.36, 836.0, 543.6],
+        [1140.36, 779.0, 721.0],
+        [1140.36, 0.0, 755.0],
+        [1140.36, -779.0, 721.0],
+        [1140.36, -836.0, 543.6]
+      ]
+    },
+    {
+      "name": "STYLE_STATION_04_REAR",
+      "x_mm": 1462.0,
+      "closed": true,
+      "points_mm": [
+        [1462.0, -865.0, 0.0],
+        [1462.0, 865.0, 0.0],
+        [1462.0, 800.0, 536.4],
+        [1462.0, 755.0, 713.0],
+        [1462.0, 0.0, 745.0],
+        [1462.0, -755.0, 713.0],
+        [1462.0, -800.0, 536.4]
+      ]
+    }
+  ],
+  "longitudinal_character_lines": [
+    {
+      "name": "STYLE_CROWN",
+      "points_mm": [[0.0, 0.0, 760.0], [321.64, 0.0, 759.0], [760.24, 0.0, 758.0], [1140.36, 0.0, 755.0], [1462.0, 0.0, 745.0]]
+    },
+    {
+      "name": "STYLE_ROOF_EDGE_DRIVER",
+      "points_mm": [[0.0, 785.0, 725.0], [321.64, 784.5, 724.0], [760.24, 783.0, 723.0], [1140.36, 779.0, 721.0], [1462.0, 755.0, 713.0]]
+    },
+    {
+      "name": "STYLE_ROOF_EDGE_PASSENGER",
+      "points_mm": [[0.0, -785.0, 725.0], [321.64, -784.5, 724.0], [760.24, -783.0, 723.0], [1140.36, -779.0, 721.0], [1462.0, -755.0, 713.0]]
+    },
+    {
+      "name": "STYLE_SHOULDER_DRIVER",
+      "points_mm": [[0.0, 845.0, 547.2], [321.64, 844.0, 546.48], [760.24, 842.0, 545.76], [1140.36, 836.0, 543.6], [1462.0, 800.0, 536.4]]
+    },
+    {
+      "name": "STYLE_SHOULDER_PASSENGER",
+      "points_mm": [[0.0, -845.0, 547.2], [321.64, -844.0, 546.48], [760.24, -842.0, 545.76], [1140.36, -836.0, 543.6], [1462.0, -800.0, 536.4]]
+    }
+  ]
+}

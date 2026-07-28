@@ -77,8 +77,13 @@ The reproducible multi-view visual target package lives under
 fingerprints, normalized landmarks, uncertainty, perspective exclusions, and
 bounded silhouette targets without redistributing the source rasters. Its
 generated linework lives under `outputs/reference/photo_reconstruction/`.
-These targets constrain the next aesthetic-skin pass; they do not promote the
-current surrogate or any image-derived ratio to measured geometry.
+The selected Step 5 aesthetic proposal is
+`interchange/reference_only/blender_to_cad_style_selected.json`: five sparse
+editable sections and five longitudinal character lines, all still
+`ESTIMATED`. The deterministic comparison evidence beside the Step 4 outputs
+shows every selected ratio inside its target band. This selects styling curves
+for the Step 6 CAD rebuild; it does not promote any image-derived ratio to
+measured geometry or modify the existing STEP.
 
 ## CAD Explorer / CAD Viewer
 

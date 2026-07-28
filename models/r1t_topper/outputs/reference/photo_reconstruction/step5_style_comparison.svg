@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<style>
+  .bg { fill:#f5f2ec; } .panel { fill:#fff; stroke:#c9c3b9; stroke-width:2; }
+  .title { font:700 27px system-ui,sans-serif; fill:#1f292a; }
+  .label { font:700 17px system-ui,sans-serif; fill:#1f292a; }
+  .small { font:14px system-ui,sans-serif; fill:#536061; }
+  .value { font:700 14px ui-monospace,monospace; fill:#0b6f69; }
+  .baseline { fill:none; stroke:#8b9492; stroke-width:4; stroke-dasharray:9 7; stroke-linejoin:round; }
+  .selected { fill:none; stroke:#0b6f69; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+  .secondary { fill:none; stroke:#d98727; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+  .band { fill:#66b7ad; fill-opacity:.28; stroke:#0b6f69; stroke-width:1; }
+  .axis { stroke:#d6d1c9; stroke-width:1; }
+</style>
+<rect class="bg" width="1400" height="820"/>
+<text class="title" x="55" y="52">R1T topper Step 5 — selected sparse aesthetic skin</text>
+<text class="small" x="55" y="80">ESTIMATED photo-derived styling · gray dashed: Step 4 baseline · green: selected curves · no fitment claim</text>
+
+<rect class="panel" x="45" y="115" width="620" height="300" rx="12"/>
+<text class="label" x="75" y="147">SIDE · R1S-like near-level roof, localized rear drop</text>
+<line class="axis" x1="75" y1="350" x2="630" y2="350"/>
+<rect class="band" x="498.9" y="192.5" width="18" height="45.0"/>
+<rect class="band" x="621.0" y="237.5" width="18" height="90.0"/>
+<polyline class="baseline" points="75.0,192.5 197.1,198.4 363.6,204.3 507.9,222.1 630.0,281.3"/>
+<polyline class="selected" points="75.0,192.5 197.1,198.4 363.6,204.3 507.9,222.1 630.0,281.3"/>
+<text class="value" x="75" y="385">x=.78 0.993421 ✓   rear 0.980263 ✓</text>
+
+<rect class="panel" x="735" y="115" width="620" height="300" rx="12"/>
+<text class="label" x="765" y="147">REAR · rounded broad upper section from sparse curves</text>
+<path class="baseline" d="M 800.0 335.0 L 1220.0 335.0 L 1207.9 212.6 Q 1208.6 177.5 1193.3 172.3 Q 1010.0 160.0 826.7 172.3 Q 811.4 177.5 812.1 212.6 L 800.0 335.0 Z"/>
+<path class="selected" d="M 800.0 335.0 L 1220.0 335.0 L 1204.2 212.6 Q 1206.8 177.5 1193.3 172.3 Q 1010.0 160.0 826.7 172.3 Q 813.2 177.5 815.8 212.6 L 800.0 335.0 Z"/>
+<text class="value" x="765" y="385">rear shoulder 0.964497 → 0.946746 ✓ (target 0.930–0.955)</text>
+
+<rect class="panel" x="45" y="465" width="620" height="300" rx="12"/>
+<text class="label" x="75" y="497">PLAN · retained roof edge and corrected rear shoulder taper</text>
+<line class="axis" x1="75" y1="700" x2="630" y2="700"/>
+<rect class="band" x="498.9" y="550.5" width="18" height="23.3"/>
+<rect class="band" x="621.0" y="593.2" width="18" height="48.5"/>
+<polyline class="baseline" points="75.0,544.7 197.1,545.9 363.6,549.7 507.9,559.5 630.0,618.9"/>
+<polyline class="selected" points="75.0,544.7 197.1,545.9 363.6,549.7 507.9,559.5 630.0,618.9"/>
+<polyline class="baseline" points="75.0,544.7 197.1,547.0 363.6,551.6 507.9,565.4 630.0,613.6"/>
+<polyline class="secondary" points="75.0,544.7 197.1,547.0 363.6,551.6 507.9,565.4 630.0,648.1"/>
+<text class="value" x="75" y="738">roof rear 0.961783 ✓   selected shoulder rear 0.946746 ✓</text>
+
+<rect class="panel" x="735" y="465" width="620" height="300" rx="12"/>
+<text class="label" x="765" y="497">THREE-QUARTER · sparse character-line cross-check</text>
+<polyline class="baseline" points="859.5,598.9 941.8,587.9 1054.1,572.9 1151.2,560.0 1232.2,549.6"/>
+<polyline class="baseline" points="862.7,624.6 945.0,613.6 1057.2,598.5 1154.3,585.6 1235.5,575.1"/>
+<polyline class="selected" points="859.5,598.9 941.8,587.9 1054.1,572.9 1151.2,560.0 1232.2,549.6"/>
+<polyline class="secondary" points="862.7,624.6 945.0,613.6 1057.2,598.5 1154.3,585.6 1234.7,574.8"/>
+<text class="small" x="765" y="738">Five editable sections + five character lines · no mesh or engineered interfaces</text>
+</svg>

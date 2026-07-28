@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "provenance": "ESTIMATED",
+  "selected_profile_file": "interchange/reference_only/blender_to_cad_style_selected.json",
+  "baseline_source_checkpoint": "d9417481e4b5c9817e8fa80ec13cd967d7c0f9a9",
+  "visual_target_source_commit": "6bdffc9d243200e25a148173e72062b86763219f",
+  "target_results": {
+    "roof_height_ratio_at_x_0_78": {
+      "value": 0.993421,
+      "band": [
+        0.99,
+        1.0
+      ],
+      "inside": true
+    },
+    "rear_roof_height_ratio": {
+      "value": 0.980263,
+      "band": [
+        0.97,
+        0.99
+      ],
+      "inside": true
+    },
+    "roof_width_ratio_at_x_0_78": {
+      "value": 0.992357,
+      "band": [
+        0.985,
+        0.997
+      ],
+      "inside": true
+    },
+    "rear_roof_width_ratio": {
+      "value": 0.961783,
+      "band": [
+        0.95,
+        0.975
+      ],
+      "inside": true
+    },
+    "rear_shoulder_width_ratio": {
+      "value": 0.946746,
+      "band": [
+        0.93,
+        0.955
+      ],
+      "inside": true
+    },
+    "base_width_ratio": {
+      "value_range": [
+        1.0,
+        1.0
+      ],
+      "band": [
+        0.995,
+        1.005
+      ],
+      "inside": true
+    }
+  },
+  "all_selected_values_inside_targets": true,
+  "changed_from_baseline": [
+    "STATION_04_REAR shoulder width: 1630 mm to 1600 mm"
+  ],
+  "deliberate_target_exceptions": [],
+  "authority": "aesthetic exterior silhouette only; Step 6 CAD rebuild required",
+  "prohibited_claims": [
+    "measured geometry",
+    "vehicle fitment",
+    "rail contact",
+    "sealing",
+    "clearance",
+    "structural capacity",
+    "fabrication release"
+  ]
+}
