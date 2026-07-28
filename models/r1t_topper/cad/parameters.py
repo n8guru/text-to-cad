@@ -2,8 +2,8 @@
 
 Units are millimetres, degrees, kilograms, or newtons as noted. No value in
 this file has been physically measured yet. Manufacturer-reference values are
-useful envelope inputs, but mounting geometry still requires direct measurement
-or a scan before fitment work.
+useful envelope inputs; all fit interfaces remain provisional until the late
+hard-measurement calibration pass.
 
 Global coordinates:
     X = vehicle length, positive rearward
@@ -193,12 +193,12 @@ topper_silhouette_stations = Parameter(
         (0.22, 759.0, 1730.0, 1688.0, 1569.0, 35.0),
         (0.52, 758.0, 1730.0, 1684.0, 1566.0, 35.0),
         (0.78, 755.0, 1730.0, 1672.0, 1558.0, 34.0),
-        (1.00, 745.0, 1730.0, 1630.0, 1510.0, 32.0),
+        (1.00, 745.0, 1730.0, 1600.0, 1510.0, 32.0),
     ),
     "(length fraction, mm height, mm widths, mm crown)",
     ESTIMATED,
-    "visual approximation from operator-supplied R1S side and rear reference screenshots",
-    "near-parallel roof edges and a localized rear-corner taper; replace with registered scan slices",
+    "Step 5 selected sparse profiles at commit 21e1a240baa37f7800af25f2bcf59357cb2c58de",
+    "photo-derived near-parallel roof and localized rear taper; ESTIMATED until late calibration",
 )
 rear_hatch_opening_width = Parameter(1450.0, "mm", DESIGN_DECISION, "provisional")
 rear_hatch_opening_height = Parameter(620.0, "mm", DESIGN_DECISION, "provisional")
@@ -208,6 +208,21 @@ sandwich_core_thickness = Parameter(20.0, "mm", DESIGN_DECISION, "provisional")
 carbon_skin_thickness = Parameter(1.0, "mm", DESIGN_DECISION, "each skin, provisional")
 base_rail_height = Parameter(80.0, "mm", DESIGN_DECISION, "provisional")
 base_rail_width = Parameter(70.0, "mm", DESIGN_DECISION, "provisional")
+datum_display_thickness = Parameter(
+    2.0, "mm", DESIGN_DECISION, "review-only datum visualization"
+)
+base_interface_keepout_depth = Parameter(
+    60.0,
+    "mm",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "reserved below the Z=0 bed-rail mounting plane until late calibration",
+)
+transverse_load_path_band_width = Parameter(
+    45.0,
+    "mm X",
+    DESIGN_DECISION,
+    "provisional shell band at each topper crossbar station; not structurally rated",
+)
 
 # MODULE SYSTEM
 module_bay_count_per_side = Parameter(3, "count", DESIGN_DECISION, "project brief")

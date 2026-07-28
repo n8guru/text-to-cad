@@ -1,5 +1,5 @@
 schema_version: 1
-checkpoint: 2
+checkpoint: 6
 target_vehicle: 2022 Rivian R1T (Gen 1)
 units: mm
 coordinate_system:
@@ -16,7 +16,7 @@ provenance_policy:
 current_state:
   measured_values: 0
   manufacturer_reference_values: 3
-  warning: Manufacturer bed-envelope values are not a substitute for measuring the target vehicle mounting interface.
+  warning: Manufacturer bed-envelope values do not authorize fitment; the target vehicle mounting interface is calibrated late before fabrication release.
 manufacturer_references:
   - parameter: bed_inside_length
     value: 1377
@@ -45,10 +45,15 @@ geometry_scope:
     - factory anchor and control keep-out placeholders
     - two cab and two topper transverse crossbar references
     - visible global coordinate artifact
-    - one closed conceptual master topper design volume
+    - selected photo-derived exterior loft
+    - provisional 22 mm sandwich shell
+    - controlling shell datums and longitudinal base flanges
+    - base-interface and rear-hatch keep-out references
+    - two provisional transverse shell load-path bands
   excluded:
     - production body surfaces
-    - production topper exterior, shell, and structure
+    - calibrated production fit interfaces
+    - structural capacity and laminate validation
     - hatch kinematics
     - proprietary Rivian interface geometry
-    - structural validation
+    - sectional joints, modular panels, seals, mounts, wiring, and tooling

@@ -1,48 +1,33 @@
-# Validation report — Phase 2 conceptual envelope
+# Validation report — Step 6 provisional engineered shell
 
-Status: **PASS for conceptual envelope review only**
+Status: **PASS for producer-side Step 6 review; independent verification pending**
 
 ## Checks run
 
-- Python compilation passed for all current CAD sources.
-- `cad/checkpoint1_checks.py` verifies:
-  - the manufacturer-reference bed envelope is `1377 mm` long, `1299 mm`
-    wide, and `465 mm` deep;
-  - the closed pickup tailgate extends from `Z=-510` to the bed-rail plane at
-    `Z=0`;
-  - the concept footprint begins at the forward bed plane (`X=0`); this does
-    not establish a production cab contact or seal;
-  - all four crossbar references share one horizontal mounting elevation;
-  - each crossbar envelope is `70 × 1750 × 28 mm` and is more than twenty times
-    longer in Y than X.
-- `cad/phase2_checks.py` verifies:
-  - five ordered silhouette sections taper monotonically in height and base
-    width from front to rear and remain tagged `ESTIMATED`;
-  - roof height and width remain nearly constant through the 78% station, with
-    the visible narrowing and drop concentrated in the final rear-corner
-    segment;
-  - the master envelope spans `X=0..1462 mm`, sharing the tailgate outer back
-    plane and covering the bed-plus-tailgate top-plane length;
-  - all five base sections are `1730 mm` wide, so the conceptual footprint
-    reaches both provisional bed edges for its full length;
-  - its provisional maximum envelope is `1462 × 1730 × 760 mm`;
-  - the rail, cab, anchor, control, and crossbar mounting inputs remain tagged
-    `PLACEHOLDER REQUIRING SCAN`.
+- Python compilation passed for all CAD sources.
+- `cad/checkpoint1_checks.py` still passes the manufacturer-reference bed
+  envelope, tailgate, coordinate, and crossbar checks.
+- `cad/phase2_checks.py` still passes the five ordered `ESTIMATED` silhouette
+  sections, localized rear taper, full provisional footprint, and placeholder
+  interface provenance checks. It now also pins the selected `1600 mm` rear
+  shoulder.
+- `cad/step6_checks.py` verifies:
+  - every CAD station coordinate matches the selected Step 5 sparse profiles;
+  - the shell is a non-empty inset of the selected exterior envelope;
+  - the two base flanges, three controlling datums, two keep-out groups, and
+    two transverse shell load-path bands are present and labeled provisional;
+  - shell thickness is a design decision and the base-interface reserve
+    remains `PLACEHOLDER REQUIRING SCAN`.
 - STEP generation passed for `R1T_TOPPER_ASSEMBLY.step`.
-- CAD inspection reported a labeled assembly with 21 leaf occurrences / shapes,
-  128 faces, 258 edges, no warnings, and overall bounds:
+- CAD inspection reported a labeled assembly with 33 leaf
+  occurrences/shapes, 222 faces, 468 edges, no warnings, and overall bounds:
   - minimum `[-685, -875, -510] mm`
   - maximum `[1462, 875, 813] mm`
-- The topper bottom face spans `X=0..1462 mm`, `Y=-865..865 mm` and has area
-  `2,529,260 mm²`, exactly the `1462 × 1730 mm` conceptual footprint.
-- The topper rear face and tailgate outer face are parallel at `X=1462 mm`;
-  the measured flush-alignment translation is `0 mm`.
-- Stable occurrence references were confirmed for the bed, cab, tailgate,
-  anchors, four crossbars, and coordinate artifact.
-- Six regenerated snapshots were visually reviewed. The master envelope is one
-  coherent blue concept volume with rounded crown/shoulders, an R1S-like level
-  roof continuation, and a localized rear-corner taper; the cyan rail/crossbar
-  references remain visibly distinct placeholders.
+- The `Z=0` datum plane spans the full `1462 × 1730 mm` provisional
+  footprint.
+- Six regenerated snapshots were visually reviewed. The blue sandwich shell,
+  amber rear-hatch reserve, cyan datums/crossbar references, dark base flanges,
+  and yellow transverse load-path bands are distinct and correctly placed.
 
 ## Intent review
 
@@ -50,25 +35,22 @@ Status: **PASS for conceptual envelope review only**
 | --- | --- |
 | Reference occupies the pickup bed, not an SUV conversion | PASS |
 | Original pickup tailgate remains at/below bed-rail plane | PASS |
-| Concept footprint starts at forward bed plane | PASS |
-| Crossbar reference elevations are consistent | PASS |
-| All crossbars are transverse, left-to-right along Y | PASS |
-| Concept volume occupies the intended bed-plus-tailgate envelope | PASS |
-| Rear face shares the tailgate outer back plane | PASS |
-| Base footprint reaches both bed edges for its full length | PASS |
-| Estimated silhouette is symmetric and visually R1S-like | PASS |
-| Concept volume remains visibly distinct from scan-required references | PASS |
-| Production cab-roof continuation and curvature | NOT TESTED — scan required |
+| Engineered shell matches the selected Step 5 sparse profiles | PASS |
+| Shell has a provisional sandwich thickness | PASS |
+| Controlling datums and longitudinal base flanges are explicit | PASS |
+| Interface and rear-hatch keep-outs are explicit | PASS |
+| Provisional transverse load paths are explicit | PASS |
+| Production cab/body interfaces | NOT TESTED — late calibration |
+| Structural capacity and laminate schedule | NOT TESTED — Step 11 |
 
 ## Known limitations
 
 No vehicle value has yet been physically measured. The bed length, exposed
 cargo width, and maximum bed height are manufacturer references; their precise
-values come from Rivian's September 2025 R1T Upfitting Guide and require
-confirmation on the target 2022 Gen 1 vehicle. The cab and bed rails remain
-intentionally crude block envelopes. The master topper is a solid design-volume
-proxy, not a shell, mold surface, mounting system, or clearance proof. This
-visual match is based on perspective screenshots, not measured sections. This
-report does not claim fitment, structural capacity, legal compliance,
-aerodynamic performance, electronics compatibility, manufacturability, or
-production readiness.
+values require confirmation on the target 2022 Gen 1 vehicle during the late
+calibration step. The cab and bed rails remain crude block envelopes. The shell
+is authoritative CAD but remains photo-derived and provisional; it is not a
+calibrated mounting system, clearance proof, laminate schedule, or mold
+definition. This report does not claim fitment, structural capacity, legal
+compliance, aerodynamic performance, electronics compatibility,
+manufacturability, or production readiness.

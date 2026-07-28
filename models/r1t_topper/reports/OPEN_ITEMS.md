@@ -1,4 +1,4 @@
-# Open items — Phase 2 conceptual envelope
+# Open items — Step 6 provisional engineered shell
 
 - No direct vehicle measurements or approved manufacturer CAD are available.
 - The project brief's approximate `54 in wide × 44 in deep` wording is
@@ -13,9 +13,6 @@
   tooling, and assembly design from the explicitly provisional photo-derived
   geometry. Physical scans and hard dimensions are a late bounded calibration
   input, not a gate for completing the design.
-- Reconcile the selected Step 5 sparse aesthetic sections into the
-  authoritative CAD shell in Step 6. Retain `ESTIMATED` provenance and
-  parameterized interfaces until late calibration.
 - Confirm tailgate and rear-light swept envelopes.
 - Confirm all bed-anchor, control-button, and factory-crossbar interfaces.
 - Parameterize the engineered cab/topper shadow-gap or aerodynamic bridge now;
@@ -24,5 +21,6 @@
 - Do not claim production fitment, sealing, structural capacity, or fabrication
   release until the late calibration and independent final verification pass.
 
-No geometric contradiction prevents a reference-envelope checkpoint. The
-model deliberately contains no fitted topper geometry yet.
+No geometric contradiction prevents downstream provisional design. The shell
+is authoritative CAD with `ESTIMATED` styling and explicitly uncalibrated
+interfaces; it is not production fitment.

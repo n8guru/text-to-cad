@@ -1,4 +1,4 @@
-# Design decisions — Phase 2 conceptual envelope
+# Design decisions — Step 6 provisional engineered shell
 
 - Global coordinates follow the requested vehicle convention: +X rearward,
   +Y driver side, +Z upward.
@@ -23,9 +23,9 @@
   roof crown, and a roofline/plan outline that stays almost parallel before
   narrowing and dropping locally at the rear corner. Their dimensions are
   `ESTIMATED` visual inputs designed to be replaced row-for-row by scan slices.
-- Detailed shell offsets, modules, hatch, seals, joints, hardpoints, controls,
-  ports, anchors, and mounting geometry remain intentionally absent until scan
-  data establishes the vehicle interfaces.
+- Modules, hatch, seals, joints, hardpoints, controls, ports, anchors, and
+  mounting geometry remain assigned to later design steps; absent hard
+  measurements do not gate their provisional design.
 - Step 4 separates reproducible visual observations from geometry authority.
   Official Rivian orthographic illustrations provide normalized silhouette
   anchors; an official three-quarter photo is a perspective-only cross-check.
@@ -39,7 +39,14 @@
   coordinates remain unchanged. The resulting front-normalized rear-shoulder
   ratio is `0.946746`, inside the photo-derived `0.930..0.955` band. All five
   other target checks remain inside their bands, with no deliberate exception.
-- The Step 5 return artifact remains `ESTIMATED`, exterior-silhouette-only
-  input. The existing CAD and STEP remain the verified baseline. Step 6 must
-  review and rebuild the sparse curves into authoritative engineered CAD; no
-  mesh-to-STEP path, fitment inference, or interface change is accepted here.
+- Step 6 rebuilds the Step 5 return artifact as the CAD exterior loft and an
+  inset provisional `22 mm` sandwich shell. Shape provenance remains
+  `ESTIMATED`; no mesh-to-STEP path or fitment inference is accepted.
+- Datum A is the `Z=0` bed-rail mounting plane, datum B is the `Y=0` vehicle
+  centerline, and datum C is the `X=1462 mm` rear closure plane.
+- Two `70 × 80 mm` longitudinal base flanges and two `45 mm` transverse shell
+  bands establish provisional load-path intent. They are design controls, not
+  structural-capacity claims.
+- A `60 mm` base-interface reserve remains
+  `PLACEHOLDER REQUIRING SCAN`; the rear opening is a Step 8 keep-out, not
+  completed hatch geometry.

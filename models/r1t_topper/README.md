@@ -1,9 +1,10 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Phase 2 adds a conceptual master topper volume to the nonproprietary
-vehicle reference envelopes. It is not production-ready, structurally
-validated, or fitment-trustworthy.
+prototype. Step 6 rebuilds the selected photo-derived profiles as a provisional
+authoritative sandwich shell alongside nonproprietary vehicle reference
+envelopes. It is not production-ready, structurally validated, or
+fitment-trustworthy.
 
 ## Regenerate
 
@@ -32,6 +33,12 @@ Run the Phase 2 concept-envelope checks with:
 ../../.venv/bin/python cad/phase2_checks.py
 ```
 
+Run the Step 6 engineered-shell checks with:
+
+```bash
+../../.venv/bin/python cad/step6_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -42,17 +49,20 @@ Checkpoint 1 targets a 2022 Gen 1 R1T. It contains three
 manufacturer-reference bed-envelope values: length, exposed cargo width, and
 maximum bed height. They are corroborated where possible by Rivian's 2022
 material, but come from the September 2025 R1T Upfitting Guide and must be
-checked on the target vehicle. Rail, cab, port, control, and swept-envelope
-geometry remains provisional. After scanning, update the affected parameter
-records and their provenance, regenerate, inspect, and review every view before
-advancing fitment geometry.
+checked on the target vehicle during the late bounded calibration pass. Rail,
+cab, port, control, and swept-envelope geometry remains provisional.
+Calibration must update affected parameter records and provenance, regenerate
+the design, and revalidate every downstream artifact before fabrication
+release.
 
 ## Known limitations
 
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
 The cab is a block envelope and vehicle interfaces are placeholders. The blue
-topper solid is an external silhouette/design volume only; it is not a shell or
-mold surface. No hatch mechanism, module interface, structure, load rating,
+topper is a provisional `22 mm` sandwich shell, with labeled datums, base
+flanges, keep-outs, and transverse load-path bands. Those controls define
+downstream CAD intent but do not prove fit, sealing, capacity, laminate
+schedule, or tooling. No hatch mechanism, module interface, rated structure,
 mounting geometry, seal, or tooling exists yet.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
@@ -64,8 +74,8 @@ The R1S-like visual surrogate is driven by five editable cross-sections in
 `cad/parameters.py`. See `references/visual_reference_sources.md` for the
 operator-supplied R1S screenshots, official imagery, and CC-BY artist mesh used
 only as proportion references. Replace those section rows with
-common-coordinate scan slices later; the loft, assembly, export, and validation
-workflow can remain unchanged.
+late hard-measurement calibration inputs; the loft, assembly, export, and
+validation workflow can remain unchanged.
 
 For aesthetic work in Blender, follow
 `references/BLENDER_CAD_HANDOFF.md`. Blender is styling/visual-envelope
@@ -81,9 +91,9 @@ The selected Step 5 aesthetic proposal is
 `interchange/reference_only/blender_to_cad_style_selected.json`: five sparse
 editable sections and five longitudinal character lines, all still
 `ESTIMATED`. The deterministic comparison evidence beside the Step 4 outputs
-shows every selected ratio inside its target band. This selects styling curves
-for the Step 6 CAD rebuild; it does not promote any image-derived ratio to
-measured geometry or modify the existing STEP.
+shows every selected ratio inside its target band. Step 6 rebuilds those curves
+as authoritative CAD while retaining `ESTIMATED` shape provenance; it does not
+promote any image-derived ratio to measured geometry.
 
 ## CAD Explorer / CAD Viewer
 
