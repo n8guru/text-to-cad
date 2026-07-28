@@ -1,0 +1,71 @@
+{
+  "source_count": 6,
+  "reproducible_source_count": 5,
+  "view_coverage": [
+    "driver_side_orthographic",
+    "front",
+    "front_driver_three_quarter_perspective",
+    "front_orthographic",
+    "rear",
+    "rear_bed_perspective",
+    "rear_orthographic",
+    "rear_three_quarter",
+    "side"
+  ],
+  "current_hypothesis": {
+    "roof_height_ratio_at_x_0_78": {
+      "value": 0.993421,
+      "band": [
+        0.99,
+        1.0
+      ],
+      "inside": true
+    },
+    "rear_roof_height_ratio": {
+      "value": 0.980263,
+      "band": [
+        0.97,
+        0.99
+      ],
+      "inside": true
+    },
+    "roof_width_ratio_at_x_0_78": {
+      "value": 0.992357,
+      "band": [
+        0.985,
+        0.997
+      ],
+      "inside": true
+    },
+    "rear_roof_width_ratio": {
+      "value": 0.961783,
+      "band": [
+        0.95,
+        0.975
+      ],
+      "inside": true
+    },
+    "rear_shoulder_width_ratio": {
+      "value": 0.964497,
+      "band": [
+        0.93,
+        0.955
+      ],
+      "inside": false
+    },
+    "base_width_ratio": {
+      "value_range": [
+        1.0,
+        1.0
+      ],
+      "band": [
+        0.995,
+        1.005
+      ],
+      "inside": true
+    }
+  },
+  "all_current_hypothesis_values_inside_targets": false,
+  "authority": "visual target package only; CAD remains authoritative",
+  "warning": "Passing target bands does not accept the aesthetic skin; Step 5 comparison is still required."
+}

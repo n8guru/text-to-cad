@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "coordinate_convention": "normalized crop coordinates [u,v], origin top-left, u right, v down",
+  "observations": [
+    {
+      "id": "R1S_SIDE_ROOF",
+      "source_id": "R1S_OG_2024_SIDE",
+      "view_class": "orthographic",
+      "crop_px": [98, 150, 820, 445],
+      "landmarks": {
+        "roof_outer": [[0.244, 0.144], [0.382, 0.088], [0.668, 0.091], [0.902, 0.106], [0.965, 0.166]],
+        "upper_shoulder": [[0.279, 0.318], [0.500, 0.315], [0.753, 0.320], [0.932, 0.352], [0.982, 0.505]],
+        "rear_corner": [[0.902, 0.106], [0.965, 0.166], [0.985, 0.349], [0.962, 0.566]]
+      },
+      "interpretation": [
+        "roof is nearly level over the aft cabin",
+        "height loss is concentrated at the rear corner",
+        "upper shoulder remains quiet ahead of the rear wheel"
+      ],
+      "uncertainty": "medium; manufacturer illustration, not dimensional drawing"
+    },
+    {
+      "id": "R1S_FRONT_REAR_UPPER",
+      "source_id": "R1S_OG_2024_FRONT_REAR",
+      "view_class": "orthographic",
+      "crop_px": [120, 225, 795, 520],
+      "landmarks": {
+        "front_roof_outer": [[0.092, 0.944], [0.096, 0.342], [0.158, 0.072], [0.390, 0.045], [0.474, 0.300]],
+        "rear_roof_outer": [[0.548, 0.944], [0.551, 0.319], [0.612, 0.043], [0.841, 0.043], [0.915, 0.349], [0.921, 0.944]],
+        "rear_glass_outer": [[0.606, 0.322], [0.639, 0.136], [0.821, 0.140], [0.868, 0.326]]
+      },
+      "interpretation": [
+        "rear roof corners retain broad width",
+        "crown is shallow relative to body width",
+        "upper corners are continuously rounded rather than chamfered"
+      ],
+      "uncertainty": "medium; line illustration and crop contain callouts"
+    },
+    {
+      "id": "R1T_REAR_CONTEXT",
+      "source_id": "R1T_OG_2024_FRONT_REAR",
+      "view_class": "orthographic",
+      "crop_px": [120, 225, 795, 520],
+      "landmarks": {
+        "cab_roof_outer": [[0.548, 0.944], [0.552, 0.319], [0.611, 0.043], [0.843, 0.043], [0.916, 0.349], [0.921, 0.944]],
+        "tailgate_upper": [[0.552, 0.436], [0.919, 0.436]]
+      },
+      "interpretation": [
+        "topper should visually continue the cab upper width",
+        "rear closure sits above the retained pickup tailgate",
+        "target context remains an R1T rather than an SUV conversion"
+      ],
+      "uncertainty": "medium; manufacturer illustration, not target-vehicle measurement"
+    },
+    {
+      "id": "R1T_BED_CONTEXT",
+      "source_id": "R1T_OG_2024_BED",
+      "view_class": "perspective",
+      "crop_px": [120, 150, 815, 600],
+      "landmarks": {
+        "driver_rail": [[0.228, 0.085], [0.096, 0.248], [0.086, 0.566]],
+        "passenger_rail": [[0.713, 0.083], [0.906, 0.266], [0.916, 0.584]],
+        "forward_bed_plane": [[0.265, 0.309], [0.733, 0.309]]
+      },
+      "interpretation": [
+        "bed view is perspective and cannot set rail width",
+        "full-width top-plane coverage remains a conceptual layout decision",
+        "controls and rail interfaces remain provisional"
+      ],
+      "uncertainty": "high for ratios; qualitative context only"
+    },
+    {
+      "id": "R1S_PHOTO_THREE_QUARTER",
+      "source_id": "R1S_STORY_2024_THREE_QUARTER",
+      "view_class": "perspective",
+      "crop_px": [305, 145, 935, 420],
+      "landmarks": {
+        "roof_highlight": [[0.449, 0.130], [0.565, 0.096], [0.700, 0.151], [0.785, 0.204]],
+        "shoulder_highlight": [[0.386, 0.395], [0.565, 0.399], [0.748, 0.474], [0.868, 0.556]],
+        "rear_corner": [[0.700, 0.151], [0.785, 0.204], [0.862, 0.484], [0.879, 0.694]]
+      },
+      "interpretation": [
+        "roof and belt highlights remain calm until the rear corner",
+        "rear narrowing is localized and rounded",
+        "perspective foreshortening prohibits direct length or width ratios"
+      ],
+      "uncertainty": "high for geometry; useful qualitative photo cross-check"
+    }
+  ]
+}

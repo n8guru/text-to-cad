@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "authority": "visual target package only; CAD remains authoritative",
+  "axes": {
+    "longitudinal": "x_fraction: 0 front bed plane, 1 rear/tailgate plane",
+    "width": "ratios are full widths normalized to the front station",
+    "height": "ratios are heights above the CAD mounting plane normalized to the front station"
+  },
+  "target_bands": {
+    "roof_height_ratio_at_x_0_78": [0.990, 1.000],
+    "rear_roof_height_ratio": [0.970, 0.990],
+    "roof_width_ratio_at_x_0_78": [0.985, 0.997],
+    "rear_roof_width_ratio": [0.950, 0.975],
+    "rear_shoulder_width_ratio": [0.930, 0.955],
+    "base_width_ratio": [0.995, 1.005]
+  },
+  "qualitative_constraints": [
+    "roofline and plan-view roof edges remain nearly parallel through x=0.78",
+    "visible roof drop and narrowing are concentrated after x=0.78",
+    "rear upper corners are rounded continuous transitions, not planar chamfers",
+    "rear section retains a broad R1S-like upper body rather than converging to a wedge",
+    "base footprint remains visually full-width over the bed without implying rail contact",
+    "three-quarter perspective views are cross-checks and never direct metric inputs"
+  ],
+  "current_cad_starting_hypothesis": {
+    "source_commit": "d9417481e4b5c9817e8fa80ec13cd967d7c0f9a9",
+    "status": "estimated starting point for Step 5, not an accepted aesthetic skin",
+    "stations": [
+      {"x_fraction": 0.00, "height_ratio": 1.000000, "base_width_ratio": 1.000000, "shoulder_width_ratio": 1.000000, "roof_width_ratio": 1.000000},
+      {"x_fraction": 0.22, "height_ratio": 0.998684, "base_width_ratio": 1.000000, "shoulder_width_ratio": 0.998817, "roof_width_ratio": 0.999363},
+      {"x_fraction": 0.52, "height_ratio": 0.997368, "base_width_ratio": 1.000000, "shoulder_width_ratio": 0.996450, "roof_width_ratio": 0.997452},
+      {"x_fraction": 0.78, "height_ratio": 0.993421, "base_width_ratio": 1.000000, "shoulder_width_ratio": 0.989349, "roof_width_ratio": 0.992357},
+      {"x_fraction": 1.00, "height_ratio": 0.980263, "base_width_ratio": 1.000000, "shoulder_width_ratio": 0.964497, "roof_width_ratio": 0.961783}
+    ]
+  },
+  "step_5_acceptance_inputs": [
+    "return sparse editable sections/profile curves using the existing Blender/CAD handoff",
+    "show side, rear, top, and three-quarter comparisons against this package",
+    "report every target-band value and any deliberate exception",
+    "retain ESTIMATED provenance for photo-derived styling ratios",
+    "do not alter fitment, interface, thickness, flange, seal, hatch, or keep-out authority"
+  ]
+}

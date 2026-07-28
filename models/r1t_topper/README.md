@@ -72,6 +72,14 @@ For aesthetic work in Blender, follow
 authoring only; the CAD datum, interfaces, engineered geometry, STEP, and
 validation remain authoritative.
 
+The reproducible multi-view visual target package lives under
+`references/photo_reconstruction/`. It records official Rivian source URLs and
+fingerprints, normalized landmarks, uncertainty, perspective exclusions, and
+bounded silhouette targets without redistributing the source rasters. Its
+generated linework lives under `outputs/reference/photo_reconstruction/`.
+These targets constrain the next aesthetic-skin pass; they do not promote the
+current surrogate or any image-derived ratio to measured geometry.
+
 ## CAD Explorer / CAD Viewer
 
 Start CAD Viewer with the repository's `cad-viewer` skill and use the repository

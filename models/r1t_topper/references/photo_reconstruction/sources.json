@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "redistribute_source_rasters": false,
+    "checked_in_material": "URLs, fingerprints, normalized annotations, and project-authored derived linework only",
+    "metric_inference": "orthographic illustrations support dimensionless visual ratios; perspective photographs are qualitative cross-checks only"
+  },
+  "sources": [
+    {
+      "id": "R1S_OG_2024_FRONT_REAR",
+      "subject": "R1S Gen 1",
+      "kind": "manufacturer illustration",
+      "view": ["front_orthographic", "rear_orthographic"],
+      "source_page_url": "https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c8c4a585ae141effce63b41ead2b8ce0/r1s-og-en-us-20240722.pdf",
+      "asset_url": "https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c8c4a585ae141effce63b41ead2b8ce0/r1s-og-en-us-20240722.pdf",
+      "document_title": "R1S Owner's Guide, Model Year 2022-2024, version 2024.27",
+      "page_label": 14,
+      "pdf_page_index_zero_based": 13,
+      "review_render_px": [918, 1188],
+      "asset_sha256": "27eda35d31ee2d38baae97d336d2fb38e128f1fdc04ab9f9334c21e8e8977061",
+      "use": "front/rear symmetry, roof crown, shoulder easing, rear corner width",
+      "redistribution": "remote reference only; Rivian copyright"
+    },
+    {
+      "id": "R1S_OG_2024_SIDE",
+      "subject": "R1S Gen 1",
+      "kind": "manufacturer illustration",
+      "view": ["driver_side_orthographic"],
+      "source_page_url": "https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c8c4a585ae141effce63b41ead2b8ce0/r1s-og-en-us-20240722.pdf",
+      "asset_url": "https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c8c4a585ae141effce63b41ead2b8ce0/r1s-og-en-us-20240722.pdf",
+      "document_title": "R1S Owner's Guide, Model Year 2022-2024, version 2024.27",
+      "page_label": 16,
+      "pdf_page_index_zero_based": 15,
+      "review_render_px": [918, 1188],
+      "asset_sha256": "27eda35d31ee2d38baae97d336d2fb38e128f1fdc04ab9f9334c21e8e8977061",
+      "use": "near-level roofline and localized rear-corner drop",
+      "redistribution": "remote reference only; Rivian copyright"
+    },
+    {
+      "id": "R1T_OG_2024_FRONT_REAR",
+      "subject": "R1T Gen 1",
+      "kind": "manufacturer illustration",
+      "view": ["front_orthographic", "rear_orthographic"],
+      "source_page_url": "https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf",
+      "asset_url": "https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf",
+      "document_title": "R1T Owner's Guide, Model Year 2022-2024, version 2024.19",
+      "page_label": 14,
+      "pdf_page_index_zero_based": 13,
+      "review_render_px": [918, 1188],
+      "asset_sha256": "e6c544346ef87548d956934a46c2a656c24d3196ed271ff929ec213e59b775b6",
+      "use": "target-truck rear visual frame and roof-width continuity context",
+      "redistribution": "remote reference only; Rivian copyright"
+    },
+    {
+      "id": "R1T_OG_2024_BED",
+      "subject": "R1T Gen 1",
+      "kind": "manufacturer illustration",
+      "view": ["rear_bed_perspective"],
+      "source_page_url": "https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf",
+      "asset_url": "https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf",
+      "document_title": "R1T Owner's Guide, Model Year 2022-2024, version 2024.19",
+      "page_label": 16,
+      "pdf_page_index_zero_based": 15,
+      "review_render_px": [918, 1188],
+      "asset_sha256": "e6c544346ef87548d956934a46c2a656c24d3196ed271ff929ec213e59b775b6",
+      "use": "target bed context, rail/top-plane visibility, tailgate-open composition",
+      "redistribution": "remote reference only; Rivian copyright"
+    },
+    {
+      "id": "R1S_STORY_2024_THREE_QUARTER",
+      "subject": "R1S Gen 2 exterior, stated by Rivian to remain largely similar",
+      "kind": "manufacturer photograph",
+      "view": ["front_driver_three_quarter_perspective"],
+      "source_page_url": "https://stories.rivian.com/meet-the-new-r1?locale=en",
+      "asset_url": "https://exposure.accelerator.net/production/photos/itcdmjdpbuwmdfmgim9sjhlmjf99tbbjzl3y/original.jpg%3Bresize%281200%2C_%29.jpeg?auto=webp",
+      "caption": "Tri Max R1S in Red Canyon, with Darkout accents and 22-inch Sport Wheels",
+      "review_render_px": [1200, 520],
+      "asset_sha256": "9bb5df6cdb485892e0b061ce255ba31e760217a53f612e403328cf0dceeaa616",
+      "use": "perspective-only cross-check of roof continuity, shoulder highlight, and rear corner",
+      "redistribution": "remote reference only; Rivian copyright"
+    },
+    {
+      "id": "OPERATOR_R1S_SCREENSHOTS_2026_07_27",
+      "subject": "R1S",
+      "kind": "operator-supplied screenshots",
+      "view": ["side", "front", "rear", "rear_three_quarter"],
+      "availability": "external to repository",
+      "use": "historical qualitative reference documented by verified Step 1; not used for reproducible numeric annotations in this package",
+      "redistribution": "not available for redistribution"
+    }
+  ]
+}

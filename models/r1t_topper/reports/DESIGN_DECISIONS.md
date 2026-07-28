@@ -26,3 +26,11 @@
 - Detailed shell offsets, modules, hatch, seals, joints, hardpoints, controls,
   ports, anchors, and mounting geometry remain intentionally absent until scan
   data establishes the vehicle interfaces.
+- Step 4 separates reproducible visual observations from geometry authority.
+  Official Rivian orthographic illustrations provide normalized silhouette
+  anchors; an official three-quarter photo is a perspective-only cross-check.
+  The resulting target bands constrain Step 5 while leaving the five-station
+  CAD surrogate `ESTIMATED` and explicitly unaccepted as an aesthetic skin.
+- Source rasters are not redistributed. The reference package records URLs,
+  SHA-256 fingerprints, page/crop identity, normalized landmarks, uncertainty,
+  and project-authored derived linework.

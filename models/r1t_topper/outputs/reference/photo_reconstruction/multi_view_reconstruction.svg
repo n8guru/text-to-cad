@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<style>
+  .bg { fill:#f6f3ed; } .panel { fill:#fff; stroke:#c8c1b5; stroke-width:2; }
+  .title { font:700 28px system-ui,sans-serif; fill:#202728; }
+  .label { font:700 17px system-ui,sans-serif; fill:#202728; }
+  .small { font:14px system-ui,sans-serif; fill:#4c5859; }
+  .source { fill:none; stroke:#8c9694; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+  .candidate { fill:none; stroke:#0b6f69; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+  .secondary { fill:none; stroke:#d8892b; stroke-width:4; stroke-dasharray:9 7; stroke-linecap:round; }
+  .band { fill:#67b8ae; fill-opacity:.28; stroke:#0b6f69; stroke-width:1; }
+  .axis { stroke:#d5d0c8; stroke-width:1; }
+</style>
+<rect class="bg" width="1400" height="820"/>
+<text class="title" x="70" y="54">R1T topper — photo-derived multi-view reconstruction targets</text>
+<text class="small" x="70" y="82">Normalized visual evidence only · no source rasters redistributed · no fitment or metric claim</text>
+
+<rect class="panel" x="45" y="105" width="610" height="300" rx="12"/>
+<text class="label" x="70" y="137">SIDE · roof continuity and localized rear drop</text>
+<line class="axis" x1="70" y1="360" x2="630" y2="360"/>
+<polyline class="source" points="206.6,180.2 283.9,168.5 444.1,169.1 575.1,172.3 610.4,184.9"/>
+<polyline class="secondary" points="226.2,216.8 350.0,216.2 491.7,217.2 591.9,223.9 619.9,256.1"/>
+<polyline class="candidate" points="70.0,173.3 193.2,176.4 361.2,179.5 506.8,188.7 630.0,219.4"/>
+<rect class="band" x="496.8" y="173.3" width="20" height="23.3"/>
+<rect class="band" x="620.0" y="196.7" width="20" height="46.7"/>
+<text class="small" x="70" y="388">gray: unregistered image-space trace · green/bands: fixed ratio scale · amber: shoulder cue</text>
+
+<rect class="panel" x="745" y="105" width="610" height="300" rx="12"/>
+<text class="label" x="770" y="137">REAR · broad crown, eased shoulders, continuous corners</text>
+<polyline class="source" points="1044.0,348.2 1045.5,217.0 1076.0,159.0 1190.5,159.0 1227.5,223.3 1230.5,348.2"/>
+<polyline class="secondary" points="1073.0,217.6 1089.5,178.6 1180.5,179.4 1204.0,218.5"/>
+<path class="candidate" d="M 845 352 Q 805 260 850 190 Q 1020 145 1190 190 Q 1235 260 1195 352"/>
+<text class="small" x="770" y="388">rear styling target remains broad; rounded transitions are required, planar chamfers are not</text>
+
+<rect class="panel" x="45" y="485" width="610" height="270" rx="12"/>
+<text class="label" x="70" y="517">PLAN · roof-width retention before rear-corner taper</text>
+<line class="axis" x1="70" y1="720" x2="630" y2="720"/>
+<polyline class="candidate" points="70.0,551.1 193.2,552.5 361.2,556.5 506.8,567.2 630.0,631.8"/>
+<rect class="band" x="496.8" y="557.4" width="20" height="25.3"/>
+<rect class="band" x="620.0" y="603.9" width="20" height="52.8"/>
+<text class="small" x="70" y="744">target: almost parallel through x=0.78, then controlled narrowing to 0.950–0.975</text>
+
+<rect class="panel" x="745" y="485" width="610" height="270" rx="12"/>
+<text class="label" x="770" y="517">THREE-QUARTER · qualitative perspective cross-check</text>
+<polyline class="source" points="994.5,554.7 1052.5,548.2 1120.0,558.7 1162.5,568.8"/>
+<polyline class="secondary" points="963.0,605.0 1052.5,605.8 1144.0,620.1 1204.0,635.6"/>
+<polyline class="candidate" points="1120.0,558.7 1162.5,568.8 1201.0,622.0 1209.5,661.9"/>
+<text class="small" x="770" y="744">foreshortening is not calibrated; this panel cannot set width, length, or station position</text>
+</svg>

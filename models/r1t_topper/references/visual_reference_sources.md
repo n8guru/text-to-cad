@@ -22,3 +22,11 @@ dimensions or fit. The artist mesh is used only as a visual proportion
 cross-check and is not redistributed in this repository. A later vehicle scan
 should replace the numeric section rows in `cad/parameters.py` while preserving
 the loft and assembly workflow.
+
+The Step 4 reproducible source manifest and normalized multi-view annotations
+are in `photo_reconstruction/`. That package adds official R1S owner-guide
+front/rear and side illustrations, official R1T rear/bed context, and an
+official Rivian three-quarter R1S photograph. Source rasters remain remote;
+only their URLs, fingerprints, normalized annotations, and project-authored
+linework are checked in. Perspective observations are qualitative and are
+never used for direct metric inference.
