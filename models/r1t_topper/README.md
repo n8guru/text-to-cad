@@ -1,10 +1,10 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Step 6 rebuilds the selected photo-derived profiles as a provisional
-authoritative sandwich shell alongside nonproprietary vehicle reference
-envelopes. It is not production-ready, structurally validated, or
-fitment-trustworthy.
+prototype. Step 7 derives three sectional shell pieces and a common modular
+side-panel system from the verified Step 6 provisional authoritative sandwich
+shell, alongside nonproprietary vehicle reference envelopes. It is not
+production-ready, structurally validated, sealed, or fitment-trustworthy.
 
 ## Regenerate
 
@@ -39,6 +39,12 @@ Run the Step 6 engineered-shell checks with:
 ../../.venv/bin/python cad/step6_checks.py
 ```
 
+Run the Step 7 sectional/module checks with:
+
+```bash
+../../.venv/bin/python cad/step7_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -60,10 +66,15 @@ release.
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
 The cab is a block envelope and vehicle interfaces are placeholders. The blue
 topper is a provisional `22 mm` sandwich shell, with labeled datums, base
-flanges, keep-outs, and transverse load-path bands. Those controls define
-downstream CAD intent but do not prove fit, sealing, capacity, laminate
-schedule, or tooling. No hatch mechanism, module interface, rated structure,
-mounting geometry, seal, or tooling exists yet.
+flanges, keep-outs, and transverse load-path bands. Step 7 divides that shell
+into three sub-`600 mm` X-length sections using two `4 mm` assembly gaps,
+`80 × 4 mm` internal splice-doubler envelopes, and provisional alignment keys.
+It cuts three `285 × 420 mm` openings per side and installs six identical
+common-interface frames plus swappable solid, window, mesh, recovery-board,
+and utility cartridges. Those controls define downstream CAD intent but do not
+prove joint capacity, fit, sealing, laminate schedule, hardware selection, or
+tooling. No hatch mechanism, rated structure, vehicle mounting geometry,
+weather seal, or tooling exists yet.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
 `X=0..1462 mm` and `Y=-865..865 mm`. Its rear face shares the provisional

@@ -230,10 +230,48 @@ module_opening_width = Parameter(285.0, "mm", DESIGN_DECISION, "provisional")
 module_opening_height = Parameter(420.0, "mm", DESIGN_DECISION, "provisional")
 module_corner_radius = Parameter(30.0, "mm", DESIGN_DECISION, "provisional")
 module_frame_depth = Parameter(35.0, "mm", DESIGN_DECISION, "provisional")
+module_frame_land_width = Parameter(
+    22.0, "mm", DESIGN_DECISION, "common perimeter land for every module type"
+)
+module_panel_thickness = Parameter(
+    8.0, "mm", DESIGN_DECISION, "common provisional cartridge envelope"
+)
+module_bay_center_z = Parameter(
+    330.0, "mm Z", DESIGN_DECISION, "keeps bay openings below the shoulder transition"
+)
 module_seal_compression = Parameter(2.0, "mm", DESIGN_DECISION, "provisional")
 module_latch_clearance = Parameter(12.0, "mm", DESIGN_DECISION, "provisional")
 module_spacing = Parameter(35.0, "mm", DESIGN_DECISION, "provisional")
 removable_panel_max_weight = Parameter(8.0, "kg", DESIGN_DECISION, "handling target")
+module_variant_types = Parameter(
+    ("SOLID", "WINDOW", "MESH", "RECOVERY_BOARD", "UTILITY"),
+    "names",
+    DESIGN_DECISION,
+    "project brief compatibility set",
+)
+
+# SECTIONAL FLAT-PACK SYSTEM
+section_joint_gap = Parameter(
+    4.0, "mm X", DESIGN_DECISION, "provisional assembly and adhesive-control gap"
+)
+section_segment_max_length = Parameter(
+    600.0,
+    "mm X",
+    DESIGN_DECISION,
+    "driveway-handling envelope for each of the three shell sections",
+)
+section_joint_doubler_width = Parameter(
+    80.0, "mm X", DESIGN_DECISION, "internal splice overlap; not structurally rated"
+)
+section_joint_doubler_thickness = Parameter(
+    4.0, "mm", DESIGN_DECISION, "provisional internal laminate/build-up envelope"
+)
+section_joint_alignment_key_size = Parameter(
+    (24.0, 30.0, 8.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional assembly-indexing envelope; fastening remains Step 11 scope",
+)
 
 # CROSSBAR SYSTEM
 topper_crossbar_station_1 = Parameter(350.0, "mm X", DESIGN_DECISION, "provisional")

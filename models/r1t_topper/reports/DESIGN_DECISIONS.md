@@ -1,4 +1,4 @@
-# Design decisions — Step 6 provisional engineered shell
+# Design decisions — Step 7 provisional sectional module system
 
 - Global coordinates follow the requested vehicle convention: +X rearward,
   +Y driver side, +Z upward.
@@ -50,3 +50,23 @@
 - A `60 mm` base-interface reserve remains
   `PLACEHOLDER REQUIRING SCAN`; the rear opening is a Step 8 keep-out, not
   completed hatch geometry.
+- Step 7 retains the Step 6 shell generator unchanged and derives a separate
+  sectional/module assembly from it, so the verified exterior and thickness
+  controls remain reproducible.
+- Three shell sections use X extents of approximately `569 / 316 / 569 mm`,
+  separated by `4 mm` gaps at `X=571` and `X=891 mm`. Both joints sit between,
+  rather than through, module openings and keep every section inside the
+  `600 mm` driveway-handling envelope.
+- Each joint uses an `80 mm`-wide, `4 mm`-thick internal splice-doubler envelope
+  and two `24 × 30 × 8 mm` roof alignment keys. These define assembly indexing
+  and overlap packaging only; Step 11 owns fastening, laminate, strength,
+  tolerance, and tooling authority.
+- Each side has three common `285 × 420 mm` openings centered at
+  `X=411 / 731 / 1051 mm`, with a `22 mm` perimeter land and `35 mm` frame
+  depth. The six installed cartridges share that boundary.
+- The positive compatibility set is solid, window, mesh, recovery-board, and
+  utility. Recovery-board and utility details are attachment-envelope examples,
+  not rated cargo retention or accessory-load claims.
+- Step 7 does not implement the Step 8 hatch, seals, drainage, or service
+  access; Step 9 vehicle mounts; Step 10 wiring; or Step 11 layup, hardpoints,
+  tooling, structural checks, and assembly release.
