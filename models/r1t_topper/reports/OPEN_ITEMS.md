@@ -1,4 +1,4 @@
-# Open items — Step 6 provisional engineered shell
+# Open items — Step 8 provisional rear hatch
 
 - No direct vehicle measurements or approved manufacturer CAD are available.
 - The project brief's approximate `54 in wide × 44 in deep` wording is
@@ -9,10 +9,18 @@
   2025 upfitting guide.
 - Replace the block cab envelope with scanned rear-wall and roof-trailing
   sections. The provisional rear-surface angle is not yet applied.
-- Continue shell, structure, hatch, module, seal, mounting, integrated-system,
+- Continue sectional joints/modules, mounting, integrated-system, structure,
   tooling, and assembly design from the explicitly provisional photo-derived
   geometry. Physical scans and hard dimensions are a late bounded calibration
   input, not a gate for completing the design.
+- Select the production bulb seal and verify compression, corner continuity,
+  adhesive compatibility, water ingress, and freeze/debris behavior.
+- Size gas struts, hinge hardware, latch hardware, and composite hardpoints
+  after Step 11 supplies the laminate and verified hatch mass properties.
+- Calibrate the open-motion envelope against the real tailgate, rear lamps,
+  rear body, and user head/hand clearance.
+- Route the two drain outlets to measured exterior-safe terminations and verify
+  flow under pitch, roll, debris, and parked-grade cases.
 - Confirm tailgate and rear-light swept envelopes.
 - Confirm all bed-anchor, control-button, and factory-crossbar interfaces.
 - Parameterize the engineered cab/topper shadow-gap or aerodynamic bridge now;

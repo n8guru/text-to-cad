@@ -1,4 +1,4 @@
-# Design decisions — Step 6 provisional engineered shell
+# Design decisions — Step 8 provisional rear hatch
 
 - Global coordinates follow the requested vehicle convention: +X rearward,
   +Y driver side, +Z upward.
@@ -50,3 +50,16 @@
 - A `60 mm` base-interface reserve remains
   `PLACEHOLDER REQUIRING SCAN`; the rear opening is a Step 8 keep-out, not
   completed hatch geometry.
+- Step 8 leaves the verified Step 6 generator unchanged and derives a new shell
+  by cutting the reserved `1450 × 620 mm` rear opening.
+- The closed hatch leaf overlaps the opening by `20 mm` onto a four-sided,
+  `35 mm`-deep frame. A `3 mm` primary-seal compression envelope is a packaging
+  control, not a water-tightness claim.
+- A header gutter and paired side gutters terminate in two explicit low-point
+  outlet envelopes. Flow rate, hose routing, and final outlet termination wait
+  for late calibration and production detailing.
+- The hatch rotates rearward about a symmetric rear-header axis to a
+  provisional `75°` open position. That second leaf is a motion keep-out only.
+- Hinge, gas-strut, and latch service volumes remain removable-access
+  envelopes. Force sizing, fasteners, laminate hardpoints, and rated loads are
+  Step 11 work; camera and lighting integration are Step 10 work.

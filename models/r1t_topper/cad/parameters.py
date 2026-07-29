@@ -257,21 +257,42 @@ assumed_dynamic_load_factor = Parameter(
 
 # REAR HATCH
 hinge_axis = Parameter(
-    ((1080.0, -725.0, 700.0), (1080.0, 725.0, 700.0)),
+    ((1473.0, -650.0, 720.0), (1473.0, 650.0, 720.0)),
     "mm endpoints",
     DESIGN_DECISION,
-    "provisional",
+    "provisional rear-header axis for the Step 8 swing-up hatch",
 )
 gas_strut_mount_points = Parameter(
-    (((1000.0, 700.0, 500.0), (1120.0, 700.0, 260.0)),
-     ((1000.0, -700.0, 500.0), (1120.0, -700.0, 260.0))),
+    (((1320.0, 650.0, 500.0), (1450.0, 650.0, 420.0)),
+     ((1320.0, -650.0, 500.0), (1450.0, -650.0, 420.0))),
     "mm endpoint pairs",
     DESIGN_DECISION,
-    "provisional",
+    "provisional symmetric body/hatch mount envelopes; force sizing is Step 11",
 )
 hatch_open_angle = Parameter(75.0, "deg", DESIGN_DECISION, "provisional")
 hatch_mass_estimate = Parameter(16.0, "kg", ESTIMATED, "preliminary mass placeholder")
 seal_land_width = Parameter(20.0, "mm", DESIGN_DECISION, "provisional")
+hatch_frame_depth = Parameter(35.0, "mm X", DESIGN_DECISION, "provisional")
+hatch_seal_compression = Parameter(
+    3.0,
+    "mm X",
+    DESIGN_DECISION,
+    "provisional closed-position compression envelope; not a sealing claim",
+)
+hatch_gutter_width = Parameter(12.0, "mm", DESIGN_DECISION, "provisional")
+hatch_gutter_depth = Parameter(10.0, "mm X", DESIGN_DECISION, "provisional")
+hatch_drain_outlet_size = Parameter(
+    (30.0, 18.0, 35.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional gravity outlet envelope at each lower rear corner",
+)
+hatch_service_keepout_size = Parameter(
+    (90.0, 80.0, 90.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional removable-cover access around hinge, strut, and latch interfaces",
+)
 brake_light_recess_dimensions = Parameter(
     (55.0, 900.0, 25.0), "mm (X,Y,Z)", DESIGN_DECISION, "provisional"
 )

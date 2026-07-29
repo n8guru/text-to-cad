@@ -1,9 +1,10 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Step 6 rebuilds the selected photo-derived profiles as a provisional
-authoritative sandwich shell alongside nonproprietary vehicle reference
-envelopes. It is not production-ready, structurally validated, or
+prototype. Step 8 derives a provisional hatch-ready shell from the verified
+Step 6 sandwich shell, adding a real rear opening, swing-up closure, weather
+seal, drainage path, and service envelopes alongside nonproprietary vehicle
+references. It is not production-ready, structurally validated, sealed, or
 fitment-trustworthy.
 
 ## Regenerate
@@ -39,6 +40,12 @@ Run the Step 6 engineered-shell checks with:
 ../../.venv/bin/python cad/step6_checks.py
 ```
 
+Run the Step 8 rear-hatch checks with:
+
+```bash
+../../.venv/bin/python cad/step8_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -59,11 +66,11 @@ release.
 
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
 The cab is a block envelope and vehicle interfaces are placeholders. The blue
-topper is a provisional `22 mm` sandwich shell, with labeled datums, base
-flanges, keep-outs, and transverse load-path bands. Those controls define
-downstream CAD intent but do not prove fit, sealing, capacity, laminate
-schedule, or tooling. No hatch mechanism, module interface, rated structure,
-mounting geometry, seal, or tooling exists yet.
+topper is a provisional `22 mm` sandwich shell. Step 8 cuts its rear opening
+and packages a closed hatch leaf, primary seal envelope, header/side gutters,
+two low-point drains, hinge/strut access, latch access, and a `75°` open
+motion envelope. These controls do not prove fit, sealing performance, gas
+strut sizing, latch strength, capacity, laminate schedule, or tooling.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
 `X=0..1462 mm` and `Y=-865..865 mm`. Its rear face shares the provisional
