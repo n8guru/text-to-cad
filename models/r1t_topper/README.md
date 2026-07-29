@@ -1,9 +1,11 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Step 6 rebuilds the selected photo-derived profiles as a provisional
-authoritative sandwich shell alongside nonproprietary vehicle reference
-envelopes. It is not production-ready, structurally validated, or
+prototype. Step 10 derives a provisional electrical-integration package from
+the verified Step 6 sandwich shell. It packages a relocated rear camera,
+high-mounted brake-light bar, interior task lighting, low-voltage raceways,
+and a vehicle-ingress reservation alongside nonproprietary vehicle reference
+envelopes. It is not production-ready, electrically validated, homologated, or
 fitment-trustworthy.
 
 ## Regenerate
@@ -39,6 +41,12 @@ Run the Step 6 engineered-shell checks with:
 ../../.venv/bin/python cad/step6_checks.py
 ```
 
+Run the Step 10 electrical-integration checks with:
+
+```bash
+../../.venv/bin/python cad/step10_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -59,11 +67,14 @@ release.
 
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
 The cab is a block envelope and vehicle interfaces are placeholders. The blue
-topper is a provisional `22 mm` sandwich shell, with labeled datums, base
-flanges, keep-outs, and transverse load-path bands. Those controls define
-downstream CAD intent but do not prove fit, sealing, capacity, laminate
-schedule, or tooling. No hatch mechanism, module interface, rated structure,
-mounting geometry, seal, or tooling exists yet.
+topper remains the provisional Step 6 `22 mm` sandwich shell. Step 10 adds real
+camera and brake-light passages plus mechanical packaging for a rearward
+camera field, two interior lights, a driver-side raceway, rear riser/header,
+camera drop, service junction, and vehicle-ingress reservation. No Rivian
+camera protocol, connector, voltage, current, signal, wire gauge, photometry,
+legal compliance, waterproofing, EMC, thermal, or functional claim is made.
+Steps 8 and 9 remain independently composable branches; Step 11 owns their
+production-intent composition, hardpoints, laminate, and structural checks.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
 `X=0..1462 mm` and `Y=-865..865 mm`. Its rear face shares the provisional

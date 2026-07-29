@@ -1,4 +1,4 @@
-"""Regenerate the Phase 2 concept STEP and stable review images."""
+"""Regenerate the Step 10 integration STEP and stable review images."""
 
 import json
 import shutil
@@ -38,7 +38,7 @@ def run() -> None:
         check=True,
     )
 
-    with tempfile.TemporaryDirectory(prefix="r1t-topper-phase2-") as temp:
+    with tempfile.TemporaryDirectory(prefix="r1t-topper-step10-") as temp:
         temp_dir = Path(temp)
         job = {
             "input": str(STEP_PATH),

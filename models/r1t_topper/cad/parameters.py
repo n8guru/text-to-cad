@@ -279,6 +279,62 @@ camera_housing_dimensions = Parameter(
     (70.0, 110.0, 55.0), "mm (X,Y,Z)", DESIGN_DECISION, "provisional"
 )
 
+# ELECTRICAL / VISIBILITY INTEGRATION
+rear_camera_center = Parameter(
+    (1462.0, 0.0, 180.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional rear-hatch camera packaging center; not an optical calibration",
+)
+camera_optical_keepout_dimensions = Parameter(
+    (520.0, 260.0, 180.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "review-only unobstructed rearward field envelope",
+)
+brake_light_center = Parameter(
+    (1462.0, 0.0, 720.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional high rear header placement; legal photometry is not implied",
+)
+interior_light_bar_dimensions = Parameter(
+    (760.0, 24.0, 12.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "two low-profile serviceable lighting envelopes",
+)
+interior_light_bar_centers = Parameter(
+    ((730.0, 560.0, 690.0), (730.0, -560.0, 690.0)),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "symmetric driver/passenger interior task-light packaging",
+)
+wiring_channel_dimensions = Parameter(
+    (1340.0, 24.0, 24.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "driver-side low-voltage harness raceway packaging only",
+)
+electrical_service_box_dimensions = Parameter(
+    (160.0, 90.0, 55.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "accessible rear junction/service envelope",
+)
+vehicle_electrical_ingress_center = Parameter(
+    (80.0, 790.0, 95.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "vehicle-side connector, power, signaling, and pinout remain unknown",
+)
+vehicle_electrical_ingress_dimensions = Parameter(
+    (120.0, 90.0, 80.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "mechanical reservation only; no Rivian electrical protocol claim",
+)
+
 
 def validate_checkpoint_1() -> None:
     """Small deterministic guard against internally contradictory references."""

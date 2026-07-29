@@ -1,4 +1,18 @@
-# Open items — Step 6 provisional engineered shell
+# Open items — Step 10 electrical integration
+
+- Confirm the target vehicle's camera architecture, approved relocation path,
+  connector family, pinout, power, signaling, diagnostics, and calibration
+  procedure with Rivian-qualified information.
+- Select a compliant center high-mounted stop lamp and validate illuminated
+  area, intensity, visibility angles, thermal behavior, sealing, service, and
+  all applicable regulations for the finished vehicle.
+- Define interior-light lumens, color temperature, switching, door/hatch
+  behavior, fusing, grounding, sleep-current limit, and thermal requirements.
+- Size conductors, bends, grommets, strain relief, abrasion protection,
+  connectors, service loops, drainage, and electromagnetic compatibility.
+- Compose this parallel Step 10 package with the verified hatch, mounts, and
+  sectional-shell packages during Step 11 without violating motion, seal,
+  hardpoint, joint, or calibration reserves.
 
 - No direct vehicle measurements or approved manufacturer CAD are available.
 - The project brief's approximate `54 in wide × 44 in deep` wording is
@@ -9,8 +23,7 @@
   2025 upfitting guide.
 - Replace the block cab envelope with scanned rear-wall and roof-trailing
   sections. The provisional rear-surface angle is not yet applied.
-- Continue shell, structure, hatch, module, seal, mounting, integrated-system,
-  tooling, and assembly design from the explicitly provisional photo-derived
+- Continue structure, tooling, and assembly design from the explicitly provisional photo-derived
   geometry. Physical scans and hard dimensions are a late bounded calibration
   input, not a gate for completing the design.
 - Confirm tailgate and rear-light swept envelopes.

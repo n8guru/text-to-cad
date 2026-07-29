@@ -1,4 +1,23 @@
-# Design decisions — Step 6 provisional engineered shell
+# Design decisions — Step 10 electrical integration
+
+- Step 10 derives from the unchanged verified Step 6 shell so the parallel
+  Step 7, Step 8, and Step 9 packages remain independently composable.
+- A centered rear camera provision is packaged at `X=1462 mm, Z=180 mm` with
+  a rearward optical keep-out. This is a packaging location, not a calibrated
+  field of view or Rivian-camera compatibility claim.
+- A `900 mm` high-mounted brake-light envelope is centered in the rear header
+  at `Z=720 mm`. Its shell passage is real CAD; lamp photometry, certification,
+  visibility angles, and legal sufficiency remain untested.
+- Two symmetric `760 × 24 × 12 mm` interior task-light envelopes sit below the
+  roof. Light output, glare, switching, thermal behavior, and sealing remain
+  downstream engineering work.
+- The mechanical harness path is a driver-side base raceway, rear riser,
+  header branch, camera drop, and accessible service junction. It reserves
+  space only; circuit count, conductor gauge, fusing, grounding, EMC, and
+  connector selection remain deliberately unspecified.
+- The forward driver-side vehicle-ingress volume is labeled
+  `PROTOCOL_UNKNOWN` and `PLACEHOLDER_REQUIRING_SCAN`. Unknown Rivian camera,
+  brake-light, interior-light, power, and control protocols are not inferred.
 
 - Global coordinates follow the requested vehicle convention: +X rearward,
   +Y driver side, +Z upward.
