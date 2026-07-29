@@ -1,9 +1,11 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Step 6 rebuilds the selected photo-derived profiles as a provisional
-authoritative sandwich shell alongside nonproprietary vehicle reference
-envelopes. It is not production-ready, structurally validated, or
+prototype. Step 9 derives a provisional mounting/interface package from the
+verified Step 6 sandwich shell. It adds factory-anchor adapter envelopes,
+mechanically relocated controls, topper-roof crossbar-port envelopes, and
+vehicle/service keep-outs alongside nonproprietary vehicle references. It is
+not production-ready, structurally validated, OEM-compatible, or
 fitment-trustworthy.
 
 ## Regenerate
@@ -39,6 +41,12 @@ Run the Step 6 engineered-shell checks with:
 ../../.venv/bin/python cad/step6_checks.py
 ```
 
+Run the Step 9 mount/interface checks with:
+
+```bash
+../../.venv/bin/python cad/step9_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -58,12 +66,16 @@ release.
 ## Known limitations
 
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
-The cab is a block envelope and vehicle interfaces are placeholders. The blue
-topper is a provisional `22 mm` sandwich shell, with labeled datums, base
-flanges, keep-outs, and transverse load-path bands. Those controls define
-downstream CAD intent but do not prove fit, sealing, capacity, laminate
-schedule, or tooling. No hatch mechanism, module interface, rated structure,
-mounting geometry, seal, or tooling exists yet.
+The cab is a block envelope and every vehicle-contacting interface is
+provisional. Step 9 packages four three-piece quick-release mount stacks from
+the placeholder factory anchors into the Step 6 base flanges. Two mechanical
+push-pull route envelopes move the provisional tonneau and tailgate controls
+to driver-side pods. Four placeholder accessory ports and four shell
+hardpoints sit at the two topper crossbar stations. Orange volumes reserve cab
+relative motion, tailgate sweep, tonneau service, anchor release, and crossbar
+latch access. These are real editable solids but do not prove fit, actuation,
+release access, OEM compatibility, load capacity, laminate schedule, or
+tooling.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
 `X=0..1462 mm` and `Y=-865..865 mm`. Its rear face shares the provisional
@@ -94,6 +106,11 @@ editable sections and five longitudinal character lines, all still
 shows every selected ratio inside its target band. Step 6 rebuilds those curves
 as authoritative CAD while retaining `ESTIMATED` shape provenance; it does not
 promote any image-derived ratio to measured geometry.
+
+Official Rivian interface facts and the deliberate limits placed on their use
+are recorded in `references/STEP9_INTERFACE_SOURCES.md`. The project does not
+copy Rivian's proprietary port profile or adopt published vehicle/crossbar
+ratings as topper ratings.
 
 ## CAD Explorer / CAD Viewer
 

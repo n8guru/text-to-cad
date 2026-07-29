@@ -20,6 +20,15 @@ topper envelope becomes dimensionally trustworthy, capture:
    documentation for the factory cab and bed crossbar mounts.
 8. Rear-light and camera fields of view, wiring routes, connectors, and legal
    clearance requirements.
+9. For each Step 9 anchor adapter: mating profile, local normal, insertion and
+   release direction, hand/tool envelope, clamp/preload behavior, drain/debris
+   path, and verified vehicle-side allowable loads.
+10. For each relocated control: identity, cap geometry, stroke, actuation and
+    return force, debounce/tactile behavior, reachable side-pod position, and
+    cab/tonneau/tailgate state-dependent interference.
+11. For each topper crossbar port: first-generation mating profile, latch
+    travel/access, port spacing, roof local normal/curvature, crossbar
+    adjustment range, and approved static/dynamic load documentation.
 
 Use stable scan datums tied to the coordinate convention in `cad/parameters.py`.
 Replace parameters one group at a time, regenerate, and rerun all reference

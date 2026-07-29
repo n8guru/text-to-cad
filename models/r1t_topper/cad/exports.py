@@ -1,4 +1,4 @@
-"""Regenerate the Phase 2 concept STEP and stable review images."""
+"""Regenerate the Step 9 mount/interface STEP and stable review images."""
 
 import json
 import shutil

@@ -1,4 +1,4 @@
-# Design decisions — Step 6 provisional engineered shell
+# Design decisions — Step 9 mount and vehicle interfaces
 
 - Global coordinates follow the requested vehicle convention: +X rearward,
   +Y driver side, +Z upward.
@@ -50,3 +50,21 @@
 - A `60 mm` base-interface reserve remains
   `PLACEHOLDER REQUIRING SCAN`; the rear opening is a Step 8 keep-out, not
   completed hatch geometry.
+- Step 9 leaves the verified Step 6 generator unchanged and adds an
+  independently composable interface subassembly.
+- Each of the four provisional factory anchor points receives a three-part
+  receiver/bridge/load-spreader stack. The receiver profile is intentionally a
+  scan-required box; no proprietary latch geometry is inferred.
+- The two provisional bed-rail controls are mapped to tonneau and tailgate
+  functions. Connected push-pull route envelopes move them to driver-side
+  pods without claiming electrical integration or calibrated actuation.
+- Two topper crossbar stations at `X=350/850 mm` each receive symmetric
+  hardpoint and accessory-port envelopes at `Y=±775 mm`. The OEM-style port
+  profile remains scan-required; published Rivian vehicle ratings are not
+  transferred to the topper.
+- Conservative cab-motion, tailgate-sweep, tonneau-service, anchor-release,
+  and crossbar-latch volumes are visible design controls. They are calibration
+  targets, not clearance proof.
+- Step 11 owns fasteners, retained quick-release hardware, laminate
+  hardpoints, load cases, and capacity. Step 13 owns physical interface and
+  motion calibration; only Step 14 can authorize fabrication release.

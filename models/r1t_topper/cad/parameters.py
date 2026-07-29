@@ -248,11 +248,98 @@ crossbar_interface_depth = Parameter(
 crossbar_hardpoint_size = Parameter(
     (120.0, 100.0, 20.0), "mm (X,Y,Z)", DESIGN_DECISION, "preliminary envelope"
 )
+crossbar_latch_service_keepout_size = Parameter(
+    (100.0, 140.0, 90.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "conservative access envelope around each OEM-style accessory port",
+)
 assumed_vertical_design_load = Parameter(
     3000.0, "N", DESIGN_DECISION, "analysis placeholder, not a rating"
 )
 assumed_dynamic_load_factor = Parameter(
     3.0, "factor", DESIGN_DECISION, "analysis placeholder, not validated"
+)
+
+# STEP 9 VEHICLE INTERFACES
+mount_adapter_pad_size = Parameter(
+    (160.0, 90.0, 16.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional load-spreader packaging envelope at each factory anchor",
+)
+mount_adapter_web_size = Parameter(
+    (70.0, 30.0, 75.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional removable bridge between anchor receiver and base flange",
+)
+mount_receiver_size = Parameter(
+    (80.0, 60.0, 40.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "factory anchor receiver envelope; mating profile intentionally not modeled",
+)
+mount_release_service_keepout_size = Parameter(
+    (140.0, 120.0, 110.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "tool-free release hand/tool extraction reserve",
+)
+bed_control_functions = Parameter(
+    ("TONNEAU", "TAILGATE"),
+    "ordered identities",
+    DESIGN_DECISION,
+    "project brief mapping to the two provisional bed-rail control locations",
+    "confirm physical order and actuation direction during late calibration",
+)
+relocated_control_pod_center_y = Parameter(
+    905.0,
+    "mm Y",
+    DESIGN_DECISION,
+    "driver-side exterior service position beyond the provisional shell base",
+)
+relocated_control_pod_height = Parameter(
+    150.0,
+    "mm Z",
+    DESIGN_DECISION,
+    "reachable side-panel packaging height",
+)
+relocated_control_pod_size = Parameter(
+    (110.0, 60.0, 70.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "mechanical control-pod packaging envelope; no vehicle electronics",
+)
+control_source_coupler_size = Parameter(
+    (60.0, 45.0, 20.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "non-destructive mechanical cap/coupler envelope over each OEM button",
+)
+control_route_section = Parameter(
+    (36.0, 30.0),
+    "mm (width, depth)",
+    DESIGN_DECISION,
+    "push-pull cable or rigid-link routing envelope",
+)
+cab_relative_motion_keepout_depth = Parameter(
+    40.0,
+    "mm X",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "front shadow-gap and body-relative-motion reserve",
+)
+tailgate_sweep_keepout_margin = Parameter(
+    30.0,
+    "mm",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "conservative margin around the provisional closed-to-open tailgate envelope",
+)
+tonneau_service_keepout_size = Parameter(
+    (240.0, 1380.0, 140.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "front-bed cassette and service reserve; not a tonneau mechanism model",
 )
 
 # REAR HATCH
