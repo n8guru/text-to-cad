@@ -230,10 +230,48 @@ module_opening_width = Parameter(285.0, "mm", DESIGN_DECISION, "provisional")
 module_opening_height = Parameter(420.0, "mm", DESIGN_DECISION, "provisional")
 module_corner_radius = Parameter(30.0, "mm", DESIGN_DECISION, "provisional")
 module_frame_depth = Parameter(35.0, "mm", DESIGN_DECISION, "provisional")
+module_frame_land_width = Parameter(
+    22.0, "mm", DESIGN_DECISION, "common perimeter land for every module type"
+)
+module_panel_thickness = Parameter(
+    8.0, "mm", DESIGN_DECISION, "common provisional cartridge envelope"
+)
+module_bay_center_z = Parameter(
+    330.0, "mm Z", DESIGN_DECISION, "keeps bay openings below the shoulder transition"
+)
 module_seal_compression = Parameter(2.0, "mm", DESIGN_DECISION, "provisional")
 module_latch_clearance = Parameter(12.0, "mm", DESIGN_DECISION, "provisional")
 module_spacing = Parameter(35.0, "mm", DESIGN_DECISION, "provisional")
 removable_panel_max_weight = Parameter(8.0, "kg", DESIGN_DECISION, "handling target")
+module_variant_types = Parameter(
+    ("SOLID", "WINDOW", "MESH", "RECOVERY_BOARD", "UTILITY"),
+    "names",
+    DESIGN_DECISION,
+    "project brief compatibility set",
+)
+
+# SECTIONAL FLAT-PACK SYSTEM
+section_joint_gap = Parameter(
+    4.0, "mm X", DESIGN_DECISION, "provisional assembly and adhesive-control gap"
+)
+section_segment_max_length = Parameter(
+    600.0,
+    "mm X",
+    DESIGN_DECISION,
+    "driveway-handling envelope for each of the three shell sections",
+)
+section_joint_doubler_width = Parameter(
+    80.0, "mm X", DESIGN_DECISION, "internal splice overlap; not structurally rated"
+)
+section_joint_doubler_thickness = Parameter(
+    4.0, "mm", DESIGN_DECISION, "provisional internal laminate/build-up envelope"
+)
+section_joint_alignment_key_size = Parameter(
+    (24.0, 30.0, 8.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional assembly-indexing envelope; fastening remains Step 11 scope",
+)
 
 # CROSSBAR SYSTEM
 topper_crossbar_station_1 = Parameter(350.0, "mm X", DESIGN_DECISION, "provisional")
@@ -248,6 +286,12 @@ crossbar_interface_depth = Parameter(
 crossbar_hardpoint_size = Parameter(
     (120.0, 100.0, 20.0), "mm (X,Y,Z)", DESIGN_DECISION, "preliminary envelope"
 )
+crossbar_latch_service_keepout_size = Parameter(
+    (100.0, 140.0, 90.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "conservative access envelope around each OEM-style accessory port",
+)
 assumed_vertical_design_load = Parameter(
     3000.0, "N", DESIGN_DECISION, "analysis placeholder, not a rating"
 )
@@ -255,23 +299,193 @@ assumed_dynamic_load_factor = Parameter(
     3.0, "factor", DESIGN_DECISION, "analysis placeholder, not validated"
 )
 
+# STEP 11 PRODUCTION-INTENT STRUCTURE AND TOOLING
+structural_frame_width = Parameter(
+    80.0,
+    "mm",
+    DESIGN_DECISION,
+    "provisional bonded transverse frame width at the two roof load stations",
+)
+structural_frame_depth = Parameter(
+    80.0,
+    "mm",
+    DESIGN_DECISION,
+    "provisional sandwich frame depth; final laminate follows physical calibration",
+)
+structural_frame_skin_thickness = Parameter(
+    2.0,
+    "mm",
+    DESIGN_DECISION,
+    "local per-face frame reinforcement used only by the screening model",
+)
+mount_hardpoint_plate_size = Parameter(
+    (180.0, 120.0, 4.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional aluminum insert plate around each mount load spreader",
+)
+hatch_hardpoint_plate_size = Parameter(
+    (120.0, 100.0, 4.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional aluminum insert plate at each hinge/strut mount envelope",
+)
+tooling_flange_width = Parameter(
+    75.0,
+    "mm",
+    DESIGN_DECISION,
+    "CNC mold perimeter handling and vacuum-bag sealing allowance",
+)
+tooling_trim_allowance = Parameter(
+    12.0,
+    "mm",
+    DESIGN_DECISION,
+    "sacrificial perimeter stock outside final trim lines",
+)
+screening_skin_modulus = Parameter(
+    45000.0,
+    "MPa",
+    ESTIMATED,
+    "screening-only quasi-isotropic cured laminate modulus; coupon validation required",
+)
+screening_skin_allowable = Parameter(
+    180.0,
+    "MPa",
+    ESTIMATED,
+    "screening-only laminate stress limit; not a product allowable or rating",
+)
+screening_core_shear_allowable = Parameter(
+    0.55,
+    "MPa",
+    ESTIMATED,
+    "screening-only foam-core shear limit; supplier data and coupons required",
+)
+screening_bondline_shear_allowable = Parameter(
+    4.0,
+    "MPa",
+    ESTIMATED,
+    "screening-only adhesive shear limit; process coupons required",
+)
+
+# STEP 9 VEHICLE INTERFACES
+mount_adapter_pad_size = Parameter(
+    (160.0, 90.0, 16.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional load-spreader packaging envelope at each factory anchor",
+)
+mount_adapter_web_size = Parameter(
+    (70.0, 30.0, 75.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional removable bridge between anchor receiver and base flange",
+)
+mount_receiver_size = Parameter(
+    (80.0, 60.0, 40.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "factory anchor receiver envelope; mating profile intentionally not modeled",
+)
+mount_release_service_keepout_size = Parameter(
+    (140.0, 120.0, 110.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "tool-free release hand/tool extraction reserve",
+)
+bed_control_functions = Parameter(
+    ("TONNEAU", "TAILGATE"),
+    "ordered identities",
+    DESIGN_DECISION,
+    "project brief mapping to the two provisional bed-rail control locations",
+    "confirm physical order and actuation direction during late calibration",
+)
+relocated_control_pod_center_y = Parameter(
+    905.0,
+    "mm Y",
+    DESIGN_DECISION,
+    "driver-side exterior service position beyond the provisional shell base",
+)
+relocated_control_pod_height = Parameter(
+    150.0,
+    "mm Z",
+    DESIGN_DECISION,
+    "reachable side-panel packaging height",
+)
+relocated_control_pod_size = Parameter(
+    (110.0, 60.0, 70.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "mechanical control-pod packaging envelope; no vehicle electronics",
+)
+control_source_coupler_size = Parameter(
+    (60.0, 45.0, 20.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "non-destructive mechanical cap/coupler envelope over each OEM button",
+)
+control_route_section = Parameter(
+    (36.0, 30.0),
+    "mm (width, depth)",
+    DESIGN_DECISION,
+    "push-pull cable or rigid-link routing envelope",
+)
+cab_relative_motion_keepout_depth = Parameter(
+    40.0,
+    "mm X",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "front shadow-gap and body-relative-motion reserve",
+)
+tailgate_sweep_keepout_margin = Parameter(
+    30.0,
+    "mm",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "conservative margin around the provisional closed-to-open tailgate envelope",
+)
+tonneau_service_keepout_size = Parameter(
+    (240.0, 1380.0, 140.0),
+    "mm (X,Y,Z)",
+    PLACEHOLDER_REQUIRING_SCAN,
+    "front-bed cassette and service reserve; not a tonneau mechanism model",
+)
+
 # REAR HATCH
 hinge_axis = Parameter(
-    ((1080.0, -725.0, 700.0), (1080.0, 725.0, 700.0)),
+    ((1473.0, -650.0, 720.0), (1473.0, 650.0, 720.0)),
     "mm endpoints",
     DESIGN_DECISION,
-    "provisional",
+    "provisional rear-header axis for the Step 8 swing-up hatch",
 )
 gas_strut_mount_points = Parameter(
-    (((1000.0, 700.0, 500.0), (1120.0, 700.0, 260.0)),
-     ((1000.0, -700.0, 500.0), (1120.0, -700.0, 260.0))),
+    (((1320.0, 650.0, 500.0), (1450.0, 650.0, 420.0)),
+     ((1320.0, -650.0, 500.0), (1450.0, -650.0, 420.0))),
     "mm endpoint pairs",
     DESIGN_DECISION,
-    "provisional",
+    "provisional symmetric body/hatch mount envelopes; force sizing is Step 11",
 )
 hatch_open_angle = Parameter(75.0, "deg", DESIGN_DECISION, "provisional")
 hatch_mass_estimate = Parameter(16.0, "kg", ESTIMATED, "preliminary mass placeholder")
 seal_land_width = Parameter(20.0, "mm", DESIGN_DECISION, "provisional")
+hatch_frame_depth = Parameter(35.0, "mm X", DESIGN_DECISION, "provisional")
+hatch_seal_compression = Parameter(
+    3.0,
+    "mm X",
+    DESIGN_DECISION,
+    "provisional closed-position compression envelope; not a sealing claim",
+)
+hatch_gutter_width = Parameter(12.0, "mm", DESIGN_DECISION, "provisional")
+hatch_gutter_depth = Parameter(10.0, "mm X", DESIGN_DECISION, "provisional")
+hatch_drain_outlet_size = Parameter(
+    (30.0, 18.0, 35.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional gravity outlet envelope at each lower rear corner",
+)
+hatch_service_keepout_size = Parameter(
+    (90.0, 80.0, 90.0),
+    "mm (X,Y,Z)",
+    DESIGN_DECISION,
+    "provisional removable-cover access around hinge, strut, and latch interfaces",
+)
 brake_light_recess_dimensions = Parameter(
     (55.0, 900.0, 25.0), "mm (X,Y,Z)", DESIGN_DECISION, "provisional"
 )

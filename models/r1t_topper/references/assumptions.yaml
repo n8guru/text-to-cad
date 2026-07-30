@@ -1,5 +1,5 @@
 schema_version: 1
-checkpoint: 6
+checkpoint: 11
 target_vehicle: 2022 Rivian R1T (Gen 1)
 units: mm
 coordinate_system:
@@ -50,10 +50,27 @@ geometry_scope:
     - controlling shell datums and longitudinal base flanges
     - base-interface and rear-hatch keep-out references
     - two provisional transverse shell load-path bands
+    - three shell sections with two provisional internal splice interfaces
+    - six common modular side-panel frames and cut openings
+    - solid, window, mesh, recovery-board, and utility cartridge examples
+    - four provisional factory-anchor receiver/bridge/load-spreader stacks
+    - two non-electronic mechanical bed-control relocation paths and side pods
+    - four placeholder topper-roof crossbar ports with shell hardpoint envelopes
+    - cab-motion, tailgate-sweep, tonneau-service, mount-release, and crossbar-latch keep-outs
+    - rear hatch, sealing, drainage, camera, lighting, and harness packaging
+    - transverse structural frames and local hardpoint insert envelopes
+    - three sectional CNC master and fixture envelopes
   excluded:
     - production body surfaces
     - calibrated production fit interfaces
     - structural capacity and laminate validation
     - hatch kinematics
     - proprietary Rivian interface geometry
-    - sectional joints, modular panels, seals, mounts, wiring, and tooling
+    - joint strength, final fasteners, and adhesive qualification
+    - module latch hardware, sealing, drainage, glazing retention, and rated accessory loads
+    - proprietary Rivian anchor and accessory-port mating geometry
+    - verified quick-release hardware, fasteners, and load ratings
+    - calibrated control travel, tactile force, weather sealing, and labels
+    - structural crossbar capacity and OEM compatibility
+    - certified material allowables, detailed analysis, proof loads, and fabrication release
+    - final mold surfaces, trim/drill coordinates, cure travelers, and inspection plans

@@ -1,12 +1,12 @@
 # R1T modular topper digital prototype
 
 This directory contains a source-controlled, STEP-first build123d engineering
-prototype. Step 10 derives a provisional electrical-integration package from
-the verified Step 6 sandwich shell. It packages a relocated rear camera,
-high-mounted brake-light bar, interior task lighting, low-voltage raceways,
-and a vehicle-ingress reservation alongside nonproprietary vehicle reference
-envelopes. It is not production-ready, electrically validated, homologated, or
-fitment-trustworthy.
+prototype. Step 11 composes the independently verified sectional shell, rear
+hatch, vehicle interfaces, and electrical package into one production-intent
+assembly. It adds a bounded layup schedule, transverse frames, local hardpoint
+inserts, sectional CNC tool envelopes, an assembly sequence, and reproducible
+first-order structural screening. It is not calibrated fitment, a structural
+rating, or fabrication release.
 
 ## Regenerate
 
@@ -47,6 +47,12 @@ Run the Step 10 electrical-integration checks with:
 ../../.venv/bin/python cad/step10_checks.py
 ```
 
+Run the integrated Step 11 production-intent checks with:
+
+```bash
+../../.venv/bin/python cad/step11_checks.py
+```
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
@@ -66,15 +72,14 @@ release.
 ## Known limitations
 
 See `reports/OPEN_ITEMS.md` and `references/measurement_requirements.md`.
-The cab is a block envelope and vehicle interfaces are placeholders. The blue
-topper remains the provisional Step 6 `22 mm` sandwich shell. Step 10 adds real
-camera and brake-light passages plus mechanical packaging for a rearward
-camera field, two interior lights, a driver-side raceway, rear riser/header,
-camera drop, service junction, and vehicle-ingress reservation. No Rivian
-camera protocol, connector, voltage, current, signal, wire gauge, photometry,
-legal compliance, waterproofing, EMC, thermal, or functional claim is made.
-Steps 8 and 9 remain independently composable branches; Step 11 owns their
-production-intent composition, hardpoints, laminate, and structural checks.
+The cab is a block envelope and vehicle interfaces are placeholders. The
+Step 11 assembly uses three real `22 mm` sandwich shell sections with common
+module openings, a rear hatch opening, and real camera/brake-light passages.
+Its load basis, material properties, laminate schedule, insert sizes, tooling,
+and acceptance flow are provisional engineering inputs. No Rivian electrical
+compatibility, legal photometry, calibrated sealing, structural capacity,
+waterproofing, EMC, fitment, or fabrication claim is made. See
+`reports/STEP11_PRODUCTION_INTENT_REPORT.md`.
 
 The concept footprint covers the full provisional bed-plus-tailgate top plane:
 `X=0..1462 mm` and `Y=-865..865 mm`. Its rear face shares the provisional

@@ -2,7 +2,6 @@
 
 from math import isclose
 
-from assembly import gen_step
 from electrical_integration import (
     build_electrical_integration_subassembly,
     make_brake_light_provision,
@@ -94,13 +93,6 @@ def run() -> None:
         "LOW_VOLTAGE_HARNESS_PACKAGING",
         "VEHICLE_ELECTRICAL_INGRESS",
     }
-    assert {child.label for child in gen_step().children} == {
-        "00_REFERENCE",
-        "10_TOPPER_ELECTRICAL_INTEGRATION",
-        "90_REVIEW_COORDINATE_REFERENCE",
-    }
-
-
 if __name__ == "__main__":
     run()
     print("STEP_10_ELECTRICAL_INTEGRATION_CHECKS_PASS")

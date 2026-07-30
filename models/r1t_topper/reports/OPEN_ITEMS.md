@@ -1,4 +1,4 @@
-# Open items — Step 10 electrical integration
+# Open items — Step 11 production intent
 
 - Confirm the target vehicle's camera architecture, approved relocation path,
   connector family, pinout, power, signaling, diagnostics, and calibration
@@ -10,9 +10,12 @@
   behavior, fusing, grounding, sleep-current limit, and thermal requirements.
 - Size conductors, bends, grommets, strain relief, abrasion protection,
   connectors, service loops, drainage, and electromagnetic compatibility.
-- Compose this parallel Step 10 package with the verified hatch, mounts, and
-  sectional-shell packages during Step 11 without violating motion, seal,
-  hardpoint, joint, or calibration reserves.
+- Validate laminate, core, adhesive, insert, and cure-process allowables with
+  supplier data and representative flat/curved/process coupons.
+- Replace first-order beam/bondline screening with calibrated load cases,
+  detailed analysis, joint testing, and physical proof-load acceptance.
+- Convert the three CNC master/fixture envelopes into final mold surfaces,
+  drill/trim templates, traveler sheets, and inspection datums after Step 13.
 
 - No direct vehicle measurements or approved manufacturer CAD are available.
 - The project brief's approximate `54 in wide × 44 in deep` wording is
@@ -23,9 +26,8 @@
   2025 upfitting guide.
 - Replace the block cab envelope with scanned rear-wall and roof-trailing
   sections. The provisional rear-surface angle is not yet applied.
-- Continue structure, tooling, and assembly design from the explicitly provisional photo-derived
-  geometry. Physical scans and hard dimensions are a late bounded calibration
-  input, not a gate for completing the design.
+- Calibrate the completed structure, tooling, and assembly definition against
+  target-vehicle hard measurements during Step 13.
 - Confirm tailgate and rear-light swept envelopes.
 - Confirm all bed-anchor, control-button, and factory-crossbar interfaces.
 - Parameterize the engineered cab/topper shadow-gap or aerodynamic bridge now;

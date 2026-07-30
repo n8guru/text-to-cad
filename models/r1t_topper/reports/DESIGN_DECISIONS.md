@@ -1,8 +1,26 @@
-# Design decisions — Step 10 electrical integration
+# Design decisions — Step 11 production intent
+
+- Step 11 preserves the exact verified Step 7, 8, 9, and remediated Step 10
+  commits as merge ancestors, then composes their component geometry into one
+  nonduplicated shell assembly.
+- The integrated shell retains the three real section gaps and six module
+  openings, then applies the rear-hatch, camera, and brake-light cuts.
+- Two provisional `80 × 80 mm` transverse sandwich-frame envelopes connect
+  the four roof hardpoint regions. Four mount, four crossbar, and five
+  hatch/strut insert plates make local load-transfer intent explicit.
+- The layup schedule is zone-based: general shell, reinforced transverse
+  frames, section-joint doublers, mount inserts, and hatch inserts.
+- Three CNC master/fixture envelopes follow the verified section boundaries.
+  Final mold surfaces, trim/drill templates, and travelers remain Step 13/14
+  calibration and release outputs.
+- Structural screening uses a `9.0 kN` factored placeholder total load split
+  across four paths. It predicts `71.64 MPa` local skin stress, `7.97 mm`
+  frame deflection, `0.370 MPa` core shear, and `0.104 MPa` bondline shear.
+  Positive screening margins are not design allowables, ratings, or proof.
 
 - Step 10 derives from the unchanged verified Step 6 shell so the parallel
   Step 7, Step 8, and Step 9 packages remain independently composable.
-- A centered rear camera provision is packaged at `X=1462 mm, Z=180 mm` with
+- A centered rear camera provision is packaged at `X=1380 mm, Z=700 mm` with
   a rearward optical keep-out. This is a packaging location, not a calibrated
   field of view or Rivian-camera compatibility claim.
 - A `900 mm` high-mounted brake-light envelope is centered in the rear header
