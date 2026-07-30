@@ -281,10 +281,10 @@ camera_housing_dimensions = Parameter(
 
 # ELECTRICAL / VISIBILITY INTEGRATION
 rear_camera_center = Parameter(
-    (1462.0, 0.0, 180.0),
+    (1380.0, 0.0, 700.0),
     "mm (X,Y,Z)",
     DESIGN_DECISION,
-    "provisional rear-hatch camera packaging center; not an optical calibration",
+    "provisional high rear camera packaging center; not an optical calibration",
 )
 camera_optical_keepout_dimensions = Parameter(
     (520.0, 260.0, 180.0),

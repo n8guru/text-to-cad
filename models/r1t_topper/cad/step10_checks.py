@@ -31,16 +31,19 @@ def _close(actual: float, expected: float) -> None:
 
 def run() -> None:
     base_shell = make_engineered_shell()
+    camera = make_rear_camera_provision().children
+    brake = make_brake_light_provision().children
     ready_shell = make_camera_brake_ready_shell()
     assert 0.0 < ready_shell.volume < base_shell.volume
+    assert (base_shell & camera[0]).volume > 0.0
+    brake_only_shell = base_shell - brake[0]
+    assert (brake_only_shell.volume - ready_shell.volume) > 0.0
 
-    camera = make_rear_camera_provision().children
     assert len(camera) == 2
     assert camera[0].volume > 0.0
     assert camera[1].bounding_box().min.X == value(rear_camera_center)[0]
     assert value(camera_housing_dimensions)[1] > 0.0
 
-    brake = make_brake_light_provision().children
     assert len(brake) == 2
     assert brake[0].volume > 0.0
     _close(brake[0].center().Y, 0.0)

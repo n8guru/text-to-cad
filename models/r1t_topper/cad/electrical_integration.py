@@ -151,9 +151,10 @@ def make_low_voltage_harness_packaging() -> Compound:
             value(interior_light_bar_centers),
         )
     ]
+    camera_z = value(rear_camera_center)[2]
     camera_drop = _centered_box(
-        (channel_size[1], channel_size[1], rear_z - value(rear_camera_center)[2]),
-        (rear_x, 0.0, (rear_z + value(rear_camera_center)[2]) / 2.0),
+        (channel_size[1], channel_size[1], abs(rear_z - camera_z)),
+        (rear_x, 0.0, (rear_z + camera_z) / 2.0),
         "HARNESS_CAMERA_DROP_PROVISIONAL",
         HARNESS_COLOR,
     )
