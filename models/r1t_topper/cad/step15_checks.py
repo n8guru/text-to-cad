@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from exports_step15 import VERIFIED_STEP11_COMMIT, VERIFIED_STEP11_STEP_OID
+from mount_interfaces import make_topper_crossbar_ports
 from rear_hatch import make_closed_hatch_leaf
 from visual_review_step15 import (
     REAR_WINDOW_Y_RANGE,
@@ -16,6 +17,7 @@ from visual_review_step15 import (
     gen_step,
     make_continuous_carbon_shell,
     make_curved_side_glazing,
+    make_integrated_crossbar_ports_presentation,
     make_rear_hatch_glazing,
     make_visual_review_hatch_leaf,
 )
@@ -29,6 +31,7 @@ def run() -> None:
         "SINGLE_REAR_HATCH_FRAME",
         "SINGLE_REAR_HATCH_LEAF",
         "SINGLE_REAR_HATCH_GLAZING",
+        "INTEGRATED_TOPPER_CROSSBAR_PORTS",
     }
     assert "00_REFERENCE" not in labels
     assert all(
@@ -41,18 +44,25 @@ def run() -> None:
                 "DATUM",
                 "LOAD_PATH",
                 "MOTION",
-                "PORT",
-                "CROSSBAR",
                 "PROTRUSION",
             )
         )
         for label in labels
     )
+    assert all("REFERENCE" not in label for label in labels)
+    assert all("CROSSBAR_REFERENCE" not in label for label in labels)
+    assert all("TOP_CENTER_PROTRUSION" not in label for label in labels)
 
     shell = make_continuous_carbon_shell()
     assert shell.volume > 0.0
     assert len(shell.solids()) == 1
     assert shell.bounding_box().size.X > 1400.0
+
+    integrated_ports = make_integrated_crossbar_ports_presentation().children
+    source_ports = make_topper_crossbar_ports().children
+    assert len(integrated_ports) == len(source_ports) == 8
+    assert all("INTEGRATED_PRESENTATION_ONLY" in item.label for item in integrated_ports)
+    assert all((item & shell).volume > 0.0 for item in integrated_ports)
 
     panes = make_curved_side_glazing().children
     assert len(SIDE_WINDOW_X_RANGES) == 6

@@ -7,10 +7,13 @@ The visible exterior is one continuous five-station lofted shell with the
 R1S-like near-level roofline and curved shoulder edges retained. Each side has
 six shell-conformal glazing bays (twelve total) separated by five 110 mm
 structural carbon mullions. The rear is one clean hatch leaf over one shell
-opening with one centered pane; no split leaf, duplicate leaf, center mullion, or top-center
-protrusion is included. The `00_REFERENCE` truck dummy, top accessory-port
-blocks, and engineering
-keep-outs are excluded from the review assembly.
+opening with one centered pane; no split leaf, duplicate leaf, center mullion,
+or top-center protrusion is included. The `00_REFERENCE` truck dummy, top accessory-port
+blocks, and engineering keep-outs are excluded from the review assembly. The
+crossbar correction is represented by eight small, shell-intersecting
+topper-owned port/hardpoint envelopes at two stations. No rigid or
+freestanding `CROSSBAR_REFERENCE` bar is included; a real accessory bar is a
+separate collapsible/shrink-to-fit fit-check item, not product geometry.
 
 The dimensions remain provisional visual-design controls. This artifact does
 not claim calibrated fitment, sealing performance, structural rating,

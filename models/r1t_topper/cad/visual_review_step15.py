@@ -23,6 +23,7 @@ from rear_hatch import (
     make_hatch_opening_cutter,
     make_rear_hatch_frame,
 )
+from mount_interfaces import make_topper_crossbar_ports
 from topper_envelope import (
     _make_inset_envelope,
     make_engineered_shell,
@@ -34,6 +35,7 @@ CARBON_COLOR = Color(0.18, 0.21, 0.24, 1.0)
 CARBON_EDGE_COLOR = Color(0.08, 0.10, 0.13, 1.0)
 GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
 HATCH_CARBON_COLOR = Color(0.14, 0.17, 0.20, 1.0)
+INTEGRATED_PORT_COLOR = Color(0.11, 0.13, 0.16, 1.0)
 
 # Six windows per side, each pair separated by a 110 mm structural mullion
 # (> 3 in / 76 mm).  The six bays retain the prior outer opening extents.
@@ -143,6 +145,25 @@ def make_hatch_frame_presentation() -> Compound:
     return frame
 
 
+def make_integrated_crossbar_ports_presentation() -> Compound:
+    """Show topper-owned port/hardpoint envelopes without rigid crossbars.
+
+    The product story is the shell interface. Any real accessory bar is a
+    separate, collapsible fit-check item and is intentionally not part of this
+    pretty-product review assembly.
+    """
+    children = make_topper_crossbar_ports().children
+    for item in children:
+        item.label = item.label.replace("_PROVISIONAL", "_INTEGRATED_PRESENTATION_ONLY")
+        if "INTEGRATED_PRESENTATION_ONLY" not in item.label:
+            item.label = item.label.replace(
+                "OEM_ACCESSORY_PORT_PROFILE_",
+                "INTEGRATED_SHELL_PORT_",
+            ) + "_INTEGRATED_PRESENTATION_ONLY"
+        item.color = INTEGRATED_PORT_COLOR
+    return Compound(label="INTEGRATED_TOPPER_CROSSBAR_PORTS", children=children)
+
+
 def gen_step():
     assembly = AssemblyHelper("R1T_TOPPER_STEP15_OPERATOR_VISUAL")
     assembly.add(make_continuous_carbon_shell(), "CONTINUOUS_CARBON_SHELL")
@@ -150,4 +171,8 @@ def gen_step():
     assembly.add(make_hatch_frame_presentation(), "SINGLE_REAR_HATCH_FRAME")
     assembly.add(make_visual_review_hatch_leaf(), "SINGLE_REAR_HATCH_LEAF")
     assembly.add(make_rear_hatch_glazing(), "SINGLE_REAR_HATCH_GLAZING")
+    assembly.add(
+        make_integrated_crossbar_ports_presentation(),
+        "INTEGRATED_TOPPER_CROSSBAR_PORTS",
+    )
     return assembly.build()
