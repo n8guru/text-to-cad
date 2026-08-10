@@ -8,6 +8,12 @@ inserts, sectional CNC tool envelopes, an assembly sequence, and reproducible
 first-order structural screening. It is not calibrated fitment, a structural
 rating, or fabrication release.
 
+Step 15 adds an exterior-only operator_visual derivative under
+`outputs/review/step15/`: one continuous R1S-like shell, shell-conformal
+glazing with 110 mm carbon mullions, and one single-leaf rear hatch with one
+centered pane. It hides `00_REFERENCE` and engineering keep-outs and does not
+replace the authoritative Step 11 geometry.
+
 ## Regenerate
 
 Create the repository CAD environment per `CONTRIBUTING.md`, then run from this
@@ -51,6 +57,14 @@ Run the integrated Step 11 production-intent checks with:
 
 ```bash
 ../../.venv/bin/python cad/step11_checks.py
+```
+
+Regenerate the Step 15 operator_visual STEP, native GLB, and six review images
+with:
+
+```bash
+../../.venv/bin/python cad/exports_step15.py
+../../.venv/bin/python cad/step15_checks.py
 ```
 
 ## Parameter provenance

@@ -1,0 +1,21 @@
+{
+  "authority": "PRESENTATION_ONLY_NOT_FITMENT_OR_FABRICATION_RELEASE",
+  "glb": {
+    "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb",
+    "sha256": "6a5cf2fd9961ebe104855fdfa5bb96718495167338939c06d0e5e19c62a60c61"
+  },
+  "source_geometry_commit": "6e0229cecefee0043aed9ea607c5241c1fe7f815",
+  "source_step_lfs_oid_sha256": "c25c9df4213abdb1e87beb4aab052dc1725a4ee8433b6f242ca0dd6c5ade37ad",
+  "step": {
+    "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step",
+    "sha256": "0345e67275c9aef4197579f3b33ab3af48367dfbec914b3f024738710192f954"
+  },
+  "views": {
+    "driver_side.png": "4c729f92de416187acd41298595d13f76e23c149b4bcd588b47ab3dd671791f7",
+    "front.png": "d2669a9b4ea58b852408962510abd826a8eb1d8432a6a408211880131ed7121a",
+    "passenger_side.png": "b95d363f8ddf8474882045b239fd42553a605b1429b2f3bffa013a64514e249c",
+    "rear.png": "8f18e22f2b4357aebdb5bec775e8944541a2619f522294aea56e8c342ef3d30d",
+    "three_quarter_rear.png": "fec794d283b7b2ba785823be2f5527e9644e10d3ae6dd7f88df52bd157c43d41",
+    "top.png": "1e56a1d62bd5e40db4af3971413bd46304533d4f01a99c03a141406fac9a91df"
+  }
+}
