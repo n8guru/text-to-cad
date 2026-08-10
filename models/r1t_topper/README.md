@@ -9,10 +9,10 @@ first-order structural screening. It is not calibrated fitment, a structural
 rating, or fabrication release.
 
 Step 15 adds an exterior-only operator_visual derivative under
-`outputs/review/step15/`: one continuous R1S-like shell, shell-conformal
-glazing with 110 mm carbon mullions, and one single-leaf rear hatch with one
-centered pane. It hides `00_REFERENCE` and engineering keep-outs and does not
-replace the authoritative Step 11 geometry.
+`outputs/review/step15/`: one continuous R1S-like shell, twelve shell-conformal
+glazing panes (six per side) with 110 mm carbon mullions, and one single-leaf
+rear hatch with one centered pane. It hides `00_REFERENCE` and engineering
+keep-outs and does not replace the authoritative Step 11 geometry.
 
 ## Regenerate
 

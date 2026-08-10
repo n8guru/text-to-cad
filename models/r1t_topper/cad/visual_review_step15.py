@@ -35,8 +35,16 @@ CARBON_EDGE_COLOR = Color(0.08, 0.10, 0.13, 1.0)
 GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
 HATCH_CARBON_COLOR = Color(0.14, 0.17, 0.20, 1.0)
 
-# Three windows per side, with 110 mm structural mullions (> 3 in / 76 mm).
-SIDE_WINDOW_X_RANGES = ((120.0, 455.0), (565.0, 900.0), (1010.0, 1345.0))
+# Six windows per side, each pair separated by a 110 mm structural mullion
+# (> 3 in / 76 mm).  The six bays retain the prior outer opening extents.
+SIDE_WINDOW_X_RANGES = (
+    (120.0, 232.5),
+    (342.5, 455.0),
+    (565.0, 677.5),
+    (787.5, 900.0),
+    (1010.0, 1122.5),
+    (1232.5, 1345.0),
+)
 SIDE_WINDOW_Z_RANGE = (160.0, 660.0)
 STRUCTURAL_MULLION_WIDTH = 110.0
 SIDE_CUT_DEPTH = 320.0

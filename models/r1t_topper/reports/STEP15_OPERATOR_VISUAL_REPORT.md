@@ -5,9 +5,9 @@ Step 11 geometry at commit `6e0229cecefee0043aed9ea607c5241c1fe7f815`.
 
 The visible exterior is one continuous five-station lofted shell with the
 R1S-like near-level roofline and curved shoulder edges retained. Each side has
-three shell-conformal glazing bays separated by 110 mm structural carbon
-mullions. The rear is one clean hatch leaf over one shell opening with one
-centered pane; no split leaf, duplicate leaf, center mullion, or top-center
+six shell-conformal glazing bays (twelve total) separated by five 110 mm
+structural carbon mullions. The rear is one clean hatch leaf over one shell
+opening with one centered pane; no split leaf, duplicate leaf, center mullion, or top-center
 protrusion is included. The `00_REFERENCE` truck dummy, top accessory-port
 blocks, and engineering
 keep-outs are excluded from the review assembly.

@@ -12,6 +12,7 @@ from visual_review_step15 import (
     SIDE_WINDOW_X_RANGES,
     SIDE_WINDOW_Z_RANGE,
     STRUCTURAL_MULLION_WIDTH,
+    _side_window_selector,
     gen_step,
     make_continuous_carbon_shell,
     make_curved_side_glazing,
@@ -31,31 +32,64 @@ def run() -> None:
     }
     assert "00_REFERENCE" not in labels
     assert all(
-        not any(token in label for token in ("TOOL", "KEEP_OUT", "DATUM", "LOAD_PATH", "MOTION"))
+        not any(
+            token in label
+            for token in (
+                "00_REFERENCE",
+                "TOOL",
+                "KEEP_OUT",
+                "DATUM",
+                "LOAD_PATH",
+                "MOTION",
+                "PORT",
+                "CROSSBAR",
+                "PROTRUSION",
+            )
+        )
         for label in labels
     )
 
     shell = make_continuous_carbon_shell()
     assert shell.volume > 0.0
+    assert len(shell.solids()) == 1
     assert shell.bounding_box().size.X > 1400.0
 
     panes = make_curved_side_glazing().children
-    assert len(panes) == 6
+    assert len(SIDE_WINDOW_X_RANGES) == 6
+    assert len(panes) == 12
     assert all(pane.volume > 0.0 for pane in panes)
     assert all(pane.bounding_box().size.Y > 20.0 for pane in panes)
     assert all(pane.bounding_box().max.Z >= SIDE_WINDOW_Z_RANGE[1] - 15.0 for pane in panes)
-    assert all(
-        right[0] - left[1] >= STRUCTURAL_MULLION_WIDTH
-        for left, right in zip(SIDE_WINDOW_X_RANGES, SIDE_WINDOW_X_RANGES[1:])
-    )
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        side_panes = [
+            pane
+            for pane in panes
+            if pane.label.startswith(f"CURVED_SIDE_GLAZING_{side}_")
+        ]
+        assert len(side_panes) == 6
+        assert {pane.label for pane in side_panes} == {
+            f"CURVED_SIDE_GLAZING_{side}_{index}_PRESENTATION_ONLY"
+            for index in range(1, 7)
+        }
+        assert all(pane.volume > 0.0 for pane in side_panes)
+        for left, right in zip(SIDE_WINDOW_X_RANGES, SIDE_WINDOW_X_RANGES[1:]):
+            gap_x_range = (left[1], right[0])
+            assert gap_x_range[1] - gap_x_range[0] == STRUCTURAL_MULLION_WIDTH
+            assert gap_x_range[1] - gap_x_range[0] >= 76.0
+            assert (shell & _side_window_selector(*gap_x_range, sign)).volume > 0.0
     assert SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0] >= 450.0
 
     rear_panes = make_rear_hatch_glazing().children
     assert len(rear_panes) == 1
     assert rear_panes[0].volume > 0.0
+    assert rear_panes[0].label == "SINGLE_REAR_HATCH_GLAZING_PRESENTATION_ONLY"
     assert rear_panes[0].bounding_box().size.Y == REAR_WINDOW_Y_RANGE[1] - REAR_WINDOW_Y_RANGE[0]
     assert rear_panes[0].bounding_box().size.Z == REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0]
-    assert make_visual_review_hatch_leaf().volume < make_closed_hatch_leaf().volume
+    assert rear_panes[0].bounding_box().center().Y == 0.0
+    hatch_leaf = make_visual_review_hatch_leaf()
+    assert hatch_leaf.label == "SINGLE_REAR_HATCH_LEAF_WITH_ONE_OPENING_PRESENTATION_ONLY"
+    assert len(hatch_leaf.solids()) == 1
+    assert hatch_leaf.volume < make_closed_hatch_leaf().volume
 
     review_dir = Path(__file__).resolve().parents[1] / "outputs/review/step15"
     manifest = json.loads((review_dir / "manifest.json").read_text())
