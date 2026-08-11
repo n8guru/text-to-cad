@@ -6,11 +6,11 @@ Step 11 geometry at commit `6e0229cecefee0043aed9ea607c5241c1fe7f815`.
 The visible exterior is a freshly re-embodied continuous rounded loft: its
 sidewalls, shoulder transitions, and crown use radiused curves rather than the
 old flat six-cartridge form. Each side has exactly two broad shell-conformal
-glazing lights. The 110 mm carbon bridge between those lights is positive
-remaining shell material and exceeds the 76 mm / three-inch minimum. The rear
-is one clean, closed, continuous-corner hatch leaf with exactly two broad panes
-and the same 110 mm center carbon bridge. No duplicated hatch leaf or
-top-center protrusion is included.
+glazing lights with actual radiused cut geometry. The 110 mm carbon bridge
+between those lights is positive remaining shell material and exceeds the 76 mm
+/ three-inch minimum. The rear is one clean, closed, continuous-corner hatch
+leaf with exactly two rounded broad panes and a 140 mm center carbon bridge.
+No duplicated hatch leaf or top-center protrusion is included.
 
 The B-side hatch derivative explicitly carries the closed and open panel,
 continuous frame, hinge/latch package, seal, gutter, and drainage package; it
@@ -34,5 +34,6 @@ Regenerate with:
 ```
 
 The checker derives side, rear, and port labels from the design ranges and
-compares their sets for equality. It also runs a 29-case one-at-a-time mutation
-test so every contracted assertion is load-bearing.
+compares their sets for equality. Its adversarial source mutations reject wrong
+side/rear bridge widths and replacement of either rounded opening profile with
+a square one.

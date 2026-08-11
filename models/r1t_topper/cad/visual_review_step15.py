@@ -7,7 +7,7 @@ the rear with one real two-light hatch.  The presentation model is not a
 fitment, sealing, capacity, or fabrication-release claim.
 """
 
-from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Wire, loft
+from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Plane, RectangleRounded, Wire, extrude, loft
 from cadpy.assembly import AssemblyHelper
 
 from parameters import (
@@ -38,14 +38,18 @@ GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
 HATCH_CARBON_COLOR = Color(0.14, 0.17, 0.20, 1.0)
 INTEGRATED_PORT_COLOR = Color(0.11, 0.13, 0.16, 1.0)
 
-# Source-intent geometry: two broad lights on each side and two lights in one
-# rear hatch.  The 110 mm carbon bridges exceed the 76 mm / 3 in minimum.
+# Source-intent geometry: two broad, rounded lights on each side and two
+# rounded lights in one rear hatch.  The side bridge exceeds the 76 mm / 3 in
+# minimum; the rear bridge is the specified 140 mm.
 SIDE_WINDOW_X_RANGES = ((145.0, 690.0), (800.0, 1345.0))
 SIDE_WINDOW_Z_RANGE = (145.0, 660.0)
-REAR_WINDOW_Y_RANGES = ((-605.0, -55.0), (55.0, 605.0))
+WINDOW_CORNER_RADIUS = 82.0
+REAR_WINDOW_Y_RANGES = ((-605.0, -70.0), (70.0, 605.0))
 REAR_WINDOW_Z_RANGE = (185.0, 605.0)
+REAR_WINDOW_CORNER_RADIUS = 64.0
 STRUCTURAL_CARBON_MINIMUM = 76.0
 STRUCTURAL_MULLION_WIDTH = 110.0
+REAR_MULLION_WIDTH = 140.0
 SIDE_CUT_DEPTH = 360.0
 
 
@@ -87,26 +91,32 @@ def _rounded_presentation_shell():
 
 def _side_window_selector(x_min: float, x_max: float, sign: float):
     side_y = value(topper_base_outer_width) / 2.0
-    return Box(
+    profile = Plane.XZ * RectangleRounded(
         x_max - x_min,
-        SIDE_CUT_DEPTH,
         SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0],
-        align=(Align.MIN, Align.CENTER, Align.MIN),
-    ).moved(Location((x_min, sign * side_y, SIDE_WINDOW_Z_RANGE[0])))
+        min(
+            WINDOW_CORNER_RADIUS,
+            (x_max - x_min) / 2.0 - 1.0,
+            (SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]) / 2.0 - 1.0,
+        ),
+    )
+    return extrude(profile, amount=SIDE_CUT_DEPTH / 2.0, both=True).moved(
+        Location(((x_min + x_max) / 2.0, sign * side_y, sum(SIDE_WINDOW_Z_RANGE) / 2.0))
+    )
 
 
 def _rear_window_selector(y_min: float, y_max: float, depth: float = 2.0 * value(wall_nominal_thickness)):
-    return Box(
-        depth,
+    profile = Plane.YZ * RectangleRounded(
         y_max - y_min,
         REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0],
-        align=(Align.MIN, Align.MIN, Align.MIN),
-    ).moved(
+        REAR_WINDOW_CORNER_RADIUS,
+    )
+    return extrude(profile, amount=depth / 2.0, both=True).moved(
         Location(
             (
                 value(topper_overall_length) - value(wall_nominal_thickness) / 2.0,
-                y_min,
-                REAR_WINDOW_Z_RANGE[0],
+                (y_min + y_max) / 2.0,
+                sum(REAR_WINDOW_Z_RANGE) / 2.0,
             )
         )
     )
