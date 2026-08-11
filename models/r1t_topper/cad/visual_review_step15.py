@@ -1,34 +1,35 @@
-"""Step 15 exterior presentation assembly for operator_visual review.
+"""Re-embodied Step 15 exterior presentation assembly for operator review.
 
-This is a deliberately presentation-only derivative of the verified Step 11
-shell.  It keeps the five sparse silhouette stations visible as one continuous
-loft, then adds substantial carbon mullions, shell-conformal glazing, and one
-clean rear hatch leaf.  It does not replace the authoritative Step 11 CAD.
+This is deliberately a fresh visual embodiment, rather than a reduction of the
+old six-cartridge presentation.  It starts with the continuous rounded sparse
+profile loft, cuts two broad, shell-conformal side lights per side, and closes
+the rear with one real two-light hatch.  The presentation model is not a
+fitment, sealing, capacity, or fabrication-release claim.
 """
 
-from build123d import Align, Box, Color, Compound, Location
+from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Wire, loft
 from cadpy.assembly import AssemblyHelper
 
 from parameters import (
+    hatch_open_angle,
+    hinge_axis,
+    cab_to_topper_nominal_gap,
     rear_hatch_opening_height,
     rear_hatch_opening_width,
-    seal_land_width,
     topper_base_outer_width,
     topper_overall_length,
+    topper_silhouette_stations,
     value,
     wall_nominal_thickness,
 )
 from rear_hatch import (
-    make_closed_hatch_leaf,
+    make_drainage_management,
+    make_hatch_mechanism_envelopes,
     make_hatch_opening_cutter,
     make_rear_hatch_frame,
+    make_weather_seal,
 )
 from mount_interfaces import make_topper_crossbar_ports
-from topper_envelope import (
-    _make_inset_envelope,
-    make_engineered_shell,
-    make_master_topper_envelope,
-)
 
 
 CARBON_COLOR = Color(0.18, 0.21, 0.24, 1.0)
@@ -37,23 +38,51 @@ GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
 HATCH_CARBON_COLOR = Color(0.14, 0.17, 0.20, 1.0)
 INTEGRATED_PORT_COLOR = Color(0.11, 0.13, 0.16, 1.0)
 
-# Six windows per side, each pair separated by a 110 mm structural mullion
-# (> 3 in / 76 mm).  The six bays retain the prior outer opening extents.
-SIDE_WINDOW_X_RANGES = (
-    (120.0, 232.5),
-    (342.5, 455.0),
-    (565.0, 677.5),
-    (787.5, 900.0),
-    (1010.0, 1122.5),
-    (1232.5, 1345.0),
-)
-SIDE_WINDOW_Z_RANGE = (160.0, 660.0)
+# Source-intent geometry: two broad lights on each side and two lights in one
+# rear hatch.  The 110 mm carbon bridges exceed the 76 mm / 3 in minimum.
+SIDE_WINDOW_X_RANGES = ((145.0, 690.0), (800.0, 1345.0))
+SIDE_WINDOW_Z_RANGE = (145.0, 660.0)
+REAR_WINDOW_Y_RANGES = ((-605.0, -55.0), (55.0, 605.0))
+REAR_WINDOW_Z_RANGE = (185.0, 605.0)
+STRUCTURAL_CARBON_MINIMUM = 76.0
 STRUCTURAL_MULLION_WIDTH = 110.0
-SIDE_CUT_DEPTH = 320.0
+SIDE_CUT_DEPTH = 360.0
 
-# One rear opening/pane: no center split and no stacked/doubled hatch leaf.
-REAR_WINDOW_Y_RANGE = (-560.0, 560.0)
-REAR_WINDOW_Z_RANGE = (190.0, 600.0)
+
+def _rounded_section(x: float, height: float, base_width: float, shoulder_width: float, roof_width: float) -> Face:
+    """A visibly radiused R1S-like YZ section, intentionally unlike the old box profile."""
+    half_base, half_shoulder, half_roof = base_width / 2.0, shoulder_width / 2.0, roof_width / 2.0
+    shoulder_z = height * 0.54
+    roof_edge_z = height * 0.87
+    left_base, right_base = (x, -half_base, 0.0), (x, half_base, 0.0)
+    right_shoulder, right_roof = (x, half_shoulder, shoulder_z), (x, half_roof, roof_edge_z)
+    left_roof, left_shoulder = (x, -half_roof, roof_edge_z), (x, -half_shoulder, shoulder_z)
+    return Face.make_surface(Wire([
+        Edge.make_line(left_base, right_base),
+        Edge.make_three_point_arc(right_base, (x, half_base + 28.0, height * 0.28), right_shoulder),
+        Edge.make_three_point_arc(right_shoulder, (x, half_shoulder + 22.0, height * 0.72), right_roof),
+        Edge.make_three_point_arc(right_roof, (x, 0.0, height), left_roof),
+        Edge.make_three_point_arc(left_roof, (x, -(half_shoulder + 22.0), height * 0.72), left_shoulder),
+        Edge.make_three_point_arc(left_shoulder, (x, -(half_base + 28.0), height * 0.28), left_base),
+    ]))
+
+
+def _rounded_presentation_envelope(inset: float = 0.0):
+    sections = [
+        _rounded_section(
+            value(cab_to_topper_nominal_gap) + fraction * value(topper_overall_length),
+            height - inset,
+            base_width - 2.0 * inset,
+            shoulder_width - 2.0 * inset,
+            roof_width - 2.0 * inset,
+        )
+        for fraction, height, base_width, shoulder_width, roof_width, _crown in value(topper_silhouette_stations)
+    ]
+    return loft(sections, ruled=False)
+
+
+def _rounded_presentation_shell():
+    return _rounded_presentation_envelope() - _rounded_presentation_envelope(value(wall_nominal_thickness))
 
 
 def _side_window_selector(x_min: float, x_max: float, sign: float):
@@ -64,6 +93,23 @@ def _side_window_selector(x_min: float, x_max: float, sign: float):
         SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0],
         align=(Align.MIN, Align.CENTER, Align.MIN),
     ).moved(Location((x_min, sign * side_y, SIDE_WINDOW_Z_RANGE[0])))
+
+
+def _rear_window_selector(y_min: float, y_max: float, depth: float = 2.0 * value(wall_nominal_thickness)):
+    return Box(
+        depth,
+        y_max - y_min,
+        REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0],
+        align=(Align.MIN, Align.MIN, Align.MIN),
+    ).moved(
+        Location(
+            (
+                value(topper_overall_length) - value(wall_nominal_thickness) / 2.0,
+                y_min,
+                REAR_WINDOW_Z_RANGE[0],
+            )
+        )
+    )
 
 
 def make_side_window_cutters() -> Compound:
@@ -77,18 +123,18 @@ def make_side_window_cutters() -> Compound:
 
 
 def make_continuous_carbon_shell():
-    """Return the one-piece continuous loft with presentation window cuts."""
-    shell = make_engineered_shell() - make_hatch_opening_cutter()
+    """One rounded shell, with positive carbon rails around every opening."""
+    shell = _rounded_presentation_shell() - make_hatch_opening_cutter()
     for cutter in make_side_window_cutters().children:
         shell = shell - cutter
-    shell.label = "CONTINUOUS_R1S_LIKE_CARBON_SHELL_PRESENTATION_ONLY"
+    shell.label = "CONTINUOUS_ROUNDED_R1S_LIKE_CARBON_SHELL_PRESENTATION_ONLY"
     shell.color = CARBON_COLOR
     return shell
 
 
 def make_curved_side_glazing() -> Compound:
-    """Return panes intersected from the curved exterior skin, not flat plates."""
-    glazing_skin = make_master_topper_envelope() - _make_inset_envelope(8.0)
+    """Shell-conformal lights, intersected from the rounded outer skin."""
+    glazing_skin = _rounded_presentation_envelope() - _rounded_presentation_envelope(8.0)
     panes = []
     for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
         for index, (x_min, x_max) in enumerate(SIDE_WINDOW_X_RANGES, start=1):
@@ -100,38 +146,28 @@ def make_curved_side_glazing() -> Compound:
 
 
 def make_rear_hatch_glazing() -> Compound:
-    """Return one wide centered pane for the single rear hatch leaf."""
-    x = value(topper_overall_length) + value(wall_nominal_thickness) - 6.0
-    pane = Box(
-        6.0,
-        REAR_WINDOW_Y_RANGE[1] - REAR_WINDOW_Y_RANGE[0],
-        REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0],
-        align=(Align.MIN, Align.MIN, Align.MIN),
-    ).moved(Location((x, REAR_WINDOW_Y_RANGE[0], REAR_WINDOW_Z_RANGE[0])))
-    pane.label = "SINGLE_REAR_HATCH_GLAZING_PRESENTATION_ONLY"
-    pane.color = GLAZING_COLOR
-    return Compound(label="SINGLE_REAR_HATCH_GLAZING_PRESENTATION_ONLY", children=[pane])
+    """Two broad panes separated by a substantial vertical carbon bridge."""
+    panes = []
+    for index, (y_min, y_max) in enumerate(REAR_WINDOW_Y_RANGES, start=1):
+        pane = _rear_window_selector(y_min, y_max, depth=6.0)
+        pane.label = f"REAR_HATCH_GLAZING_{index}_PRESENTATION_ONLY"
+        pane.color = GLAZING_COLOR
+        panes.append(pane)
+    return Compound(label="REAR_HATCH_TWO_PANE_GLAZING_PRESENTATION_ONLY", children=panes)
 
 
 def make_visual_review_hatch_leaf():
-    """Return one carbon leaf with one opening and one centered pane."""
-    leaf = make_closed_hatch_leaf()
-    cutter = Box(
-        2.0 * value(wall_nominal_thickness),
-        REAR_WINDOW_Y_RANGE[1] - REAR_WINDOW_Y_RANGE[0],
-        REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0],
-        align=(Align.MIN, Align.MIN, Align.MIN),
-    ).moved(
-        Location(
-            (
-                value(topper_overall_length) - value(wall_nominal_thickness) / 2.0,
-                REAR_WINDOW_Y_RANGE[0],
-                REAR_WINDOW_Z_RANGE[0],
-            )
-        )
-    )
-    leaf = leaf - cutter
-    leaf.label = "SINGLE_REAR_HATCH_LEAF_WITH_ONE_OPENING_PRESENTATION_ONLY"
+    """One closed carbon hatch leaf with continuous corners and two lights."""
+    x = value(topper_overall_length)
+    leaf = Box(
+        value(wall_nominal_thickness),
+        value(rear_hatch_opening_width) + 2.0 * value(wall_nominal_thickness),
+        value(rear_hatch_opening_height) + 2.0 * value(wall_nominal_thickness),
+        align=(Align.MIN, Align.CENTER, Align.MIN),
+    ).moved(Location((x, 0.0, 18.0)))
+    for y_min, y_max in REAR_WINDOW_Y_RANGES:
+        leaf = leaf - _rear_window_selector(y_min, y_max)
+    leaf.label = "SINGLE_REAR_HATCH_LEAF_TWO_PANE_CONTINUOUS_CORNERS_PRESENTATION_ONLY"
     leaf.color = HATCH_CARBON_COLOR
     return leaf
 
@@ -141,38 +177,54 @@ def make_hatch_frame_presentation() -> Compound:
     for bar in frame.children:
         bar.color = CARBON_EDGE_COLOR
         bar.label = bar.label.replace("PROVISIONAL", "PRESENTATION_ONLY")
-    frame.label = "SINGLE_REAR_HATCH_FRAME_PRESENTATION_ONLY"
+    frame.label = "SINGLE_REAR_HATCH_FRAME_CONTINUOUS_PRESENTATION_ONLY"
     return frame
 
 
-def make_integrated_crossbar_ports_presentation() -> Compound:
-    """Show topper-owned port/hardpoint envelopes without rigid crossbars.
+def make_hatch_b_side_engineering() -> Compound:
+    """Resolved B-side package: frame/panel, hinge, latch, seal, gutter/drain and open leaf.
 
-    The product story is the shell interface. Any real accessory bar is a
-    separate, collapsible fit-check item and is intentionally not part of this
-    pretty-product review assembly.
+    It is retained as an inspectable engineering derivative rather than added to
+    the clean exterior render, where an open leaf or service envelopes would
+    obscure the requested closed-product silhouette.
     """
-    children = make_topper_crossbar_ports().children
+    closed_leaf = make_visual_review_hatch_leaf()
+    closed_leaf.label = "REAR_HATCH_PANEL_CLOSED_B_SIDE_PRESENTATION_ONLY"
+    open_leaf = make_visual_review_hatch_leaf().rotate(
+        Axis(value(hinge_axis)[0], (0.0, 1.0, 0.0)), -value(hatch_open_angle)
+    )
+    open_leaf.label = "REAR_HATCH_PANEL_OPEN_B_SIDE_PRESENTATION_ONLY"
+    mechanism = make_hatch_mechanism_envelopes()
+    mechanism.label = "REAR_HATCH_HINGE_LATCH_B_SIDE_PRESENTATION_ONLY"
+    seal = make_weather_seal()
+    seal.label = "REAR_HATCH_CONTINUOUS_SEAL_B_SIDE_PRESENTATION_ONLY"
+    drainage = make_drainage_management()
+    drainage.label = "REAR_HATCH_GUTTER_DRAINAGE_B_SIDE_PRESENTATION_ONLY"
+    return Compound(
+        label="REAR_HATCH_B_SIDE_ENGINEERING_PRESENTATION_ONLY",
+        children=[make_hatch_frame_presentation(), closed_leaf, open_leaf, mechanism, seal, drainage],
+    )
+
+
+def make_integrated_crossbar_ports_presentation() -> Compound:
+    """Topper-owned shell ports only; never a freestanding crossbar."""
+    # The source hardpoint datum follows the earlier, flatter roof.  Re-seat the
+    # eight interface envelopes into this re-embodied curved crown so each is a
+    # shell feature rather than a bar floating over it.
+    children = [item.moved(Location((0.0, 0.0, -60.0))) for item in make_topper_crossbar_ports().children]
     for item in children:
         item.label = item.label.replace("_PROVISIONAL", "_INTEGRATED_PRESENTATION_ONLY")
         if "INTEGRATED_PRESENTATION_ONLY" not in item.label:
-            item.label = item.label.replace(
-                "OEM_ACCESSORY_PORT_PROFILE_",
-                "INTEGRATED_SHELL_PORT_",
-            ) + "_INTEGRATED_PRESENTATION_ONLY"
+            item.label = item.label.replace("OEM_ACCESSORY_PORT_PROFILE_", "INTEGRATED_SHELL_PORT_") + "_INTEGRATED_PRESENTATION_ONLY"
         item.color = INTEGRATED_PORT_COLOR
     return Compound(label="INTEGRATED_TOPPER_CROSSBAR_PORTS", children=children)
 
 
 def gen_step():
     assembly = AssemblyHelper("R1T_TOPPER_STEP15_OPERATOR_VISUAL")
-    assembly.add(make_continuous_carbon_shell(), "CONTINUOUS_CARBON_SHELL")
+    assembly.add(make_continuous_carbon_shell(), "CONTINUOUS_ROUNDED_CARBON_SHELL")
     assembly.add(make_curved_side_glazing(), "CURVED_SIDE_GLAZING")
-    assembly.add(make_hatch_frame_presentation(), "SINGLE_REAR_HATCH_FRAME")
     assembly.add(make_visual_review_hatch_leaf(), "SINGLE_REAR_HATCH_LEAF")
-    assembly.add(make_rear_hatch_glazing(), "SINGLE_REAR_HATCH_GLAZING")
-    assembly.add(
-        make_integrated_crossbar_ports_presentation(),
-        "INTEGRATED_TOPPER_CROSSBAR_PORTS",
-    )
+    assembly.add(make_rear_hatch_glazing(), "REAR_HATCH_TWO_PANE_GLAZING")
+    assembly.add(make_integrated_crossbar_ports_presentation(), "INTEGRATED_TOPPER_CROSSBAR_PORTS")
     return assembly.build()

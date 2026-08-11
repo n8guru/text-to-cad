@@ -3,17 +3,23 @@
 This package is a presentation-only derivative of the independently verified
 Step 11 geometry at commit `6e0229cecefee0043aed9ea607c5241c1fe7f815`.
 
-The visible exterior is one continuous five-station lofted shell with the
-R1S-like near-level roofline and curved shoulder edges retained. Each side has
-six shell-conformal glazing bays (twelve total) separated by five 110 mm
-structural carbon mullions. The rear is one clean hatch leaf over one shell
-opening with one centered pane; no split leaf, duplicate leaf, center mullion,
-or top-center protrusion is included. The `00_REFERENCE` truck dummy, top accessory-port
-blocks, and engineering keep-outs are excluded from the review assembly. The
-crossbar correction is represented by eight small, shell-intersecting
-topper-owned port/hardpoint envelopes at two stations. No rigid or
-freestanding `CROSSBAR_REFERENCE` bar is included; a real accessory bar is a
-separate collapsible/shrink-to-fit fit-check item, not product geometry.
+The visible exterior is a freshly re-embodied continuous rounded loft: its
+sidewalls, shoulder transitions, and crown use radiused curves rather than the
+old flat six-cartridge form. Each side has exactly two broad shell-conformal
+glazing lights. The 110 mm carbon bridge between those lights is positive
+remaining shell material and exceeds the 76 mm / three-inch minimum. The rear
+is one clean, closed, continuous-corner hatch leaf with exactly two broad panes
+and the same 110 mm center carbon bridge. No duplicated hatch leaf or
+top-center protrusion is included.
+
+The B-side hatch derivative explicitly carries the closed and open panel,
+continuous frame, hinge/latch package, seal, gutter, and drainage package; it
+is inspectable without obscuring the operator's clean closed-product render.
+The `00_REFERENCE` truck dummy and engineering keep-outs are excluded from the
+review assembly. The eight retained port/hardpoint envelopes are re-seated into
+the curved crown and are shell-intersecting topper-owned interfaces only. No
+rigid or freestanding `CROSSBAR_REFERENCE` bar is included; an accessory bar is
+a separate fit-check item, not product geometry.
 
 The dimensions remain provisional visual-design controls. This artifact does
 not claim calibrated fitment, sealing performance, structural rating,
@@ -26,3 +32,7 @@ Regenerate with:
 ../../.venv/bin/python cad/exports_step15.py
 ../../.venv/bin/python cad/step15_checks.py
 ```
+
+The checker derives side, rear, and port labels from the design ranges and
+compares their sets for equality. It also runs a 29-case one-at-a-time mutation
+test so every contracted assertion is load-bearing.

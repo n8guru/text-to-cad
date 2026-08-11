@@ -2,20 +2,20 @@
   "authority": "PRESENTATION_ONLY_NOT_FITMENT_OR_FABRICATION_RELEASE",
   "glb": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb",
-    "sha256": "51f0a8efab6964d54590b2e8f3dd9553d86bea988490decc86053f581fbad17e"
+    "sha256": "e3cb2cfc7f8c84683f465a34d94cb4bb9eff73d6209d98a17ea7b91b61b38b1f"
   },
   "source_geometry_commit": "6e0229cecefee0043aed9ea607c5241c1fe7f815",
   "source_step_lfs_oid_sha256": "c25c9df4213abdb1e87beb4aab052dc1725a4ee8433b6f242ca0dd6c5ade37ad",
   "step": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step",
-    "sha256": "cdff7506370efc05dea97370587a7a70c02f0c32013350b49277c444ed3b35a5"
+    "sha256": "1ca9e2383e1b12aafca67a2d307b817548cd97f54317b2fd3da06c0e83bd45d0"
   },
   "views": {
-    "driver_side.png": "d8cf1a764f1b4ce38f033436719bae331d48573e7538742d743e85e35dd1fb67",
-    "front.png": "4c30b9e3c4e60d946a493316a9fd17dde08cabe1348c30d89f4b997daccfe6c9",
-    "passenger_side.png": "980033d4812f817bc01f54d6b3f489e033526b5798ff77479725fc638c89a93f",
-    "rear.png": "02acd2c2eee20cc6218e418c8733e1ef44968cf154fda0fff804d0075e338334",
-    "three_quarter_rear.png": "b0130695c228b01de87480245a3cf8dbdf87b1351830b0f0d47d9e4ffa4872ee",
-    "top.png": "9f6e2c64aa9f364c41d1c9d8637c9f8f0957ba862f5f418122dd5856159d8bc4"
+    "driver_side.png": "3a8ac2ce25e6050b0c92e7cc76d99cfa43107a408f4a527967c8153f8c59aaf5",
+    "front.png": "bbee91269b704c5bb13408c5c52d4546b22d48adabbb332d9960263f58bb427c",
+    "passenger_side.png": "807b9adbf5cb43f1d764167c891ffe521ec356bb79e3f3725acd0af9a585d8cd",
+    "rear.png": "a0be38e1a726658268637451d30c953d8593ceda0aef66f7f631bd33d83d7846",
+    "three_quarter_rear.png": "e458faaefab848f59ed99898a5b9572de4646f50718a11ff75d15670c4a4d0ad",
+    "top.png": "2e3bb79c6f4adceeb920bc55f11fe24c7502b6deddcc32421e757c052c67b91f"
   }
 }
