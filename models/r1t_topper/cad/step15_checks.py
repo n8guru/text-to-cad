@@ -72,11 +72,15 @@ def _mutation_test() -> None:
         original = getattr(visual, attribute)
         setattr(visual, attribute, replacement)
         try:
-            _enforce(_contract_checks())
-        except Exception:
-            continue
+            checks = _contract_checks()
+        except Exception as error:
+            raise AssertionError(f"STEP15_MUTATION_CONSTRUCTION_ERROR: {name}: {error}") from error
         finally:
             setattr(visual, attribute, original)
+        try:
+            _enforce(checks)
+        except AssertionError:
+            continue
         survivors.append(name)
     assert not survivors, f"STEP15_MUTATION_SURVIVORS: {', '.join(survivors)}"
     print(f"STEP_15_MUTATION_TEST_PASS mutations={len(mutations)} all_rejected=true")
@@ -123,6 +127,15 @@ def _contract_checks() -> dict[str, bool]:
         "rounded_rear_window_profiles": visual.REAR_WINDOW_CORNER_RADIUS >= 50.0
         and any(edge.geom_type.name != "LINE" for edge in visual._rear_window_selector(*visual.REAR_WINDOW_Y_RANGES[0]).edges()),
         "single_closed_two_pane_hatch": hatch_leaf.label == "SINGLE_REAR_HATCH_LEAF_TWO_PANE_CONTINUOUS_CORNERS_PRESENTATION_ONLY" and len(hatch_leaf.solids()) == 1 and hatch_leaf.volume > 0.0,
+        "rear_apertures_cut_through_leaf": all(
+            (hatch_leaf & visual._rear_window_selector(y_min, y_max)).volume < 1e-6
+            for y_min, y_max in visual.REAR_WINDOW_Y_RANGES
+        ),
+        "rear_panes_seated_within_leaf_plane": all(
+            hatch_leaf.bounding_box().min.X <= pane.bounding_box().min.X
+            and pane.bounding_box().max.X <= hatch_leaf.bounding_box().max.X
+            for pane in rear_panes
+        ),
         "rear_hatch_corners_continuous": all((hatch_leaf & _rear_corner_selector(side)).volume > 0.0 for side in (-1.0, 1.0)),
         "b_side_hatch_system_complete": {child.label for child in b_side.children} == {
             "SINGLE_REAR_HATCH_FRAME_CONTINUOUS_PRESENTATION_ONLY",

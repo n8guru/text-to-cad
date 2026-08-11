@@ -7,7 +7,7 @@ the rear with one real two-light hatch.  The presentation model is not a
 fitment, sealing, capacity, or fabrication-release claim.
 """
 
-from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Plane, RectangleRounded, Wire, extrude, loft
+from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Plane, Rectangle, RectangleRounded, Wire, extrude, loft
 from cadpy.assembly import AssemblyHelper
 
 from parameters import (
@@ -91,14 +91,10 @@ def _rounded_presentation_shell():
 
 def _side_window_selector(x_min: float, x_max: float, sign: float):
     side_y = value(topper_base_outer_width) / 2.0
-    profile = Plane.XZ * RectangleRounded(
-        x_max - x_min,
-        SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0],
-        min(
-            WINDOW_CORNER_RADIUS,
-            (x_max - x_min) / 2.0 - 1.0,
-            (SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]) / 2.0 - 1.0,
-        ),
+    width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
+    profile = Plane.XZ * (
+        RectangleRounded(width, height, min(WINDOW_CORNER_RADIUS, width / 2.0 - 1.0, height / 2.0 - 1.0))
+        if WINDOW_CORNER_RADIUS > 0.0 else Rectangle(width, height)
     )
     return extrude(profile, amount=SIDE_CUT_DEPTH / 2.0, both=True).moved(
         Location(((x_min + x_max) / 2.0, sign * side_y, sum(SIDE_WINDOW_Z_RANGE) / 2.0))
@@ -106,15 +102,15 @@ def _side_window_selector(x_min: float, x_max: float, sign: float):
 
 
 def _rear_window_selector(y_min: float, y_max: float, depth: float = 2.0 * value(wall_nominal_thickness)):
-    profile = Plane.YZ * RectangleRounded(
-        y_max - y_min,
-        REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0],
-        REAR_WINDOW_CORNER_RADIUS,
+    width, height = y_max - y_min, REAR_WINDOW_Z_RANGE[1] - REAR_WINDOW_Z_RANGE[0]
+    profile = Plane.YZ * (
+        RectangleRounded(width, height, REAR_WINDOW_CORNER_RADIUS)
+        if REAR_WINDOW_CORNER_RADIUS > 0.0 else Rectangle(width, height)
     )
     return extrude(profile, amount=depth / 2.0, both=True).moved(
         Location(
             (
-                value(topper_overall_length) - value(wall_nominal_thickness) / 2.0,
+                value(topper_overall_length) + value(wall_nominal_thickness) / 2.0,
                 (y_min + y_max) / 2.0,
                 sum(REAR_WINDOW_Z_RANGE) / 2.0,
             )
