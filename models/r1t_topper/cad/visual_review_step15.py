@@ -7,7 +7,7 @@ the rear with one real two-light hatch.  The presentation model is not a
 fitment, sealing, capacity, or fabrication-release claim.
 """
 
-from build123d import Align, Axis, Box, Color, Compound, Edge, Face, Location, Plane, Rectangle, RectangleRounded, Wire, extrude, loft
+from build123d import Align, Axis, Box, Color, Compound, Cylinder, Edge, Face, Location, Plane, Rectangle, RectangleRounded, Wire, extrude, loft
 from cadpy.assembly import AssemblyHelper
 
 from parameters import (
@@ -32,11 +32,11 @@ from rear_hatch import (
 from mount_interfaces import make_topper_crossbar_ports
 
 
-CARBON_COLOR = Color(0.18, 0.21, 0.24, 1.0)
-CARBON_EDGE_COLOR = Color(0.08, 0.10, 0.13, 1.0)
+CARBON_COLOR = Color(0.30, 0.34, 0.38, 1.0)
+CARBON_EDGE_COLOR = Color(0.16, 0.19, 0.23, 1.0)
 GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
-HATCH_CARBON_COLOR = Color(0.14, 0.17, 0.20, 1.0)
-INTEGRATED_PORT_COLOR = Color(0.11, 0.13, 0.16, 1.0)
+HATCH_CARBON_COLOR = Color(0.26, 0.30, 0.34, 1.0)
+INTEGRATED_PORT_COLOR = Color(0.20, 0.24, 0.28, 1.0)
 
 # Source-intent geometry: two broad, rounded lights on each side and two
 # rounded lights in one rear hatch.  The side bridge exceeds the 76 mm / 3 in
@@ -51,6 +51,14 @@ STRUCTURAL_CARBON_MINIMUM = 76.0
 STRUCTURAL_MULLION_WIDTH = 110.0
 REAR_MULLION_WIDTH = 140.0
 SIDE_CUT_DEPTH = 360.0
+
+# Presentation-only A-surface adjustment.  The authoritative Step 11 shell is
+# unchanged; this derivative deliberately carries a tighter crown and softer
+# shoulder break so the operator can judge the R1S-like roof language in a
+# vehicle context rather than against an isolated rectangular envelope.
+ROOF_WIDTH_SCALE = 0.88
+SHOULDER_WIDTH_REDUCTION = 18.0
+CROWN_LIFT = 18.0
 
 
 def _rounded_section(x: float, height: float, base_width: float, shoulder_width: float, roof_width: float) -> Face:
@@ -75,10 +83,10 @@ def _rounded_presentation_envelope(inset: float = 0.0):
     sections = [
         _rounded_section(
             value(cab_to_topper_nominal_gap) + fraction * value(topper_overall_length),
-            height - inset,
+            height + _crown * CROWN_LIFT / 35.0 - inset,
             base_width - 2.0 * inset,
-            shoulder_width - 2.0 * inset,
-            roof_width - 2.0 * inset,
+            shoulder_width - SHOULDER_WIDTH_REDUCTION - 2.0 * inset,
+            roof_width * ROOF_WIDTH_SCALE - 2.0 * inset,
         )
         for fraction, height, base_width, shoulder_width, roof_width, _crown in value(topper_silhouette_stations)
     ]
@@ -226,8 +234,109 @@ def make_integrated_crossbar_ports_presentation() -> Compound:
     return Compound(label="INTEGRATED_TOPPER_CROSSBAR_PORTS", children=children)
 
 
+def make_r1t_presentation_context() -> Compound:
+    """A restrained vehicle envelope so the operator can judge silhouette and scale.
+
+    This is not a fitment model and intentionally omits the engineering
+    keep-outs, datums, anchors, and service geometry from the reference package.
+    The pickup cues are enough to make the topper read as an R1T product rather
+    than an isolated box: cab mass, bed deck, tailgate, rails, and four wheels.
+    """
+    context_color = Color(0.40, 0.44, 0.48, 1.0)
+    glass_color = Color(0.06, 0.12, 0.16, 0.9)
+    tire_color = Color(0.035, 0.04, 0.045, 1.0)
+    wheel_color = Color(0.22, 0.25, 0.28, 1.0)
+
+    bed = Box(
+        value(topper_overall_length),
+        value(topper_base_outer_width) - 150.0,
+        120.0,
+        align=(Align.MIN, Align.CENTER, Align.MIN),
+    ).moved(Location((0.0, 0.0, -120.0)))
+    bed.label = "R1T_BED_CONTEXT"
+    bed.color = context_color
+
+    rail_children = []
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        rail = Box(
+            value(topper_overall_length),
+            90.0,
+            90.0,
+            align=(Align.MIN, Align.CENTER, Align.MIN),
+        ).moved(Location((0.0, sign * (value(topper_base_outer_width) / 2.0 - 45.0), -10.0)))
+        rail.label = f"R1T_{side}_BED_RAIL_CONTEXT"
+        rail.color = wheel_color
+        rail_children.append(rail)
+
+    tailgate = Box(
+        85.0,
+        value(topper_base_outer_width) - 150.0,
+        500.0,
+        align=(Align.MIN, Align.CENTER, Align.MIN),
+    ).moved(Location((value(topper_overall_length) - 85.0, 0.0, -620.0)))
+    tailgate.label = "R1T_TAILGATE_CONTEXT"
+    tailgate.color = context_color
+
+    cab = Box(
+        520.0,
+        1650.0,
+        760.0,
+        align=(Align.MIN, Align.CENTER, Align.MIN),
+    ).moved(Location((-520.0, 0.0, -120.0)))
+    cab.label = "R1T_CAB_CONTEXT"
+    cab.color = context_color
+    cab_roof = Box(
+        520.0,
+        1540.0,
+        70.0,
+        align=(Align.MIN, Align.CENTER, Align.MIN),
+    ).moved(Location((-520.0, 0.0, 640.0)))
+    cab_roof.label = "R1T_CAB_ROOF_CONTEXT"
+    cab_roof.color = wheel_color
+
+    side_glass = []
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        window = Box(
+            340.0,
+            12.0,
+            280.0,
+            align=(Align.MIN, Align.CENTER, Align.MIN),
+        ).moved(Location((-410.0, sign * 826.0, 280.0)))
+        window.label = f"R1T_{side}_CAB_GLASS_CONTEXT"
+        window.color = glass_color
+        side_glass.append(window)
+
+    wheels = []
+    for axle_x in (170.0, 1110.0):
+        for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+            tire = Cylinder(
+                245.0,
+                180.0,
+                align=(Align.CENTER, Align.CENTER, Align.CENTER),
+                rotation=(90.0, 0.0, 0.0),
+            ).moved(Location((axle_x, sign * 875.0, -270.0)))
+            tire.label = f"R1T_{side}_{int(axle_x)}_WHEEL_CONTEXT"
+            tire.color = tire_color
+            wheels.append(tire)
+            hub = Cylinder(
+                105.0,
+                186.0,
+                align=(Align.CENTER, Align.CENTER, Align.CENTER),
+                rotation=(90.0, 0.0, 0.0),
+            ).moved(Location((axle_x, sign * 878.0, -270.0)))
+            hub.label = f"R1T_{side}_{int(axle_x)}_HUB_CONTEXT"
+            hub.color = wheel_color
+            wheels.append(hub)
+
+    return Compound(
+        label="R1T_VEHICLE_PRESENTATION_CONTEXT",
+        children=[bed, *rail_children, tailgate, cab, cab_roof, *side_glass, *wheels],
+    )
+
+
 def gen_step():
     assembly = AssemblyHelper("R1T_TOPPER_STEP15_OPERATOR_VISUAL")
+    assembly.add(make_r1t_presentation_context(), "R1T_VEHICLE_PRESENTATION_CONTEXT")
     assembly.add(make_continuous_carbon_shell(), "CONTINUOUS_ROUNDED_CARBON_SHELL")
     assembly.add(make_curved_side_glazing(), "CURVED_SIDE_GLAZING")
     assembly.add(make_visual_review_hatch_leaf(), "SINGLE_REAR_HATCH_LEAF")

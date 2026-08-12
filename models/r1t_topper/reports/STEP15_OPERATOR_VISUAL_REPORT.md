@@ -4,22 +4,27 @@ This package is a presentation-only derivative of the independently verified
 Step 11 geometry at commit `6e0229cecefee0043aed9ea607c5241c1fe7f815`.
 
 The visible exterior is a freshly re-embodied continuous rounded loft: its
-sidewalls, shoulder transitions, and crown use radiused curves rather than the
-old flat six-cartridge form. Each side has exactly two broad shell-conformal
-glazing lights with actual radiused cut geometry. The 110 mm carbon bridge
-between those lights is positive remaining shell material and exceeds the 76 mm
-/ three-inch minimum. The rear is one clean, closed, continuous-corner hatch
+sidewalls, shoulder transitions, and crowned roof use radiused curves rather
+than the old flat six-cartridge form. The review packet includes a restrained
+R1T presentation context (cab mass, bed, tailgate, rails, and wheels) so the
+roof/side/corner relationship is judged on a recognizable pickup rather than
+as an isolated shell. Each side has exactly two broad shell-conformal glazing
+lights with actual radiused cut geometry. The 110 mm carbon bridge between
+those lights is positive remaining shell material and exceeds the 76 mm /
+three-inch minimum. The rear is one clean, closed, continuous-corner hatch
 leaf with exactly two rounded broad panes and a 140 mm center carbon bridge.
 No duplicated hatch leaf or top-center protrusion is included.
 
 The B-side hatch derivative explicitly carries the closed and open panel,
 continuous frame, hinge/latch package, seal, gutter, and drainage package; it
 is inspectable without obscuring the operator's clean closed-product render.
-The `00_REFERENCE` truck dummy and engineering keep-outs are excluded from the
-review assembly. The eight retained port/hardpoint envelopes are re-seated into
-the curved crown and are shell-intersecting topper-owned interfaces only. No
-rigid or freestanding `CROSSBAR_REFERENCE` bar is included; an accessory bar is
-a separate fit-check item, not product geometry.
+The engineering `00_REFERENCE` dummy and keep-outs are excluded from the review
+assembly; the new presentation context is deliberately limited to recognizable
+vehicle cues and carries no fitment authority. The eight retained
+port/hardpoint envelopes are re-seated into the curved crown and are
+shell-intersecting topper-owned interfaces only. No rigid or freestanding
+`CROSSBAR_REFERENCE` bar is included; an accessory bar is a separate fit-check
+item, not product geometry.
 
 The dimensions remain provisional visual-design controls. This artifact does
 not claim calibrated fitment, sealing performance, structural rating,

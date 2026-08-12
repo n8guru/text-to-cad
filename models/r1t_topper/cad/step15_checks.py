@@ -89,6 +89,7 @@ def _mutation_test() -> None:
 def _contract_checks() -> dict[str, bool]:
     root_labels = {child.label for child in gen_step().children}
     required_roots = {
+        "R1T_VEHICLE_PRESENTATION_CONTEXT",
         "CONTINUOUS_ROUNDED_CARBON_SHELL",
         "CURVED_SIDE_GLAZING",
         "SINGLE_REAR_HATCH_LEAF",
