@@ -1,10 +1,10 @@
 """Re-embodied Step 15 exterior presentation assembly for operator review.
 
-This is deliberately a fresh visual embodiment, rather than a reduction of the
-old six-cartridge presentation.  It starts with the continuous rounded sparse
-profile loft, cuts two broad, shell-conformal side lights per side, and closes
-the rear with one real two-light hatch.  The presentation model is not a
-fitment, sealing, capacity, or fabrication-release claim.
+The side openings are now a shared, removable-module interface.  The window
+insert is a separate flat pane; cage and toolbox inserts use the same aperture
+datum, flange/seal land, retention pattern, and shell bridge.  This package is
+still presentation-only and does not claim calibrated fitment, sealing,
+capacity, or fabrication release.
 """
 
 from build123d import Align, Axis, Box, Color, Compound, Cylinder, Edge, Face, Location, Plane, Rectangle, RectangleRounded, Wire, extrude, loft
@@ -38,12 +38,13 @@ GLAZING_COLOR = Color(0.08, 0.38, 0.56, 0.92)
 HATCH_CARBON_COLOR = Color(0.26, 0.30, 0.34, 1.0)
 INTEGRATED_PORT_COLOR = Color(0.20, 0.24, 0.28, 1.0)
 
-# Source-intent geometry: two broad, rounded lights on each side and two
-# rounded lights in one rear hatch.  The side bridge exceeds the 76 mm / 3 in
-# minimum; the rear bridge is the specified 140 mm.
+# Source-intent geometry: two broad side apertures on each side and two rounded
+# lights in one rear hatch.  Each side aperture is a shared removable-module
+# interface.  The shell bridge exceeds the 76 mm / 3 in minimum; the rear
+# bridge is the specified 140 mm.
 SIDE_WINDOW_X_RANGES = ((145.0, 690.0), (800.0, 1345.0))
 SIDE_WINDOW_Z_RANGE = (145.0, 660.0)
-WINDOW_CORNER_RADIUS = 82.0
+SIDE_APERTURE_CORNER_RADIUS = 82.0
 REAR_WINDOW_Y_RANGES = ((-605.0, -70.0), (70.0, 605.0))
 REAR_WINDOW_Z_RANGE = (185.0, 605.0)
 REAR_WINDOW_CORNER_RADIUS = 64.0
@@ -51,6 +52,22 @@ STRUCTURAL_CARBON_MINIMUM = 76.0
 STRUCTURAL_MULLION_WIDTH = 110.0
 REAR_MULLION_WIDTH = 140.0
 SIDE_CUT_DEPTH = 360.0
+
+# Shared side-insert contract.  These are provisional visual-design controls,
+# not calibrated fitment dimensions.
+SIDE_INTERFACE_SEAL_LAND = 22.0
+SIDE_INTERFACE_RETENTION_DEPTH = 18.0
+SIDE_INTERFACE_FASTENER_RADIUS = 7.0
+SIDE_INTERFACE_FASTENER_EDGE_OFFSET = 34.0
+SIDE_INSERT_PANE_THICKNESS = 8.0
+SIDE_INSERT_NORMAL_EXPLODE = 115.0
+SIDE_INSERT_MATING_CONTRACT = {
+    "datum": "side-aperture X/Z rounded profile; constant side-Y datum plane",
+    "flange_seal_land_mm": SIDE_INTERFACE_SEAL_LAND,
+    "retention": "four M-sized provisional fastener envelopes on insert flange",
+    "load_path": "perimeter land into continuous shell; 110 mm carbon bridge remains between bays",
+    "insert_contract": "same outer profile, flange depth, seal land, and fastener centers for WINDOW/CAGE/TOOLBOX",
+}
 
 # Presentation-only A-surface adjustment.  The authoritative Step 11 shell is
 # unchanged; this derivative deliberately carries a tighter crown and softer
@@ -101,8 +118,8 @@ def _side_window_selector(x_min: float, x_max: float, sign: float):
     side_y = value(topper_base_outer_width) / 2.0
     width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
     profile = Plane.XZ * (
-        RectangleRounded(width, height, min(WINDOW_CORNER_RADIUS, width / 2.0 - 1.0, height / 2.0 - 1.0))
-        if WINDOW_CORNER_RADIUS > 0.0 else Rectangle(width, height)
+        RectangleRounded(width, height, min(SIDE_APERTURE_CORNER_RADIUS, width / 2.0 - 1.0, height / 2.0 - 1.0))
+        if SIDE_APERTURE_CORNER_RADIUS > 0.0 else Rectangle(width, height)
     )
     return extrude(profile, amount=SIDE_CUT_DEPTH / 2.0, both=True).moved(
         Location(((x_min + x_max) / 2.0, sign * side_y, sum(SIDE_WINDOW_Z_RANGE) / 2.0))
@@ -146,17 +163,166 @@ def make_continuous_carbon_shell():
     return shell
 
 
-def make_curved_side_glazing() -> Compound:
-    """Shell-conformal lights, intersected from the rounded outer skin."""
-    glazing_skin = _rounded_presentation_envelope() - _rounded_presentation_envelope(8.0)
-    panes = []
+def _side_aperture_profile(x_min: float, x_max: float):
+    width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
+    radius = min(SIDE_APERTURE_CORNER_RADIUS, width / 2.0 - 1.0, height / 2.0 - 1.0)
+    return Plane.XZ * (RectangleRounded(width, height, radius) if radius > 0.0 else Rectangle(width, height))
+
+
+def _side_aperture_y(sign: float) -> float:
+    return sign * value(topper_base_outer_width) / 2.0
+
+
+def _side_insert_panel(x_min: float, x_max: float, sign: float, depth: float, normal_offset: float = 0.0):
+    """Flat constant-Y insert envelope for every module variant."""
+    panel = extrude(_side_aperture_profile(x_min, x_max), amount=depth / 2.0, both=True)
+    return panel.moved(
+        Location(
+            (
+                (x_min + x_max) / 2.0,
+                _side_aperture_y(sign + 0.0) + sign * normal_offset,
+                sum(SIDE_WINDOW_Z_RANGE) / 2.0,
+            )
+        )
+    )
+
+
+def _insert_frame(x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    """Perimeter mating flange carried by every insert type."""
+    depth = SIDE_INTERFACE_RETENTION_DEPTH
+    y = _side_aperture_y(sign) + sign * normal_offset
+    z_min, z_max = SIDE_WINDOW_Z_RANGE
+    land = SIDE_INTERFACE_SEAL_LAND
+    children = []
+    for label, x, z, sx, sz in (
+        ("LEFT", x_min - land / 2.0, (z_min + z_max) / 2.0, land, z_max - z_min + 2.0 * land),
+        ("RIGHT", x_max + land / 2.0, (z_min + z_max) / 2.0, land, z_max - z_min + 2.0 * land),
+        ("LOW", (x_min + x_max) / 2.0, z_min - land / 2.0, x_max - x_min, land),
+        ("HIGH", (x_min + x_max) / 2.0, z_max + land / 2.0, x_max - x_min, land),
+    ):
+        bar = Box(sx, depth, sz, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(Location((x, y, z)))
+        bar.label = f"SIDE_INSERT_FLANGE_{label}_MATING_CONTRACT"
+        children.append(bar)
+    return Compound(label="SIDE_INSERT_PERIMETER_FLANGE_MATING_CONTRACT", children=children)
+
+
+def _insert_fasteners(x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    y = _side_aperture_y(sign) + sign * normal_offset
+    z_min, z_max = SIDE_WINDOW_Z_RANGE
+    offset = SIDE_INTERFACE_FASTENER_EDGE_OFFSET
+    children = []
+    for index, (x, z) in enumerate(
+        ((x_min + offset, z_min + offset), (x_max - offset, z_min + offset),
+         (x_min + offset, z_max - offset), (x_max - offset, z_max - offset)),
+        start=1,
+    ):
+        fastener = Cylinder(
+            SIDE_INTERFACE_FASTENER_RADIUS,
+            SIDE_INTERFACE_RETENTION_DEPTH + 8.0,
+            align=(Align.CENTER, Align.CENTER, Align.CENTER),
+            rotation=(90.0, 0.0, 0.0),
+        ).moved(Location((x, y, z)))
+        fastener.label = f"SIDE_INSERT_RETENTION_FASTENER_{index}_MATING_CONTRACT"
+        children.append(fastener)
+    return Compound(label="SIDE_INSERT_RETENTION_PATTERN_MATING_CONTRACT", children=children)
+
+
+def make_side_aperture_interface(side: str, index: int, x_min: float, x_max: float, sign: float) -> Compound:
+    """Common shell-side datum, seal land, retention and load-path package."""
+    frame = _insert_frame(x_min, x_max, sign)
+    frame.label = f"SHARED_SIDE_APERTURE_INTERFACE_{side}_{index}"
+    fasteners = _insert_fasteners(x_min, x_max, sign)
+    fasteners.label = f"SHARED_SIDE_APERTURE_RETENTION_{side}_{index}"
+    # The positive shell land is the load path around the cut.  It intentionally
+    # shares material with the continuous carbon shell instead of floating as a
+    # separate ornamental surround.
+    bridge = Box(
+        x_max - x_min,
+        60.0,
+        30.0,
+        align=(Align.CENTER, Align.CENTER, Align.CENTER),
+    ).moved(Location(((x_min + x_max) / 2.0, _side_aperture_y(sign) - sign * 20.0, SIDE_WINDOW_Z_RANGE[0] - 35.0)))
+    bridge.label = f"SIDE_APERTURE_LOAD_PATH_INTO_SHELL_{side}_{index}"
+    bridge.color = CARBON_EDGE_COLOR
+    return Compound(label=f"SIDE_APERTURE_INTERFACE_{side}_{index}", children=[frame, fasteners, bridge])
+
+
+def make_side_aperture_interfaces() -> Compound:
+    children = []
     for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
         for index, (x_min, x_max) in enumerate(SIDE_WINDOW_X_RANGES, start=1):
-            pane = glazing_skin & _side_window_selector(x_min, x_max, sign)
-            pane.label = f"CURVED_SIDE_GLAZING_{side}_{index}_PRESENTATION_ONLY"
-            pane.color = GLAZING_COLOR
-            panes.append(pane)
-    return Compound(label="CURVED_SIDE_GLAZING_PRESENTATION_ONLY", children=panes)
+            children.append(make_side_aperture_interface(side, index, x_min, x_max, sign))
+    return Compound(label="SHARED_SIDE_APERTURE_INTERFACES", children=children)
+
+
+def make_flat_window_insert(side: str, index: int, x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    """Separate planar glazing part with the common insert-side mating contract."""
+    pane = _side_insert_panel(x_min, x_max, sign, SIDE_INSERT_PANE_THICKNESS, normal_offset)
+    pane.label = f"FLAT_WINDOW_INSERT_{side}_{index}_PLANAR_MATING_CONTRACT"
+    pane.color = GLAZING_COLOR
+    frame = _insert_frame(x_min, x_max, sign, normal_offset)
+    frame.label = f"FLAT_WINDOW_INSERT_FLANGE_{side}_{index}"
+    fasteners = _insert_fasteners(x_min, x_max, sign, normal_offset)
+    fasteners.label = f"FLAT_WINDOW_INSERT_RETENTION_{side}_{index}"
+    return Compound(label=f"WINDOW_INSERT_{side}_{index}_SEPARATE_PART", children=[pane, frame, fasteners])
+
+
+def make_cage_insert(side: str, index: int, x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    """Open cage cartridge using the same perimeter, datum and retention pattern."""
+    x_mid, z_mid = (x_min + x_max) / 2.0, sum(SIDE_WINDOW_Z_RANGE) / 2.0
+    y = _side_aperture_y(sign) + sign * normal_offset
+    width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
+    bars = list(_insert_frame(x_min, x_max, sign, normal_offset).children)
+    for n, x in enumerate((x_min + width * 0.33, x_min + width * 0.66), start=1):
+        bar = Box(18.0, 12.0, height, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(Location((x, y, z_mid)))
+        bar.label = f"CAGE_INSERT_VERTICAL_BAR_{n}"
+        bars.append(bar)
+    for n, z in enumerate((SIDE_WINDOW_Z_RANGE[0] + height * 0.33, SIDE_WINDOW_Z_RANGE[0] + height * 0.66), start=1):
+        bar = Box(width, 12.0, 18.0, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(Location((x_mid, y, z)))
+        bar.label = f"CAGE_INSERT_HORIZONTAL_BAR_{n}"
+        bars.append(bar)
+    fasteners = _insert_fasteners(x_min, x_max, sign, normal_offset)
+    return Compound(
+        label=f"CAGE_INSERT_{side}_{index}_SEPARATE_PART",
+        children=[*bars, *fasteners.children],
+    )
+
+
+def make_toolbox_insert(side: str, index: int, x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    """Opaque service/toolbox cartridge using the common mating contract."""
+    width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
+    panel = _side_insert_panel(x_min, x_max, sign, 42.0, normal_offset)
+    panel.label = f"TOOLBOX_INSERT_PANEL_{side}_{index}"
+    panel.color = Color(0.18, 0.20, 0.22, 1.0)
+    frame = _insert_frame(x_min, x_max, sign, normal_offset)
+    frame.label = f"TOOLBOX_INSERT_FLANGE_{side}_{index}"
+    handle = Box(160.0, 18.0, 18.0, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(
+        Location(((x_min + x_max) / 2.0, _side_aperture_y(sign) + sign * (normal_offset + 25.0), SIDE_WINDOW_Z_RANGE[1] - 64.0))
+    )
+    handle.label = f"TOOLBOX_INSERT_SERVICE_HANDLE_{side}_{index}"
+    fasteners = _insert_fasteners(x_min, x_max, sign, normal_offset)
+    return Compound(label=f"TOOLBOX_INSERT_{side}_{index}_SEPARATE_PART", children=[panel, frame, handle, fasteners])
+
+
+def make_flat_window_inserts() -> Compound:
+    children = []
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        for index, (x_min, x_max) in enumerate(SIDE_WINDOW_X_RANGES, start=1):
+            children.append(make_flat_window_insert(side, index, x_min, x_max, sign))
+    return Compound(label="FLAT_WINDOW_INSERTS_SEPARATE_PARTS", children=children)
+
+
+def make_side_insert_interchangeability_proof() -> Compound:
+    """Exploded proof: one aperture datum, three interchangeable inserts."""
+    side, sign, index = "DRIVER", 1.0, 1
+    x_min, x_max = SIDE_WINDOW_X_RANGES[0]
+    interface = make_side_aperture_interface(side, index, x_min, x_max, sign)
+    window = make_flat_window_insert(side, index, x_min, x_max, sign, SIDE_INSERT_NORMAL_EXPLODE * 0.28)
+    cage = make_cage_insert(side, index, x_min, x_max, sign, SIDE_INSERT_NORMAL_EXPLODE * 0.62)
+    toolbox = make_toolbox_insert(side, index, x_min, x_max, sign, SIDE_INSERT_NORMAL_EXPLODE)
+    for item, name in ((interface, "COMMON_APERTURE_DATUM_FLANGE_SEAL_RETENTION"), (window, "WINDOW_INSERT_SAME_INTERFACE"), (cage, "CAGE_INSERT_SAME_INTERFACE"), (toolbox, "TOOLBOX_INSERT_SAME_INTERFACE")):
+        item.label = f"SIDE_INSERT_INTERCHANGEABILITY_{name}"
+    return Compound(label="SIDE_INSERT_INTERCHANGEABILITY_PROOF", children=[interface, window, cage, toolbox])
 
 
 def make_rear_hatch_glazing() -> Compound:
@@ -338,7 +504,9 @@ def gen_step():
     assembly = AssemblyHelper("R1T_TOPPER_STEP15_OPERATOR_VISUAL")
     assembly.add(make_r1t_presentation_context(), "R1T_VEHICLE_PRESENTATION_CONTEXT")
     assembly.add(make_continuous_carbon_shell(), "CONTINUOUS_ROUNDED_CARBON_SHELL")
-    assembly.add(make_curved_side_glazing(), "CURVED_SIDE_GLAZING")
+    assembly.add(make_side_aperture_interfaces(), "SHARED_SIDE_APERTURE_INTERFACES")
+    assembly.add(make_flat_window_inserts(), "FLAT_WINDOW_INSERTS_SEPARATE_PARTS")
+    assembly.add(make_side_insert_interchangeability_proof(), "SIDE_INSERT_INTERCHANGEABILITY_PROOF")
     assembly.add(make_visual_review_hatch_leaf(), "SINGLE_REAR_HATCH_LEAF")
     assembly.add(make_rear_hatch_glazing(), "REAR_HATCH_TWO_PANE_GLAZING")
     assembly.add(make_integrated_crossbar_ports_presentation(), "INTEGRATED_TOPPER_CROSSBAR_PORTS")

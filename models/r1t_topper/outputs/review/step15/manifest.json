@@ -1,21 +1,40 @@
 {
   "authority": "PRESENTATION_ONLY_NOT_FITMENT_OR_FABRICATION_RELEASE",
+  "delivery": {
+    "aspect": "3:2",
+    "height": 1600,
+    "width": 2400
+  },
+  "design_contract": {
+    "interchangeability": "same side aperture carries WINDOW/CAGE/TOOLBOX insert variants",
+    "interface": "aperture datum + flange/seal land + four-point retention + shell load path",
+    "window": "separate planar insert"
+  },
   "glb": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb",
-    "sha256": "392bf6f3cdcb8d72d99c9e48a334cfeea82f36eb1671e48aff7b2b7bb1876b03"
+    "sha256": "0fd9471040e42f9770475881477a93347cc0c2c7e97d4be18ecd2af25c0ad3d0"
+  },
+  "interchangeability": {
+    "glb_path": "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.glb",
+    "glb_sha256": "ccfa0fd3ca91092fb47d2b45930c8607051d0e3a6990a848840e1252624fac14",
+    "step_path": "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.step",
+    "step_sha256": "9911d5eb4a0d3d02b3b11506ab09685a910ec1ef0d1f2539655e84477e799139",
+    "view": "interchangeability.png",
+    "view_sha256": "3ddde51096cd071561080c6aeff8142c7292b958fc4c13ee6205e49dde834eb6"
   },
   "source_geometry_commit": "6e0229cecefee0043aed9ea607c5241c1fe7f815",
   "source_step_lfs_oid_sha256": "c25c9df4213abdb1e87beb4aab052dc1725a4ee8433b6f242ca0dd6c5ade37ad",
   "step": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step",
-    "sha256": "66bd52f79e2fb586c371d8cdcce0db63aac96b4bb2f1159e9ce8d866b45a78f1"
+    "sha256": "1928184d8b1d59f168c00041d75a0ff66b124b1f67536aa663240bdd276c7fab"
   },
   "views": {
-    "driver_side.png": "0774e67aa6d2df86eadc02e9b96c3420720c451dcdfaeac44d78fca9266fb710",
-    "front.png": "5a0e571a72eb8e196e411d84181ebddb58815652a5758d40d2302f557862c76a",
-    "passenger_side.png": "3305b36fa0023fd41ad8f568f4d235086cf48fa964e57ad484b0f1f92cb45ab4",
-    "rear.png": "41643a0c883b91c8ca7b7558f354e8a67e98aacbee6427389cc6ceb82e8d31a6",
-    "three_quarter_rear.png": "10abe50782beecf33c2c29f34f64ce7ae255e11fa3e8a4f7ffdcfd565e9f0efd",
-    "top.png": "7a493fdb350ac7d5d17e719094ab6d76aea5db5c9ff9adb2b09286dfbe493efd"
+    "driver_side.png": "82683d3a1354c71002a16368708d983d57a52a150f4c837066d873f4be1b1347",
+    "front.png": "ed102521c3936c9a179da6dfdaea8bc0850d98cece9851b19d62cf56ddbbd934",
+    "interchangeability.png": "3ddde51096cd071561080c6aeff8142c7292b958fc4c13ee6205e49dde834eb6",
+    "passenger_side.png": "5090a6ad5fbc8b5703cc0f370e6fb95c353dfe51b4d1ebf2a2172791003d8a4c",
+    "rear.png": "30a1eb5f90f7d8a9bd86ec15fc60e6daa59e8bc0e1b45ba048bbc9f1c71c54c1",
+    "three_quarter_rear.png": "bfb985b953218932cd3cc5581f31f127cdee691a85431d6d4fd509e8ec78b1e7",
+    "top.png": "c3d2783cf9fcea2c5487042e4c408ff976104eb8549881d82f316356d350efe0"
   }
 }

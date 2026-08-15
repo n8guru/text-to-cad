@@ -1,0 +1,149 @@
+{
+  "schema": "physical-product-design/v1",
+  "project": {
+    "name": "R1T topper Step 15 modular side insert rework",
+    "intent_sources": [
+      "Studio decision 1320686: separate window inserts so window/cage/toolbox are interchangeable; window must be flat",
+      "Studio Step 15 charter and pinned lineage 4f9bef04"
+    ]
+  },
+  "intent": {
+    "invariants": [
+      {
+        "id": "I15-flat-window",
+        "statement": "The side window glazing is a separate planar removable part.",
+        "acceptance": "CAD pane has constant side-Y faces and is labeled as a separate flat window insert."
+      },
+      {
+        "id": "I15-interchangeable-inserts",
+        "statement": "Window, cage, and toolbox variants use the same side-aperture interface.",
+        "acceptance": "Exploded CAD proof shows all three variants sharing the same X/Z aperture profile, flange/seal land, and four retention centers."
+      },
+      {
+        "id": "I15-preserve-shell",
+        "statement": "The low rounded shell, carbon bridge, closed rear hatch, and unobstructed top plane remain.",
+        "acceptance": "Step 15 contract checks retain the rounded shell, positive bridge, closed two-pane hatch, and no top-center protrusion."
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "R15-planar-pane",
+      "source": "I15-flat-window",
+      "statement": "Window insert pane thickness is constant and its mating face is planar.",
+      "acceptance": "step15_checks.py verifies pane Y extent equals 8 mm for every side pane."
+    },
+    {
+      "id": "R15-shared-interface",
+      "source": "I15-interchangeable-inserts",
+      "statement": "Each side aperture has an explicit datum, 22 mm seal land, four-point retention pattern, and shell bridge.",
+      "acceptance": "step15_checks.py verifies four interface packages, four fastener children per package, and positive bridge/shell intersection."
+    },
+    {
+      "id": "R15-variant-contract",
+      "source": "I15-interchangeable-inserts",
+      "statement": "WINDOW, CAGE, and TOOLBOX insert variants share the same outer profile and mating contract.",
+      "acceptance": "The interchangeability proof and manifest contract are checked by step15_checks.py."
+    },
+    {
+      "id": "R15-preserved-visuals",
+      "source": "I15-preserve-shell",
+      "statement": "Existing Step 15 visual locks remain intact while the side insert contract changes.",
+      "acceptance": "The root set, shell volume, bridge width, rear hatch continuity, ports, and top-plane checks pass."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "C15-build123d-step",
+      "process_family": "parametric CAD solid modeling and STEP export",
+      "source": "repository skills/cad runtime and existing Step 15 exporter",
+      "checked_on": "2026-08-15"
+    },
+    {
+      "id": "C15-cad-snapshot",
+      "process_family": "orthographic CAD evidence rendering",
+      "source": "repository skills/cad snapshot runtime",
+      "checked_on": "2026-08-15"
+    }
+  ],
+  "components": [
+    {
+      "id": "COMP15-shell",
+      "name": "continuous rounded carbon shell",
+      "function": "outer A-surface and load path around apertures",
+      "appearance": "low continuous R1S-like rounded shell",
+      "interface_ids": ["IF15-aperture"],
+      "process": {"family": "parametric CAD solid modeling", "capability_ref": "C15-build123d-step", "material": "provisional carbon sandwich", "rules": ["retain positive shell land around aperture"]},
+      "evidence": ["outputs/review/step15/R1T_TOPPER_STEP15_OPERATOR_VISUAL.step"],
+      "loads": ["provisional shell transfer around apertures"]
+    },
+    {
+      "id": "COMP15-window",
+      "name": "flat window insert",
+      "function": "removable glazing closure",
+      "appearance": "planar dark glazing against rounded shell",
+      "interface_ids": ["IF15-aperture"],
+      "process": {"family": "parametric CAD solid modeling", "capability_ref": "C15-build123d-step", "material": "provisional flat glazing", "rules": ["constant side-Y pane thickness"]},
+      "evidence": ["CAD label FLAT_WINDOW_INSERT_*_PLANAR_MATING_CONTRACT"],
+      "loads": ["provisional retention only; no rating"]
+    },
+    {
+      "id": "COMP15-cage",
+      "name": "cage insert",
+      "function": "open protective side module",
+      "appearance": "open perimeter and grille bars",
+      "interface_ids": ["IF15-aperture"],
+      "process": {"family": "parametric CAD solid modeling", "capability_ref": "C15-build123d-step", "material": "provisional carbon/metal cage", "rules": ["reuse common profile and retention centers"]},
+      "evidence": ["SIDE_INSERT_INTERCHANGEABILITY_PROOF"],
+      "loads": ["not structurally rated"]
+    },
+    {
+      "id": "COMP15-toolbox",
+      "name": "toolbox insert",
+      "function": "opaque service/storage side module",
+      "appearance": "closed dark panel with service handle",
+      "interface_ids": ["IF15-aperture"],
+      "process": {"family": "parametric CAD solid modeling", "capability_ref": "C15-build123d-step", "material": "provisional opaque service panel", "rules": ["reuse common profile and retention centers"]},
+      "evidence": ["SIDE_INSERT_INTERCHANGEABILITY_PROOF"],
+      "loads": ["not payload-rated"]
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "IF15-aperture",
+      "component_ids": ["COMP15-shell", "COMP15-window", "COMP15-cage", "COMP15-toolbox"],
+      "type": "removable side insert aperture",
+      "geometry": "rounded X/Z aperture datum, 22 mm perimeter flange/seal land, constant side-Y mating plane, four retention centers",
+      "assembly": "locate insert on datum, seat seal land, retain with four provisional fastener envelopes",
+      "verification": "step15_checks.py shared_interface_contract and interchangeability_same_profile"
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WP15-cad",
+      "depends_on": [],
+      "component_ids": ["COMP15-shell", "COMP15-window", "COMP15-cage", "COMP15-toolbox"],
+      "input": "pinned Step 15 CAD lineage 4f9bef04 and decision 1320686",
+      "output": "native Step 15 STEP/GLB and review packet",
+      "acceptance": "step15_checks.py passes",
+      "evidence": "models/r1t_topper/outputs/review/step15/manifest.json",
+      "rework_boundary": "reopen visual_review_step15.py and its contract checks"
+    }
+  ],
+  "verification": [
+    {
+      "id": "V15-intent",
+      "kind": "validate",
+      "covers": ["I15-flat-window", "I15-interchangeable-inserts", "I15-preserve-shell"],
+      "method": "operator visual review of ordered CAD evidence and interchangeability proof",
+      "evidence": "outputs/review/step15/*.png and GLB"
+    },
+    {
+      "id": "V15-derived",
+      "kind": "verify",
+      "covers": ["R15-planar-pane", "R15-shared-interface", "R15-variant-contract", "R15-preserved-visuals"],
+      "method": "deterministic source-derived CAD contract checks and mutation tests",
+      "evidence": "cad/step15_checks.py"
+    }
+  ]
+}

@@ -13,17 +13,19 @@ import visual_review_step15 as visual
 from visual_review_step15 import (
     gen_step,
     make_continuous_carbon_shell,
-    make_curved_side_glazing,
+    make_flat_window_inserts,
     make_hatch_b_side_engineering,
     make_integrated_crossbar_ports_presentation,
     make_rear_hatch_glazing,
+    make_side_aperture_interfaces,
+    make_side_insert_interchangeability_proof,
     make_visual_review_hatch_leaf,
 )
 
 
 def _expected_side_labels(side: str) -> set[str]:
     return {
-        f"CURVED_SIDE_GLAZING_{side}_{index}_PRESENTATION_ONLY"
+        f"WINDOW_INSERT_{side}_{index}_SEPARATE_PART"
         for index in range(1, len(visual.SIDE_WINDOW_X_RANGES) + 1)
     }
 
@@ -64,7 +66,7 @@ def _mutation_test() -> None:
     mutations = {
         "side_mullion_120_mm": ("SIDE_WINDOW_X_RANGES", ((145.0, 690.0), (810.0, 1345.0))),
         "rear_mullion_120_mm": ("REAR_WINDOW_Y_RANGES", ((-605.0, -60.0), (60.0, 605.0))),
-        "square_side_profiles": ("WINDOW_CORNER_RADIUS", 0.0),
+        "square_side_profiles": ("SIDE_APERTURE_CORNER_RADIUS", 0.0),
         "square_rear_profiles": ("REAR_WINDOW_CORNER_RADIUS", 0.0),
     }
     survivors = []
@@ -91,13 +93,18 @@ def _contract_checks() -> dict[str, bool]:
     required_roots = {
         "R1T_VEHICLE_PRESENTATION_CONTEXT",
         "CONTINUOUS_ROUNDED_CARBON_SHELL",
-        "CURVED_SIDE_GLAZING",
+        "SHARED_SIDE_APERTURE_INTERFACES",
+        "FLAT_WINDOW_INSERTS_SEPARATE_PARTS",
+        "SIDE_INSERT_INTERCHANGEABILITY_PROOF",
         "SINGLE_REAR_HATCH_LEAF",
         "REAR_HATCH_TWO_PANE_GLAZING",
         "INTEGRATED_TOPPER_CROSSBAR_PORTS",
     }
     shell = make_continuous_carbon_shell()
-    side_panes = make_curved_side_glazing().children
+    side_inserts = make_flat_window_inserts().children
+    side_panes = [insert.children[0] for insert in side_inserts]
+    side_interfaces = make_side_aperture_interfaces().children
+    interchangeability = make_side_insert_interchangeability_proof()
     rear_panes = make_rear_hatch_glazing().children
     hatch_leaf = make_visual_review_hatch_leaf()
     b_side = make_hatch_b_side_engineering()
@@ -115,13 +122,44 @@ def _contract_checks() -> dict[str, bool]:
         "one_positive_volume_shell": shell.volume > 0.0 and len(shell.solids()) == 1,
         "rounded_shell_spans_product_length": shell.bounding_box().size.X > 1400.0,
         "two_side_ranges": len(visual.SIDE_WINDOW_X_RANGES) == 2,
-        "driver_pane_set_equality": {pane.label for pane in side_panes if "_DRIVER_" in pane.label} == _expected_side_labels("DRIVER"),
-        "passenger_pane_set_equality": {pane.label for pane in side_panes if "_PASSENGER_" in pane.label} == _expected_side_labels("PASSENGER"),
-        "all_side_panes_positive_and_conformal": all(pane.volume > 0.0 and pane.bounding_box().size.Y > 20.0 for pane in side_panes),
+        "driver_insert_set_equality": {insert.label for insert in side_inserts if "_DRIVER_" in insert.label} == _expected_side_labels("DRIVER"),
+        "passenger_insert_set_equality": {insert.label for insert in side_inserts if "_PASSENGER_" in insert.label} == _expected_side_labels("PASSENGER"),
+        "all_side_panes_positive_and_planar": all(
+            pane.volume > 0.0 and abs(pane.bounding_box().size.Y - visual.SIDE_INSERT_PANE_THICKNESS) < 1e-6
+            for pane in side_panes
+        ),
         "wide_side_lights": all((right - left) >= 500.0 for left, right in visual.SIDE_WINDOW_X_RANGES),
         "side_light_height": visual.SIDE_WINDOW_Z_RANGE[1] - visual.SIDE_WINDOW_Z_RANGE[0] >= 500.0,
-        "rounded_side_window_profiles": visual.WINDOW_CORNER_RADIUS >= 60.0
+        "rounded_side_aperture_profiles": visual.SIDE_APERTURE_CORNER_RADIUS >= 60.0
         and any(edge.geom_type.name != "LINE" for edge in visual._side_window_selector(*visual.SIDE_WINDOW_X_RANGES[0], 1.0).edges()),
+        "shared_interface_count": len(side_interfaces) == 4,
+        "shared_interface_contract": all(
+            len(interface.children) == 3
+            and all(child.volume > 0.0 for child in interface.children)
+            for interface in side_interfaces
+        ),
+        "shared_interface_load_path_intersects_shell": all(
+            (interface.children[2] & shell).volume > 0.0 for interface in side_interfaces
+        ),
+        "shared_interface_retention_pattern": all(
+            len(interface.children[1].children) == 4 for interface in side_interfaces
+        ),
+        "interchangeability_root_present": interchangeability.label == "SIDE_INSERT_INTERCHANGEABILITY_PROOF",
+        "interchangeability_variant_set": {
+            child.label for child in interchangeability.children
+        } == {
+            "SIDE_INSERT_INTERCHANGEABILITY_COMMON_APERTURE_DATUM_FLANGE_SEAL_RETENTION",
+            "SIDE_INSERT_INTERCHANGEABILITY_WINDOW_INSERT_SAME_INTERFACE",
+            "SIDE_INSERT_INTERCHANGEABILITY_CAGE_INSERT_SAME_INTERFACE",
+            "SIDE_INSERT_INTERCHANGEABILITY_TOOLBOX_INSERT_SAME_INTERFACE",
+        },
+        "interchangeability_variants_positive": all(
+            child.volume > 0.0 for child in interchangeability.children
+        ),
+        "interchangeability_same_profile": all(
+            child.bounding_box().size.X == interchangeability.children[1].bounding_box().size.X
+            for child in interchangeability.children[1:]
+        ),
         "two_rear_pane_set_equality": {pane.label for pane in rear_panes} == _expected_rear_labels(),
         "all_rear_panes_positive": all(pane.volume > 0.0 for pane in rear_panes),
         "wide_rear_lights": all((right - left) >= 500.0 for left, right in visual.REAR_WINDOW_Y_RANGES),
@@ -169,7 +207,7 @@ def _contract_checks() -> dict[str, bool]:
 
     review_dir = Path(__file__).resolve().parents[1] / "outputs/review/step15"
     manifest = json.loads((review_dir / "manifest.json").read_text())
-    expected_views = {"front.png", "rear.png", "driver_side.png", "passenger_side.png", "top.png", "three_quarter_rear.png"}
+    expected_views = {"front.png", "rear.png", "driver_side.png", "passenger_side.png", "top.png", "three_quarter_rear.png", "interchangeability.png"}
     checks.update(
         {
             "manifest_source_commit": manifest["source_geometry_commit"] == VERIFIED_STEP11_COMMIT,
@@ -177,6 +215,15 @@ def _contract_checks() -> dict[str, bool]:
             "manifest_presentation_authority": manifest["authority"] == "PRESENTATION_ONLY_NOT_FITMENT_OR_FABRICATION_RELEASE",
             "manifest_view_set_equality": set(manifest["views"]) == expected_views,
             "manifest_view_hashes": all(hashlib.sha256((review_dir / name).read_bytes()).hexdigest() == expected for name, expected in manifest["views"].items()),
+            "manifest_interchangeability_asset": (
+                manifest["interchangeability"]["view"] == "interchangeability.png"
+                and manifest["interchangeability"]["step_path"] == "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.step"
+                and manifest["interchangeability"]["glb_path"] == "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.glb"
+                and hashlib.sha256((review_dir / "interchangeability.png").read_bytes()).hexdigest() == manifest["interchangeability"]["view_sha256"]
+            ),
+            "manifest_delivery_dimensions": manifest["delivery"] == {"width": 2400, "height": 1600, "aspect": "3:2"},
+            "manifest_flat_window_contract": manifest["design_contract"]["window"] == "separate planar insert",
+            "manifest_interchangeability_contract": manifest["design_contract"]["interchangeability"] == "same side aperture carries WINDOW/CAGE/TOOLBOX insert variants",
             "step_and_glb_present": (review_dir / "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb").stat().st_size > 0 and (review_dir / "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step").stat().st_size > 0,
         }
     )
