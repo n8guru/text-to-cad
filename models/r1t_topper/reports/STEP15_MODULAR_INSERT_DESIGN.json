@@ -36,8 +36,8 @@
     {
       "id": "R15-shared-interface",
       "source": "I15-interchangeable-inserts",
-      "statement": "Each side aperture has an explicit datum, 22 mm seal land, four-point retention pattern, and shell bridge.",
-      "acceptance": "step15_checks.py verifies four interface packages, four fastener children per package, and positive bridge/shell intersection."
+      "statement": "Each side aperture has an explicit datum, a shell-backed constant-Y 22 mm seal land and 260 mm backing web, a clearanced four-point retention pattern, and a separate outboard insert flange.",
+      "acceptance": "step15_checks.py verifies four land bars and four backing-web bars per aperture, shell-backed retention locations, matching X/Z profiles and retention centers, separate fastener clearances, and zero installed WINDOW/CAGE/TOOLBOX overlap with the shell or interface."
     },
     {
       "id": "R15-variant-contract",
@@ -113,9 +113,9 @@
       "id": "IF15-aperture",
       "component_ids": ["COMP15-shell", "COMP15-window", "COMP15-cage", "COMP15-toolbox"],
       "type": "removable side insert aperture",
-      "geometry": "rounded X/Z aperture datum, 22 mm perimeter flange/seal land, constant side-Y mating plane, four retention centers",
-      "assembly": "locate insert on datum, seat seal land, retain with four provisional fastener envelopes",
-      "verification": "step15_checks.py shared_interface_contract and interchangeability_same_profile"
+      "geometry": "rounded X/Z aperture datum, shell-backed constant-Y 22 mm perimeter land and 260 mm backing web, four clearance centers, and a separate outboard insert flange",
+      "assembly": "locate the insert on the shared X/Z datum and retention centers, seat its outboard flange against the land, and pass four provisional fasteners through the separate clearances into the shell-backed web",
+      "verification": "step15_checks.py installed_insert_variants_clear_shell_and_interface, full_perimeter_land_is_shell_backed, all_retention_locations_are_shell_backed, shared_profile_center_and_retention_signature, and retention_fasteners_use_clearances_not_positive_overlap"
     }
   ],
   "work_packages": [
