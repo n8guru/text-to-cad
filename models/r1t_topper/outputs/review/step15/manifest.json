@@ -7,34 +7,34 @@
   },
   "design_contract": {
     "interchangeability": "same side aperture carries WINDOW/CAGE/TOOLBOX insert variants",
-    "interface": "aperture datum + flange/seal land + four-point retention + shell load path",
+    "interface": "shell-backed constant-Y seal land + clearanced four-point retention + separate insert flange",
     "window": "separate planar insert"
   },
   "glb": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb",
-    "sha256": "0fd9471040e42f9770475881477a93347cc0c2c7e97d4be18ecd2af25c0ad3d0"
+    "sha256": "58475b66ccbdbec0bdc7e21511443ce64de749fdf6f93aba9cad0bfab877febc"
   },
   "interchangeability": {
     "glb_path": "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.glb",
-    "glb_sha256": "ccfa0fd3ca91092fb47d2b45930c8607051d0e3a6990a848840e1252624fac14",
+    "glb_sha256": "7fafca41c8de654e986d0156942b4225943931ba562dc1e720cd3246f9960773",
     "step_path": "R1T_TOPPER_STEP15_INSERT_INTERCHANGEABILITY.step",
-    "step_sha256": "9911d5eb4a0d3d02b3b11506ab09685a910ec1ef0d1f2539655e84477e799139",
+    "step_sha256": "633bf11e46bfaff092f18c70966b4fe7dae3781dcb3f89af41a5b3d602571cc9",
     "view": "interchangeability.png",
-    "view_sha256": "3ddde51096cd071561080c6aeff8142c7292b958fc4c13ee6205e49dde834eb6"
+    "view_sha256": "6771a0a8d028c139f6b1cdb3aa584a1ecccd75e2d2f573b1a6a54467dd11807f"
   },
   "source_geometry_commit": "6e0229cecefee0043aed9ea607c5241c1fe7f815",
   "source_step_lfs_oid_sha256": "c25c9df4213abdb1e87beb4aab052dc1725a4ee8433b6f242ca0dd6c5ade37ad",
   "step": {
     "path": "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step",
-    "sha256": "1928184d8b1d59f168c00041d75a0ff66b124b1f67536aa663240bdd276c7fab"
+    "sha256": "8fc059cfff217321f55606ff6605da78fe6934ce796721d3dabe9f31f4b3b265"
   },
   "views": {
-    "driver_side.png": "82683d3a1354c71002a16368708d983d57a52a150f4c837066d873f4be1b1347",
-    "front.png": "ed102521c3936c9a179da6dfdaea8bc0850d98cece9851b19d62cf56ddbbd934",
-    "interchangeability.png": "3ddde51096cd071561080c6aeff8142c7292b958fc4c13ee6205e49dde834eb6",
-    "passenger_side.png": "5090a6ad5fbc8b5703cc0f370e6fb95c353dfe51b4d1ebf2a2172791003d8a4c",
-    "rear.png": "30a1eb5f90f7d8a9bd86ec15fc60e6daa59e8bc0e1b45ba048bbc9f1c71c54c1",
-    "three_quarter_rear.png": "bfb985b953218932cd3cc5581f31f127cdee691a85431d6d4fd509e8ec78b1e7",
-    "top.png": "c3d2783cf9fcea2c5487042e4c408ff976104eb8549881d82f316356d350efe0"
+    "driver_side.png": "bc1682b967921c9627e91dc10d39c01a93243339e8be82131ac2eb5d8d718db5",
+    "front.png": "b888ea0a54ee7ef2e17ea0cafbcce98432bc698a69f107b555f9b7f5eda38a7b",
+    "interchangeability.png": "6771a0a8d028c139f6b1cdb3aa584a1ecccd75e2d2f573b1a6a54467dd11807f",
+    "passenger_side.png": "3bdaf16c10272468185f56f287283f11f5c9625d2b34aed8ab6a9c807a5aef56",
+    "rear.png": "c53252a5c69004ed69bce83b0873fb3dd2f22abff612e38cae705832c555cc2d",
+    "three_quarter_rear.png": "b13e282c6e9fbdcf4c28080a5ce2d10bef51b17f68a6c884864dfa04268dbdd9",
+    "top.png": "2e87d4f685f22215649a018d6917b38db04d5642b4863f4e888eb0f3a78fd54b"
   }
 }

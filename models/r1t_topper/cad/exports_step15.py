@@ -122,7 +122,7 @@ def run() -> None:
         "design_contract": {
             "window": "separate planar insert",
             "interchangeability": "same side aperture carries WINDOW/CAGE/TOOLBOX insert variants",
-            "interface": "aperture datum + flange/seal land + four-point retention + shell load path",
+            "interface": "shell-backed constant-Y seal land + clearanced four-point retention + separate insert flange",
         },
         "source_geometry_commit": VERIFIED_STEP11_COMMIT,
         "source_step_lfs_oid_sha256": VERIFIED_STEP11_STEP_OID,

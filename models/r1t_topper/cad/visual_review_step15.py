@@ -56,17 +56,22 @@ SIDE_CUT_DEPTH = 360.0
 # Shared side-insert contract.  These are provisional visual-design controls,
 # not calibrated fitment dimensions.
 SIDE_INTERFACE_SEAL_LAND = 22.0
+SIDE_INTERFACE_LAND_DEPTH = 10.0
+SIDE_INTERFACE_SUPPORT_DEPTH = 260.0
+SIDE_INTERFACE_OUTER_OFFSET = 13.0
 SIDE_INTERFACE_RETENTION_DEPTH = 18.0
-SIDE_INTERFACE_FASTENER_RADIUS = 7.0
+SIDE_INTERFACE_FASTENER_RADIUS = 5.5
+SIDE_INTERFACE_CLEARANCE_RADIUS = 8.0
 SIDE_INTERFACE_FASTENER_EDGE_OFFSET = 34.0
 SIDE_INSERT_PANE_THICKNESS = 8.0
+SIDE_INSERT_INSTALLED_OFFSET = 44.0
 SIDE_INSERT_NORMAL_EXPLODE = 115.0
 SIDE_INSERT_MATING_CONTRACT = {
     "datum": "side-aperture X/Z rounded profile; constant side-Y datum plane",
     "flange_seal_land_mm": SIDE_INTERFACE_SEAL_LAND,
-    "retention": "four M-sized provisional fastener envelopes on insert flange",
-    "load_path": "perimeter land into continuous shell; 110 mm carbon bridge remains between bays",
-    "insert_contract": "same outer profile, flange depth, seal land, and fastener centers for WINDOW/CAGE/TOOLBOX",
+    "retention": "four separate provisional fasteners through matching clearance holes",
+    "load_path": "shell-backed constant-Y perimeter land and 260 mm backing web; 110 mm carbon bridge remains between bays",
+    "insert_contract": "same X/Z profile and center, outboard flange, and fastener centers for WINDOW/CAGE/TOOLBOX",
 }
 
 # Presentation-only A-surface adjustment.  The authoritative Step 11 shell is
@@ -158,6 +163,8 @@ def make_continuous_carbon_shell():
     shell = _rounded_presentation_shell() - make_hatch_opening_cutter()
     for cutter in make_side_window_cutters().children:
         shell = shell - cutter
+    for cutter in make_side_interface_clearance_cutters().children:
+        shell = shell - cutter
     shell.label = "CONTINUOUS_ROUNDED_R1S_LIKE_CARBON_SHELL_PRESENTATION_ONLY"
     shell.color = CARBON_COLOR
     return shell
@@ -173,6 +180,55 @@ def _side_aperture_y(sign: float) -> float:
     return sign * value(topper_base_outer_width) / 2.0
 
 
+def _retention_centers(x_min: float, x_max: float) -> tuple[tuple[float, float], ...]:
+    """Four shared X/Z centers, placed on the two vertical perimeter lands."""
+    z_min, z_max = SIDE_WINDOW_Z_RANGE
+    offset = SIDE_INTERFACE_FASTENER_EDGE_OFFSET
+    left = x_min - SIDE_INTERFACE_SEAL_LAND / 2.0
+    right = x_max + SIDE_INTERFACE_SEAL_LAND / 2.0
+    return (
+        (left, z_min + offset),
+        (right, z_min + offset),
+        (left, z_max - offset),
+        (right, z_max - offset),
+    )
+
+
+def _retention_holes(x_min: float, x_max: float, y: float, depth: float) -> Compound:
+    """Clearance cylinders spanning a shell-side web or an insert flange."""
+    hole_depth = depth + SIDE_INTERFACE_SEAL_LAND
+    children = []
+    for index, (x, z) in enumerate(_retention_centers(x_min, x_max), start=1):
+        hole = Cylinder(
+            SIDE_INTERFACE_CLEARANCE_RADIUS,
+            hole_depth,
+            align=(Align.CENTER, Align.CENTER, Align.CENTER),
+            rotation=(90.0, 0.0, 0.0),
+        ).moved(Location((x, y, z)))
+        hole.label = f"SIDE_INSERT_RETENTION_CLEARANCE_{index}_MATING_CONTRACT_CUTTER"
+        children.append(hole)
+    return Compound(label="SIDE_INSERT_RETENTION_CLEARANCES", children=children)
+
+
+def make_side_interface_clearance_cutters() -> Compound:
+    children = []
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        for index, (x_min, x_max) in enumerate(SIDE_WINDOW_X_RANGES, start=1):
+            holes = _retention_holes(
+                x_min,
+                x_max,
+                _side_aperture_y(sign),
+                SIDE_INTERFACE_SUPPORT_DEPTH,
+            )
+            for hole_index, hole in enumerate(holes.children, start=1):
+                hole.label = (
+                    f"SIDE_APERTURE_{side}_{index}_SIDE_INSERT_RETENTION_"
+                    f"CLEARANCE_{hole_index}_MATING_CONTRACT_CUTTER"
+                )
+                children.append(hole)
+    return Compound(label="SIDE_INTERFACE_RETENTION_CLEARANCE_CUTTERS", children=children)
+
+
 def _side_insert_panel(x_min: float, x_max: float, sign: float, depth: float, normal_offset: float = 0.0):
     """Flat constant-Y insert envelope for every module variant."""
     panel = extrude(_side_aperture_profile(x_min, x_max), amount=depth / 2.0, both=True)
@@ -180,17 +236,21 @@ def _side_insert_panel(x_min: float, x_max: float, sign: float, depth: float, no
         Location(
             (
                 (x_min + x_max) / 2.0,
-                _side_aperture_y(sign + 0.0) + sign * normal_offset,
+                _side_aperture_y(sign) + sign * (SIDE_INSERT_INSTALLED_OFFSET + normal_offset),
                 sum(SIDE_WINDOW_Z_RANGE) / 2.0,
             )
         )
     )
 
 
-def _insert_frame(x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
-    """Perimeter mating flange carried by every insert type."""
-    depth = SIDE_INTERFACE_RETENTION_DEPTH
-    y = _side_aperture_y(sign) + sign * normal_offset
+def _perimeter_bars(
+    x_min: float,
+    x_max: float,
+    y: float,
+    depth: float,
+    label_prefix: str,
+    clearances: Compound | None = None,
+) -> Compound:
     z_min, z_max = SIDE_WINDOW_Z_RANGE
     land = SIDE_INTERFACE_SEAL_LAND
     children = []
@@ -201,24 +261,36 @@ def _insert_frame(x_min: float, x_max: float, sign: float, normal_offset: float 
         ("HIGH", (x_min + x_max) / 2.0, z_max + land / 2.0, x_max - x_min, land),
     ):
         bar = Box(sx, depth, sz, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(Location((x, y, z)))
-        bar.label = f"SIDE_INSERT_FLANGE_{label}_MATING_CONTRACT"
+        if clearances is not None:
+            bar = bar - clearances
+        bar.label = f"{label_prefix}_{label}_MATING_CONTRACT"
         children.append(bar)
-    return Compound(label="SIDE_INSERT_PERIMETER_FLANGE_MATING_CONTRACT", children=children)
+    return Compound(label=f"{label_prefix}_MATING_CONTRACT", children=children)
+
+
+def _insert_frame(x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
+    """Outboard perimeter flange carried by every insert type."""
+    y = _side_aperture_y(sign) + sign * (SIDE_INSERT_INSTALLED_OFFSET + normal_offset)
+    clearances = _retention_holes(x_min, x_max, y, SIDE_INTERFACE_LAND_DEPTH)
+    return _perimeter_bars(
+        x_min,
+        x_max,
+        y,
+        SIDE_INTERFACE_LAND_DEPTH,
+        "SIDE_INSERT_FLANGE",
+        clearances,
+    )
 
 
 def _insert_fasteners(x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
-    y = _side_aperture_y(sign) + sign * normal_offset
-    z_min, z_max = SIDE_WINDOW_Z_RANGE
-    offset = SIDE_INTERFACE_FASTENER_EDGE_OFFSET
+    length = SIDE_INTERFACE_RETENTION_DEPTH + 8.0
+    insert_y = _side_aperture_y(sign) + sign * (SIDE_INSERT_INSTALLED_OFFSET + normal_offset)
+    y = insert_y - sign * (SIDE_INSERT_PANE_THICKNESS / 2.0 + length / 2.0)
     children = []
-    for index, (x, z) in enumerate(
-        ((x_min + offset, z_min + offset), (x_max - offset, z_min + offset),
-         (x_min + offset, z_max - offset), (x_max - offset, z_max - offset)),
-        start=1,
-    ):
+    for index, (x, z) in enumerate(_retention_centers(x_min, x_max), start=1):
         fastener = Cylinder(
             SIDE_INTERFACE_FASTENER_RADIUS,
-            SIDE_INTERFACE_RETENTION_DEPTH + 8.0,
+            length,
             align=(Align.CENTER, Align.CENTER, Align.CENTER),
             rotation=(90.0, 0.0, 0.0),
         ).moved(Location((x, y, z)))
@@ -229,10 +301,25 @@ def _insert_fasteners(x_min: float, x_max: float, sign: float, normal_offset: fl
 
 def make_side_aperture_interface(side: str, index: int, x_min: float, x_max: float, sign: float) -> Compound:
     """Common shell-side datum, seal land, retention and load-path package."""
-    frame = _insert_frame(x_min, x_max, sign)
-    frame.label = f"SHARED_SIDE_APERTURE_INTERFACE_{side}_{index}"
-    fasteners = _insert_fasteners(x_min, x_max, sign)
-    fasteners.label = f"SHARED_SIDE_APERTURE_RETENTION_{side}_{index}"
+    side_y = _side_aperture_y(sign)
+    outer_y = side_y + sign * SIDE_INTERFACE_OUTER_OFFSET
+    clearances = _retention_holes(x_min, x_max, side_y, SIDE_INTERFACE_SUPPORT_DEPTH)
+    land = _perimeter_bars(
+        x_min,
+        x_max,
+        outer_y - sign * SIDE_INTERFACE_LAND_DEPTH / 2.0,
+        SIDE_INTERFACE_LAND_DEPTH,
+        f"SIDE_APERTURE_PERIMETER_LAND_{side}_{index}",
+        clearances,
+    )
+    support = _perimeter_bars(
+        x_min,
+        x_max,
+        outer_y - sign * SIDE_INTERFACE_SUPPORT_DEPTH / 2.0,
+        SIDE_INTERFACE_SUPPORT_DEPTH,
+        f"SIDE_APERTURE_BACKING_WEB_{side}_{index}",
+        clearances,
+    )
     # The positive shell land is the load path around the cut.  It intentionally
     # shares material with the continuous carbon shell instead of floating as a
     # separate ornamental surround.
@@ -244,7 +331,7 @@ def make_side_aperture_interface(side: str, index: int, x_min: float, x_max: flo
     ).moved(Location(((x_min + x_max) / 2.0, _side_aperture_y(sign) - sign * 20.0, SIDE_WINDOW_Z_RANGE[0] - 35.0)))
     bridge.label = f"SIDE_APERTURE_LOAD_PATH_INTO_SHELL_{side}_{index}"
     bridge.color = CARBON_EDGE_COLOR
-    return Compound(label=f"SIDE_APERTURE_INTERFACE_{side}_{index}", children=[frame, fasteners, bridge])
+    return Compound(label=f"SIDE_APERTURE_INTERFACE_{side}_{index}", children=[land, support, bridge])
 
 
 def make_side_aperture_interfaces() -> Compound:
@@ -270,9 +357,11 @@ def make_flat_window_insert(side: str, index: int, x_min: float, x_max: float, s
 def make_cage_insert(side: str, index: int, x_min: float, x_max: float, sign: float, normal_offset: float = 0.0) -> Compound:
     """Open cage cartridge using the same perimeter, datum and retention pattern."""
     x_mid, z_mid = (x_min + x_max) / 2.0, sum(SIDE_WINDOW_Z_RANGE) / 2.0
-    y = _side_aperture_y(sign) + sign * normal_offset
+    y = _side_aperture_y(sign) + sign * (SIDE_INSERT_INSTALLED_OFFSET + normal_offset)
     width, height = x_max - x_min, SIDE_WINDOW_Z_RANGE[1] - SIDE_WINDOW_Z_RANGE[0]
-    bars = list(_insert_frame(x_min, x_max, sign, normal_offset).children)
+    frame = _insert_frame(x_min, x_max, sign, normal_offset)
+    frame.label = f"CAGE_INSERT_FLANGE_{side}_{index}"
+    bars = []
     for n, x in enumerate((x_min + width * 0.33, x_min + width * 0.66), start=1):
         bar = Box(18.0, 12.0, height, align=(Align.CENTER, Align.CENTER, Align.CENTER)).moved(Location((x, y, z_mid)))
         bar.label = f"CAGE_INSERT_VERTICAL_BAR_{n}"
@@ -282,9 +371,10 @@ def make_cage_insert(side: str, index: int, x_min: float, x_max: float, sign: fl
         bar.label = f"CAGE_INSERT_HORIZONTAL_BAR_{n}"
         bars.append(bar)
     fasteners = _insert_fasteners(x_min, x_max, sign, normal_offset)
+    fasteners.label = f"CAGE_INSERT_RETENTION_{side}_{index}"
     return Compound(
         label=f"CAGE_INSERT_{side}_{index}_SEPARATE_PART",
-        children=[*bars, *fasteners.children],
+        children=[frame, *bars, fasteners],
     )
 
 
@@ -301,6 +391,7 @@ def make_toolbox_insert(side: str, index: int, x_min: float, x_max: float, sign:
     )
     handle.label = f"TOOLBOX_INSERT_SERVICE_HANDLE_{side}_{index}"
     fasteners = _insert_fasteners(x_min, x_max, sign, normal_offset)
+    fasteners.label = f"TOOLBOX_INSERT_RETENTION_{side}_{index}"
     return Compound(label=f"TOOLBOX_INSERT_{side}_{index}_SEPARATE_PART", children=[panel, frame, handle, fasteners])
 
 

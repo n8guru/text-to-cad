@@ -13,11 +13,9 @@ import visual_review_step15 as visual
 from visual_review_step15 import (
     gen_step,
     make_continuous_carbon_shell,
-    make_flat_window_inserts,
     make_hatch_b_side_engineering,
     make_integrated_crossbar_ports_presentation,
     make_rear_hatch_glazing,
-    make_side_aperture_interfaces,
     make_side_insert_interchangeability_proof,
     make_visual_review_hatch_leaf,
 )
@@ -56,6 +54,51 @@ def _rear_corner_selector(side: float):
     )
 
 
+def _named_child(shape, token: str):
+    matches = [child for child in shape.children if token in child.label]
+    assert len(matches) == 1, f"expected one {token} child in {shape.label}, found {len(matches)}"
+    return matches[0]
+
+
+def _xz_profile_and_center(shape) -> tuple[float, ...]:
+    bounds = shape.bounding_box()
+    x_min, x_max = round(bounds.min.X, 6), round(bounds.max.X, 6)
+    z_min, z_max = round(bounds.min.Z, 6), round(bounds.max.Z, 6)
+    return (
+        x_min,
+        x_max,
+        z_min,
+        z_max,
+        round((x_min + x_max) / 2.0, 6),
+        round((z_min + z_max) / 2.0, 6),
+    )
+
+
+def _retention_centers(insert) -> tuple[tuple[float, float], ...]:
+    retention = _named_child(insert, "RETENTION")
+    centers = []
+    for fastener in retention.children:
+        bounds = fastener.bounding_box()
+        centers.append(
+            (
+                round((bounds.min.X + bounds.max.X) / 2.0, 6),
+                round((bounds.min.Z + bounds.max.Z) / 2.0, 6),
+            )
+        )
+    return tuple(sorted(centers))
+
+
+def _retention_backing_envelope(sign: float, x: float, z: float):
+    depth = visual.SIDE_INTERFACE_SUPPORT_DEPTH
+    side_y = visual._side_aperture_y(sign) + sign * visual.SIDE_INTERFACE_OUTER_OFFSET
+    return Box(
+        2.0 * visual.SIDE_INTERFACE_SEAL_LAND,
+        depth,
+        2.0 * visual.SIDE_INTERFACE_SEAL_LAND,
+        align=(Align.CENTER, Align.CENTER, Align.CENTER),
+    ).moved(Location((x, side_y - sign * depth / 2.0, z)))
+
+
 def _enforce(checks: dict[str, bool]) -> None:
     failed = sorted(name for name, passed in checks.items() if not passed)
     assert not failed, f"STEP15_CONTRACT_FAILED: {', '.join(failed)}"
@@ -68,6 +111,12 @@ def _mutation_test() -> None:
         "rear_mullion_120_mm": ("REAR_WINDOW_Y_RANGES", ((-605.0, -60.0), (60.0, 605.0))),
         "square_side_profiles": ("SIDE_APERTURE_CORNER_RADIUS", 0.0),
         "square_rear_profiles": ("REAR_WINDOW_CORNER_RADIUS", 0.0),
+        "shallow_interface_support": ("SIDE_INTERFACE_SUPPORT_DEPTH", 20.0),
+        "insert_back_on_shell_plane": ("SIDE_INSERT_INSTALLED_OFFSET", 0.0),
+        "fastener_exceeds_clearance": (
+            "SIDE_INTERFACE_FASTENER_RADIUS",
+            visual.SIDE_INTERFACE_CLEARANCE_RADIUS + 1.0,
+        ),
     }
     survivors = []
     for name, (attribute, replacement) in mutations.items():
@@ -101,9 +150,19 @@ def _contract_checks() -> dict[str, bool]:
         "INTEGRATED_TOPPER_CROSSBAR_PORTS",
     }
     shell = make_continuous_carbon_shell()
-    side_inserts = make_flat_window_inserts().children
+    aperture_contracts = []
+    for side, sign in (("DRIVER", 1.0), ("PASSENGER", -1.0)):
+        for index, (x_min, x_max) in enumerate(visual.SIDE_WINDOW_X_RANGES, start=1):
+            interface = visual.make_side_aperture_interface(side, index, x_min, x_max, sign)
+            variants = (
+                visual.make_flat_window_insert(side, index, x_min, x_max, sign),
+                visual.make_cage_insert(side, index, x_min, x_max, sign),
+                visual.make_toolbox_insert(side, index, x_min, x_max, sign),
+            )
+            aperture_contracts.append((side, sign, x_min, x_max, interface, variants))
+    side_interfaces = [row[4] for row in aperture_contracts]
+    side_inserts = [row[5][0] for row in aperture_contracts]
     side_panes = [insert.children[0] for insert in side_inserts]
-    side_interfaces = make_side_aperture_interfaces().children
     interchangeability = make_side_insert_interchangeability_proof()
     rear_panes = make_rear_hatch_glazing().children
     hatch_leaf = make_visual_review_hatch_leaf()
@@ -138,11 +197,63 @@ def _contract_checks() -> dict[str, bool]:
             and all(child.volume > 0.0 for child in interface.children)
             for interface in side_interfaces
         ),
+        "full_perimeter_land_is_shell_backed": all(
+            len(interface.children[0].children) == 4
+            and len(interface.children[1].children) == 4
+            and all(
+                (land_bar & support_bar).volume > 0.0
+                and (support_bar & shell).volume > 0.0
+                for land_bar, support_bar in zip(
+                    interface.children[0].children,
+                    interface.children[1].children,
+                )
+            )
+            for interface in side_interfaces
+        ),
+        "all_retention_locations_are_shell_backed": all(
+            all(
+                (_retention_backing_envelope(sign, x, z) & interface.children[1]).volume > 0.0
+                and (_retention_backing_envelope(sign, x, z) & shell).volume > 0.0
+                for x, z in visual._retention_centers(x_min, x_max)
+            )
+            for _side, sign, x_min, x_max, interface, _variants in aperture_contracts
+        ),
         "shared_interface_load_path_intersects_shell": all(
             (interface.children[2] & shell).volume > 0.0 for interface in side_interfaces
         ),
         "shared_interface_retention_pattern": all(
-            len(interface.children[1].children) == 4 for interface in side_interfaces
+            all(len(_named_child(variant, "RETENTION").children) == 4 for variant in variants)
+            for _side, _sign, _x_min, _x_max, _interface, variants in aperture_contracts
+        ),
+        "installed_insert_variants_clear_shell_and_interface": all(
+            all(
+                (variant & shell).volume < 1e-6
+                and (variant & interface).volume < 1e-6
+                for variant in variants
+            )
+            for _side, _sign, _x_min, _x_max, interface, variants in aperture_contracts
+        ),
+        "shared_profile_center_and_retention_signature": all(
+            all(
+                _xz_profile_and_center(_named_child(variant, "FLANGE"))
+                == _xz_profile_and_center(interface.children[0])
+                and _retention_centers(variant)
+                == tuple(sorted((round(x, 6), round(z, 6)) for x, z in visual._retention_centers(x_min, x_max)))
+                for variant in variants
+            )
+            for _side, _sign, x_min, x_max, interface, variants in aperture_contracts
+        ),
+        "retention_fasteners_use_clearances_not_positive_overlap": all(
+            all(
+                all(
+                    (fastener & shell).volume < 1e-6
+                    and (fastener & interface).volume < 1e-6
+                    and (fastener & _named_child(variant, "FLANGE")).volume < 1e-6
+                    for fastener in _named_child(variant, "RETENTION").children
+                )
+                for variant in variants
+            )
+            for _side, _sign, _x_min, _x_max, interface, variants in aperture_contracts
         ),
         "interchangeability_root_present": interchangeability.label == "SIDE_INSERT_INTERCHANGEABILITY_PROOF",
         "interchangeability_variant_set": {
@@ -224,6 +335,7 @@ def _contract_checks() -> dict[str, bool]:
             "manifest_delivery_dimensions": manifest["delivery"] == {"width": 2400, "height": 1600, "aspect": "3:2"},
             "manifest_flat_window_contract": manifest["design_contract"]["window"] == "separate planar insert",
             "manifest_interchangeability_contract": manifest["design_contract"]["interchangeability"] == "same side aperture carries WINDOW/CAGE/TOOLBOX insert variants",
+            "manifest_interface_contract": manifest["design_contract"]["interface"] == "shell-backed constant-Y seal land + clearanced four-point retention + separate insert flange",
             "step_and_glb_present": (review_dir / "R1T_TOPPER_STEP15_OPERATOR_VISUAL.glb").stat().st_size > 0 and (review_dir / "R1T_TOPPER_STEP15_OPERATOR_VISUAL.step").stat().st_size > 0,
         }
     )
