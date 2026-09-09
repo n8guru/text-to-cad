@@ -70,6 +70,17 @@ with:
 ../../.venv/bin/python cad/step15_checks.py
 ```
 
+Run the exact Step 19 complete-CAD audit (including every predecessor CAD and
+visual contract) with:
+
+```bash
+../../.venv/bin/python cad/step19_complete_cad_audit.py --full
+```
+
+This audit warrants only complete digital-CAD coverage. It does not authorize
+fabrication, calibrated fitment, ratings, or a manufacture plan; see
+`reports/STEP19_COMPLETE_CAD_AUDIT.md` for the immutable scope/evidence.
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
