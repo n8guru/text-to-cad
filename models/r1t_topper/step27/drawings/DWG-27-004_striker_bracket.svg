@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="125.4mm" height="108.6mm" viewBox="-52.25 -45.25 104.5 90.5" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.5" id="outline">
+      <line x1="-27.0" y1="-20.0" x2="-27.0" y2="20.0" />
+      <line x1="-27.0" y1="-20.0" x2="-3.354102" y2="-20.0" />
+      <line x1="27.0" y1="-20.0" x2="27.0" y2="20.0" />
+      <line x1="3.354102" y1="-20.0" x2="27.0" y2="-20.0" />
+      <path d="M 3.354102,-20.0 A 3.5,3.5 0.0 0,1 3.5,-19.0" />
+      <line x1="3.5" y1="-19.0" x2="3.5" y2="-13.0" />
+      <path d="M 3.5,-13.0 A 3.5,3.5 0.0 0,1 -3.5,-13.0" />
+      <line x1="-3.5" y1="-19.0" x2="-3.5" y2="-13.0" />
+      <path d="M -3.5,-19.0 A 3.5,3.5 0.0 0,1 -3.354102,-20.0" />
+      <line x1="-27.0" y1="20.0" x2="-3.354102" y2="20.0" />
+      <path d="M -3.354102,20.0 A 3.5,3.5 0.0 0,1 -3.5,19.0" />
+      <line x1="-3.5" y1="13.0" x2="-3.5" y2="19.0" />
+      <path d="M -3.5,13.0 A 3.5,3.5 0.0 0,1 3.5,13.0" />
+      <line x1="3.5" y1="13.0" x2="3.5" y2="19.0" />
+      <path d="M 3.5,19.0 A 3.5,3.5 0.0 0,1 3.354102,20.0" />
+      <line x1="3.354102" y1="20.0" x2="27.0" y2="20.0" />
+      <circle cx="0.0" cy="0.0" r="5.3" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.20833333333333334" id="hidden" stroke-dasharray="2.645833 1.322917">
+      <line x1="-27.0" y1="-20.0" x2="-27.0" y2="20.0" />
+      <line x1="-27.0" y1="-20.0" x2="-3.354102" y2="-20.0" />
+      <line x1="-27.0" y1="20.0" x2="-3.354102" y2="20.0" />
+      <line x1="27.0" y1="-20.0" x2="27.0" y2="20.0" />
+      <line x1="3.354102" y1="-20.0" x2="27.0" y2="-20.0" />
+      <path d="M 3.354102,-20.0 A 3.5,3.5 0.0 0,1 3.5,-19.0" />
+      <line x1="3.5" y1="-19.0" x2="3.5" y2="-13.0" />
+      <path d="M 3.5,-13.0 A 3.5,3.5 0.0 0,1 -3.5,-13.0" />
+      <line x1="-3.5" y1="-19.0" x2="-3.5" y2="-13.0" />
+      <path d="M -3.5,-19.0 A 3.5,3.5 0.0 0,1 -3.354102,-20.0" />
+      <path d="M -3.354102,20.0 A 3.5,3.5 0.0 0,1 -3.5,19.0" />
+      <line x1="-3.5" y1="13.0" x2="-3.5" y2="19.0" />
+      <path d="M -3.5,13.0 A 3.5,3.5 0.0 0,1 3.5,13.0" />
+      <line x1="3.5" y1="13.0" x2="3.5" y2="19.0" />
+      <path d="M 3.5,19.0 A 3.5,3.5 0.0 0,1 3.354102,20.0" />
+      <line x1="3.354102" y1="20.0" x2="27.0" y2="20.0" />
+      <circle cx="0.0" cy="0.0" r="5.3" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-004_striker_bracket  STRIKER BRACKET, 316 STAINLESS, 10 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">plate.........................................54.0 x 40.0 x 6.0</text><text x="18" y="68" font-family="monospace" font-size="11">striker bore..................................dia 10.6 for M10x1.5</text><text x="18" y="82" font-family="monospace" font-size="11">adjustment slots..............................2 x 7.0 wide x 6.0 long</text><text x="18" y="96" font-family="monospace" font-size="11">mates.........................................Southco R4-90-321-20</text><text x="12" y="118" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="132" font-family="monospace" font-size="11">1. CUSTOM because no catalogue bracket carries our hole pattern.</text><text x="18" y="146" font-family="monospace" font-size="11">2. The slots are the tolerance-absorption feature: the whole module stack is dialled out here at assembly, not scrapped.</text><text x="18" y="160" font-family="monospace" font-size="11">3. Passivate per ASTM A967 after machining.</text><text x="12" y="182" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

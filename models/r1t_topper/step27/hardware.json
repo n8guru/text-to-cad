@@ -1,0 +1,601 @@
+{
+  "_doc": "Step 27 hardware catalog. SINGLE SOURCE OF TRUTH for every latch / locator / seal / strut / control part. Millimetres. The build123d CAD (step27/cad/*.py) and the Blender render lane both read this file, so a vendor correction is one edit plus one rebuild.",
+  "_provenance_legend": {
+    "DATASHEET": "dimension read off a manufacturer drawing or catalogue; source_url + source_where given",
+    "DATASHEET_ARCHIVED": "read off a Wayback capture of the manufacturer's own page (vendor site was down during this pass)",
+    "ESTIMATED": "inferred envelope, NOT from a datasheet. Must be re-cut from vendor CAD before fabrication release.",
+    "CUSTOM": "not purchased; a controlled custom part governed by our own drawing in step27/drawings/"
+  },
+  "_status_legend": {
+    "ORDERABLE": "exact manufacturer + orderable PN resolved",
+    "SERIES_ONLY": "series and part-number scheme resolved; the final dash number needs a vendor configurator input we do not have yet",
+    "CUSTOM": "our drawing governs",
+    "NO_PART_REQUIRED": "research resolved this to 'nothing to buy'",
+    "OPEN": "unresolved - blocks BOM completion"
+  },
+  "rotary_latch": {
+    "role": "Primary two-stage rotary (fork-bolt) latch. 8 in the side sockets (2 per socket) + 2 in the rear hatch. One PN for the whole product.",
+    "manufacturer": "Southco",
+    "pn": "R4-30-41-501-20",
+    "pn_decode": "R4 / 30 large / 4 = two-stage LH / 1 = 1/4-20 thread mount / 5 = bottom trigger / 0 / 1 = standard base / 20 = stainless steel passivated",
+    "alt_pn_steel": "R4-30-31-501-10 (two-stage RH, steel zinc)",
+    "cable_base_variant": "R4-30-42-503-20 (M6x1 mount, bottom lever, cable bracket, no return spring) - preferred for cable release; confirm the exact string with Southco",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "source_where": "Southco R4 catalogue pp.260, 300-302 (this revision carries the Performance Details the current media.southco.com revision drops)",
+    "rated_load_N": 10675.0,
+    "rated_load_note": "10 675 N (2 400 lbf) average ULTIMATE static; 14 230 N with support plate R4-38-101-10. Max DYNAMIC working load is 222 N (50 lb). Our computed service pull is 383 N/latch, which EXCEEDS the dynamic figure - see the open engineering item in BOM27.md.",
+    "dynamic_working_N": 222.0,
+    "support_plate_pn": "R4-38-101-10",
+    "qty": 10,
+    "dims": {
+      "overall_l": 77.0,
+      "width": 19.4,
+      "depth_total": 34.8,
+      "behind_panel": 17.2,
+      "front_proud": 11.4,
+      "panel_t": 3.5,
+      "hole_pitch": 38.1,
+      "hole_pitch_tol": 0.3,
+      "panel_hole_dia": 7.8,
+      "mount_thread": "1/4-20 (option 1) or M6x1 (option 2)",
+      "slot_depth": 17.0,
+      "slot_end_r": 8.0,
+      "slot_ramp_deg": 45.0,
+      "claw_r": 15.0,
+      "claw_t": 8.0,
+      "throat_w": 14.0,
+      "throat_depth": 10.0,
+      "pivot_y": 16.0,
+      "pawl_pivot_y": -8.0,
+      "pawl_r": 12.0,
+      "pawl_t": 6.0,
+      "cable_arm_l": 20.0,
+      "cable_eye_dia": 4.0
+    },
+    "dims_provenance": {
+      "DATASHEET": [
+        "overall_l",
+        "width",
+        "depth_total",
+        "behind_panel",
+        "front_proud",
+        "panel_t",
+        "hole_pitch",
+        "hole_pitch_tol",
+        "panel_hole_dia",
+        "slot_depth",
+        "slot_end_r",
+        "slot_ramp_deg"
+      ],
+      "ESTIMATED": [
+        "claw_r",
+        "claw_t",
+        "throat_w",
+        "throat_depth",
+        "pivot_y",
+        "pawl_pivot_y",
+        "pawl_r",
+        "pawl_t",
+        "cable_arm_l",
+        "cable_eye_dia"
+      ],
+      "why": "Southco does not dimension the claw throat and renders the per-variant mounting-hole table as raster art. The internal mechanism modelled here is a REPRESENTATION sized to clear the Dia 12.7 striker; pull Southco's 2D/3D CAD before drawing release."
+    },
+    "kinematics": {
+      "closed_deg": 58.0,
+      "secondary_deg": 30.0,
+      "open_deg": 0.0,
+      "pawl_release_deg": 22.0,
+      "_note": "0 deg is the RECEIVING position: the mouth faces +Y so the striker bar can enter. The bar pushes the fork round to 58 deg, where the outer horn blocks the escape corridor. Secondary catch at 30 deg is the first click."
+    },
+    "finish": "stainless steel, passivated (option code 20)",
+    "notes": "MECHANICAL two-stage. NOT R4-EM (electronic). There is no R4-40 family - the real families are R4-05/10/15/20/25/30/50/81/82."
+  },
+  "striker": {
+    "role": "Striker bolt the fork bolt captures. The Dia 12.7 shoulder IS the bar.",
+    "manufacturer": "Southco",
+    "pn": "R4-90-321-20",
+    "alt_pn": "R4-90-324-20 (recessed 6 mm hex head, where the hex head would foul)",
+    "protected_alt": "R4-90-1005-10 (U-bail + bracket; NOT FMVSS 206 capable)",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "source_where": "Southco R4 catalogue p.301",
+    "qty": 10,
+    "dims": {
+      "rod_dia": 12.7,
+      "shoulder_len": 25.4,
+      "thread": "M10x1.5",
+      "thread_len": 16.0,
+      "head_dia": 28.7,
+      "flange_t": 2.8,
+      "hex_af": 16.0,
+      "hex_h": 8.0,
+      "under_head": 28.7,
+      "overall": 52.3
+    },
+    "dims_provenance": {
+      "DATASHEET": [
+        "rod_dia",
+        "shoulder_len",
+        "thread",
+        "head_dia",
+        "flange_t",
+        "hex_af",
+        "under_head",
+        "overall"
+      ],
+      "ESTIMATED": [
+        "thread_len",
+        "hex_h"
+      ]
+    },
+    "supplied_with": "O-ring + washer",
+    "notes": "Mounted through a slotted bracket on the module / hatch leaf so the tolerance stack is dialled out at fit-up instead of scrapped."
+  },
+  "release_cable": {
+    "role": "Push-pull remote release: one handle -> splitter -> both rotary latches in a socket.",
+    "manufacturer": "Southco",
+    "pn": "AC-CKK0-9-0450-000",
+    "pn_scheme": "AC-C[actuator-end][latch-end][spring]-[cable type]-[length mm, 4 digits]-[extension mm, 3 digits]. K = stainless L-fitting, 9 = jacketed snub/snub (mechanical R4), 0 = no spring.",
+    "status": "SERIES_ONLY",
+    "provenance": "DATASHEET",
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "source_where": "Southco AC cable literature, catalogue pp.321-323",
+    "qty_cables": 10,
+    "retainer_clip_trigger": "R4-0-43922-2",
+    "retainer_clip_lever": "R4-0-43922",
+    "dims": {
+      "conduit_dia": 7.0,
+      "wire_dia": 2.0,
+      "end_fitting_dia": 11.0,
+      "end_fitting_len": 22.0,
+      "bend_radius_min": 50.8,
+      "travel": 13.7,
+      "length_socket": 450.0,
+      "length_hatch": 650.0
+    },
+    "dims_provenance": {
+      "DATASHEET": [
+        "bend_radius_min",
+        "travel"
+      ],
+      "ESTIMATED": [
+        "conduit_dia",
+        "wire_dia",
+        "end_fitting_dia",
+        "end_fitting_len"
+      ],
+      "why": "Southco publishes the minimum bend radius (50.8 mm) and the construction (stainless cable, Acetal liner, polypropylene jacket) but NOT the conduit OD. Take it from the Cable Selection Tool before routing is released."
+    },
+    "open": "Exact length/extension digits and confirmation of the fitting letters must come from Southco's configurator - one live SKU contradicts the printed fitting table."
+  },
+  "release_handle": {
+    "role": "Interior one-hand release, one per socket plus one for the hatch. PURCHASED - the earlier custom bell-crank lever is deleted; Southco already sells the splitter that does the job.",
+    "manufacturer": "Southco",
+    "pn": "AC-75-101-11",
+    "alt_pn": "AC-80-101-11 (surface-mount pull T-handle, Dia 32 double-D hole, 64.6 x 56 mm, 13.7 mm travel)",
+    "splitter_pn": "AC-05-301-11",
+    "splitter_role": "one handle -> two latches; this is why no custom lever is needed",
+    "panel_bracket_pn": "R4-0-50253-1 (9 mm door) / R4-0-50253-2 (12 mm door)",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "source_where": "Southco AC catalogue p.317 (handle), p.321 (splitter), p.319 (bracket)",
+    "qty": 5,
+    "dims": {
+      "paddle_l": 96.2,
+      "paddle_w": 81.0,
+      "paddle_t": 18.0,
+      "travel_min": 11.1,
+      "travel_max": 13.2
+    },
+    "material": "aluminium, black powder coat"
+  },
+  "locating_pin_round": {
+    "role": "Primary locator, module flange -> socket land.",
+    "manufacturer": "MISUMI",
+    "pn": "FPBPA6-P10.00-L10-B8.0",
+    "status": "SERIES_ONLY",
+    "provenance": "DATASHEET_ARCHIVED",
+    "source_url": "http://web.archive.org/web/20141016150831/http://us.misumi-ec.com:80/vona2/detail/110300557320/",
+    "source_where": "MISUMI locating pins, straight press-fit shank, shape code BPA (round, p6)",
+    "qty": 4,
+    "dims": {
+      "pin_dia": 10.0,
+      "pin_len": 10.0,
+      "lead_chamfer": 2.0,
+      "shoulder_dia": 14.0,
+      "shoulder_t": 8.0,
+      "press_dia": 6.0,
+      "press_len": 12.0
+    },
+    "material_options": "O1 tool steel (default) / SKS3 (B) / 304 stainless (S) / 440C 50-55 HRC (C). Specify 440C or 304 against CFRP.",
+    "open": "Dash number is not final until plate thickness L, workpiece thickness B and material prefix are fixed. Re-verify the p6 cell at D=10 on the live page (MISUMI was in a 24 h outage during this pass)."
+  },
+  "locating_pin_diamond": {
+    "role": "Secondary locator: takes rotation without over-constraining the pair.",
+    "manufacturer": "MISUMI",
+    "pn": "FPBPD6-P10.00-L10-B8.0",
+    "status": "SERIES_ONLY",
+    "provenance": "DATASHEET_ARCHIVED",
+    "source_url": "http://web.archive.org/web/20141016150831/http://us.misumi-ec.com:80/vona2/detail/110300557320/",
+    "qty": 4,
+    "dims": {
+      "pin_dia": 10.0,
+      "flat_across": 4.0,
+      "pin_len": 10.0,
+      "lead_chamfer": 2.0,
+      "shoulder_dia": 14.0,
+      "shoulder_t": 8.0,
+      "press_dia": 6.0,
+      "press_len": 12.0
+    },
+    "open": "MISUMI's (W) column gives 4 mm at D=10, but whether W is across-flats or the remaining land width is not certified in the archived page. 4 mm across-flats on a 10 mm head is implausible, so it is read as land width - confirm on the live drawing."
+  },
+  "bushing": {
+    "role": "Press-fit hardened bushing receiving the locating pins.",
+    "manufacturer": "MISUMI",
+    "pn": "JBHC10-15",
+    "alt_pn": "JBH10-15 (O1 tool steel) / JBHUCP10-12 (thin wall, 440C)",
+    "status": "SERIES_ONLY",
+    "provenance": "DATASHEET_ARCHIVED",
+    "source_url": "http://web.archive.org/web/20150401054525/http://us.misumi-ec.com:80/vona2/detail/110302666420/",
+    "qty": 8,
+    "dims": {
+      "id": 10.0,
+      "od": 15.0,
+      "len": 16.0,
+      "flange_dia": 19.0,
+      "flange_t": 4.0
+    },
+    "fit": {
+      "bore_tol": "G6 (+0.005 / +0.014)",
+      "od_tol": "p6 (+0.029 / +0.018)",
+      "press_into": "H7 bore in the 6061 socket frame"
+    },
+    "correction": "The earlier spec called for a 10 mm H7 bore. MISUMI states H7 is only offered at d = 2-6; at d = 10 every JBH/JBHU variant is G6. Re-specified to 10 G6 (5-24 micron diametral clearance), which is what MISUMI intends to pair with their pin heads. Do not carry '10 H7' anywhere.",
+    "material": "440C stainless, 50-55 HRC"
+  },
+  "gas_strut": {
+    "role": "Rear hatch lift support, 2 off.",
+    "manufacturer": "Stabilus",
+    "pn": "6541IS",
+    "alt_ref": "5077DG - Stabilus prints two Ref.-Nos per force/stroke and never legends the columns; confirm which you want before ordering",
+    "status": "SERIES_ONLY",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "source_where": "Standard Program EN p.17, LIFT-O-MAT HD series 6-15, ball socket / ball socket",
+    "qty": 2,
+    "dims": {
+      "force_N": 150.0,
+      "stroke": 150.0,
+      "extended_len": 375.5,
+      "compressed_len": 225.5,
+      "body_dia": 15.0,
+      "rod_dia": 6.0,
+      "ball_stud_dia": 10.0,
+      "socket_len": 18.0,
+      "socket_across": 13.3
+    },
+    "ball_stud": {
+      "manufacturer": "Stabilus",
+      "pn": "4486MD",
+      "ball_dia": 10.0,
+      "thread": "M8",
+      "hex": "SW13",
+      "overall_h": 29.5,
+      "flange_to_ball_centre": 12.0,
+      "thread_len": 13.0,
+      "qty": 4,
+      "source_where": "Standard Program EN p.37"
+    },
+    "ball_socket_spares": {
+      "metal": "001649",
+      "plastic": "698482"
+    },
+    "installed_geometry": {
+      "L_closed": 237.7,
+      "L_open": 369.5,
+      "travel": 131.8,
+      "margin_closed": 12.2,
+      "margin_open": 6.0,
+      "moment_arm_min": 70.2,
+      "note": "Anchors solved by hatch.solve_strut_anchors and asserted by checks_step27.check_strut_stroke. 131.8 mm travel inside the 150 mm catalogue stroke with margin at both ends."
+    },
+    "alternates": [
+      {
+        "why": "same envelope at 200 N if the built leaf is heavier than the estimate",
+        "manufacturer": "Stabilus",
+        "pn": "6542IN (alt 1562DH)",
+        "force_N": 200.0,
+        "stroke": 150.0,
+        "extended_len": 375.5
+      },
+      {
+        "why": "316 stainless, marine spec",
+        "manufacturer": "Ameritool",
+        "pn": "625-6-D2-D2-45",
+        "force_N": 200.2,
+        "stroke": 152.4,
+        "extended_len": 381.0,
+        "compressed_len": 228.6,
+        "socket_pn": "EFSS-10H",
+        "stud_pn": "BSSS-10E",
+        "source_url": "https://www.ameritoolmfg.com/product/fixed-force-gas-spring-625-6/"
+      },
+      {
+        "why": "EU configure-to-order",
+        "manufacturer": "SUSPA",
+        "pn": "01625006 = 16-1-183.5-154-A246-B246-150N",
+        "stroke": 150.0,
+        "extended_len": 375.5,
+        "socket_pn": "16210000 plastic / 16800052 steel M6",
+        "stud_pn": "06710041 M8 SW13 Dia10 ball",
+        "source_url": "https://www.suspa.com/downloads/SUSPA_Liftline_EN.pdf"
+      }
+    ],
+    "open": "The 'Dia 10 ball' convention is ambiguous: DIN 71802/71803 pairs a Dia 10 ball with M6, the gas-spring industry pairs it with M8x1.25. Our drawing must state M8 explicitly. Also, NO 316L stainless spring offers a 150 mm stroke - the nearest is Stabilus 9055RV at 140 mm.",
+    "notes": "Force is re-selected after the first leaf is weighed; the 200 N alternate shares the envelope, so no bracket changes."
+  },
+  "hinge": {
+    "role": "Rear hatch concealed hinge, 2 off (a third is recommended), 95 deg swing.",
+    "manufacturer": "JW Winco",
+    "pn": "GN 7233-NI-50-L-MT + GN 7233-NI-50-R-MT",
+    "alt_pn": "GN 7237-NI-50-L/R-MT (180 deg, same loads, needs a separate 95 deg stop)",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://live-catalog.jwwinco.com/pdf/winco/us/7233.pdf",
+    "source_where": "JW Winco 7233 datasheet pp.1-4",
+    "qty": 2,
+    "rated": {
+      "axial_N_per_pair": 175.0,
+      "radial_N_per_pair": 750.0,
+      "opening_deg": 120.0
+    },
+    "material": "AISI 304, matte tumbled; self-lubricating bronze bearing",
+    "dims": {
+      "leaf_l": 50.0,
+      "hole_slot_w": 6.5,
+      "hole_pitch": 30.0,
+      "m2": 6.0,
+      "h1": 10.0,
+      "h2": 35.0,
+      "h3": 4.0,
+      "s": 5.0,
+      "l2": 35.0,
+      "l3": 46.0,
+      "envelope_l4": 105.0,
+      "envelope_l5": 135.0,
+      "swing_radius": 105.0,
+      "offset_x": 20.0,
+      "offset_y": 37.0,
+      "max_swing_deg": 120.0
+    },
+    "CRITICAL": "GN 7233 is a MULTI-JOINT LINKAGE, not a fixed-pivot butt hinge. There is no single hinge-axis offset; the leaf follows a coupler curve. Our CAD models a PURE ROTATION about a nominal design axis as the design intent, and checks that the leaf stays inside the published installation-space envelope (l4 x l5, radius r, offsets x/y). The true path MUST be re-checked against JW Winco's free 2D/3D CAD before any drawing is released. This is a named OPEN item, not a solved one.",
+    "load_check": "Leaf ~5-7 kg = 50-70 N carried radially; one size-50 pair is rated 750 N radial, >10x. JW Winco publishes NO dynamic or shock rating, and on a vehicle road fatigue is the real constraint - the datasheet permits a third hinge and we should fit one.",
+    "open": "PDF vs HTML dimension conflict at size 50: PDF gives d=6.5 / h1=10, the HTML table gives 6.6 / 11.9. PDF treated as authoritative; verify before cutting."
+  },
+  "t_handle": {
+    "role": "Keyed T-handle compression latch. Rear hatch (adjustable grip) + toolbox door (fixed grip), key-alike.",
+    "manufacturer": "Southco",
+    "pn": "E3-18-15",
+    "pn_toolbox": "E3-108-015",
+    "pn_toolbox_alt": "E3-108-115 (37 mm grip)",
+    "gasket_pn": "E5-17",
+    "spur_washer_pn": "90-6-875",
+    "spare_keys_pn": "PK-10-01",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://media.southco.com/media/static/Literature/e3.en.pdf",
+    "source_where": "Southco E3 VISE ACTION catalogue pp.90-121 (scheme p.93, dimensions p.92)",
+    "qty": 2,
+    "dims": {
+      "cutout_across_flats": 19.1,
+      "cutout_dia": 22.5,
+      "escutcheon_dia": 29.0,
+      "behind_panel_fixed": 40.0,
+      "behind_panel": 64.0,
+      "tbar_l": 82.5,
+      "tbar_w": 22.0,
+      "head_height": 37.0,
+      "compression_stroke": 6.4,
+      "rotation_deg": 75.0,
+      "max_door_t": 18.0,
+      "grip_min": 11.4,
+      "grip_max": 27.2
+    },
+    "rated": {
+      "max_static_N_adjustable": 450.0,
+      "max_static_N_fixed": 300.0,
+      "nut_torque_Nm": 20.0
+    },
+    "sealing": "NEMA 4 / IP65, and ONLY with the optional E5-17 flange gasket. IP67 is NOT available on the keyed T-handle body.",
+    "keying": "Head style 8 ships keyed alike CH751 by default, so a production run shares one key with no option code. There is no key-code field in the E3 part number.",
+    "open": "No keyed T-handle exists in stainless E3. Marine-grade corrosion resistance AND a key is not available in this series: accept zinc/black powder or change series. The CH751 code comes from the 2011 catalogue revision and the current PDF omits it - confirm with Southco."
+  },
+  "bulb_seal": {
+    "role": "EPDM bulb seal on every socket land and the hatch surround. One profile, one PN, whole product.",
+    "manufacturer": "Trim-Lok",
+    "pn": "DD6139",
+    "alt_pn": "DD6138 (side bulb, same base and grip range)",
+    "second_source": "Fairchild Industries TS1014 - dimensionally identical to DD6138 (.438 bulb, .505 carrier H, .755 W, grips .060-.125)",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "source_where": "Trim-Lok co-extruded Trim Seal catalogue p.23; material spec at https://www.trimlok.com/secure/content/documents/coextrudedtrimsealspecsheet.pdf",
+    "length_m": 18.0,
+    "mount": "PUSH-ON U-CHANNEL over a machined retention rib. NOT a groove seal - the earlier groove design is superseded.",
+    "dims": {
+      "bulb_dia": 11.13,
+      "overall_h": 24.61,
+      "base_h": 12.83,
+      "base_w": 4.6,
+      "grip_min": 1.52,
+      "grip_max": 3.18,
+      "rib_t": 3.0,
+      "rib_h": 10.0,
+      "free_height": 24.61,
+      "target_closed_gap": 7.42,
+      "bulb_compression_pct": 33.3,
+      "compressed_height": 20.25
+    },
+    "sizing_rule": "Trim-Lok's own published rule (catalogue p.18): 1.5 x closed gap = bulb OD. 11.13 / 1.5 = 7.42 mm design gap, i.e. 33 % bulb deflection. Their Rubber Seal spec sheet separately recommends 25 % for maximum life; we sit between.",
+    "material": "bulb = custom EPDM sponge, medium-firm; base = dense EPDM 70 Shore A; carrier = flexible aluminium wire. -40 F to +212 F. FMVSS 302, UL94HB, FAA/FAR 23.853(a), UL50E MH49032.",
+    "open": "Trim-Lok publishes no compression-force curve for the DD co-extruded family. If a force number is needed, the Specialty Trim Seal combos (e.g. 105B100B3X1/8A at 0.822 lb/in at 25 %) are the only bulb-on-channel products with published force data. DD6138/DD6139 are catalogue/RFQ parts with no web cart - order through a rep."
+  },
+  "compression_limiter": {
+    "role": "UHMW pad that sets the metal-to-metal stop so the seal is compressed a controlled 33 % and cannot be crushed.",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "provenance": "CUSTOM",
+    "drawing": "drawings/DWG-27-006_compression_limiter.svg",
+    "qty": 12,
+    "dims": {
+      "pad_l": 30.0,
+      "pad_w": 20.0,
+      "pad_t": 7.4,
+      "hole_dia": 6.6
+    },
+    "material": "UHMW-PE, virgin natural",
+    "stock": "3/8 in (9.5 mm) UHMW sheet, machined to 7.40 mm",
+    "material_source": "U.S. Plastic Corp UHMW sheet (item 29170 is the verified 1/8 in listing; the 3/8 in item number is not yet confirmed)",
+    "process": "waterjet blank + surface grind to thickness",
+    "finish": "as machined",
+    "critical_tol": "thickness 7.40 +0 / -0.05 - this dimension IS the seal compression",
+    "open": "McMaster part numbers could not be resolved (mcmaster.com now requires a login for all product tables). The U.S. Plastic 3/8 in sheet item number still needs confirming."
+  },
+  "ball_plunger": {
+    "role": "Anti-chatter preload at the module plug.",
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
+    "alt_pn": "Elesa+Ganter GN 615-M8-KN (GN.33133), AISI 303, 31 N max load",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "source_where": "McMaster ball-nose spring plungers; Elesa GN 615-NI datasheet https://www.elesa.com/siteassets/PDF/PDF_US/GN%20615-NI.pdf",
+    "qty": 8,
+    "dims": {
+      "thread": "M8x1.25",
+      "body_len": 16.0,
+      "ball_dia": 4.5,
+      "extension": 1.5,
+      "initial_force_N": 15.1,
+      "end_force_N": 29.8
+    },
+    "material": "18-8 stainless body, 440C nose",
+    "housing_fit": "H7 bore per the Elesa datasheet note"
+  },
+  "chmsl": {
+    "role": "Secondary centre high-mount stop lamp on the hatch leaf. REQUIRED, not optional: Upfitting Guide p.65 makes the upfitter responsible for FMVSS 108 secondary lighting when an upfit blocks the OEM CHMSL, and a topper does.",
+    "manufacturer": "Maxxima",
+    "pn": "M63319R",
+    "alt_pn": "Grote 01-5444-75 (412 x 52 x 22, 340 mm hole pattern) - marked SAE U, i.e. SUPPLEMENTAL only, NOT a legal CHMSL on its own",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.vehiclesafetysupply.com/maxxima-surface-mount-id-bar-center-high-mount-stop-light-m63319r-p-83938.html",
+    "source_where": "Corroborated across three independent distributors; Maxxima publishes no fetchable PDF",
+    "compliance": "FMVSS 108",
+    "compliance_detail": "SAE J1957 / J2042 / J592, function codes P2 P3 U3. U3 is the CHMSL function code. J1957 is the CHMSL standard for vehicles under 2032 mm wide, which a pickup is. A lamp marked only 'SAE U' (J186) is supplemental and is NOT a legal CHMSL.",
+    "requirement_source_url": "https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/3ab05048ce5c4f7e3195607919f3def3/r1t-upfitting-guide-en-us-20250924.pdf",
+    "qty": 1,
+    "dims": {
+      "len": 394.0,
+      "h": 32.0,
+      "d": 19.0,
+      "hole_dia": 4.8,
+      "hole_pitch": 370.0,
+      "lead_len": 178.0,
+      "lead_count": 3
+    },
+    "electrical": {
+      "v": 12.8,
+      "a_stop": 0.14,
+      "a_id": 0.02,
+      "leds": 9
+    },
+    "open": "Nothing SAE-J1957/U3-marked exists in the 250-350 mm window originally wanted; 394 mm is the shortest compliant bar found. Confirm the U3 marking on the physical lens before cutting the pocket, and resolve the housing-material conflict between distributors."
+  },
+  "tailgate_switch": {
+    "role": "Gen-1 R1T OEM controls the topper must not disable. SEE TAILGATE_CONTROL.md.",
+    "manufacturer": "Rivian (OEM, vehicle-side)",
+    "pn": null,
+    "status": "NO_PART_REQUIRED",
+    "provenance": "DATASHEET",
+    "source_url": "https://assets.ctfassets.net/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/9806f4c37762c217a108b1a07ea3c37f/r1t-my22-24-og-en-us-20250630.pdf",
+    "source_where": "Owner's Guide MY22-24 pp.16, 283-284; Upfitting Guide pp.56-57, 65, 100-102",
+    "findings": {
+      "tailgate_is_powered": false,
+      "release_type": "electric latch release only; gravity drop; damped descent; manual close",
+      "switch_on_tailgate_itself": false,
+      "primary_switch_location": "TOP face of the DRIVER-side bed rail cap, rear end, flush in a moulded recess",
+      "primary_switch_is_dual_function": "also the only in-bed bed-light toggle",
+      "entrapment_button_location": "inside the bed, PASSENGER inner wall, under the rail lip, rear",
+      "other_rail_top_buttons": [
+        "tonneau cover button (driver, rear)",
+        "Gear Tunnel release (both rails, forward)"
+      ],
+      "remote_paths": [
+        "key fob double-press",
+        "centre display Access and Security",
+        "Rivian app",
+        "Alexa voice"
+      ],
+      "driver_door_panel_control": false,
+      "manual_override_published": false
+    },
+    "topper_integration": "MECHANICAL preservation: sealed access wells through the topper base rail over each covered OEM button. NO splice, NO relocation, NO added switch.",
+    "notes": "Rivian publishes no dimensioned button position; well X positions are provisional pending tape gaps T1-T5 in TAILGATE_CONTROL.md."
+  },
+  "oem_control_well": {
+    "role": "Sealed access well through the topper base rail so an OEM rail-top button stays pressable.",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "provenance": "CUSTOM",
+    "drawing": "drawings/DWG-27-009_oem_control_well.svg",
+    "qty": 3,
+    "dims": {
+      "clear_l": 120.0,
+      "clear_w": 70.0,
+      "land_w": 12.0,
+      "lid_t": 4.0,
+      "clear_depth": 28.0,
+      "drain_slot_w": 8.0,
+      "drain_slot_h": 4.0,
+      "lid_open_deg": 105.0
+    },
+    "material": "6061-T6 rail pocket + carbon lid",
+    "process": "CNC pocket in the base-rail extrusion; lid compression-moulded from the module-flange tool offcut",
+    "finish": "black anodise Type II (rail) / UV clear (lid)",
+    "critical_tol": "land flatness 0.2 so the DD6139 seal grips evenly",
+    "notes": "Drain discharges OUTBOARD onto the OEM rail cap, outside our seal line."
+  },
+  "harness_tap": {
+    "role": "Sanctioned 12 V upfitter feed for the topper (secondary CHMSL, interior light, optional cage fan).",
+    "manufacturer": "Aptiv",
+    "pn": "13897598",
+    "terminal_pn": "12034047",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/3ab05048ce5c4f7e3195607919f3def3/r1t-upfitting-guide-en-us-20250924.pdf",
+    "source_where": "Upfitting Guide pp.100-102, port J019",
+    "electrical": {
+      "port": "J019 (Gear Tunnel)",
+      "v_nominal": 13.5,
+      "v_lvm": 14.1,
+      "a_continuous": 15.0,
+      "a_max": 20.0,
+      "wire_min": "14 AWG (2.5 mm2) PVC or 16 AWG (1.5 mm2) XLPE",
+      "ground": "Module Zone Controller South (LC 782246010)",
+      "vehicle_off": "available in Camp Mode"
+    },
+    "open": "Pin count / pinout NOT published by Rivian. Resolve from the Aptiv catalogue for 13897598 or Service Manual LC 781013010 before releasing the harness drawing."
+  },
+  "_deleted": {
+    "release_lever": "Deleted 2026-09-27. The earlier CUSTOM bell-crank lever existed only to pull two cables with equal travel. Southco already sells exactly that: AC-05-301-11 splitter + AC-75-101-11 paddle. One fewer custom part, one fewer drawing, one fewer tolerance."
+  }
+}

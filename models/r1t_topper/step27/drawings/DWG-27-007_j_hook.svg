@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="132.6mm" height="143.4mm" viewBox="-55.25 -28.25 110.5 119.5" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.5" id="outline">
+      <line x1="-30.0" y1="-66.0" x2="-30.0" y2="-44.0" />
+      <line x1="-30.0" y1="-38.0" x2="-30.0" y2="-22.0" />
+      <line x1="-30.0" y1="-44.0" x2="-30.0" y2="-38.0" />
+      <line x1="30.0" y1="-66.0" x2="30.0" y2="-44.0" />
+      <line x1="-30.0" y1="-66.0" x2="30.0" y2="-66.0" />
+      <line x1="-30.0" y1="-44.0" x2="30.0" y2="-44.0" />
+      <line x1="30.0" y1="-38.0" x2="30.0" y2="-22.0" />
+      <line x1="30.0" y1="-44.0" x2="30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-38.0" x2="30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-22.0" x2="30.0" y2="-22.0" />
+      <line x1="-30.0" y1="-3.0" x2="-30.0" y2="3.0" />
+      <line x1="23.249615" y1="-3.0" x2="30.0" y2="-3.0" />
+      <path d="M 16.750385,-3.0 L 16.984664,-3.0 L 17.318277,-3.0 L 17.740234,-3.0 L 18.236634,-3.0 L 18.791125,-3.0 L 19.38544,-3.0 L 20.0,-3.0 L 20.61456,-3.0 L 21.208875,-3.0 L 21.763366,-3.0 L 22.259766,-3.0 L 22.681723,-3.0 L 23.015336,-3.0 L 23.249615,-3.0" />
+      <line x1="-16.750385" y1="-3.0" x2="16.750385" y2="-3.0" />
+      <path d="M -23.249615,-3.0 L -23.015336,-3.0 L -22.681723,-3.0 L -22.259766,-3.0 L -21.763366,-3.0 L -21.208875,-3.0 L -20.61456,-3.0 L -20.0,-3.0 L -19.38544,-3.0 L -18.791125,-3.0 L -18.236634,-3.0 L -17.740234,-3.0 L -17.318277,-3.0 L -16.984664,-3.0 L -16.750385,-3.0" />
+      <line x1="-30.0" y1="-3.0" x2="-23.249615" y2="-3.0" />
+      <line x1="-30.0" y1="3.0" x2="-23.249615" y2="3.0" />
+      <line x1="-23.249615" y1="3.0" x2="-23.249615" y2="-3.0" />
+      <line x1="23.249615" y1="3.0" x2="30.0" y2="3.0" />
+      <path d="M 16.750385,3.0 L 16.984664,3.0 L 17.318277,3.0 L 17.740234,3.0 L 18.236634,3.0 L 18.791125,3.0 L 19.38544,3.0 L 20.0,3.0 L 20.61456,3.0 L 21.208875,3.0 L 21.763366,3.0 L 22.259766,3.0 L 22.681723,3.0 L 23.015336,3.0 L 23.249615,3.0" />
+      <line x1="-16.750385" y1="3.0" x2="16.750385" y2="3.0" />
+      <path d="M -23.249615,3.0 L -23.015336,3.0 L -22.681723,3.0 L -22.259766,3.0 L -21.763366,3.0 L -21.208875,3.0 L -20.61456,3.0 L -20.0,3.0 L -19.38544,3.0 L -18.791125,3.0 L -18.236634,3.0 L -17.740234,3.0 L -17.318277,3.0 L -16.984664,3.0 L -16.750385,3.0" />
+      <line x1="30.0" y1="-3.0" x2="30.0" y2="3.0" />
+      <line x1="23.249615" y1="3.0" x2="23.249615" y2="-3.0" />
+      <line x1="16.750385" y1="3.0" x2="16.750385" y2="-3.0" />
+      <line x1="-16.750385" y1="3.0" x2="-16.750385" y2="-3.0" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.20833333333333334" id="hidden" stroke-dasharray="2.645833 1.322917">
+      <line x1="-30.0" y1="-66.0" x2="-30.0" y2="-44.0" />
+      <line x1="-30.0" y1="-44.0" x2="-30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-38.0" x2="-30.0" y2="-22.0" />
+      <line x1="30.0" y1="-44.0" x2="-30.0" y2="-44.0" />
+      <line x1="30.0" y1="-44.0" x2="-30.0" y2="-44.0" />
+      <line x1="30.0" y1="-66.0" x2="30.0" y2="-44.0" />
+      <line x1="-30.0" y1="-66.0" x2="30.0" y2="-66.0" />
+      <line x1="30.0" y1="-44.0" x2="30.0" y2="-38.0" />
+      <line x1="30.0" y1="-38.0" x2="30.0" y2="-22.0" />
+      <line x1="-30.0" y1="-44.0" x2="30.0" y2="-44.0" />
+      <line x1="30.0" y1="-38.0" x2="-30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-22.0" x2="30.0" y2="-22.0" />
+      <line x1="30.0" y1="-38.0" x2="-30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-38.0" x2="30.0" y2="-38.0" />
+      <line x1="-30.0" y1="-3.0" x2="-30.0" y2="3.0" />
+      <line x1="-30.0" y1="-3.0" x2="30.0" y2="-3.0" />
+      <line x1="-30.0" y1="3.0" x2="30.0" y2="3.0" />
+      <line x1="30.0" y1="-3.0" x2="30.0" y2="3.0" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-007_j_hook  J-HOOK, 316 STAINLESS, 8 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">material thickness............................6.0</text><text x="18" y="68" font-family="monospace" font-size="11">width.........................................60.0</text><text x="18" y="82" font-family="monospace" font-size="11">throat to pin datum...........................+/- 0.1</text><text x="18" y="96" font-family="monospace" font-size="11">fixing........................................2 x dia 6.8 for M6 A4</text><text x="12" y="118" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="132" font-family="monospace" font-size="11">1. Carries the full module weight into the ledge lip in SHEAR.</text><text x="18" y="146" font-family="monospace" font-size="11">2. Hand calc, not FEA: 29 kg at 3 g = 850 N, 425 N per hook, ~10 MPa shear in the 6 x 30 section. FEA remains a later gate.</text><text x="18" y="160" font-family="monospace" font-size="11">3. Laser cut, press brake, passivate.</text><text x="12" y="182" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
