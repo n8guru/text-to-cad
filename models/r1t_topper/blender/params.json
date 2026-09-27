@@ -1,0 +1,76 @@
+{
+ "_doc": "Opus-pass parametric source. Metres. X rearward, Y driver(+)/left, Z up; origin = centerline at forward edge of bed-rail top plane. Provenance per value in ../../../../forge-agent-os/tools/r1t-opus-pass/measurements.md",
+ "truck": {
+  "ground_z": -1.185,
+  "overall_length": 5.514,
+  "body_width": 2.014,
+  "cab_roof_z": 0.649,
+  "wheelbase": 3.45,
+  "rear_axle_x": 0.405,
+  "tire_r": 0.432,
+  "tire_w": 0.279,
+  "track": 1.73,
+  "bed_len": 1.377,
+  "bed_w": 1.299,
+  "bed_depth": 0.465,
+  "rail_outer_w": 1.7,
+  "rail_cap_w": 0.14,
+  "tailgate_x": 1.437,
+  "cab_back_x": -0.48,
+  "rear_end_x": 1.56,
+  "windshield_base_x": -2.23,
+  "roof_front_x": -1.7,
+  "bed_ports": [
+   [
+    0.305,
+    0.731
+   ],
+   [
+    1.158,
+    0.731
+   ]
+  ],
+  "roof_ports_x": [
+   -1.6,
+   -0.675
+  ],
+  "roof_ports_half_y": 0.61
+ },
+ "shell": {
+  "x0": -0.46,
+  "x1": 1.44,
+  "roof_z_front": 0.64,
+  "roof_z_rear": 0.6,
+  "rear_rake": 0.06,
+  "base_half_w": 0.85,
+  "land_top_z": 0.46,
+  "land_half_w": 0.79,
+  "shoulder_r": 0.18,
+  "roof_crown": 0.018,
+  "wall": 0.022
+ },
+ "socket": {
+  "centers_x": [
+   -0.02,
+   0.8
+  ],
+  "z_bot": 0.09,
+  "z_top": 0.44,
+  "width": 0.64,
+  "corner_r": 0.06,
+  "pocket_step": 0.022,
+  "pocket_margin": 0.028,
+  "shutline": 0.004
+ },
+ "hatch": {
+  "z_bot": 0.03,
+  "open_deg": 95,
+  "mullion": 0.14,
+  "corner_r": 0.07
+ },
+ "roof_ports_x": [
+  -0.2,
+  1.1
+ ],
+ "roof_ports_y": 0.52
+}
