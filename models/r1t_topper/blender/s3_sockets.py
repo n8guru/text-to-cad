@@ -15,9 +15,9 @@ shell = bpy.data.objects["SHELL_CARBON"]
 W, Hh = L.opening_hw()
 mg, r = K["pocket_margin"], K["corner_r"]
 PW, PH, PR = W + 2 * mg, Hh + 2 * mg, r + mg
-WALL = 0.022
-PIN_U = (-0.17, 0.23)          # asymmetric -> keyed: module cannot go in upside down
-LATCH_U = (-0.25, 0.25)
+WALL = L.S["wall"]             # shell wall thickness — params.json shell.wall (single source)
+PIN_U = tuple(L.KEY["pin_u"])   # asymmetric -> keyed: module cannot go in upside down
+LATCH_U = tuple(L.KEY["latch_u"])
 Tr = Matrix.Translation
 
 

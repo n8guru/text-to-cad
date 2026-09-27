@@ -15,6 +15,7 @@ from mathutils import Matrix, Vector
 HERE = Path(__file__).resolve().parent
 P = json.loads((HERE / "params.json").read_text())
 T, S, K, H = P["truck"], P["shell"], P["socket"], P["hatch"]
+KEY = P["keying"]
 
 
 # ---------- collections / materials ----------
