@@ -324,10 +324,13 @@ def setup_world(strength=1.0, hdri="/home/n8/forge-cut/textscene/assets/hdris/fi
     sc.world = w
     w.use_nodes = True
     nt = w.node_tree
-    if "Environment Texture" not in nt.nodes and os.path.exists(hdri):
+    env = nt.nodes.get("Environment Texture")
+    if env is None and os.path.exists(hdri):
         env = nt.nodes.new("ShaderNodeTexEnvironment")
-        env.image = bpy.data.images.load(hdri)
         nt.links.new(env.outputs["Color"], nt.nodes["Background"].inputs["Color"])
+    if env is not None:                       # absolute path: blends get copied to evidence dirs
+        env.image = bpy.data.images.load(hdri, check_existing=True)
+        env.image.filepath = hdri
     nt.nodes["Background"].inputs["Strength"].default_value = strength
 
 
