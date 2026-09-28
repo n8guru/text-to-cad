@@ -1,315 +1,411 @@
 {
   "results": [
     {
+      "name": "style_sources_fingerprinted",
+      "state": "PASS",
+      "detail": "R1T OG, R1S OG, R1T Upfitting Guide: URL + SHA-256 recorded; the measuring script refuses a changed source"
+    },
+    {
+      "name": "side_view_scale_validated",
+      "state": "PASS",
+      "detail": "wheelbase-scaled roof 1834.7 mm vs published 1834.0 mm"
+    },
+    {
+      "name": "rail_height_two_views_agree",
+      "state": "PASS",
+      "detail": "rail/roof: side view 0.744, rear view 0.733 (rail 1366 vs 1345 mm)"
+    },
+    {
+      "name": "spoiler_two_views_agree",
+      "state": "PASS",
+      "detail": "spoiler tip x: side view -132 mm, Upfit plan view -127 mm"
+    },
+    {
+      "name": "truck_params_match_reference",
+      "state": "PASS",
+      "detail": "8 params.json truck values within 1 mm of style/rivian_reference.json"
+    },
+    {
+      "name": "rear_sill_tailgate_seal",
+      "state": "OPEN",
+      "detail": "Rivian side view: rail top flat to x=1365, tailgate top 32 mm below it. The rear sill needs a closing seal across the tailgate (a 32 mm gap exceeds the DD6139's 20 mm compressed height) and the rear corners overhang the rounded rail end - select after T5"
+    },
+    {
+      "name": "truck_tape_session",
+      "state": "OPEN",
+      "detail": "rail height (1344-1366 mm band), cab back line, spoiler tip, rail-cap edges, tailgate face are DRAWING-DERIVED from Rivian illustrations; tape before tooling"
+    },
+    {
+      "name": "roof_meets_cab_roof",
+      "state": "PASS",
+      "detail": "topper roof 462 mm vs R1T cab roof 463 mm (-1); R1S roofline continues the cab roof"
+    },
+    {
+      "name": "roof_level_like_r1s",
+      "state": "PASS",
+      "detail": "crown top varies 0.0 mm over the roof run; R1S rear roof slope -0.57 %"
+    },
+    {
+      "name": "tumblehome_matches_r1t_r1s",
+      "state": "PASS",
+      "detail": "shell land leans 21.0 deg (measured); R1T C-pillar 21.8, R1S D-pillar 20.1"
+    },
+    {
+      "name": "rear_rake_matches_r1s_liftgate",
+      "state": "PASS",
+      "detail": "rear face 15.0 deg vs R1S liftgate 15.2 deg"
+    },
+    {
+      "name": "base_lands_on_rail_cap",
+      "state": "PASS",
+      "detail": "skin at the base y = 805; rail-cap flat ends 783, outer edge 828"
+    },
+    {
+      "name": "rear_corner_roll_off_r1s_like",
+      "state": "PASS",
+      "detail": "roof roll-off into the raked rear face drops 74 mm = 0.16 of the greenhouse; R1S 0.21. Tighter than the R1S because the flat face must carry the hatch frame"
+    },
+    {
+      "name": "side_dlo_band_vs_r1s",
+      "state": "PASS",
+      "detail": "dark DLO band (reveal + flange + glass) 292 mm = 0.63 of the greenhouse; R1S DLO 0.83. The gap is the socket border (82 mm/side), not the styling"
+    },
+    {
+      "name": "carbon_bridge_between_openings_ge_76",
+      "state": "PASS",
+      "detail": "77 mm of visible carbon between the two side openings (operator min 76)"
+    },
+    {
+      "name": "no_top_centre_protrusion",
+      "state": "PASS",
+      "detail": "highest non-shell feature z = 451.3 vs roof 462.0; hardpoints flush (4)"
+    },
+    {
+      "name": "shell_one_valid_solid",
+      "state": "PASS",
+      "detail": "1 solid(s), valid=True, 19.1 kg at 5.8 kg/m^2"
+    },
+    {
+      "name": "shell_wall_22mm",
+      "state": "PASS",
+      "detail": "land wall normal thickness 22.36 mm"
+    },
+    {
+      "name": "bond_flanges_seat_on_flat_skin",
+      "state": "PASS",
+      "detail": "all 4 socket frames + hatch surround: bond face 0.5 mm off the inner skin at every sampled station"
+    },
+    {
+      "name": "fabricated_parts_are_single_solids",
+      "state": "PASS",
+      "detail": "96 distinct parts checked"
+    },
+    {
       "name": "socket_identity_4x",
-      "ok": true,
-      "detail": "signatures={(1913157.358, 1448.697)}"
+      "state": "PASS",
+      "detail": "one frame solid, four placements: {(1829850.3, 1347.0)}"
     },
     {
-      "name": "module_fits_all_4_sockets",
-      "ok": true,
-      "detail": "same solid placed on all four socket planes"
+      "name": "seal_rib_measured_in_grip_range",
+      "state": "PASS",
+      "detail": "rib measured 3.00 mm on the solid; DD6139 grip 1.52-3.18"
     },
     {
-      "name": "throat_clears_striker_bar",
-      "ok": true,
-      "detail": "throat 14.0 mm on a Dia 12.7 bar = 1.3 mm clearance"
+      "name": "socket_seal_under_its_flange",
+      "state": "PASS",
+      "detail": "seal footprint +/-274 x +/-143 inside flange +/-279 x +/-148; compressed top +0.00 mm from the flange face"
     },
     {
-      "name": "fork_tip_traps_the_bar",
-      "ok": true,
-      "detail": "fork rim at r=15.0, bar centre at r=5.0, bar radius 6.35 -> 3.65 mm of fork beyond the bar"
-    },
-    {
-      "name": "bar_longer_than_fork_thickness",
-      "ok": true,
-      "detail": "Dia 12.7 shoulder is 25.4 mm vs 8.0 mm of fork"
-    },
-    {
-      "name": "fork_sweeps_between_states",
-      "ok": true,
-      "detail": "the fork rim travels 14.5 mm through the 58 deg release rotation; the mouth swings from facing the striker to facing the entry slot"
-    },
-    {
-      "name": "latch_is_two_stage",
-      "ok": true,
-      "detail": "secondary catch at 30.0 deg, between receiving (0.0) and shut (58.0)"
-    },
-    {
-      "name": "socket_no_clash_with_bar_when_shut",
-      "ok": true,
-      "detail": "fork-to-bar interference 0.0 mm3 (a shut latch must not crush its own striker)"
-    },
-    {
-      "name": "socket_escape_path_blocked_when_shut",
-      "ok": true,
-      "detail": "fork material blocking the bar's escape corridor: 357 mm3"
-    },
-    {
-      "name": "socket_secondary_still_holds",
-      "ok": true,
-      "detail": "131 mm3 still blocking at the secondary catch -- this is the 'click-click' that holds a not-quite-shut door"
-    },
-    {
-      "name": "socket_escape_path_clear_when_open",
-      "ok": true,
-      "detail": "0 mm3 blocking when released vs 357 shut"
-    },
-    {
-      "name": "hatch_no_clash_with_bar_when_shut",
-      "ok": true,
-      "detail": "fork-to-bar interference 0.0 mm3 (a shut latch must not crush its own striker)"
-    },
-    {
-      "name": "hatch_escape_path_blocked_when_shut",
-      "ok": true,
-      "detail": "fork material blocking the bar's escape corridor: 357 mm3"
-    },
-    {
-      "name": "hatch_secondary_still_holds",
-      "ok": true,
-      "detail": "131 mm3 still blocking at the secondary catch -- this is the 'click-click' that holds a not-quite-shut door"
-    },
-    {
-      "name": "hatch_escape_path_clear_when_open",
-      "ok": true,
-      "detail": "0 mm3 blocking when released vs 357 shut"
-    },
-    {
-      "name": "latch_static_margin",
-      "ok": true,
-      "detail": "service 766 N/socket = 383 N/latch; Southco R4-30 ultimate 10675 N -> SF 27.9"
-    },
-    {
-      "name": "latch_rating_is_sourced",
-      "ok": true,
-      "detail": "rating read from Southco R4 catalogue pp.260, 300-302 (this revision carries the Performance Details the current media.southco.com revision drops)"
-    },
-    {
-      "name": "weight_path_is_the_ledge_not_the_latch",
-      "ok": true,
-      "detail": "hook station v=-190 is below latch station v=190"
-    },
-    {
-      "name": "closing_sequence_hang_then_index_then_latch",
-      "ok": true,
-      "detail": "engagement gaps (mm, larger = earlier): {'hook_catches_ledge': 34.0, 'pins_enter_bushings': 12.0, 'seal_first_touch': 3.710000000000001, 'latch_first_touch': 8.5}; order=['hook_catches_ledge', 'pins_enter_bushings', 'latch_first_touch', 'seal_first_touch']; intended=['hook_catches_ledge', 'pins_enter_bushings', 'latch_first_touch', 'seal_first_touch']"
+      "name": "hatch_seal_under_its_leaf",
+      "state": "PASS",
+      "detail": "seal footprint +/-523 x +/-136 inside leaf +/-526 x +/-139; compressed top +0.00 mm from the leaf inner face"
     },
     {
       "name": "seal_bulb_deflection_25_35_pct",
-      "ok": true,
-      "detail": "bulb 11.13 -> 7.42 mm = 33.3 % (Trim-Lok's own rule: 1.5 x closed gap = bulb OD -> 33 %)"
+      "state": "PASS",
+      "detail": "bulb 11.13 -> 7.42 mm = 33.3 % (measured on the swept bead)"
     },
     {
-      "name": "seal_grip_matches_rib",
-      "ok": true,
-      "detail": "retention rib 3.0 mm inside the DD6139 grip range 1.52-3.18 mm"
+      "name": "limiters_stop_the_flange",
+      "state": "PASS",
+      "detail": "pad-to-flange [0.0, 0.0, 0.0] mm: the flange lands on the pads exactly at the seal's compressed height, so the bulb cannot be over-crushed"
     },
     {
-      "name": "limiter_sets_the_seal_gap",
-      "ok": true,
-      "detail": "limiter pad 7.40 mm sets the 7.42 mm closed gap the DD6139 wants; the pad thickness IS the seal compression, which is why it is a +0/-0.05 dimension"
+      "name": "weight_on_the_fin_not_the_tube",
+      "state": "PASS",
+      "detail": "J-hook bridge-to-fin [0.0, 0.0] mm (bearing); plug frame to socket frame min 1.50 mm"
+    },
+    {
+      "name": "ball_plungers_preload_the_lip",
+      "state": "PASS",
+      "detail": "ball tip to lip [0.0, 0.0] mm; set 0.5 of 1.5 mm travel at assembly"
+    },
+    {
+      "name": "throat_clears_striker_bar",
+      "state": "PASS",
+      "detail": "throat 14.0 on a Dia 12.7 bar = 1.3 mm"
+    },
+    {
+      "name": "rotor_tip_traps_the_bar",
+      "state": "PASS",
+      "detail": "rotor rim r=15.0, bar centre r=8.0: 0.65 mm of rotor beyond the bar"
+    },
+    {
+      "name": "pivot_pin_outside_the_bar",
+      "state": "PASS",
+      "detail": "bar edge 1.65 mm from the rotor pivot (the previous representation put the pivot inside the bar)"
+    },
+    {
+      "name": "latch_is_two_stage",
+      "state": "PASS",
+      "detail": "receives at 31.5, first click 45.0, shut 58.0 deg"
+    },
+    {
+      "name": "socket_escape_blocked_when_shut",
+      "state": "PASS",
+      "detail": "rotor blocks the straight exit path by 210 mm3"
+    },
+    {
+      "name": "socket_secondary_still_holds",
+      "state": "PASS",
+      "detail": "77 mm3 at the first click"
+    },
+    {
+      "name": "socket_escape_clear_when_released",
+      "state": "PASS",
+      "detail": "36 mm3 released vs 210 shut"
+    },
+    {
+      "name": "hatch_escape_blocked_when_shut",
+      "state": "PASS",
+      "detail": "rotor blocks the straight exit path by 210 mm3"
+    },
+    {
+      "name": "hatch_secondary_still_holds",
+      "state": "PASS",
+      "detail": "77 mm3 at the first click"
+    },
+    {
+      "name": "hatch_escape_clear_when_released",
+      "state": "PASS",
+      "detail": "36 mm3 released vs 210 shut"
+    },
+    {
+      "name": "latch_ultimate_sanity",
+      "state": "PASS",
+      "detail": "207 N/latch service (18 kg TOOLBOX module); Southco average ultimate 10675 N is a FAILURE load (Southco glossary) - sanity only"
+    },
+    {
+      "name": "latch_sustained_rating",
+      "state": "OPEN",
+      "detail": "207 N/latch is under the 222 N 'max dynamic working load', but Southco defines neither 'dynamic' nor a sustained rating"
+    },
+    {
+      "name": "closing_sequence_pins_then_latch_then_seal",
+      "state": "PASS",
+      "detail": "mm before home (larger = earlier): {'pins_enter_bushings': 9.8, 'rotor_first_touch': 18.3, 'seal_first_touch': 4.4}; the pins index the module before the rotor sees the striker"
     },
     {
       "name": "shutline_never_binds",
-      "ok": true,
-      "detail": "shut line 4.0 mm nominal, worst tight 3.55 mm"
+      "state": "PASS",
+      "detail": "worst tight 3.55 mm"
     },
     {
       "name": "shutline_stays_cosmetic",
-      "ok": true,
-      "detail": "worst loose 4.45 mm (styling limit 6.0)"
+      "state": "PASS",
+      "detail": "worst loose 4.45 mm"
     },
     {
       "name": "second_locator_is_a_diamond",
-      "ok": true,
-      "detail": "round FPBPA + diamond FPBPD, not two round pins"
+      "state": "PASS",
+      "detail": "CFPBPA6-P10-L10-B8 + CFPBPD6-P10-L10-B8"
     },
     {
       "name": "diamond_relief_covers_position_error",
-      "ok": true,
-      "detail": "diamond relief 3.00 mm vs pair position error 0.10 + bore clearance 0.024 = 0.124 mm"
+      "state": "PASS",
+      "detail": "diamond relief 0.746 mm/side (60 deg flats, 3 mm land) vs 0.124"
+    },
+    {
+      "name": "pin_head_engages_bushing",
+      "state": "PASS",
+      "detail": "straight head engaged 6.75 mm in the 10 G6 bore, 1.25 mm standoff to the flange"
     },
     {
       "name": "cable_bend_radius_ok",
-      "ok": true,
-      "detail": "tightest routed corner 63 mm vs catalogue minimum 51 mm"
+      "state": "PASS",
+      "detail": "modelled route radius 60 mm vs Southco minimum 50.8 mm"
     },
     {
-      "name": "handle_travel_recorded",
-      "ok": true,
-      "detail": "Southco AC-75-101-11 delivers 11.1-13.2 mm; splitter AC-05-301-11 halves one pull into two equal latch pulls"
+      "name": "cable_count_matches_splitters",
+      "state": "PASS",
+      "detail": "15 cables = 5 handle+splitter sets x (1 in + 2 out), AC-CA p.321"
     },
     {
       "name": "no_custom_lever_needed",
-      "ok": true,
-      "detail": "the custom bell-crank lever is deleted: AC-05-301-11 already does it"
-    },
-    {
-      "name": "cable_count_matches_latches",
-      "ok": true,
-      "detail": "10 cables for 8 socket latches + 2 hatch latches"
-    },
-    {
-      "name": "latch_fasteners_reachable_from_inside",
-      "ok": true,
-      "detail": "latch flange at n=-60 (inboard), v=190 (above the aperture)"
+      "state": "PASS",
+      "detail": "AC-05-301-11 splitter replaces the custom bell-crank"
     },
     {
       "name": "no_exterior_module_release",
-      "ok": true,
-      "detail": "the only release is the interior AC-75-101-11 paddle; the interior is locked by the hatch E3-18-15 keyed T-handle, which is key-alike with the toolbox door"
+      "state": "PASS",
+      "detail": "the only release is the interior AC-75-101-11 paddle"
     },
     {
       "name": "strut_within_catalogue_stroke",
-      "ok": true,
-      "detail": "L closed 237.7 (min 225.5), L open 369.5 (max 375.5), travel 131.8 of 150 mm stroke"
+      "state": "PASS",
+      "detail": "6462II (5025DT with studs): L 204.1 -> 309.0 inside 195.5-315.5 with 5 mm margins"
     },
     {
       "name": "strut_extends_monotonically",
-      "ok": true,
-      "detail": "no over-centre point through the whole swing"
-    },
-    {
-      "name": "hatch_mass_estimate",
-      "ok": true,
-      "detail": "leaf assembly 5.2 kg (estimate)"
+      "state": "PASS",
+      "detail": "no over-centre point through the swing"
     },
     {
       "name": "struts_hold_open_with_margin",
-      "ok": true,
-      "detail": "strut 19.2 N.m vs gravity 11.7 N.m at full open (ratio 1.64, want >= 1.40)"
+      "state": "PASS",
+      "detail": "leaf 3.28 kg: 8.26 N.m vs gravity 4.42 N.m (ratio 1.87)"
     },
     {
       "name": "hatch_close_force_reasonable",
-      "ok": true,
-      "detail": "37 N at the handle to pull it shut (limit 90 N)"
+      "state": "PASS",
+      "detail": "1.6 N at the handle"
     },
     {
-      "name": "leaf_swing_clears_gutter",
-      "ok": true,
-      "detail": "tightest leaf/gutter separation through the swing: -3.3 mm (informational: bounding-box separation, not a solid interference test)"
+      "name": "strut_selection_is_catalogue_exact",
+      "state": "PASS",
+      "detail": "6462II is a Standard Program p.17 column-1 Ref.-No."
     },
     {
       "name": "leaf_open_above_bed_rail",
-      "ok": true,
-      "detail": "lowest leaf point at full open is z=479 mm above the bed-rail plane"
+      "state": "PASS",
+      "detail": "lowest leaf point at full open z = 303 mm"
     },
     {
-      "name": "leaf_open_clears_tailgate_drop",
-      "ok": true,
-      "detail": "leaf rearmost/lowest x=1376 vs tailgate hinge x=1437"
-    },
-    {
-      "name": "hatch_leaf_no_interference_when_shut",
-      "ok": true,
-      "detail": "clean"
-    },
-    {
-      "name": "glazing_mechanically_retained",
-      "ok": true,
-      "detail": "retainer overlaps the pane by 572 x 374 mm in plan; a bond-line failure cannot release the pane"
-    },
-    {
-      "name": "glazing_rebate_deeper_than_pane",
-      "ok": true,
-      "detail": "rebate 9.0 mm vs pane 5.0 mm, leaving 4.0 mm for the urethane bead"
-    },
-    {
-      "name": "gutter_above_seal_line",
-      "ok": true,
-      "detail": "gutter y 289..311 vs seal top 267"
-    },
-    {
-      "name": "drains_discharge_below_seal",
-      "ok": true,
-      "detail": "drain outlet y -324 below seal bottom -267"
-    },
-    {
-      "name": "drains_outboard_of_seal",
-      "ok": true,
-      "detail": "drain x 716 outboard of seal x 701"
-    },
-    {
-      "name": "closeouts_clear_the_strut_path",
-      "ok": true,
-      "detail": "clear"
-    },
-    {
-      "name": "control_well_finger_depth",
-      "ok": true,
-      "detail": "28 mm clear under the lid (>=25 for a gloved fingertip)"
-    },
-    {
-      "name": "control_well_drains",
-      "ok": true,
-      "detail": "drain slot discharges outboard onto the OEM rail cap, outside our seal line"
-    },
-    {
-      "name": "oem_primary_control_preserved",
-      "ok": true,
-      "detail": "rail-top tailgate/bed-light button kept pressable through WELL_TG"
-    },
-    {
-      "name": "no_invented_switch",
-      "ok": true,
-      "detail": "Rivian primary sources: the Gen-1 tailgate has no switch on it; we add none"
-    },
-    {
-      "name": "secondary_chmsl_is_a_cited_requirement",
-      "ok": true,
-      "detail": "Upfitting Guide p.65 puts FMVSS 108 secondary lighting on the upfitter when a topper blocks the OEM CHMSL"
-    },
-    {
-      "name": "harness_tap_orderable",
-      "ok": true,
-      "detail": "Aptiv 13897598 + terminals 12034047 at port J019 (Gear Tunnel)"
-    },
-    {
-      "name": "hinge_install_space_available",
-      "ok": true,
-      "detail": "464 mm available vs 105 mm the GN 7233 envelope needs"
+      "name": "hinge_virtual_pivot_outboard",
+      "state": "PASS",
+      "detail": "design-intent pivot at y=141, z=+2: the leaf's top edge moves away from the recess wall; GN 7233 must realise this virtual pivot (G5)"
     },
     {
       "name": "hinge_swing_exceeds_hatch_open",
-      "ok": true,
-      "detail": "hinge opens 120 deg vs the hatch's 95 deg"
+      "state": "PASS",
+      "detail": "GN 7233 opens 120 deg vs the hatch's 95 deg"
     },
     {
-      "name": "hinge_linkage_caveat_recorded",
-      "ok": true,
-      "detail": "GN 7233 is a linkage, not a fixed pivot - the pure-rotation model is design intent and hardware.json says so; re-check against JW Winco CAD before drawing release"
+      "name": "hinge_coupler_curve",
+      "state": "OPEN",
+      "detail": "GN 7233 is a multi-joint linkage; every hatch clearance here assumes pure rotation about the design-intent pivot, and the hinge is modelled as mounting blocks only - its 105 x 135 mm installation space is not placed. Re-run with JW Winco CAD"
+    },
+    {
+      "name": "latch_fasteners_reachable_from_inside",
+      "state": "PASS",
+      "detail": "socket latch flanges at n = -128, hatch latch flanges at z = -70 (leaf inner face -26): all fastened from inside the topper"
+    },
+    {
+      "name": "glazing_retained_both_ways",
+      "state": "PASS",
+      "detail": "3 mm carbon lip overlaps each pane edge by 12 mm (cannot leave outward); screwed 6061 retainer overlaps it by 17 mm (cannot fall inward)"
+    },
+    {
+      "name": "keyed_t_handle_grip",
+      "state": "OPEN",
+      "detail": "Southco E3-18-15 grip 11.4-27.2 mm < 52.25 mm leaf + seal + land stack: re-select a keyed lock (longer grip or keeper standoff) - modelled as a lock body only, not an engaged cam"
+    },
+    {
+      "name": "wet_zone_drains_exit_below_the_seal",
+      "state": "PASS",
+      "detail": "two drains from the channel between seal and recess wall, out through the skin below the bond flange"
+    },
+    {
+      "name": "oem_buttons_not_covered",
+      "state": "PASS",
+      "detail": "3 rail-cap control wells clear through foot and base rail"
+    },
+    {
+      "name": "control_well_positions",
+      "state": "OPEN",
+      "detail": "WELL_TG / WELL_GT_* x-positions provisional until taped (T1-T3); well lids not modelled"
+    },
+    {
+      "name": "secondary_chmsl_is_a_cited_requirement",
+      "state": "PASS",
+      "detail": "Upfitting Guide p.65"
+    },
+    {
+      "name": "harness_tap_orderable",
+      "state": "PASS",
+      "detail": "Aptiv 13897598 at J019 (Gear Tunnel)"
+    },
+    {
+      "name": "no_invented_switch",
+      "state": "PASS",
+      "detail": "Gen-1 tailgate has no switch; we add none"
     },
     {
       "name": "bom_has_no_open_items",
-      "ok": true,
-      "detail": "9 ORDERABLE, 5 SERIES_ONLY, 0 OPEN"
-    },
-    {
-      "name": "bom_series_only_are_named",
-      "ok": true,
-      "detail": "still needing a vendor configurator input: ['release_cable', 'locating_pin_round', 'locating_pin_diamond', 'bushing', 'gas_strut']"
+      "state": "PASS",
+      "detail": "{'ORDERABLE': 13, 'SERIES_ONLY': 1, 'CUSTOM': 2, 'NO_PART_REQUIRED': 1}"
     },
     {
       "name": "every_purchased_item_cites_a_source",
-      "ok": true,
+      "state": "PASS",
       "detail": "unsourced: []"
+    },
+    {
+      "name": "bom_series_only_release_cable",
+      "state": "OPEN",
+      "detail": "NEEDS SOUTHCO: fitting letters for AC-75-101-11 / AC-05-301-11 and the R4-30 bottom trigger with R4-0-43922-2, TA from the actuator J drawing, type-9 availability at 0450/0650, conduit OD."
+    },
+    {
+      "name": "no_hardcoded_home_paths",
+      "state": "PASS",
+      "detail": "scripts resolve paths from __file__ / env"
+    },
+    {
+      "name": "module_removal_path_clear",
+      "state": "PASS",
+      "detail": "37 poses: slide 29 mm, lift 5 mm, withdraw to 130 mm - no clash"
+    },
+    {
+      "name": "safety_catch_engages",
+      "state": "PASS",
+      "detail": "sliding 31 mm out without lifting drives the hook leg into the fin (160 mm3): an unlatched module cannot fall out"
+    },
+    {
+      "name": "no_interference_closed_assembly",
+      "state": "PASS",
+      "detail": "180 parts, 16110 pairs, allow-list 7 designed contacts"
+    },
+    {
+      "name": "topper_clear_of_r1t_keepouts",
+      "state": "PASS",
+      "detail": "no topper part in the cab, body-below-rail or tailgate envelopes"
+    },
+    {
+      "name": "cab_gap_ge_20mm",
+      "state": "PASS",
+      "detail": "closest topper-to-cab distance 33.4 mm (cab back under the spoiler, spoiler tip)"
+    },
+    {
+      "name": "hatch_sweep_clear_of_shell_and_frame",
+      "state": "PASS",
+      "detail": "leaf + glazing + strikers + studs + struts swept 0..95 deg in 5 deg steps against the shell and all fixed parts"
+    },
+    {
+      "name": "no_self_hash_claim",
+      "state": "PASS",
+      "detail": "outputs are tied to source hashes in out/PROVENANCE.json, not to a commit id"
     }
   ],
-  "open_engineering": [
-    "Southco publishes BOTH a 10 675 N average ultimate static load for the R4-30 AND a 222 N max DYNAMIC working load. Our computed service pull is 383 N per latch. The static margin is 27x; the dynamic figure is a door-slam rating and we read it as not governing a sustained aerodynamic/cornering pull -- but that reading is OURS, not Southco's. Confirm with Southco which rating governs a sustained static pull before fabrication release. If the 222 N figure does govern, the fix is a third latch per socket, which the flange already has room for.",
-    "The R4-30 claw throat is not dimensioned in any Southco literature. Our throat/fork geometry is a representation sized to clear the Dia 12.7 striker; pull Southco's 2D/3D CAD.",
-    "Southco does not publish the AC cable conduit OD, nor the R4-30's required release travel. The handle delivers 11.1-13.2 mm; whether that is enough is unconfirmed.",
-    "JW Winco GN 7233 is a multi-joint linkage. Every clearance and strut number here assumes a pure rotation about the design axis. Re-run against the vendor CAD coupler curve."
-  ],
   "not_checked": [
-    "FEA of the shell, the gear-tunnel cantilever, the roof hardpoints or the hatch surround",
-    "Sealing performance (water/dust ingress) -- requires a physical test",
-    "Real-truck fit: every bed-rail and cab-interface dimension is still photo/guide derived",
-    "Latch endurance, salt spray, UV -- vendor qualification data not obtained",
-    "Solid swept-volume interference of the leaf against the carbon shell (shell lives in the Blender model, not yet regenerated as CAD)",
+    "FEA of the shell, frames, roof hardpoints or hatch surround",
+    "Sealing performance (water/dust ingress): needs a physical test",
+    "Real-truck fit: every truck value is Rivian-illustration-derived; tape session required",
+    "Latch endurance, salt spray, UV: vendor qualification data not obtained",
+    "Rotor/pawl internals: a representation (G6); rotor-vs-striker contact is not a rigid sweep",
+    "GN 7233 coupler curve (G5): hatch sweep assumes pure rotation about the design pivot",
     "Fabrication release, tooling, prototype fit, purchases, Nate-only design approval"
   ],
-  "passed": 59,
-  "total": 59
+  "pass": 72,
+  "fail": 0,
+  "open": 7
 }

@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -26,11 +27,20 @@ def esc(x):
     return str(x).replace("|", "\\|") if x is not None else "—"
 
 
+def seal_length_m() -> float:
+    """DD6139 length from the MODELLED seal paths (4 sockets + hatch) + 10 % joint/scrap."""
+    import hatch as HA
+    import side_socket as SS
+    return round((4 * SS.seal_land_path().length + HA.seal_land_path().length) / 1000 * 1.10, 1)
+
+
 def purchased_rows():
     rows = []
     for key in PURCHASED_ORDER:
         h = HW[key]
         qty = h.get("qty") or h.get("qty_cables") or h.get("length_m") or 1
+        if key == "bulb_seal":
+            qty = seal_length_m()
         unit = "m" if key == "bulb_seal" else "off"
         rows.append((
             h.get("role", key).split(".")[0][:58],
@@ -44,31 +54,34 @@ def purchased_rows():
     return rows
 
 
+def family(part: str) -> str:
+    """L1_MOD_CAGE_BAR_316_10 -> MOD_CAGE_BAR_316: drop the socket prefix and instance counter."""
+    fam = re.sub(r"^(L0|L1|R0|R1)_", "", part.split("__")[-1])
+    fam = re.sub(r"_(\d{1,2}|L0|L1|R0|R1)$", "", fam)
+    return fam.split("-")[0]
+
+
 def custom_rows():
-    seen, rows = set(), []
+    fams = {}
     for m in MAN:
         if m["status"] != "CUSTOM":
             continue
-        fam = m["part"].split("__")[-1]
-        for tag in ("_2", "_3"):
-            if fam.endswith(tag):
-                fam = fam[: -len(tag)]
-        fam = fam.split("-")[0]
-        if fam in seen:
-            continue
-        seen.add(fam)
-        rows.append((fam, m["material"], m["process"], m["finish"], f'{m["mass_kg"]:.3f}'))
-    return sorted(rows)
+        f = fams.setdefault(family(m["part"]), {"m": m, "kg": [], "n": 0})
+        f["kg"].append(m["mass_kg"])
+        f["n"] += 1
+    rows = []
+    for fam, f in sorted(fams.items()):
+        lo, hi = min(f["kg"]), max(f["kg"])
+        kg = f"{lo:.3f}" if hi - lo < 0.0005 else f"{lo:.3f}-{hi:.3f}"
+        m = f["m"]
+        rows.append((fam, m["material"], m["process"], m["finish"], str(f["n"]), kg))
+    return rows
 
 
 def counts():
     c = defaultdict(int)
     for m in MAN:
-        fam = m["part"].split("__")[-1]
-        for tag in ("_2", "_3"):
-            if fam.endswith(tag):
-                fam = fam[: -len(tag)]
-        c[fam] += 1
+        c[family(m["part"])] += 1
     return c
 
 
@@ -119,8 +132,8 @@ def main():
     a("\n## 2. Machined / fabricated parts\n")
     a("Material, process, finish and mass come from the geometry model; drawings are in "
       "`step27/drawings/`.\n")
-    a("| Part | Material | Process | Finish | Mass (kg ea.) |")
-    a("|---|---|---|---|---|")
+    a("| Part | Material | Process | Finish | Qty | Mass (kg ea.) |")
+    a("|---|---|---|---|---|---|")
     for r in custom_rows():
         a("| " + " | ".join(esc(x) for x in r) + " |")
 
@@ -131,22 +144,23 @@ def main():
     why = {
         "bushing_true_position": "sets whether one module drops into any of the four sockets",
         "land_flatness": "sets the seal's closed gap around the whole perimeter",
-        "ledge_lip_height": "sets whether the module sits flush after it is hung",
-        "seal_groove_depth": "legacy name; now the seal-rib height, sets bulb deflection",
+        "ledge_lip_height": "hook-fin seat height: sets whether the module sits flush once hung",
+        "seal_groove_depth": "seal-rib height (legacy key name): sets the bulb's seat",
         "module_profile": "sets the visible 4 mm shut line",
         "hinge_axis_straightness": "sets whether the hatch leaf binds through its swing",
         "latch_pattern": "Southco panel preparation, 38.1 +/-0.3 hole pitch",
     }
     for k, v in G.TOL.items():
         a(f"| {k} | {v} | {why.get(k, '')} |")
-    a(f"| compression limiter thickness | 7.40 +0 / -0.05 | "
-      f"this dimension IS the seal compression |")
+    a("| compression limiter: 12.85 frame boss + 7.40 +0/-0.05 pad | stack = 20.25 | "
+      "the stack height IS the seal's compressed height; the flange lands on it |")
 
     a("\n## 3. Part count from the geometry model\n")
     c = counts()
+    shell_kg = sum(m["mass_kg"] for m in MAN if "SHELL" in m["part"])
     a(f"{len(MAN)} part instances, {len(c)} distinct part families, "
-      f"{sum(m['mass_kg'] for m in MAN):.1f} kg of Step 27 hardware "
-      f"(the carbon shell itself is not in this number).\n")
+      f"{sum(m['mass_kg'] for m in MAN):.1f} kg in total, of which the carbon shell is "
+      f"{shell_kg:.1f} kg (22 mm sandwich at 5.8 kg/m^2 - an estimate, not a weighed part).\n")
 
     a("\n## 4. What is NOT resolved — these block ordering\n")
     for key in sorted(HW):

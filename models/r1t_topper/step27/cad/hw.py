@@ -31,7 +31,8 @@ from pathlib import Path
 
 from build123d import (
     Align, Axis, Box, Circle, Compound, Cylinder, Plane, Polyline, Pos,
-    Rectangle, RegularPolygon, Rot, Sphere, Vector, chamfer, extrude, fillet, sweep,
+    Rectangle, RegularPolygon, Rot, Sphere, Transition, Vector, chamfer, extrude, fillet,
+    sweep,
 )
 
 HERE = Path(__file__).resolve().parent
@@ -64,7 +65,7 @@ def _z_fillet(part, r):
 # ======================================================================================
 # Southco R4-30 two-stage rotary latch + R4-90 striker bolt
 # ======================================================================================
-PIVOT_Z = -1.6          # fork-bolt centre, just behind the panel so its rim protrudes through
+PIVOT_Z = -3.6          # rotor centre: rotor and captured bar both inside the 34.8 mm envelope
 
 
 def fork_bolt(state: str = "closed"):
@@ -85,51 +86,83 @@ def fork_bolt(state: str = "closed"):
     return _lab(Rot(ang, 0, 0) * part, f"fork_bolt:{state}", (0.86, 0.32, 0.05))
 
 
-def pawl(state: str = "closed"):
-    """Spring-loaded pawl dropping into the fork-bolt catches, with the cable arm that lifts it."""
+PAWL_Z = -10.6          # pawl pivot: inside the housing, below the panel, in the rotor's plane
+
+
+def bar_centre(state: str = "closed"):
+    """Striker-bar centre (latch-local y, z) in a given fork state.
+
+    The bar rides round with the fork: it enters along -Y at the rotor's pivot height, meets the
+    throat root at 0 deg (receiving) and is carried through the closing angle on a radius of
+    ``claw_r - throat_depth`` about the pivot.
+    """
     p = d("rotary_latch")
     k = HW["rotary_latch"]["kinematics"]
-    ang = -k["pawl_release_deg"] if state == "open" else 0.0
-    r, t, arm = p["pawl_r"], p["pawl_t"], p["cable_arm_l"]
+    a = math.radians({"closed": k["closed_deg"], "secondary": k["secondary_deg"],
+                      "open": k["open_deg"]}[state])
+    rr = p["claw_r"] - p["throat_depth"]
+    return p["pivot_y"] + rr * math.cos(a), PIVOT_Z + rr * math.sin(a)
 
-    part = Rot(0, 90, 0) * Cylinder(r * 0.5, t, align=(CC, CC, CC))
-    part += Pos(0, 0, r / 2) * Box(t, r * 0.5, r, align=(CC, CC, CC))
-    part += Pos(0, 0, r) * Rot(0, 90, 0) * Cylinder(r * 0.28, t, align=(CC, CC, CC))
-    part += Pos(0, -arm / 2, 0) * Box(t * 0.7, arm, 7.0, align=(CC, CC, CC))
-    part += Pos(0, -arm, 0) * Rot(0, 90, 0) * Cylinder(5.5, t * 0.7, align=(CC, CC, CC))
-    part -= Pos(0, -arm, 0) * Cylinder(p["cable_eye_dia"] / 2, t + 6, align=(CC, CC, CC))
-    part -= Rot(0, 90, 0) * Cylinder(2.5, t + 6, align=(CC, CC, CC))
-    return _lab(Rot(ang, 0, 0) * part, f"pawl:{state}", (0.72, 0.72, 0.75))
+
+def pawl(state: str = "closed"):
+    """Spring-loaded pawl, coplanar with the rotor, inside the housing.
+
+    Tip reaches the rotor rim; the cable arm runs aft to the eye the release cable pulls.
+    """
+    p = d("rotary_latch")
+    k = HW["rotary_latch"]["kinematics"]
+    ang = k["pawl_release_deg"] if state == "open" else 0.0          # tip lifts off the rotor rim
+    t, arm = p["pawl_t"], p["cable_arm_l"]
+    fy, fz = p["pivot_y"], PIVOT_Z
+    dy, dz = fy - p["pawl_pivot_y"], fz - PAWL_Z
+    reach = math.hypot(dy, dz) - p["claw_r"] - 0.5          # stop 0.5 mm short of the rim
+    a = math.degrees(math.atan2(dz, dy))
+    body = Rot(0, 90, 0) * Cylinder(5.0, t, align=(CC, CC, CC))
+    body += Rot(a, 0, 0) * Pos(0, reach / 2, 0) * Box(t, reach, 6.0, align=(CC, CC, CC))
+    body += Pos(0, -arm / 2, 0) * Box(t * 0.7, arm, 5.0, align=(CC, CC, CC))
+    body += Pos(0, -arm, 0) * Rot(0, 90, 0) * Cylinder(3.5, t * 0.7, align=(CC, CC, CC))
+    body -= Pos(0, -arm, 0) * Rot(0, 90, 0) * Cylinder(p["cable_eye_dia"] / 2, t + 6,
+                                                        align=(CC, CC, CC))
+    body -= Rot(0, 90, 0) * Cylinder(2.0, t + 6, align=(CC, CC, CC))
+    return _lab(Rot(ang, 0, 0) * body, f"pawl:{state}", (0.72, 0.72, 0.75))
 
 
 def latch_housing():
-    """R4-30 envelope: 77 long x 19.4 wide x 34.8 deep, holes at 38.1 pitch, 17 mm striker slot."""
+    """R4-30 envelope: 77 long x 19.4 wide x 34.8 deep; two slotted side plates.
+
+    A rotary latch is two steel side plates with the rotor and pawl pinned between them and a
+    U-slot through BOTH plates for the striker bar, so the bar crosses the latch. The previous
+    representation was a solid block whose slot was narrower than the latch, which put the bar
+    through the housing walls. Envelope and hole pitch are Southco datasheet values; the plate
+    thicknesses and the slot path are ours (G6).
+    """
     p = d("rotary_latch")
     L, W = p["overall_l"], p["width"]
     front, behind = p["front_proud"], p["behind_panel"]
-    r, td, tw = p["claw_r"], p["throat_depth"], p["throat_w"]
-
-    part = _z_fillet(Box(W, L, 4.0, align=(CC, CC, CMAX)), 5.0)          # panel-face flange
-    for sy in (-1, 1):
-        part -= Pos(0, sy * p["hole_pitch"] / 2, 1) * Cylinder(
-            p["panel_hole_dia"] / 2, 10.0, align=(CC, CC, CMAX))
-    part += Pos(0, p["pivot_y"], -behind / 2 - 2.0) * Box(
-        W, r * 2 + 16, behind - 4.0, align=(CC, CC, CC))                 # fork-bolt housing
-    part += Pos(0, p["pawl_pivot_y"] - 6, -behind / 2 - 2.0) * Box(
-        W, 34.0, behind - 4.0, align=(CC, CC, CC))                       # pawl / trigger housing
-    part += Pos(0, p["pivot_y"] + 4, front / 2) * Box(
-        W, r * 1.6, front, align=(CC, CC, CC))                           # nose proud of the panel
-    part += Pos(0, -L / 2 + 6, -behind / 2 - 2.0) * Box(
-        W, 12.0, 16.0, align=(CC, CC, CC))                               # cable abutment
-    # cavities last, so they cut every housing section
-    part -= Pos(0, p["pivot_y"], PIVOT_Z) * Rot(0, 90, 0) * Cylinder(
-        r + 1.2, W - 5.0, align=(CC, CC, CC))
-    part -= Pos(0, p["pawl_pivot_y"], PIVOT_Z + 2) * Rot(0, 90, 0) * Cylinder(
-        p["pawl_r"] + 1.2, W - 5.0, align=(CC, CC, CC))
-    part -= Pos(0, p["pivot_y"] + p["slot_depth"] / 2 + 6, 2) * Box(
-        tw + 1.0, p["slot_depth"] + 24, front + 10, align=(CC, CC, CMAX))  # striker entry slot
-    part -= Pos(0, -L / 2 + 6, -behind / 2 - 2.0) * Rot(90, 0, 0) * Cylinder(
-        d("release_cable")["conduit_dia"] / 2 + 0.3, 24, align=(CC, CC, CC))
+    pt = 2.5
+    z0, z1 = -(behind + 1.4), front
+    part = None
+    for sx in (-1, 1):
+        plate = Pos(sx * (W / 2 - pt / 2), 0, (z0 + z1) / 2) * Box(pt, L, z1 - z0, align=(CC, CC, CC))
+        part = plate if part is None else part + plate
+    part += Pos(0, L / 2 - 2.75, z1 - 1.2) * Box(W - 2 * pt + 0.02, 5.5, 2.4,
+                                             align=(CC, CC, CC))                # front spacer
+    part += Pos(0, -L / 4 - 3, -2.0) * Box(W, L / 2 - 6, 4.0, align=(CC, CC, CC))       # flange
+    part += Pos(0, -L / 2 + 5, (z0 + 2.5 + (-5.0)) / 2) * Box(
+        W - 2 * pt + 0.02, 10.0, -5.0 - (z0 + 2.5), align=(CC, CC, CC))                 # abutment
+    part -= Pos(0, -p["hole_pitch"] / 2, 1) * Cylinder(p["panel_hole_dia"] / 2, 10.0,
+                                                       align=(CC, CC, CMAX))
+    # only the nose stands proud of the panel face; aft of it the housing is behind the panel
+    part -= Pos(0, -L / 2 - 1, 0.0) * Box(W + 2, L / 2 + 1 - 1.0, z1 + 1, align=(CC, CMIN, CMIN))
+    part -= Pos(0, -L / 2 + 5, PAWL_Z) * Rot(90, 0, 0) * Cylinder(
+        d("release_cable")["conduit_dia"] / 2 + 0.3, 14, align=(CC, CC, CC))
+    # straight striker path through both side plates at the closed bar height, round-bottomed
+    # at the throat root (13.5 wide for the Dia 12.7 bar). The striker is on the module and moves
+    # in a straight line; the rotor, not the bar, does the rotating.
+    w = d("striker")["rod_dia"] / 2 + 0.4
+    yb, zb = bar_centre("closed")
+    part -= Pos(0, (yb + L / 2 + 2) / 2, zb) * Box(W + 2, L / 2 + 2 - yb, 2 * w, align=(CC, CC, CC))
+    part -= Pos(0, yb, zb) * Rot(0, 90, 0) * Cylinder(w, W + 2, align=(CC, CC, CC))
     return _lab(part, "latch_housing_R4-30", (0.62, 0.63, 0.66))
 
 
@@ -139,7 +172,7 @@ def rotary_latch(state: str = "closed"):
     c = Compound(children=[
         latch_housing(),
         Pos(0, p["pivot_y"], PIVOT_Z) * fork_bolt(state),
-        Pos(0, p["pawl_pivot_y"], PIVOT_Z + 2) * pawl(state),
+        Pos(0, p["pawl_pivot_y"], PAWL_Z) * pawl(state),
     ])
     c.label = f"ROTARY_LATCH_R4-30:{state}"
     return c
@@ -190,31 +223,63 @@ def _dir(a, b):
     return (Vector(b) - Vector(a)).normalized()
 
 
-def release_cable(pts):
-    """Push-pull cable conduit swept along ``pts`` (3-tuples, mm), plus the two end fittings."""
+def route_edges(pts, r: float):
+    """Waypoints -> tangent-continuous edges: straight runs joined by radius-``r`` arcs.
+
+    The same construction feeds the sweep and the bend-radius check, so the check measures the
+    cable that is actually modelled.
+    """
+    from build123d import Edge
+    P = [Vector(*p) for p in pts]
+    edges, cur = [], P[0]
+    for a, b, c in zip(P, P[1:], P[2:]):
+        d1, d2 = (b - a).normalized(), (c - b).normalized()
+        ang = math.acos(max(-1.0, min(1.0, d1.dot(d2))))
+        t = r * math.tan(ang / 2)
+        p0, p1 = b - d1 * t, b + d2 * t
+        if (p0 - cur).length > 1e-6:
+            edges.append(Edge.make_line(cur, p0))
+        nrm = (d2 - d1).normalized()
+        ctr = b + nrm * (r / math.cos(ang / 2))
+        mid = ctr + ((p0 - ctr) + (p1 - ctr)).normalized() * r
+        edges.append(Edge.make_three_point_arc(p0, mid, p1))
+        cur = p1
+    edges.append(Edge.make_line(cur, P[-1]))
+    return edges
+
+
+def route_min_radius(pts, r: float) -> float:
+    """Achieved bend radius: r if every fillet fits in its segments, else the largest that fits."""
+    P = [Vector(*p) for p in pts]
+    tans = []
+    for a, b, c in zip(P, P[1:], P[2:]):
+        d1, d2 = (b - a).normalized(), (c - b).normalized()
+        tans.append(math.tan(math.acos(max(-1.0, min(1.0, d1.dot(d2)))) / 2))
+    best = r
+    for k, (a, b) in enumerate(zip(P, P[1:])):
+        seg = (b - a).length
+        need = (tans[k - 1] if k > 0 else 0.0) + (tans[k] if k < len(tans) else 0.0)
+        if need > 0:
+            best = min(best, seg / need)
+    return best
+
+
+def release_cable(pts, r: float = 60.0):
+    """Push-pull cable conduit swept along a filleted route, plus the two end fittings."""
+    from build123d import Wire
     c = d("release_cable")
-    path = Polyline(*[tuple(p) for p in pts])
-    prof = Plane(origin=tuple(pts[0]), z_dir=_dir(pts[0], pts[1])) * Circle(c["conduit_dia"] / 2)
-    part = sweep(prof, path=path)
+    path = Wire(route_edges(pts, r))
+    t0 = path % 0
+    prof = Plane(origin=tuple(pts[0]), z_dir=t0) * Circle(c["conduit_dia"] / 2)
+    part = sweep(prof, path=path, transition=Transition.ROUND)
     for a, b in ((pts[0], pts[1]), (pts[-1], pts[-2])):
         part += extrude(Plane(origin=tuple(a), z_dir=_dir(a, b)) * Circle(c["end_fitting_dia"] / 2),
                         amount=c["end_fitting_len"])
     return _lab(part, "RELEASE_CABLE_AC", (0.06, 0.06, 0.07))
 
 
-def cable_min_radius(pts) -> float:
-    """Smallest turn radius the routed polyline implies, for the bend-radius check."""
-    best = float("inf")
-    for i in range(1, len(pts) - 1):
-        a, b, c = (Vector(p) for p in (pts[i - 1], pts[i], pts[i + 1]))
-        v1, v2 = a - b, c - b
-        if v1.length < 1e-6 or v2.length < 1e-6:
-            continue
-        half = math.acos(max(-1.0, min(1.0, v1.normalized().dot(v2.normalized())))) / 2.0
-        if half <= 1e-6 or abs(half - math.pi / 2) < 1e-6:
-            continue
-        best = min(best, min(v1.length, v2.length) * 0.5 * math.tan(half))
-    return best
+def cable_min_radius(pts, r: float = 60.0) -> float:
+    return route_min_radius(pts, r)
 
 
 def release_handle(pulled: bool = False):
@@ -244,25 +309,51 @@ def cable_splitter():
 # locators, seal, stops
 # ======================================================================================
 def locating_pin(kind: str = "round"):
+    """MISUMI CFPBPA6/CFPBPD6-P10-L10-B8. Local +Z = the head; z = 0 is the seating face.
+
+    Large-head pin: the D6 p6 shank presses into the carrier, the P10 head (8 straight + 3 taper)
+    seats on the carrier face. There is no separate shoulder.
+    """
     p = d(f"locating_pin_{kind}")
-    part = Cylinder(p["press_dia"] / 2, p["press_len"], align=(CC, CC, CMAX))
-    part += Cylinder(p["shoulder_dia"] / 2, p["shoulder_t"], align=(CC, CC, CMIN))
-    pin = Pos(0, 0, p["shoulder_t"]) * Cylinder(p["pin_dia"] / 2, p["pin_len"], align=(CC, CC, CMIN))
-    # chamfer the lead-in BEFORE cutting the flats: on a diamond pin the top face is no longer a
-    # single circle, and OCCT refuses a chamfer over the resulting mixed edge set.
-    pin = chamfer(pin.edges().group_by(Axis.Z)[-1], length=p["lead_chamfer"])
+    shank = Cylinder(p["shank_dia"] / 2, p["shank_len"], align=(CC, CC, CMAX))
+    shank = chamfer(shank.edges().group_by(Axis.Z)[0], length=p["shank_chamfer"])
+    head = Cylinder(p["head_dia"] / 2, p["head_straight"], align=(CC, CC, CMIN))
+    r_tip = p["head_dia"] / 2 - p["tip_taper_len"] * math.tan(math.radians(p["tip_taper_deg"]))
+    from build123d import Cone
+    head += Pos(0, 0, p["head_straight"]) * Cone(p["head_dia"] / 2, r_tip, p["tip_taper_len"],
+                                                  align=(CC, CC, CMIN))
     if kind == "diamond":
-        for sy in (-1, 1):
-            pin -= Pos(0, sy * (p["flat_across"] / 2 + p["pin_dia"] / 2), p["shoulder_t"] - 1) * Box(
-                p["pin_dia"] * 2, p["pin_dia"], p["pin_len"] + 4, align=(CC, CC, CMIN))
-    return _lab(part + pin, f"LOCATING_PIN_{kind.upper()}_MISUMI", (0.62, 0.63, 0.66))
+        # 60 deg included flats leaving a 3 mm land on the P circle, lands on +/-Y (the
+        # contact direction, perpendicular to the pin-to-pin line which is local X)
+        r = p["head_dia"] / 2
+        hw_ = p["land_w"] / 2
+        yl = math.sqrt(r * r - hw_ * hw_)
+        t30 = math.tan(math.radians(p["flat_included_deg"] / 2))
+        yv = yl + hw_ / t30
+        ue = yv * t30
+        from build123d import Polygon
+        rh = extrude(Polygon((0, -yv - 1), (ue, 0), (0, yv + 1), (-ue, 0), align=None),
+                     amount=p["head_straight"] + p["tip_taper_len"] + 2)
+        head = head & (Pos(0, 0, -1) * rh)
+    return _lab(shank + head, f"LOCATING_PIN_{kind.upper()}_MISUMI", (0.62, 0.63, 0.66))
+
+
+def diamond_relief() -> float:
+    """Per-side relief of the diamond head along the pin-to-pin line (mm)."""
+    p = d("locating_pin_diamond")
+    r = p["head_dia"] / 2
+    hw_ = p["land_w"] / 2
+    yl = math.sqrt(r * r - hw_ * hw_)
+    t30 = math.tan(math.radians(p["flat_included_deg"] / 2))
+    return r - (yl + hw_ / t30) * t30
 
 
 def bushing():
+    """MISUMI JBHC10-15. Local +Z into the carrier; flange face at z = 0 (flange z 0..T)."""
     b = d("bushing")
-    part = Cylinder(b["od"] / 2, b["len"], align=(CC, CC, CMIN))
+    part = Cylinder(b["od"] / 2, b["overall"], align=(CC, CC, CMIN))
     part += Cylinder(b["flange_dia"] / 2, b["flange_t"], align=(CC, CC, CMIN))
-    part -= Pos(0, 0, -1) * Cylinder(b["id"] / 2, b["len"] + 4, align=(CC, CC, CMIN))
+    part -= Pos(0, 0, -1) * Cylinder(b["id"] / 2 + 0.0095, b["overall"] + 4, align=(CC, CC, CMIN))
     return _lab(part, "BUSHING_JBHC10-15_G6", (0.5, 0.5, 0.54))
 
 
@@ -275,6 +366,7 @@ def bulb_seal_section(compressed: bool = False):
     sk = Rectangle(s["base_w"], s["base_h"], align=(CC, CMIN))
     sk -= Pos(0, -1) * Rectangle(s["rib_t"] + 0.2, s["base_h"], align=(CC, CMIN))   # grip channel
     sk += Pos(0, s["base_h"] + s["bulb_dia"] / 2) * Circle(s["bulb_dia"] / 2)
+    sk += Pos(0, s["base_h"]) * Rectangle(3.0, 2.0)          # neck: bulb and base are one extrusion
     if compressed:
         # the sponge bulb flattens; the dense EPDM base does not, so trim the bulb, don't scale
         sk -= Pos(0, s["compressed_height"]) * Rectangle(
@@ -320,17 +412,24 @@ def strut_length(extension: float = 1.0) -> float:
 
 
 def gas_strut(extension: float = 1.0):
-    """Stabilus 6541IS, axis +Z, origin at the lower ball-socket centre. 0 = compressed."""
+    """Stabilus LIFT-O-MAT, axis +Z, origin at the lower (frame) ball-socket centre.
+
+    Two solids, so the render lane can telescope the real CAD parts: BODY (frame socket + cylinder)
+    and ROD (rod + leaf socket, placed at the given extension; 0 = compressed).
+    """
     g = d("gas_strut")
+    pn = HW["gas_strut"]["pn"]
     total = strut_length(extension)
     sock, body_len = g["socket_len"], g["compressed_len"] - 2 * g["socket_len"]
-    part = Pos(0, 0, sock) * Cylinder(g["body_dia"] / 2, body_len, align=(CC, CC, CMIN))
-    part += Pos(0, 0, sock + body_len) * Cylinder(
-        g["rod_dia"] / 2, total - sock - body_len, align=(CC, CC, CMIN))
-    for z in (0.0, total - sock):
-        part += Pos(0, 0, z) * Cylinder(g["socket_across"] / 2, sock, align=(CC, CC, CMIN))
-    part.label = f"GAS_STRUT_6541IS:{total:.0f}mm"
-    return part
+    body = Cylinder(g["socket_across"] / 2, sock, align=(CC, CC, CMIN))
+    body += Pos(0, 0, sock) * Cylinder(g["body_dia"] / 2, body_len, align=(CC, CC, CMIN))
+    rod_len = total - sock - body_len - sock
+    rod = Pos(0, 0, sock + body_len - 1.0) * Cylinder(g["rod_dia"] / 2, rod_len + 1.0,
+                                                    align=(CC, CC, CMIN))
+    rod += Pos(0, 0, total - sock) * Cylinder(g["socket_across"] / 2, sock, align=(CC, CC, CMIN))
+    c = Compound(children=[_lab(body, f"GAS_STRUT_BODY_{pn}"), _lab(rod, f"GAS_STRUT_ROD_{pn}")])
+    c.label = f"GAS_STRUT_{pn}:{total:.0f}mm"
+    return c
 
 
 def ball_stud():

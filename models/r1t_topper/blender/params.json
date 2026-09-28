@@ -1,82 +1,86 @@
 {
- "_doc": "Opus-pass parametric source. Metres. X rearward, Y driver(+)/left, Z up; origin = centerline at forward edge of bed-rail top plane. Provenance per value in ../../../../forge-agent-os/tools/r1t-opus-pass/measurements.md",
+ "_doc": "R1T topper parametric source (Step 27 styling pass). Metres. X rearward, Y driver(+), Z up; origin = centreline at the bed's inside front wall, z = 0 on the bed-rail top. Truck values are measured from Rivian's own orthographic line art by step27/style/rivian_reference.py (scale anchors and cross-checks in step27/style/rivian_reference.json); topper values are design decisions recorded in step27/style/STYLE27.md. Every truck value is TAPE-REQUIRED before fabrication.",
+ "_provenance": {
+  "truck.ground_z": "R1T side view, wheelbase-scaled (reproduces published 1834 mm roof to 0.04 %); rear view gives 1344 mm -> band 1344-1366 mm",
+  "truck.cab_back": "R1T side view silhouette under the roof spoiler",
+  "truck.spoiler_tip": "R1T side view (x -0.132) and Upfit p.59 plan view (x -0.127) agree",
+  "truck.cab_roof_z": "R1T side view roof ahead of the antenna fin; max 0.469",
+  "truck.rail_cap_*": "Upfit p.59 plan view line clusters at mid-bed (0.644 inner wall, 0.783, 0.828)",
+  "truck.rear_axle_x": "side-view tailgate face minus published 1381 mm bed length and a 60 mm tailgate shell",
+  "truck.tailgate_x": "R1T side view tailgate outer face",
+  "truck.rail_flat_end_x / tailgate_top_z": "R1T side view: rail top flat to x 1.365, rounding down to the tailgate top 32 mm lower",
+  "published": "overall_length, body_width, wheelbase, track, tire_r, bed_* from the R1T Upfitting Guide pp.28-30",
+  "shell.*": "design decisions against R1T/R1S targets, see STYLE27.md; lean 21 deg = R1T C-pillar 21.8 / R1S D-pillar 20.1; rake 15 deg = R1S liftgate 15.2",
+  "socket.* / hatch.*": "derived from the flat-land and flat-rear-face budgets of the styled shell, checked by checks_step27"
+ },
  "truck": {
-  "ground_z": -1.185,
+  "ground_z": -1.366,
   "overall_length": 5.514,
   "body_width": 2.014,
-  "cab_roof_z": 0.649,
   "wheelbase": 3.45,
-  "rear_axle_x": 0.405,
-  "tire_r": 0.432,
-  "tire_w": 0.279,
   "track": 1.73,
-  "bed_len": 1.377,
+  "tire_r": 0.432,
+  "tire_w": 0.275,
+  "rear_axle_x": 0.409,
+  "tailgate_x": 1.441,
+  "rear_end_x": 1.564,
+  "bed_len": 1.381,
   "bed_w": 1.299,
   "bed_depth": 0.465,
-  "rail_outer_w": 1.7,
-  "rail_cap_w": 0.14,
-  "tailgate_x": 1.437,
-  "cab_back_x": -0.48,
-  "rear_end_x": 1.56,
-  "windshield_base_x": -2.23,
-  "roof_front_x": -1.7,
-  "bed_ports": [
-   [
-    0.305,
-    0.731
-   ],
-   [
-    1.158,
-    0.731
-   ]
-  ],
-  "roof_ports_x": [
-   -1.6,
-   -0.675
-  ],
+  "rail_cap_in": 0.644,
+  "rail_cap_flat_out": 0.783,
+  "rail_cap_out": 0.828,
+  "rail_flat_end_x": 1.365,
+  "tailgate_top_z": -0.032,
+  "cab_roof_z": 0.463,
+  "cab_roof_max_z": 0.469,
+  "cab_back": [[-0.150, 0.045], [-0.164, 0.196], [-0.172, 0.292], [-0.180, 0.355]],
+  "spoiler_tip": [-0.132, 0.427],
+  "spoiler_root": [-0.296, 0.447],
+  "bed_ports": [[0.305, 0.731], [1.158, 0.731]],
+  "roof_ports_x": [-1.6, -0.675],
   "roof_ports_half_y": 0.61
  },
  "shell": {
-  "x0": -0.46,
-  "x1": 1.44,
-  "roof_z_front": 0.64,
-  "roof_z_rear": 0.6,
-  "rear_rake": 0.06,
-  "base_half_w": 0.85,
-  "land_top_z": 0.46,
-  "land_half_w": 0.79,
-  "shoulder_r": 0.18,
-  "roof_crown": 0.018,
-  "wall": 0.022
+  "x0": -0.100,
+  "x1": 1.436,
+  "roof_z": 0.462,
+  "roof_crown": 0.013,
+  "base_half_w": 0.805,
+  "lean_deg": 21.0,
+  "land_top_z": 0.385,
+  "shoulder_r": 0.100,
+  "front_r": 0.050,
+  "rear_rake_deg": 15.0,
+  "rear_r": 0.100,
+  "wall": 0.022,
+  "foot_w": 0.115
  },
  "socket": {
-  "centers_x": [
-   -0.02,
-   0.8
-  ],
-  "z_bot": 0.09,
-  "z_top": 0.44,
-  "width": 0.64,
-  "corner_r": 0.06,
-  "pocket_step": 0.022,
-  "pocket_margin": 0.028,
+  "centers_x": [0.280, 0.932],
+  "z_bot": 0.1121,
+  "z_top": 0.3063,
+  "width": 0.470,
+  "corner_r": 0.045,
   "shutline": 0.004
  },
  "hatch": {
-  "z_bot": 0.03,
+  "width": 1.000,
+  "height": 0.226,
+  "sill_s": 0.100,
   "open_deg": 95,
   "mullion": 0.14,
-  "corner_r": 0.07,
-  "width": 1.28,
-  "margin": 0.028
+  "corner_r": 0.060
  },
  "keying": {
-  "pin_u": [-0.17, 0.23],
-  "latch_u": [-0.25, 0.25]
+  "pin_u": [-0.110, 0.150],
+  "latch_u": [-0.150, 0.150]
  },
- "roof_ports_x": [
-  -0.2,
-  1.1
- ],
- "roof_ports_y": 0.52
+ "base_rail": {
+  "y_in": 0.680,
+  "y_out": 0.755,
+  "h": 0.025
+ },
+ "roof_ports_x": [0.05, 1.10],
+ "roof_ports_y": 0.50
 }

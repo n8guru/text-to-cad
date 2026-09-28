@@ -86,8 +86,8 @@ the tailgate release and the only in-bed bed-light control.
 
 ## 2. The problem this creates for the topper
 
-Our base rails run along `y = ±0.79 m`, 90 mm wide, from `x0` to `x1` — directly over the bed-rail
-cap top face. **They cover, on the driver side, the tailgate release (#3) and the tonneau button
+The shell's foot (`y` 0.690–0.805 m) and the 6061 base rails (`y` 0.680–0.755 m, Step 27 styling
+pass) sit directly on the bed-rail cap top face. **They cover, on the driver side, the tailgate release (#3) and the tonneau button
 (#2) at the rear, and on both sides the Gear Tunnel release buttons (#1) at the front.**
 
 That is four OEM buttons enclosed by our own structure. Losing #3 alone costs tailgate release
@@ -108,7 +108,11 @@ Rationale, in order:
 3. The OEM button keeps its OEM feel, OEM sealing and OEM lock-state behaviour (forum reports the
    rail button is disabled when the vehicle is locked; the entrapment button is not).
 
-### 3.1 The access well — `OEM_CONTROL_WELL` (custom part, DWG-27-009)
+### 3.1 The access well — `OEM_CONTROL_WELL` (custom part)
+
+> Step 27 styling pass: the wells are modelled as clear 120 x 70 mm cut-outs through the shell foot
+> and the base rail (`cad/mounts.py` `WELLS`, x provisional until T1-T3), checked by
+> `oem_buttons_not_covered`. The hinged lid below is design intent and is not modelled.
 
 One per covered button, four total:
 

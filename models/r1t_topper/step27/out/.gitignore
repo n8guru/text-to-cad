@@ -1,5 +1,7 @@
-# Per-part STLs are a DERIVED render input, not evidence: the STEP assembly and the source in
-# ../cad are authoritative, and `python cad/assembly_step27.py` regenerates all 153 of them in one
-# command. Committing 16 MB of binary tessellation that the repo can rebuild is pure weight.
+# Per-part STLs are a DERIVED render input, not evidence: the STEP assemblies and the source in
+# ../cad are authoritative, and `python cad/assembly_step27.py` regenerates every one of them
+# (closed, open, payload variants, truck reference) in one command.
 parts/
 parts_open/
+parts_payloads/
+reference/

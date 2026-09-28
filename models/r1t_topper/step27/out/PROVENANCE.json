@@ -1,0 +1,58 @@
+{
+ "_doc": "Tie the generated outputs to the exact sources that produced them.",
+ "commands_in_order": [
+  "python step27/style/rivian_reference.py",
+  "python step27/cad/assembly_step27.py",
+  "python step27/cad/make_drawings.py",
+  "python step27/cad/make_bom.py",
+  "python step27/cad/checks_step27.py",
+  "python step27/cad/provenance.py"
+ ],
+ "tools": {
+  "python": "3.12.3",
+  "build123d": "0.11.1"
+ },
+ "inputs": {
+  "blender/params.json": "a10d8dba29dc68853e2efdd328ce216cf8d736209a79bae19fcf2da8ec155718",
+  "step27/hardware.json": "6690ad0bb9e203d7efd578ae3dc274b1ba2b3454e9c0e76a9592d45867fb5353",
+  "step27/style/rivian_reference.json": "7442a0031d4cfa09510e2eddcc5b603bf85efcd0e3ce7dbd144d007c8b3487ee",
+  "step27/style/rivian_reference.py": "d33acc639ae71d3146eecf86e06e20bd6fd4e5146ee8292d10145fca59cac67c",
+  "step27/cad/assembly_step27.py": "17b0600d143ccac31d0f8872a3373d72ebe1aacb2b2fe7f7424376c3870e9956",
+  "step27/cad/checks_step27.py": "0773f453cdb7b9c28a53e0629a72bf9f5357109946607afde8bd53699100bfab",
+  "step27/cad/geom.py": "e1e4d34bcc7d5aa0b8b5d120f52e9522deda2c9e2d8de07b4f996e9bede77e63",
+  "step27/cad/hatch.py": "bb4aa924b7620ff2d79b9c6d64f4d840e2d3c52cfebf1a8696927606b2e39a52",
+  "step27/cad/hw.py": "2171f7cbae3206d75c58fccfa4cb0fb7e394d3da5c973c8ce1074797394000d6",
+  "step27/cad/make_bom.py": "c6c3af527deedfb7505de7ab62919587db90e48d972c755912c82b6bdc1e9f4c",
+  "step27/cad/make_drawings.py": "4a1c1dc0b2d640073d6b7300473bed826f3ac1b5ae0fe3b28f941c9b1e7b738e",
+  "step27/cad/mounts.py": "b631e05004b682d8e6b47fc27355c5e940cd842644301f64a2dfee066322dc21",
+  "step27/cad/provenance.py": "11251d1ccf0eb2421df85e9eec89f42415fbef74d24a1d4ce6830f7e03ebc19a",
+  "step27/cad/shell.py": "82bef4f82392c99fd1958418ff12c9fb998303a5a75ac4424be22b0300a8059d",
+  "step27/cad/side_socket.py": "5afb654f6557e385805a9a7b33d9bf903caf09c8343386a2103aff20d311ecb8",
+  "step27/cad/truck.py": "679af04e4bca398f2f7b80525fbfbd16f8fce86b0ed6d08fdd02759a7d01f8d3"
+ },
+ "outputs": {
+  "step27/out/R1T_REFERENCE_KEEPOUTS.step": "46caa4dec5f9738114348ef3ea34c0babb7d84ed09796c2c58d802fb24dcb6cb",
+  "step27/out/R1T_TOPPER_STEP27.step": "d016e55837362e67b87409fc65d075ec71258b1ab8c57c8c7bd51c69b511ba54",
+  "step27/out/R1T_TOPPER_STEP27_open.step": "98ba92f52b4ec7e4271b94677000832213fff362708f37480467021c285dce76",
+  "step27/out/parts_manifest.json": "98631da7e470065e1e4252bfbebb7066c1a6f23eb4c74298d4d9f597c89f99c2",
+  "step27/out/kinematics.json": "c29691d2f0ea8dc0f12c58f1eee19c9b6ab31be9fc9af26a8d9e06c77f98f61f",
+  "step27/out/checks.json": "47fb8566d02f287dd8c08288ce81dc09fe2a7f69710a74cefb7e7be50a4086d3",
+  "step27/drawings/DWG-27-000_carbon_shell.svg": "4b05438d7041e02daefb4bf84919a24f9f7137182a2fad5668eb4b67af2bbb27",
+  "step27/drawings/DWG-27-001_socket_frame.svg": "a2ca6351b43aff3f9cde24e397f50bd23174c709c0a4df4eecf6ee959245b0ae",
+  "step27/drawings/DWG-27-003_module_plug_frame.svg": "7ce8117b85aecff6a2aa274c77a56a0505cf9a1266c664662f47352b41fa00fa",
+  "step27/drawings/DWG-27-004_striker_bracket.svg": "32955c91bde5d49673a33baf1020d2a60da650bd0cd70740ce1a7affee0d6ec3",
+  "step27/drawings/DWG-27-006_compression_limiter.svg": "437786372d6a5e6984bfb8822b7597642cd1588f5fb2b3035a7e0fe5cb408a87",
+  "step27/drawings/DWG-27-007_j_hook.svg": "d4b32aa83440a0d96d10da61729e0e8f088561f4c4f2e0135b5a87f6e7995102",
+  "step27/drawings/DWG-27-008_hatch_surround.svg": "f9b5ab7c3dd8e866736af8d463486a8f4565e3f93ae25163c542da26cdeecab2",
+  "step27/drawings/DWG-27-010_base_rail.svg": "4e450e6d707580d428154f1a586e5bf497ca9cab9c3610cc3a6ee1acc8ba8f03",
+  "step27/drawings/DWG-27-011_hatch_leaf.svg": "92762808623dbef5545f81cd34e014a42fb07d9002a9c4efb64e3e4967d4a5db",
+  "step27/drawings/SEC-27-001_socket_through_latch.svg": "21e49360d09cb877e5384bf70c70a76936c70113158cd06de75b330417e7fcf5",
+  "step27/drawings/SEC-27-002_socket_centreline.svg": "d094c5d9373734406520bd1f118650c69662774eb14655c2a31b3547ead6599a",
+  "step27/drawings/SEC-27-003_hatch_shut_centreline.svg": "d80b362651f22e636ee6afb8653dd1d8d4e9e8fcc04f25367e21af1da819abee",
+  "step27/drawings/SEC-27-004_hatch_latch_station.svg": "af03d4340576ceca11fa4eb2e59c099c289252fcf6db928177799395fbfa2c71",
+  "step27/drawings/SEC-27-005_hatch_open_strut.svg": "65e1925bd067a47e5b2ff7bfb2923a36139e53dca24548752e2bbc2672f7964e",
+  "step27/drawings/SEC-27-006_shell_styled_section.svg": "0e4214e9682cae6e4d2dc528d547fc415f1d319ff41177d0faaedbd1484c0826",
+  "step27/drawings/SEC-27-007_cab_to_topper_profile.svg": "48209aff3e120442e31c397604ec60de9423c7a9111a83562e1ef13aef950a7a",
+  "step27/BOM27.md": "72d72793e048b09d6a169c78f19d9720fc62ec5469e05b2b9dfda7fbccfae415"
+ }
+}

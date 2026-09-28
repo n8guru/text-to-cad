@@ -25,7 +25,7 @@
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "source_where": "Southco R4 catalogue pp.260, 300-302 (this revision carries the Performance Details the current media.southco.com revision drops)",
     "rated_load_N": 10675.0,
-    "rated_load_note": "10 675 N (2 400 lbf) average ULTIMATE static; 14 230 N with support plate R4-38-101-10. Max DYNAMIC working load is 222 N (50 lb). Our computed service pull is 383 N/latch, which EXCEEDS the dynamic figure - see the open engineering item in BOM27.md.",
+    "rated_load_note": "10 675 N (2 400 lbf) average ULTIMATE static (a failure load, Southco glossary); 14 230 N with support plate R4-38-101-10. Max DYNAMIC working load is 222 N (50 lb); Southco publishes no sustained rating. The service pull per latch is computed from the current geometry by checks_step27.service_load_per_latch (see checks.json latch_ultimate_sanity / latch_sustained_rating); the previous pass's 383 N was for the larger 640 x 353 socket and is withdrawn.",
     "dynamic_working_N": 222.0,
     "support_plate_pn": "R4-38-101-10",
     "qty": 10,
@@ -46,13 +46,13 @@
       "claw_r": 15.0,
       "claw_t": 8.0,
       "throat_w": 14.0,
-      "throat_depth": 10.0,
+      "throat_depth": 7.0,
       "pivot_y": 16.0,
       "pawl_pivot_y": -8.0,
       "pawl_r": 12.0,
       "pawl_t": 6.0,
-      "cable_arm_l": 20.0,
-      "cable_eye_dia": 4.0
+      "cable_arm_l": 16.0,
+      "cable_eye_dia": 6.3
     },
     "dims_provenance": {
       "DATASHEET": [
@@ -67,7 +67,8 @@
         "panel_hole_dia",
         "slot_depth",
         "slot_end_r",
-        "slot_ramp_deg"
+        "slot_ramp_deg",
+        "cable_eye_dia"
       ],
       "ESTIMATED": [
         "claw_r",
@@ -85,13 +86,28 @@
     },
     "kinematics": {
       "closed_deg": 58.0,
-      "secondary_deg": 30.0,
-      "open_deg": 0.0,
+      "secondary_deg": 45.0,
+      "open_deg": 31.5,
       "pawl_release_deg": 22.0,
-      "_note": "0 deg is the RECEIVING position: the mouth faces +Y so the striker bar can enter. The bar pushes the fork round to 58 deg, where the outer horn blocks the escape corridor. Secondary catch at 30 deg is the first click."
+      "_note": "REPRESENTATION (G6): the striker is fixed to the module and approaches along a STRAIGHT line at the closed bar height; the rotor receives at open_deg (its throat then faces that line), is driven through secondary_deg (first click) to closed_deg (second click) where the throat root wraps the bar. Southco does not dimension the internals."
     },
     "finish": "stainless steel, passivated (option code 20)",
-    "notes": "MECHANICAL two-stage. NOT R4-EM (electronic). There is no R4-40 family - the real families are R4-05/10/15/20/25/30/50/81/82."
+    "notes": "MECHANICAL two-stage. NOT R4-EM (electronic). There is no R4-40 family - the real families are R4-05/10/15/20/25/30/50/81/82.",
+    "representation_note": "Step 27 styling pass: internal mechanism re-represented so it is physically realisable - throat depth 10 -> 7 mm puts the striker-bar centre 8 mm from the rotor pivot instead of 5 mm (at 5 mm the Dia 12.7 bar enclosed the pivot pin); the pawl now lies inside the housing (it previously protruded 16 mm through the mounting panel) and the housing is two slotted side plates the bar passes through. Envelope, hole pitch and panel thickness remain Southco DATASHEET values; the internals remain a REPRESENTATION (G6).",
+    "trigger_interface": "Southco R4 literature p.323: bottom trigger takes retainer clip R4-0-43922-2; trigger/lever cable-clip hole 6.3 mm, trigger/lever thickness 4 mm.",
+    "load_definitions": {
+      "average_ultimate_load_N": 10675.0,
+      "southco_definition": "'The load that causes failure or excessive deformation which renders the product inoperable.' (Southco glossary, archived 2022-05-16)",
+      "max_dynamic_working_load_N": 222.0,
+      "dynamic_defined_by_southco": false,
+      "sustained_working_load_published": false,
+      "sources": [
+        "https://web.archive.org/web/20220516163228id_/https://files.southco.com/en-us/product/glossary.html",
+        "https://web.archive.org/web/20180208011956id_/https://www.southco.com/en-us/r4-r",
+        "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+      ],
+      "needs_vendor": "Rated sustained (primary-latched) working load of R4-30-41-501-20 in our pull direction, with and without R4-38-101-10."
+    }
   },
   "striker": {
     "role": "Striker bolt the fork bolt captures. The Dia 12.7 shoulder IS the bar.",
@@ -138,13 +154,13 @@
   "release_cable": {
     "role": "Push-pull remote release: one handle -> splitter -> both rotary latches in a socket.",
     "manufacturer": "Southco",
-    "pn": "AC-CKK0-9-0450-000",
+    "pn": "AC-CKK0-9-0450-TTT",
     "pn_scheme": "AC-C[actuator-end][latch-end][spring]-[cable type]-[length mm, 4 digits]-[extension mm, 3 digits]. K = stainless L-fitting, 9 = jacketed snub/snub (mechanical R4), 0 = no spring.",
     "status": "SERIES_ONLY",
     "provenance": "DATASHEET",
     "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
     "source_where": "Southco AC cable literature, catalogue pp.321-323",
-    "qty_cables": 10,
+    "qty_cables": 15,
     "retainer_clip_trigger": "R4-0-43922-2",
     "retainer_clip_lever": "R4-0-43922",
     "dims": {
@@ -170,7 +186,13 @@
       ],
       "why": "Southco publishes the minimum bend radius (50.8 mm) and the construction (stainless cable, Acetal liner, polypropylene jacket) but NOT the conduit OD. Take it from the Cable Selection Tool before routing is released."
     },
-    "open": "Exact length/extension digits and confirmation of the fitting letters must come from Southco's configurator - one live SKU contradicts the printed fitting table."
+    "open": "NEEDS SOUTHCO: fitting letters for AC-75-101-11 / AC-05-301-11 and the R4-30 bottom trigger with R4-0-43922-2, TA from the actuator J drawing, type-9 availability at 0450/0650, conduit OD.",
+    "qty_note": "Southco's splitter diagram (AC-CA p.321) is one cable in from the handle and two out to the latches: 5 handle+splitter sets (4 sockets + hatch) = 5 handle-to-splitter + 10 splitter-to-latch = 15.",
+    "pn_placeholder_note": "Placeholder only. TTT (extension) = TA + TLC + TF per Southco drawing J-AC-C; with a K latch-end fitting TF = 20.32 so TTT >= 020 - the previous '-000' was impossible. Type 9 at 0450/0650 mm, the actuator/latch fitting letters and the conduit OD are not public (Cable Selection Tool is not reachable without a browser): NEEDS SOUTHCO.",
+    "sources_2026_09_27": [
+      "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+      "https://americas.bossard.com/content/ProductSpecSheets/SOTHCO_AC-CBB0-1-0149_CAD.pdf"
+    ]
   },
   "release_handle": {
     "role": "Interior one-hand release, one per socket plus one for the hatch. PURCHASED - the earlier custom bell-crank lever is deleted; Southco already sells the splitter that does the job.",
@@ -197,59 +219,111 @@
   "locating_pin_round": {
     "role": "Primary locator, module flange -> socket land.",
     "manufacturer": "MISUMI",
-    "pn": "FPBPA6-P10.00-L10-B8.0",
-    "status": "SERIES_ONLY",
-    "provenance": "DATASHEET_ARCHIVED",
-    "source_url": "http://web.archive.org/web/20141016150831/http://us.misumi-ec.com:80/vona2/detail/110300557320/",
-    "source_where": "MISUMI locating pins, straight press-fit shank, shape code BPA (round, p6)",
+    "pn": "CFPBPA6-P10-L10-B8",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail",
+    "source_where": "MISUMI series 110300557320 'Large Head Locating Pin - Round/Diamond Head, Tapered Tip, Straight Shank, P/L/B Configurable'; PN validated completeFlag=1 by MISUMI's public part-number service on 2026-09-27 (out-of-range controls rejected); drawing drw_01_001.gif; 2019 catalogue pp.1544-1545",
     "qty": 4,
     "dims": {
-      "pin_dia": 10.0,
-      "pin_len": 10.0,
-      "lead_chamfer": 2.0,
-      "shoulder_dia": 14.0,
-      "shoulder_t": 8.0,
-      "press_dia": 6.0,
-      "press_len": 12.0
+      "shank_dia": 6.0,
+      "shank_tol": "p6 +0.020/+0.012",
+      "shank_len": 10.0,
+      "shank_chamfer": 1.0,
+      "insertion_guide_len": 1.0,
+      "head_dia": 10.0,
+      "head_tol": "0/-0.01",
+      "head_straight": 8.0,
+      "tip_taper_len": 3.0,
+      "tip_taper_deg": 15.0,
+      "overall": 21.0
     },
     "material_options": "O1 tool steel (default) / SKS3 (B) / 304 stainless (S) / 440C 50-55 HRC (C). Specify 440C or 304 against CFRP.",
-    "open": "Dash number is not final until plate thickness L, workpiece thickness B and material prefix are fixed. Re-verify the p6 cell at D=10 on the live page (MISUMI was in a 24 h outage during this pass)."
+    "pn_grammar": "[Type CFP = 440C/420 SS 50-55 HRC][BPA round p6 | BPD diamond p6][D shank]-P[head dia]-L[shank length]-B[straight head length]",
+    "dims_provenance": {
+      "DATASHEET": [
+        "head_dia",
+        "head_straight",
+        "head_tol",
+        "insertion_guide_len",
+        "overall",
+        "shank_chamfer",
+        "shank_dia",
+        "shank_len",
+        "shank_tol",
+        "tip_taper_deg",
+        "tip_taper_len"
+      ],
+      "why": "Values from MISUMI's live series data + drawing for the D=6 row, P=10, L=10, B=8. The previous pass's Dia 14 x 8 shoulder, 6 x 12 shank and 4 mm diamond width came from the wrong row/series and are withdrawn: this Large Head pin seats on its head, it has no separate shoulder."
+    },
+    "note": "440C chosen over O1 (FPBPA/FPBPD) for an outdoor product; FP (O1, 60-63 HRC) is the harder alternative if corrosion is managed."
   },
   "locating_pin_diamond": {
     "role": "Secondary locator: takes rotation without over-constraining the pair.",
     "manufacturer": "MISUMI",
-    "pn": "FPBPD6-P10.00-L10-B8.0",
-    "status": "SERIES_ONLY",
-    "provenance": "DATASHEET_ARCHIVED",
-    "source_url": "http://web.archive.org/web/20141016150831/http://us.misumi-ec.com:80/vona2/detail/110300557320/",
+    "pn": "CFPBPD6-P10-L10-B8",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail",
     "qty": 4,
     "dims": {
-      "pin_dia": 10.0,
-      "flat_across": 4.0,
-      "pin_len": 10.0,
-      "lead_chamfer": 2.0,
-      "shoulder_dia": 14.0,
-      "shoulder_t": 8.0,
-      "press_dia": 6.0,
-      "press_len": 12.0
+      "shank_dia": 6.0,
+      "shank_tol": "p6 +0.020/+0.012",
+      "shank_len": 10.0,
+      "shank_chamfer": 1.0,
+      "insertion_guide_len": 1.0,
+      "head_dia": 10.0,
+      "head_tol": "0/-0.01",
+      "head_straight": 8.0,
+      "tip_taper_len": 3.0,
+      "tip_taper_deg": 15.0,
+      "overall": 21.0,
+      "land_w": 3.0,
+      "flat_included_deg": 60.0
     },
-    "open": "MISUMI's (W) column gives 4 mm at D=10, but whether W is across-flats or the remaining land width is not certified in the archived page. 4 mm across-flats on a 10 mm head is implausible, so it is read as land width - confirm on the live drawing."
+    "source_where": "MISUMI series 110300557320 'Large Head Locating Pin - Round/Diamond Head, Tapered Tip, Straight Shank, P/L/B Configurable'; PN validated completeFlag=1 by MISUMI's public part-number service on 2026-09-27 (out-of-range controls rejected); drawing drw_01_001.gif; 2019 catalogue pp.1544-1545",
+    "pn_grammar": "[Type CFP = 440C/420 SS 50-55 HRC][BPA round p6 | BPD diamond p6][D shank]-P[head dia]-L[shank length]-B[straight head length]",
+    "dims_provenance": {
+      "DATASHEET": [
+        "flat_included_deg",
+        "head_dia",
+        "head_straight",
+        "head_tol",
+        "insertion_guide_len",
+        "land_w",
+        "overall",
+        "shank_chamfer",
+        "shank_dia",
+        "shank_len",
+        "shank_tol",
+        "tip_taper_deg",
+        "tip_taper_len"
+      ],
+      "why": "Values from MISUMI's live series data + drawing for the D=6 row, P=10, L=10, B=8. The previous pass's Dia 14 x 8 shoulder, 6 x 12 shank and 4 mm diamond width came from the wrong row/series and are withdrawn: this Large Head pin seats on its head, it has no separate shoulder."
+    },
+    "note": "440C chosen over O1 (FPBPA/FPBPD) for an outdoor product; FP (O1, 60-63 HRC) is the harder alternative if corrosion is managed."
   },
   "bushing": {
     "role": "Press-fit hardened bushing receiving the locating pins.",
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "alt_pn": "JBH10-15 (O1 tool steel) / JBHUCP10-12 (thin wall, 440C)",
-    "status": "SERIES_ONLY",
-    "provenance": "DATASHEET_ARCHIVED",
-    "source_url": "http://web.archive.org/web/20150401054525/http://us.misumi-ec.com:80/vona2/detail/110302666420/",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
     "qty": 8,
     "dims": {
       "id": 10.0,
+      "id_tol": "G6 +0.014/+0.005",
       "od": 15.0,
-      "len": 16.0,
+      "od_tol": "p6 +0.029/+0.018",
+      "len_under_flange": 15.0,
+      "len_tol": "0/-0.5",
       "flange_dia": 19.0,
-      "flange_t": 4.0
+      "flange_t": 4.0,
+      "overall": 19.0,
+      "lead_in_len": 1.5,
+      "lead_in_deg": 10.0
     },
     "fit": {
       "bore_tol": "G6 (+0.005 / +0.014)",
@@ -257,23 +331,25 @@
       "press_into": "H7 bore in the 6061 socket frame"
     },
     "correction": "The earlier spec called for a 10 mm H7 bore. MISUMI states H7 is only offered at d = 2-6; at d = 10 every JBH/JBHU variant is G6. Re-specified to 10 G6 (5-24 micron diametral clearance), which is what MISUMI intends to pair with their pin heads. Do not carry '10 H7' anywhere.",
-    "material": "440C stainless, 50-55 HRC"
+    "material": "440C stainless, 50-55 HRC",
+    "source_where": "MISUMI series 110302666420 'Bushings for Locating Pins - Flanged'; PN validated completeFlag=1 on 2026-09-27; drawing drw_01.gif; 2019 catalogue pp.1682-1683",
+    "pn_grammar": "[JBH O1 | JBHN O1+Ni | JBHC 440C/420 SS][d]-[L under the flange]",
+    "correction_2": "The '15' in JBHC10-15 is the length under the flange (L), not the OD; overall 19 mm. The previous 16 mm length is withdrawn."
   },
   "gas_strut": {
-    "role": "Rear hatch lift support, 2 off.",
+    "role": "Rear hatch lift support, 2 off, selected by hatch.solve_struts from the Standard Program p.17 table",
     "manufacturer": "Stabilus",
-    "pn": "6541IS",
-    "alt_ref": "5077DG - Stabilus prints two Ref.-Nos per force/stroke and never legends the columns; confirm which you want before ordering",
-    "status": "SERIES_ONLY",
+    "pn": "6462II",
+    "status": "ORDERABLE",
     "provenance": "DATASHEET",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "source_where": "Standard Program EN p.17, LIFT-O-MAT HD series 6-15, ball socket / ball socket",
     "qty": 2,
     "dims": {
-      "force_N": 150.0,
-      "stroke": 150.0,
-      "extended_len": 375.5,
-      "compressed_len": 225.5,
+      "force_N": 50.0,
+      "stroke": 120.0,
+      "extended_len": 315.5,
+      "compressed_len": 195.5,
       "body_dia": 15.0,
       "rod_dia": 6.0,
       "ball_stud_dia": 10.0,
@@ -297,13 +373,26 @@
       "plastic": "698482"
     },
     "installed_geometry": {
-      "L_closed": 237.7,
-      "L_open": 369.5,
-      "travel": 131.8,
-      "margin_closed": 12.2,
-      "margin_open": 6.0,
-      "moment_arm_min": 70.2,
-      "note": "Anchors solved by hatch.solve_strut_anchors and asserted by checks_step27.check_strut_stroke. 131.8 mm travel inside the 150 mm catalogue stroke with margin at both ends."
+      "leaf_stud": [
+        474.0,
+        77.0,
+        -58.0
+      ],
+      "frame_stud": [
+        488.0,
+        -78.0,
+        -190.0
+      ],
+      "L_closed": 204.1,
+      "L_open": 309.0,
+      "margin_closed": 8.6,
+      "margin_open": 6.5,
+      "hold_open_ratio": 1.87,
+      "close_force_N": 1.6,
+      "moment_arm_open": 82.6,
+      "moment_arm_closed": 4.2,
+      "leaf_mass_kg": 3.28,
+      "note": "Solved, not placed: hatch.solve_struts searches stud positions (hatch-local mm) x catalogue rows; checks_step27.check_strut_stroke re-derives these numbers from the geometry. Re-solved after the hatch latch stations moved (leaf 3.35 -> 3.28 kg): same entry, same studs."
     },
     "alternates": [
       {
@@ -337,8 +426,210 @@
         "source_url": "https://www.suspa.com/downloads/SUSPA_Liftline_EN.pdf"
       }
     ],
-    "open": "The 'Dia 10 ball' convention is ambiguous: DIN 71802/71803 pairs a Dia 10 ball with M6, the gas-spring industry pairs it with M8x1.25. Our drawing must state M8 explicitly. Also, NO 316L stainless spring offers a 150 mm stroke - the nearest is Stabilus 9055RV at 140 mm.",
-    "notes": "Force is re-selected after the first leaf is weighed; the 200 N alternate shares the envelope, so no bracket changes."
+    "notes": "Force is re-selected after the first leaf is weighed; the 200 N alternate shares the envelope, so no bracket changes.",
+    "catalogue_6_15": [
+      {
+        "ref_col1": "4727PB",
+        "ref_col2": "4829DF",
+        "force": 50.0,
+        "stroke": 20.0,
+        "extended": 115.5
+      },
+      {
+        "ref_col1": "4728PX",
+        "ref_col2": "4832DH",
+        "force": 100.0,
+        "stroke": 20.0,
+        "extended": 115.5
+      },
+      {
+        "ref_col1": "4729PS",
+        "ref_col2": "4834DY",
+        "force": 150.0,
+        "stroke": 20.0,
+        "extended": 115.5
+      },
+      {
+        "ref_col1": "4731PZ",
+        "ref_col2": "1324DI",
+        "force": 200.0,
+        "stroke": 20.0,
+        "extended": 115.5
+      },
+      {
+        "ref_col1": "2606NW",
+        "ref_col2": "4846DI",
+        "force": 50.0,
+        "stroke": 40.0,
+        "extended": 155.5
+      },
+      {
+        "ref_col1": "2607NR",
+        "ref_col2": "4848DZ",
+        "force": 100.0,
+        "stroke": 40.0,
+        "extended": 155.5
+      },
+      {
+        "ref_col1": "2608NM",
+        "ref_col2": "4851DA",
+        "force": 150.0,
+        "stroke": 40.0,
+        "extended": 155.5
+      },
+      {
+        "ref_col1": "2609NH",
+        "ref_col2": "1338DJ",
+        "force": 200.0,
+        "stroke": 40.0,
+        "extended": 155.5
+      },
+      {
+        "ref_col1": "6444IK",
+        "ref_col2": "4862DQ",
+        "force": 50.0,
+        "stroke": 60.0,
+        "extended": 195.5
+      },
+      {
+        "ref_col1": "6488IU",
+        "ref_col2": "4534DS",
+        "force": 100.0,
+        "stroke": 60.0,
+        "extended": 195.5
+      },
+      {
+        "ref_col1": "6489IP",
+        "ref_col2": "4904DI",
+        "force": 150.0,
+        "stroke": 60.0,
+        "extended": 195.5
+      },
+      {
+        "ref_col1": "6491IW",
+        "ref_col2": "1345DS",
+        "force": 200.0,
+        "stroke": 60.0,
+        "extended": 195.5
+      },
+      {
+        "ref_col1": "6449IM",
+        "ref_col2": "4915DY",
+        "force": 50.0,
+        "stroke": 80.0,
+        "extended": 235.5
+      },
+      {
+        "ref_col1": "6501IP",
+        "ref_col2": "4917DO",
+        "force": 100.0,
+        "stroke": 80.0,
+        "extended": 235.5
+      },
+      {
+        "ref_col1": "6502IK",
+        "ref_col2": "4919DE",
+        "force": 150.0,
+        "stroke": 80.0,
+        "extended": 235.5
+      },
+      {
+        "ref_col1": "6503IF",
+        "ref_col2": "1395DP",
+        "force": 200.0,
+        "stroke": 80.0,
+        "extended": 235.5
+      },
+      {
+        "ref_col1": "6458IL",
+        "ref_col2": "4931DF",
+        "force": 50.0,
+        "stroke": 100.0,
+        "extended": 275.5
+      },
+      {
+        "ref_col1": "6508IH",
+        "ref_col2": "4933DW",
+        "force": 100.0,
+        "stroke": 100.0,
+        "extended": 275.5
+      },
+      {
+        "ref_col1": "6509IC",
+        "ref_col2": "4935DM",
+        "force": 150.0,
+        "stroke": 100.0,
+        "extended": 275.5
+      },
+      {
+        "ref_col1": "6511IJ",
+        "ref_col2": "1406DD",
+        "force": 200.0,
+        "stroke": 100.0,
+        "extended": 275.5
+      },
+      {
+        "ref_col1": "6462II",
+        "ref_col2": "5025DT",
+        "force": 50.0,
+        "stroke": 120.0,
+        "extended": 315.5
+      },
+      {
+        "ref_col1": "6519IX",
+        "ref_col2": "5027DJ",
+        "force": 100.0,
+        "stroke": 120.0,
+        "extended": 315.5
+      },
+      {
+        "ref_col1": "6521ID",
+        "ref_col2": "5031DG",
+        "force": 150.0,
+        "stroke": 120.0,
+        "extended": 315.5
+      },
+      {
+        "ref_col1": "6522IZ",
+        "ref_col2": "1515DW",
+        "force": 200.0,
+        "stroke": 120.0,
+        "extended": 315.5
+      },
+      {
+        "ref_col1": "6467IK",
+        "ref_col2": "5072DE",
+        "force": 50.0,
+        "stroke": 150.0,
+        "extended": 375.5
+      },
+      {
+        "ref_col1": "6539IL",
+        "ref_col2": "5075DQ",
+        "force": 100.0,
+        "stroke": 150.0,
+        "extended": 375.5
+      },
+      {
+        "ref_col1": "6541IS",
+        "ref_col2": "5077DG",
+        "force": 150.0,
+        "stroke": 150.0,
+        "extended": 375.5
+      },
+      {
+        "ref_col1": "6542IN",
+        "ref_col2": "1562DH",
+        "force": 200.0,
+        "stroke": 150.0,
+        "extended": 375.5
+      }
+    ],
+    "catalogue_6_15_source": "Stabilus Standard Program EN (PDF created 2026-04-22) p.17, LIFT-O-MAT HD 6-15, forces 50-200 N transcribed; sha256 59571c7175fa5c819481908596b390e91a19fed1a449bf3ab8669592b2a9e312",
+    "ref_columns_resolved": "The two Ref.-No. columns are legended by the page's own drawing callouts: column 1 = strut with 18 mm ball sockets (13.3 across) for ball studs to DIN 71803 Dia 10; column 2 = the same strut with the socket fitted with an M8 x 13, SW13 ball stud (12 mm to the ball). Order column 1 + 4486MD studs, or column 2 alone.",
+    "pn_col2": "5025DT",
+    "selection_history": "Previous pass: 6541IS (150 N) for a 1.28 x 0.41 m leaf on a 640 mm-tall shell. The cab-height shell gives a 1.0 x 0.25 m aperture and a 3.5 kg leaf; 150 N would be ~3x over-sprung.",
+    "open_note": "The 'Dia 10 ball' convention: the page states the sockets suit ball studs to DIN 71803 Dia 10 and column 2 fits M8 SW13 studs; our drawing calls M8 explicitly. No 316 stainless variant was selected."
   },
   "hinge": {
     "role": "Rear hatch concealed hinge, 2 off (a third is recommended), 95 deg swing.",
@@ -414,7 +705,7 @@
     },
     "sealing": "NEMA 4 / IP65, and ONLY with the optional E5-17 flange gasket. IP67 is NOT available on the keyed T-handle body.",
     "keying": "Head style 8 ships keyed alike CH751 by default, so a production run shares one key with no option code. There is no key-code field in the E3 part number.",
-    "open": "No keyed T-handle exists in stainless E3. Marine-grade corrosion resistance AND a key is not available in this series: accept zinc/black powder or change series. The CH751 code comes from the 2011 catalogue revision and the current PDF omits it - confirm with Southco."
+    "open": "GRIP MISMATCH (found 2026-09-27): E3-18-15 grip 11.4-27.2 mm, but the flush hatch stack (26 leaf + 20.25 seal + 6 land) is 52.25 mm, so the cam cannot reach a keeper behind the surround. Re-select a keyed lock with a keeper standoff or longer grip. Also: no keyed T-handle exists in stainless E3; CH751 code from the 2011 catalogue revision - confirm with Southco."
   },
   "bulb_seal": {
     "role": "EPDM bulb seal on every socket land and the hatch surround. One profile, one PN, whole product.",

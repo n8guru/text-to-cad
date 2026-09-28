@@ -4,11 +4,16 @@ Reads the SAME ``blender/params.json`` the render lane reads, so the CAD and the
 drift. params.json is in METRES (vehicle convention); this module publishes MILLIMETRES, which is
 what every drawing, tolerance and vendor datasheet in this package uses.
 
-Vehicle frame: X rearward, Y driver(+)/left, Z up. Origin = centreline at the forward edge of the
-bed-rail top plane.
+Vehicle frame: X rearward, Y driver(+), Z up. Origin = centreline at the bed's inside front wall,
+z = 0 on the bed-rail top (the plane the topper foot sits on).
 
 Socket frame (u, v, n): u along the shell, v up the lean of the side land, n outward normal.
-A socket-local point maps to the vehicle frame through ``socket_plane(side, i)``.
+Hatch frame (x, y, z): x = vehicle +Y, y = up the rake of the rear face, z = outward.
+
+The socket and hatch BORDERS below are the interface stack, measured outward from the aperture
+edge. They are one set of numbers shared by the frame, the module, the seal, the shell cut and the
+checks, which is the point: the previous pass let each part pick its own offset and the seal ended
+up outside the panel that was supposed to compress it.
 """
 from __future__ import annotations
 
@@ -16,20 +21,22 @@ import json
 import math
 from pathlib import Path
 
-from build123d import Plane, Vector
+from build123d import Plane, Pos, Rectangle, Vector, extrude, fillet
 
 HERE = Path(__file__).resolve().parent
-PARAMS = json.loads((HERE.parents[1] / "blender" / "params.json").read_text())
+PARAMS_PATH = HERE.parents[1] / "blender" / "params.json"
+PARAMS = json.loads(PARAMS_PATH.read_text())
 
 M = 1000.0  # params.json metres -> mm
+ANGLES = {"lean_deg", "rear_rake_deg", "open_deg"}
 
 
-def _mm(node):
+def _mm(node, key=""):
     if isinstance(node, dict):
-        return {k: _mm(v) for k, v in node.items()}
+        return {k: _mm(v, k) for k, v in node.items()}
     if isinstance(node, list):
-        return [_mm(v) for v in node]
-    if isinstance(node, (int, float)):
+        return [_mm(v, key) for v in node]
+    if isinstance(node, (int, float)) and key not in ANGLES:
         return node * M
     return node
 
@@ -39,23 +46,45 @@ S = _mm(PARAMS["shell"])
 K = _mm(PARAMS["socket"])
 H = _mm(PARAMS["hatch"])
 KEY = _mm(PARAMS["keying"])
+BR = _mm(PARAMS["base_rail"])
 ROOF_PORTS_X = _mm(PARAMS["roof_ports_x"])
 ROOF_PORTS_Y = _mm(PARAMS["roof_ports_y"])
-H["open_deg"] = PARAMS["hatch"]["open_deg"]          # an angle, not a length
+
+WALL = S["wall"]                       # carbon sandwich wall thickness
+SHUTLINE = K["shutline"]               # visible gap module-to-frame and leaf-to-frame
+LATCH_U = KEY["latch_u"]               # u of the two rotary latches per socket
+PIN_U = KEY["pin_u"]                   # u of the round + diamond locating pins (asymmetric)
 
 
+# ------------------------------------------------------------------------------ sketch helpers
+def rrect(w: float, h: float, r: float):
+    """Rounded-rectangle sketch on Plane.XY, centred."""
+    r = min(r, w / 2 - 0.01, h / 2 - 0.01)
+    return fillet(Rectangle(w, h).vertices(), radius=r)
+
+
+def rring(wo, ho, ro, wi, hi, ri, t, z0=0.0):
+    """Extruded rounded-rectangular ring from z0 to z0 + t."""
+    return (Pos(0, 0, z0) * extrude(rrect(wo, ho, ro), amount=t)
+            - Pos(0, 0, z0 - 1) * extrude(rrect(wi, hi, ri), amount=t + 2))
+
+
+def border_ring(a_u, a_v, r, e0, e1, n0, n1):
+    """Ring between border offsets e0 < e1 (mm outward from an a_u x a_v half-size aperture with
+    corner radius r), spanning local z n0..n1. Concentric corners: radius r + e."""
+    return rring(2 * (a_u + e1), 2 * (a_v + e1), r + e1,
+                 2 * (a_u + e0), 2 * (a_v + e0), max(r + e0, 0.5), n1 - n0, n0)
+
+
+# ------------------------------------------------------------------------------ side land
 def lean_rad() -> float:
-    """Inward lean of the flat side land, radians."""
-    return math.atan2(S["base_half_w"] - S["land_half_w"], S["land_top_z"])
+    """Inward lean (tumblehome) of the flat side land, radians."""
+    return math.radians(S["lean_deg"])
 
 
 def land_y(z: float) -> float:
+    """Half-width of the outer side land at height z (flat plane through the base line)."""
     return S["base_half_w"] - z * math.tan(lean_rad())
-
-
-def roof_z(x: float) -> float:
-    t = (x - S["x0"]) / (S["x1"] - S["x0"])
-    return S["roof_z_front"] + (S["roof_z_rear"] - S["roof_z_front"]) * t
 
 
 def opening_wh() -> tuple[float, float]:
@@ -64,7 +93,7 @@ def opening_wh() -> tuple[float, float]:
 
 
 def socket_plane(side: str, i: int) -> Plane:
-    """Plane whose origin is the aperture centre on the outer land, x=u, y=v, z=n (outward).
+    """Aperture-centre plane on the outer land: x = u, y = v (up the lean), z = n (outward).
 
     L sockets use u = -X and R sockets u = +X, so one module part fits either side by rotation
     rather than by being mirrored -- that is what makes four identical sockets possible.
@@ -80,44 +109,65 @@ def socket_plane(side: str, i: int) -> Plane:
     return Plane(origin=o, x_dir=u, z_dir=n)
 
 
-def hatch_plane() -> Plane:
-    """Rear hatch aperture plane. Origin at the aperture centre, x = +Y(driver), y = up-the-rake,
-    z = outward (rearward). The leaf is raked back by ``shell.rear_rake`` over the roof height."""
-    rz = roof_z(S["x1"])
-    b = math.atan2(S["rear_rake"], rz)
-    z0, z1 = H["z_bot"] + 30.0, rz - 130.0
-    zc = (z0 + z1) / 2
-    o = Vector(S["x1"] - S["rear_rake"] * zc / rz, 0, zc)
-    return Plane(origin=o, x_dir=Vector(0, 1, 0), z_dir=Vector(math.cos(b), 0, math.sin(b)))
+# ------------------------------------------------------------------------------ rear face
+def rake_rad() -> float:
+    return math.radians(S["rear_rake_deg"])
+
+
+def rear_face_x(z: float) -> float:
+    """x of the (flat, raked) rear face at height z."""
+    return S["x1"] - z * math.tan(rake_rad())
 
 
 def hatch_wh() -> tuple[float, float]:
-    rz = roof_z(S["x1"])
-    b = math.atan2(S["rear_rake"], rz)
-    z0, z1 = H["z_bot"] + 30.0, rz - 130.0
-    return H["width"], (z1 - z0) / math.cos(b)
+    return H["width"], H["height"]
+
+
+def hatch_plane() -> Plane:
+    """Aperture-centre plane on the rear face: x = vehicle +Y, y = up the rake, z = outward."""
+    r = rake_rad()
+    s_c = H["sill_s"] + H["height"] / 2          # in-plane distance from the rail up the face
+    o = Vector(S["x1"] - s_c * math.sin(r), 0, s_c * math.cos(r))
+    return Plane(origin=o, x_dir=Vector(0, 1, 0), z_dir=Vector(math.cos(r), 0, math.sin(r)))
 
 
 def hatch_rake_rad() -> float:
-    rz = roof_z(S["x1"])
-    return math.atan2(S["rear_rake"], rz)
+    return rake_rad()
 
 
-# --- interface constants that the socket, the module and the hatch all have to agree on --------
-WALL = S["wall"]                       # carbon sandwich wall thickness
-POCKET_MARGIN = K["pocket_margin"]     # land step out from the aperture to the flange
-SHUTLINE = K["shutline"]               # visible gap module-to-shell
-LATCH_U = KEY["latch_u"]               # u positions of the two rotary latches per socket
-PIN_U = KEY["pin_u"]                   # u positions of the round + diamond locating pins
+# ------------------------------------------------------------------------------ interface stack
+# Socket border, mm outward from the aperture edge (same numbers top, bottom and both ends).
+MODULE_FLANGE_T = 6.0        # module flange, outer face flush with the shell at n = 0
+SEAL_COMPRESSED = 20.25      # DD6139 compressed height (hardware.json, checked in checks_step27)
+FACE_N = -(MODULE_FLANGE_T + SEAL_COMPRESSED)   # socket seal land
+LAND_T = 6.0                 # seal-land plate thickness
+LIP_T = 8.0                  # return lip (the aperture wall the plug slides in)
+LIP_DEPTH = 55.0
+SEAL_OFF = 32.0              # seal centreline
+PIN_OFF = 16.0               # bushings / locating pins (top border, inside the seal line)
+MF_IN = -20.0                # module flange overlaps the aperture by 20 mm
+MF_OUT = 44.0                # module flange outer edge
+RECESS_IN = MF_OUT + SHUTLINE            # frame recess wall, inner face
+RECESS_WALL_T = 4.0
+RECESS_OUT = RECESS_IN + RECESS_WALL_T   # frame recess wall, outer face
+BOND_GAP = 0.5
+SHELL_CUT = RECESS_OUT + BOND_GAP        # through-cut in the carbon shell
+BOND_W = 30.0                            # bond flange on the shell inner skin
+BOND_OUT = RECESS_OUT + BOND_W
+BOND_N = (-(WALL + BOND_GAP + 6.0), -(WALL + BOND_GAP))   # bond flange n-range
+PLUG_CLR = 6.0               # plug tube to return lip, per side
+PLUG_DEPTH = 85.0            # how far the module plug reaches inboard
 
-LATCH_V = None                         # filled below: v of the latch mounting flange
-LATCH_N = -60.0                        # n of the latch mounting flange centre (inboard)
-STRIKER_V_DROP = 12.0                  # striker base sits this far below the latch plate
-LEDGE_DROP = 105.0                     # ledge shelf below the aperture centre
-PLUG_DEPTH = 85.0                      # how far the module plug reaches inboard
-
-_W, _H = opening_wh()
-LATCH_V = _H / 2 + 14.0
+# Hatch border, mm outward from the hatch aperture edge (hatch-local x/y).
+LEAF_T = 26.0
+HATCH_FACE_Z = -(LEAF_T + SEAL_COMPRESSED)
+H_SEAL_OFF = 16.0
+H_LEAF_OUT = 26.0
+H_RECESS_IN = H_LEAF_OUT + SHUTLINE
+H_RECESS_OUT = H_RECESS_IN + RECESS_WALL_T
+H_SHELL_CUT = H_RECESS_OUT + BOND_GAP
+H_BOND_OUT = H_RECESS_OUT + BOND_W
+H_LIP_DEPTH = 22.0
 
 TOL = {
     "bushing_true_position": 0.05,

@@ -81,6 +81,29 @@ This audit warrants only complete digital-CAD coverage. It does not authorize
 fabrication, calibrated fitment, ratings, or a manufacture plan; see
 `reports/STEP19_COMPLETE_CAD_AUDIT.md` for the immutable scope/evidence.
 
+## Step 27 (latch hardware, hatch, styled carbon shell)
+
+Step 27 lives in `step27/` and is **not complete**; its status, open gaps and
+evidence are in `step27/RESULT27.md`. It has its own truth files:
+`blender/params.json` (truck and shell, measured from Rivian line art by
+`step27/style/rivian_reference.py`; see `step27/style/STYLE27.md`) and
+`step27/hardware.json` (every purchased fitting). Regenerate from this
+directory, in order:
+
+```bash
+PY=../../.venv/bin/python
+$PY step27/style/rivian_reference.py   # needs network once; caches the Rivian PDFs outside the repo
+$PY step27/cad/assembly_step27.py      # STEP (closed, open, truck keep-outs), part STLs, sections
+$PY step27/cad/make_drawings.py
+$PY step27/cad/make_bom.py
+$PY step27/cad/checks_step27.py        # PASS / FAIL / OPEN, writes step27/out/checks.json
+$PY step27/cad/provenance.py           # last; `--check` fails if any input or output changed
+```
+
+The Blender lane (`blender/s11_truck.py` ... `s15_clip.py`) imports the CAD
+STLs and never authors engineering geometry; run it with `blender-loop`
+as listed in `step27/RESULT27.md`.
+
 ## Parameter provenance
 
 Every major dimension is a `Parameter` in `cad/parameters.py` with one of:
