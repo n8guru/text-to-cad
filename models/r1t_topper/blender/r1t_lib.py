@@ -145,7 +145,9 @@ LOOK = [
     ("SPLITTER", "black"), ("handle_paddle", "orange"), ("handle_pan", "black"),
     ("COMPRESSION_LIMITER", "uhmw"), ("CHMSL", "tail"), ("T_HANDLE", "black"),
     ("GAS_STRUT", "black"), ("BALL_STUD", "ss"), ("TOOLBOX_TUB", "trim"),
-    ("PORT_ADAPTER", "alu_raw"), ("ROOF_HARDPOINT", "alu"), ("HATCH_DRAIN", "trim"),
+    ("PORT_ADAPTER", "alu_raw"), ("PORT_SPACER", "alu_raw"), ("PORT_STUD", "ss"),
+    ("PORT_NUT", "ss"), ("WEDGE_WASHER", "ss"), ("PORT_SLOT_WASHER", "ss"), ("PORT_SHIM", "ss"),
+    ("FOOT_PAD", "epdm"), ("ROOF_HARDPOINT", "alu"), ("HATCH_DRAIN", "trim"),
 ]
 
 

@@ -40,11 +40,22 @@ Checks: **87 PASS, 0 FAIL, 10 OPEN** (`out/checks.json`). New OPEN: `port_adapte
 Unpriced lines: MISUMI pins ×2 and bushing (office-hours API), McMaster plunger (login), Aptiv
 13897598 housing (distributors block scripted reads), VHB 5952. EQUIV price proxies (release cable,
 DD6139 seal, foot pad, some fasteners) are labelled with the reason; order the specified PN.
-Not done in rev 10: new renders/animation of the port station (the CAD-driven evidence lane from
-`df01d411` is unchanged), FEA, hatch exterior release (G8), rear-sill seal (G9).
+Port-station evidence (CAD-driven, blender-loop run `r1t-step27-r10-mount`, S11 truck → S12
+topper import → **S16_mount**, new `blender/s16_mount.py`): Cycles close-ups of the imported CAD
+station on the traced R1T — `evidence/r10_mount/S16_mount_mount_cutaway.jpg` (shell/modules hidden:
+nut, Nord-Lock and slot washer in the rail's wrench pocket), `…_service.jpg` (shell fitted, from the
+bed: pocket reachable under the socket frame), `…_overview.jpg` (all four stations on the rail
+caps). Asserts passed and read: 4 complete stations, stud-to-adapter axis offset 0.003 mm, nut
+seat 4.6 mm below the rail top; scores in `evidence/r10_mount/blender_loop_ledger.json`. These are
+Blender renders of the CAD on a loft of Rivian line art — not a photo plate or the real truck.
+Not done in rev 10: animation of fitting the topper over the studs, FEA, hatch exterior release
+(G8), rear-sill seal (G9).
 
 Regenerate: the §1 command list, unchanged in order (`make_bom.py` now also writes `out/BOM27.csv`;
-`checks_step27.py` writes `out/mounting_analysis.json`).
+`checks_step27.py` writes `out/mounting_analysis.json`). Evidence lane addition, from
+`models/r1t_topper/blender/`: `blender-loop step r1t-step27-r10-mount --label S16_mount --script
+$PWD/s16_mount.py --assert 'stations>=4,stud_offset_mm<=0.5,nut_over_rail_mm<=0,lum_mount_service>=0.05,lum_mount_cutaway>=0.05,lum_mount_overview>=0.05'`
+after S11/S12 (`R1T_CYCLES_DEVICE=CPU R1T_SAMPLES=64` used: GPU occupied).
 
 ---
 
@@ -314,6 +325,8 @@ pages); Aptiv 13897598 via the Upfitting Guide.
 | G9 | Rear sill-to-tailgate seal not designed (`rear_sill_tailgate_seal`). | After T5. |
 | G10 | Southco sustained-load reading (`latch_sustained_rating`). | Southco answer. |
 | G11 | Mass not optimised: 88.7 kg estimated for everything Step 27 owns. | Pocketing / layup pass. |
+| G13 | Attachment calibration (rev 10): Weistec adapter envelope/thread depth (P-CAL-01), the four bed-port centres (P-CAL-02), rail-cap flatness (P-CAL-03); optional crash tethers if a 10 g retention case is wanted (LC6 = 2,528 N/port vs 2,500 N rating). | Measure a received adapter latched on the truck + tape session (Step 22); tether decision. |
+| G14 | Six BOM lines have exact PNs but no readable public price (MISUMI ×3, McMaster 85015A51, Aptiv 13897598, VHB 5952); four lines are priced by a stated EQUIV proxy. | Step 23 quote path (no purchase). |
 | G12 | Previous-pass features not carried into the rebuilt geometry: hatch gutter, interior closeout panels, control-well lid and drain (§7). | Re-model on the styled shell, restore their checks. |
 
 Later gates, unchanged and unclaimed: FEA, prototype fit, real-truck calibration, fabrication
@@ -334,4 +347,4 @@ models/r1t_topper/blender/
   params.json  r1t_lib.py  s11_truck.py  s12_topper.py  s13_hero.py  s14_anim.py  s15_clip.py
 ```
 
-Branch `agents/claude/r1t-opus-pass`, parent `57634ea0`. Rev 10: branch `agents/claude/task-136191-r1t-hardware-bom`, parent `df01d411`.
+Branch `agents/claude/r1t-opus-pass`, parent `57634ea0`. Rev 10: branch `agents/claude/task-136191-r1t-hardware-bom` (pushed to github.com/n8guru/text-to-cad), parent `df01d411`. Rev 10 adds `MOUNTING27.md`, `bom_prices.json`, `research/pricing_2026-10.*`, `cad/fasteners.py`, `out/BOM27.csv`, `out/mounting_analysis.json`, `drawings/DWG-27-012..020`, `SEC-27-008/008D`, `evidence/r10_mount/`, `blender/s16_mount.py`.

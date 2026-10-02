@@ -1,0 +1,68 @@
+{
+  "run": "r1t-step27-r10-mount",
+  "run_dir": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount",
+  "created": "2026-10-02T09:33:42Z",
+  "intent": "Show the Step 27 rev 10 bed-port attachment station (Weistec adapter, shims, spacer, rail, slot washer, Nord-Lock, nut, stud, EPDM pad) as imported CAD on the traced R1T, close-up and in context",
+  "steps": [
+    {
+      "step": "S11_truck",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S11_truck_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S11_truck_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S11_truck_front.png"
+      },
+      "scores": {
+        "length_m": 5.318399906158447,
+        "width_m": 2.0139999389648438,
+        "roof_no_fin_above_ground_m": 1.8350999984741212,
+        "top_with_fin_above_ground_m": 1.8930000100135804,
+        "rail_above_ground_m": 1.366,
+        "bed_depth_m": 0.4650000333786011,
+        "cab_back_x": -0.15,
+        "wheelbase_m": 3.45,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S12_topper",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S12_topper_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S12_topper_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S12_topper_front.png"
+      },
+      "scores": {
+        "imported_parts": 210,
+        "roof_step_mm": -8.646875619888306,
+        "cab_gap_mm": 22.39999920129776,
+        "base_gap_max_mm": 4.000002518296242,
+        "base_gap_min_mm": 4.000002518296242,
+        "base_samples": 1,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S16_mount",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S16_mount_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S16_mount_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/stills/S16_mount_front.png"
+      },
+      "scores": {
+        "stations": 4.0,
+        "stud_offset_mm": 0.0026226043701171875,
+        "nut_over_rail_mm": -4.599999636411667,
+        "lum_mount_cutaway": 0.5915888263778328,
+        "lum_mount_service": 0.1476794199429855,
+        "lum_mount_overview": 0.7988571679183838,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step27-r10-mount/scene.blend",
+      "arms": []
+    }
+  ],
+  "last_step": "S16_mount"
+}

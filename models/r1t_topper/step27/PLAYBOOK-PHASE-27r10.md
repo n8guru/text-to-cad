@@ -47,3 +47,18 @@ Evidence: `models/r1t_topper/step27/MOUNTING27.md`, `BOM27.md`, `out/BOM27.csv`,
   calibration item when it isn't; (6) price file + curated selection + generator that verifies it.
 - **Needs Nate / later steps:** P-CAL-01 (measure a received adapter), P-CAL-02 (tape the four
   port centres), crash-tether decision if wanted, ordering (spend), Step 21 sign-off.
+- **Attempt 2 resume (same task, attempt 2, 2026-10-02 ~09:16–09:50 UTC, ~35 min).** Attempt 1
+  was aborted mid-run (its last pipeline run was racing a stale `NameError`). What worked: read
+  the aborted session's tail, confirm no live writer, kill its orphan pipeline, re-run the whole
+  regen from a clean state (assembly → drawings → BOM → checks, 13 m 50 s: 87 PASS / 0 FAIL /
+  10 OPEN), fill the one placeholder left in `MOUNTING27.md` from the generated
+  `out/mounting_analysis.json`, then `provenance.py` + `--check`. Lesson: a resumed attempt must
+  treat the predecessor's uncommitted tree as unverified until one clean full regen passes.
+- **Port-station evidence (attempt 2).** blender-loop run `r1t-step27-r10-mount`: S11 truck (31 s),
+  S12 CAD import (49 s), S16 mount close-ups (Cycles CPU, 64 spp, 3 views, ~70 s on 24 threads;
+  GPU held by another tenant). First S16 "failed" only because an assert named a score the script
+  did not emit — assert on keys you actually report. Cameras aimed from the imported nut
+  positions, so the views track the CAD. Stills read: cutaway shows nut/Nord-Lock/slot washer in
+  the wrench pocket; the service view is dark (inside the shell) but legible.
+- **Tools that failed in attempt 2:** DSH `web_search` (no DeepSeek key) and SearXNG `webx`
+  (read timeout) — so the 6 unpriced BOM lines stayed unpriced rather than guessed.
