@@ -888,5 +888,317 @@
   },
   "_deleted": {
     "release_lever": "Deleted 2026-09-27. The earlier CUSTOM bell-crank lever existed only to pull two cables with equal travel. Southco already sells exactly that: AC-05-301-11 splitter + AC-75-101-11 paddle. One fewer custom part, one fewer drawing, one fewer tolerance."
+  },
+  "port_adapter": {
+    "role": "Topper-to-truck anchor: latches into the OEM R1T bed accessory port without modifying it and presents an M10 female thread. 4 off (2 per side).",
+    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
+    "pn": "09-111-00078-7",
+    "status": "ORDERABLE",
+    "provenance": "VENDOR_PAGE",
+    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "source_where": "Product page retrieved 2026-10-02: SKU 09-111-00078-7, 'Sold individually', 'R1T needs 4 for the bed and 4 for the roof', 'accept any roof/bed rack or accessory that has mounting brackets using M10 bolts', 'Billet 6061 aluminum construction with clear anodize, 5-axis CNC machined', 'No permanent modification to accessory ports required'. Fitment listed: R1T Gen 1 2021-2024.",
+    "alt_pn": "Mars Adventure Gear 'Accessory Port Adapter (Rivian)' - converts a port into TWO M8 threaded points (marsag.co/products/accessory-port-adapter-rivian). Not selected: a two-point M8 pattern would need a second station drawing; kept as the second source.",
+    "qty": 4,
+    "port_rating_N": 2500.0,
+    "port_rating_source": "R1T Upfitting Guide 2025-09-24 p.59: 'Accessory ports are designed to withstand a maximum of 2,500 Newtons (N) or 551 lb (250 kg) per port ... the safety threshold for how much load can be placed on the port without causing damage.'",
+    "dims_provenance": {
+      "ESTIMATED": [
+        "adapter_env_x",
+        "adapter_env_y",
+        "adapter_env_h",
+        "adapter_plug_d",
+        "adapter_plug_depth",
+        "thread_depth"
+      ],
+      "why": "Weistec publishes no drawing. The station is designed around a PROVISIONAL envelope (blender/params.json mount.adapter_*) and the M10 thread the vendor states; capture the real part (P-CAL-01) and re-run before the station drawing is released."
+    },
+    "calibration": "P-CAL-01: on receipt, measure above-cap height, footprint, M10 thread depth and its position relative to the port centre with the adapter latched on the truck; set mount.adapter_* and re-run assembly/checks. Shim range 0-2 mm absorbs +/-1 mm of height without a re-cut."
+  },
+  "foot_pad": {
+    "role": "Foot-to-paint pad and anti-rattle under the shell foot on each bed-rail cap. Closed-cell so it does not wick; 33 % nominal compression set by the port-spacer stop.",
+    "manufacturer": "spec: ASTM D1056 Type 2 Class B Grade 2 (2B2) closed-cell EPDM sponge, 6.35 mm (1/4 in), PSA one side",
+    "pn": "see pricing file (vendor PN for 2B2 EPDM 1/4 in x 4 in PSA strip)",
+    "status": "ORDERABLE",
+    "provenance": "SPEC",
+    "source_where": "ASTM D1056 grade 2B2 = 2-5 psi (14-34 kPa) compression-deflection at 25 %; any vendor certifying 2B2 is interchangeable.",
+    "qty_m": 3.0,
+    "dims": {
+      "free_t": 6.0,
+      "comp_t": 4.0,
+      "w": 100.0
+    },
+    "cfd_25pct_kPa": [
+      14.0,
+      34.0
+    ],
+    "source_url": "https://www.astm.org/d1056-20.html"
+  },
+  "fasteners": {
+    "STUD_M10x60_A4": {
+      "standard": "DIN 976-1 stud cut from DIN 975 A4-70 rod",
+      "size": "M10x1.5 x 60",
+      "material": "A4-70 (316)",
+      "role": "port station stud, Loctite 243 into the Weistec adapter",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "NUT_M10_A4": {
+      "standard": "ISO 4032",
+      "size": "M10 (16 AF)",
+      "material": "A4-80 (316)",
+      "role": "port station nut, 30 Nm",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "NL10SS": {
+      "standard": "Nord-Lock wedge-locking washer pair",
+      "size": "NL10ss (M10)",
+      "material": "stainless 1.4404",
+      "role": "port clamp lock",
+      "manufacturer": "Nord-Lock",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "DATASHEET_RECALL",
+      "source_url": null,
+      "dims": {
+        "t_pair": 3.4,
+        "od": 16.6,
+        "id": 10.7
+      },
+      "note": "t/OD/ID to be confirmed from the Nord-Lock datasheet for the ordered article"
+    },
+    "SHCS_1/4-20x5/8_316": {
+      "standard": "ASME B18.3 socket head cap screw",
+      "size": "1/4-20 UNC x 5/8",
+      "material": "316 stainless",
+      "role": "R4-30 latch to carrier plate (R4-30-41-501-20 = 1/4-20 thread mount option 1)",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "SHCS_M6x20_A4": {
+      "standard": "ISO 4762",
+      "size": "M6x1 x 20",
+      "material": "A4-70",
+      "role": "J-hook to plug-tube floor",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "SHCS_M6x16_A4": {
+      "standard": "ISO 4762",
+      "size": "M6x1 x 16",
+      "material": "A4-70",
+      "role": "cage rail to plug frame",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "FHCS_M6x12_A4": {
+      "standard": "ISO 10642",
+      "size": "M6x1 x 12",
+      "material": "A4-70",
+      "role": "UHMW limiter pad to frame boss",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "BHCS_M6x16_A4": {
+      "standard": "ISO 7380-1",
+      "size": "M6x1 x 16",
+      "material": "A4-70",
+      "role": "GN 7233 hinge brackets (d = 6.5 holes) to surround / leaf blocks",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "BHCS_M5x10_A4": {
+      "standard": "ISO 7380-1",
+      "size": "M5x0.8 x 10",
+      "material": "A4-70",
+      "role": "toolbox tub flange to plug frame",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "BHCS_M4x12_A4": {
+      "standard": "ISO 7380-1",
+      "size": "M4x0.7 x 12",
+      "material": "A4-70",
+      "role": "release handle (2x Dia 4.5 thru), splitter, CHMSL (Dia 4.8), glazing retainers",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "NUT_M6_NYLOC_A4": {
+      "standard": "ISO 10511 / DIN 985",
+      "size": "M6",
+      "material": "A4",
+      "role": "J-hook nut",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "NUT_M4_NYLOC_A4": {
+      "standard": "ISO 10511 / DIN 985",
+      "size": "M4",
+      "material": "A4",
+      "role": "handle / splitter nut",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "WASHER_M6_A4": {
+      "standard": "ISO 7089",
+      "size": "M6",
+      "material": "A4",
+      "role": "J-hook washers",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "WASHER_M4_A4": {
+      "standard": "ISO 7089",
+      "size": "M4",
+      "material": "A4",
+      "role": "handle / splitter washers",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    }
+  },
+  "consumables": {
+    "structural_adhesive": {
+      "role": "Every bonded joint: socket frames, hatch surround, base rails to foot, roof hardpoints, leaf bosses/blocks, potted inserts.",
+      "manufacturer": "3M",
+      "pn": "Scotch-Weld DP460 Off-White, 50 mL duo-pak",
+      "status": "ORDERABLE",
+      "provenance": "DATASHEET",
+      "bondline_mm": 0.25,
+      "note": "Surface prep: abrade + solvent wipe CFRP; anodised 6061 bond faces masked from anodise or primed per 3M guidance. Coverage computed from modelled bond areas (fasteners.bond_area_m2)."
+    },
+    "glazing_tape": {
+      "role": "WINDOW module pane to plug-frame flange (PC is stress-crack sensitive to epoxies).",
+      "manufacturer": "3M",
+      "pn": "VHB 5952, 12 mm x 1.1 mm",
+      "status": "ORDERABLE",
+      "provenance": "DATASHEET"
+    },
+    "threadlocker": {
+      "role": "Strikers, ball studs, ball plungers, hinge and latch screws.",
+      "manufacturer": "Henkel Loctite",
+      "pn": "243, 10 mL",
+      "status": "ORDERABLE",
+      "provenance": "DATASHEET"
+    },
+    "anti_seize": {
+      "role": "Stainless into aluminium threads (port screw into the adapter, all A4 into tapped 6061): galling and galvanic isolation.",
+      "manufacturer": "Tef-Gel",
+      "pn": "Tef-Gel 1/2 oz syringe",
+      "status": "ORDERABLE",
+      "provenance": "DATASHEET"
+    }
+  },
+  "mounting": {
+    "_doc": "Engineering inputs for checks_step27.check_mounting. Stated design assumptions - not a standard, not FEA. accel_g is the inertial+gravity load ON the topper in g, vehicle frame (X rearward, Y driver, Z up); gravity is the -1 in z.",
+    "port_torque_Nm": 30.0,
+    "port_torque_source": "R1T Upfitting Guide p.57 'Recommended Fastener Torque Values', M10 class 8.8 hard (all-metal) joint 27.0-54 Nm. A4-80 has 8.8-class proof strength; the lower half of the window is used because the female thread is 6061 in the adapter.",
+    "nut_factor_K": [
+      0.15,
+      0.2
+    ],
+    "friction_mu": 0.2,
+    "slip_planes": 2,
+    "thread_engagement_min_d": 1.5,
+    "load_cases": [
+      {
+        "name": "LC1 vertical bump",
+        "accel_g": [
+          0.0,
+          0.0,
+          -3.0
+        ],
+        "class": "limit"
+      },
+      {
+        "name": "LC2 rebound + highway lift",
+        "accel_g": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "aero_lift_N": 600.0,
+        "class": "limit",
+        "note": "+1 g net upward (2 g up acceleration less gravity) plus 600 N lift: 0.5*1.225*(36.1 m/s)^2 * 2.3 m^2 plan * CL 0.3 = 550 N, rounded up"
+      },
+      {
+        "name": "LC3 braking",
+        "accel_g": [
+          -1.0,
+          0.0,
+          -1.0
+        ],
+        "class": "limit",
+        "note": "1 g braking: inertia throws the topper FORWARD (-x; X is rearward)."
+      },
+      {
+        "name": "LC4 cornering",
+        "accel_g": [
+          0.0,
+          1.0,
+          -1.0
+        ],
+        "class": "limit"
+      },
+      {
+        "name": "LC5 off-road combined",
+        "accel_g": [
+          -0.5,
+          0.7,
+          -2.0
+        ],
+        "class": "limit"
+      },
+      {
+        "name": "LC6 forward crash pulse",
+        "accel_g": [
+          -10.0,
+          0.0,
+          -1.0
+        ],
+        "class": "ultimate",
+        "note": "Not a regulatory case: there is none for a cap. Reported against the 2,500 N rating as information, with friction slip and bolt shear as the governing checks."
+      }
+    ],
+    "benchmark": "Rivian Cargo Crossbars on 4 roof ports: 113 kg dynamic per pair (R1T Owner's Guide p.359 / Upfitting Guide p.59). Used as an independent cross-check of the per-4-port dynamic allowance.",
+    "benchmark_kg": 113.0
   }
 }

@@ -47,6 +47,7 @@ K = _mm(PARAMS["socket"])
 H = _mm(PARAMS["hatch"])
 KEY = _mm(PARAMS["keying"])
 BR = _mm(PARAMS["base_rail"])
+MT = _mm(PARAMS["mount"])              # topper-to-truck attachment stack (mounts.py)
 ROOF_PORTS_X = _mm(PARAMS["roof_ports_x"])
 ROOF_PORTS_Y = _mm(PARAMS["roof_ports_y"])
 

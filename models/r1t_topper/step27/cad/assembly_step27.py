@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from build123d import (  # noqa: E402
-    Axis, Compound, ExportSVG, LineType, Location, Plane, Pos, Rot, Vector,
+    Axis, CenterOf, Compound, ExportSVG, LineType, Location, Plane, Pos, Rot, Vector,
     export_step, export_stl, section,
 )
 
@@ -44,7 +44,19 @@ MATERIAL = {
     "SOCKET_FRAME": ("6061-T6", "3+2-axis CNC, one program + one fixture for all four",
                      "black anodise Type II", 2.70e-6),
     "BASE_RAIL": ("6061-T6", "CNC from 80x30 bar", "black anodise Type II", 2.70e-6),
-    "PORT_ADAPTER": ("6061-T6", "CNC turn", "clear anodise", 2.70e-6),
+    "PORT_SPACER": ("6061-T6", "CNC turn from Dia 38 bar, faces ground parallel 0.02",
+                    "clear anodise Type II", 2.70e-6),
+    "PORT_SHIM": ("316 stainless shim stock 0.5 mm", "laser cut, deburr", "passivate", 8.00e-6),
+    "PORT_SLOT_WASHER": ("316 stainless 4 mm plate", "laser cut + surface grind", "passivate",
+                         8.00e-6),
+    "PORT_ADAPTER_WEISTEC": ("billet 6061, clear anodise (vendor)", "purchased", "as supplied",
+                             2.70e-6),
+    "PORT_STUD": ("A4-70 stainless (ISO 3506-1)", "purchased", "plain", 8.00e-6),
+    "PORT_NUT": ("A4-80 stainless (ISO 3506-2)", "purchased", "plain", 8.00e-6),
+    "WEDGE_WASHER": ("stainless 1.4404 / 316L (Nord-Lock ss)", "purchased", "as supplied",
+                     8.00e-6),
+    "FOOT_PAD_EPDM": ("closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
+                      "purchased strip, knife-cut to the drawing", "black", 0.15e-6),
     "ROOF_HARDPOINT": ("6061-T6 bonded insert, M8", "CNC turn", "clear anodise", 2.70e-6),
     "FRONT_PASS_THROUGH_PANE": ("5 mm hard-coat polycarbonate", "CNC rout + polish",
                                 "hard coat both faces", 1.20e-6),
@@ -81,6 +93,9 @@ PURCHASED_PREFIX = {      # label substring -> hardware.json item (or (item, pn 
     "BALL_STUD": ("gas_strut", "ball_stud"), "CONCEALED_HINGE": "hinge", "HINGE_GN7233": "hinge",
     "T_HANDLE": "t_handle", "CHMSL": "chmsl", "COMPRESSION_LIMITER": "compression_limiter",
     "BULB_SEAL": "bulb_seal",
+    "PORT_ADAPTER_WEISTEC": "port_adapter", "PORT_STUD": ("fasteners", "STUD_M10x60_A4"),
+    "PORT_NUT": ("fasteners", "NUT_M10_A4"),
+    "WEDGE_WASHER": ("fasteners", "NL10SS"), "FOOT_PAD_EPDM": "foot_pad",
 }
 
 
@@ -110,6 +125,9 @@ def _pn_for(label: str):
         item, field = (PURCHASED_PREFIX[k], "pn") if isinstance(PURCHASED_PREFIX[k], str) \
             else PURCHASED_PREFIX[k]
         if k in up:
+            if item == "fasteners":
+                f = hw.HW["fasteners"][field]
+                return (f.get("manufacturer"), f.get("pn"), f.get("status"), f.get("source_url"))
             h = hw.HW[item]
             pn = h.get(field)
             pn = pn.get("pn") if isinstance(pn, dict) else pn
@@ -133,7 +151,7 @@ def step27_assembly(hatch_deg: float = 0.0, module_gap: float = 0.0, state: str 
         sh.label = "SHELL_CARBON_SANDWICH"
         kids.append(sh)
     kids += SH.roof_hardpoints() + [SH.front_pane()]
-    kids += mounts.base_rails() + mounts.port_adapters()
+    kids += mounts.base_rails() + mounts.foot_pads() + mounts.port_stations()
     for side in "LR":
         for i in range(2):
             tag = f"{side}{i}"
@@ -272,11 +290,16 @@ def export_parts(assembly=None, outdir=None, write_manifest=True):
             print(f"  stl skip {base}: {exc}")
             continue
         mat, proc, fin, dens = _classify(base)
+        try:
+            cg = part.center(CenterOf.MASS)
+        except Exception:
+            cg = part.bounding_box().center()
         mfr, p_n, status, url = _pn_for(base)
         manifest.append({
             "part": base, "stl": fn.name, "volume_mm3": round(v, 1),
             "mass_kg": round(_mass(base, v, dens), 3), "material": mat, "process": proc, "finish": fin,
             "manufacturer": mfr, "pn": p_n, "status": status, "source_url": url,
+            "centroid_mm": [round(cg.X, 1), round(cg.Y, 1), round(cg.Z, 1)],
         })
     if write_manifest:
         (OUT / "parts_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
@@ -352,7 +375,32 @@ def export_sections():
                      + shut, cut7,
                      "SEC-27-007  centreline side profile: R1T cab back + spoiler keep-out, front face, "
                      f"{G.S['rear_rake_deg']:.0f} deg rear rake"))
+    xs0, ys0 = mounts.stations()[0]
+    near = [G.socket_plane("L", 0) * k for k in _leaves(SS.socket_assembly("closed"))]
+    stn = mounts.base_rails() + mounts.foot_pads() + mounts.port_station(xs0, ys0)
+    cut8 = Plane(origin=(xs0, 0, 0), x_dir=(0, 1, 0), z_dir=(1, 0, 0))
+    made.append(_svg("SEC-27-008_port_station", [shell] + stn + near + [TR.body_keepout()], cut8,
+                     f"SEC-27-008  port station x={xs0:.0f}: Weistec adapter, shims, spacer stop, "
+                     "rail + wrench pocket, NL10ss, M10 stud/nut, EPDM pad at 33 %"))
+    made.append(_detail(made[-1], "SEC-27-008D_port_station_detail", ys0 - 90.0, 150.0, 200.0,
+                        f"SEC-27-008D  port station detail (x={xs0:.0f}), 1:1 viewBox, mm"))
     return made
+
+
+def _detail(src, name, h0, v1, size, title):
+    """Crop a section sheet to a square detail window (horizontal h0..h0+size, vertical down from v1)."""
+    import re
+    txt = src.read_text()
+    txt = re.sub(r'width="[^"]+" height="[^"]+" viewBox="[^"]+"',
+                 f'width="{size:.0f}mm" height="{size:.0f}mm" viewBox="{h0:.1f} {-v1:.1f} {size:.1f} {size:.1f}"',
+                 txt, count=1)
+    txt = txt.replace('stroke-width="0.5"', 'stroke-width="0.3"')
+    txt = re.sub(r'<text x="14" y="22".*?</text>',
+                 f'<text x="{h0 + 3:.1f}" y="{-v1 + 8:.1f}" font-family="monospace" font-size="4">{title}</text>',
+                 txt)
+    path = DWG / f"{name}.svg"
+    path.write_text(txt)
+    return path
 
 
 def _compose(pl, lp):

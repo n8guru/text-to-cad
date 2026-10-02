@@ -8,10 +8,34 @@
       <line x1="0.0" y1="-735.0" x2="0.0" y2="-680.0" />
       <line x1="120.0" y1="-735.0" x2="0.0" y2="-735.0" />
       <line x1="120.0" y1="-735.0" x2="120.0" y2="-680.0" />
-      <line x1="120.0" y1="-680.0" x2="1306.0" y2="-680.0" />
+      <line x1="120.0" y1="-680.0" x2="285.0" y2="-680.0" />
+      <line x1="285.0" y1="-745.0" x2="285.0" y2="-680.0" />
+      <line x1="329.0" y1="-745.0" x2="285.0" y2="-745.0" />
+      <line x1="329.0" y1="-745.0" x2="329.0" y2="-680.0" />
+      <line x1="329.0" y1="-680.0" x2="1132.0" y2="-680.0" />
+      <line x1="1132.0" y1="-731.0" x2="1132.0" y2="-680.0" />
+      <line x1="1176.0" y1="-731.0" x2="1132.0" y2="-731.0" />
+      <line x1="1176.0" y1="-731.0" x2="1176.0" y2="-680.0" />
+      <line x1="1176.0" y1="-680.0" x2="1306.0" y2="-680.0" />
       <line x1="1306.0" y1="-755.0" x2="1306.0" y2="-680.0" />
-      <circle cx="305.0" cy="-731.0" r="15.5" />
-      <circle cx="1158.0" cy="-731.0" r="15.5" />
+      <line x1="1132.0" y1="-680.0" x2="1176.0" y2="-680.0" />
+      <line x1="285.0" y1="-680.0" x2="329.0" y2="-680.0" />
+      <line x1="295.75" y1="-724.01" x2="295.75" y2="-723.99" />
+      <path d="M 295.75,-723.99 A 7.99,7.99 0.0 0,0 303.74,-716.0" />
+      <path d="M 303.74,-732.0 A 7.99,7.99 0.0 0,0 295.75,-724.01" />
+      <line x1="303.74" y1="-716.0" x2="310.26" y2="-716.0" />
+      <line x1="303.74" y1="-732.0" x2="310.26" y2="-732.0" />
+      <path d="M 310.26,-716.0 A 7.99,7.99 0.0 0,0 318.25,-723.99" />
+      <path d="M 318.25,-724.01 A 7.99,7.99 0.0 0,0 310.26,-732.0" />
+      <line x1="318.25" y1="-724.01" x2="318.25" y2="-723.99" />
+      <line x1="1142.75" y1="-710.01" x2="1142.75" y2="-709.99" />
+      <path d="M 1142.75,-709.99 A 7.99,7.99 0.0 0,0 1150.74,-702.0" />
+      <path d="M 1150.74,-718.0 A 7.99,7.99 0.0 0,0 1142.75,-710.01" />
+      <line x1="1150.74" y1="-702.0" x2="1157.26" y2="-702.0" />
+      <line x1="1150.74" y1="-718.0" x2="1157.26" y2="-718.0" />
+      <path d="M 1157.26,-702.0 A 7.99,7.99 0.0 0,0 1165.25,-709.99" />
+      <path d="M 1165.25,-710.01 A 7.99,7.99 0.0 0,0 1157.26,-718.0" />
+      <line x1="1165.25" y1="-710.01" x2="1165.25" y2="-709.99" />
     </g>
     <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.8333333333333334" id="hidden" stroke-dasharray="10.583333 5.291667">
       <line x1="-40.0" y1="-755.0" x2="-40.0" y2="-680.0" />
@@ -22,8 +46,28 @@
       <line x1="120.0" y1="-735.0" x2="120.0" y2="-680.0" />
       <line x1="120.0" y1="-680.0" x2="1306.0" y2="-680.0" />
       <line x1="1306.0" y1="-755.0" x2="1306.0" y2="-680.0" />
-      <circle cx="305.0" cy="-731.0" r="15.5" />
-      <circle cx="1158.0" cy="-731.0" r="15.5" />
+      <line x1="295.75" y1="-723.99" x2="295.75" y2="-724.01" />
+      <path d="M 295.75,-723.99 A 7.99,7.99 0.0 0,0 303.74,-716.0" />
+      <path d="M 303.74,-732.0 A 7.99,7.99 0.0 0,0 295.75,-724.01" />
+      <line x1="310.26" y1="-716.0" x2="303.74" y2="-716.0" />
+      <line x1="310.26" y1="-732.0" x2="303.74" y2="-732.0" />
+      <path d="M 310.26,-716.0 A 7.99,7.99 0.0 0,0 318.25,-723.99" />
+      <path d="M 318.25,-724.01 A 7.99,7.99 0.0 0,0 310.26,-732.0" />
+      <line x1="318.25" y1="-723.99" x2="318.25" y2="-724.01" />
+      <line x1="1142.75" y1="-709.99" x2="1142.75" y2="-710.01" />
+      <path d="M 1142.75,-709.99 A 7.99,7.99 0.0 0,0 1150.74,-702.0" />
+      <path d="M 1150.74,-718.0 A 7.99,7.99 0.0 0,0 1142.75,-710.01" />
+      <line x1="1157.26" y1="-702.0" x2="1150.74" y2="-702.0" />
+      <line x1="1157.26" y1="-718.0" x2="1150.74" y2="-718.0" />
+      <path d="M 1157.26,-702.0 A 7.99,7.99 0.0 0,0 1165.25,-709.99" />
+      <path d="M 1165.25,-710.01 A 7.99,7.99 0.0 0,0 1157.26,-718.0" />
+      <line x1="1165.25" y1="-709.99" x2="1165.25" y2="-710.01" />
+      <line x1="285.0" y1="-745.0" x2="285.0" y2="-680.0" />
+      <line x1="285.0" y1="-745.0" x2="329.0" y2="-745.0" />
+      <line x1="329.0" y1="-745.0" x2="329.0" y2="-680.0" />
+      <line x1="1132.0" y1="-731.0" x2="1132.0" y2="-680.0" />
+      <line x1="1132.0" y1="-731.0" x2="1176.0" y2="-731.0" />
+      <line x1="1176.0" y1="-731.0" x2="1176.0" y2="-680.0" />
     </g>
   </g>
-<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-010_base_rail  BASE RAIL, 6061-T6, 2 OFF, with OEM control-well cut-outs</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">section y.....................................680 .. 755 x 25</text><text x="18" y="68" font-family="monospace" font-size="11">port adapter bores............................31 at the 4 Rivian bed ports</text><text x="18" y="82" font-family="monospace" font-size="11">control wells (clear).........................120 x 70 at WELL_GT_L x=60, WELL_GT_R x=60, WELL_TG x=1300</text><text x="12" y="104" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="118" font-family="monospace" font-size="11">1. Well x-positions PROVISIONAL until taped (TAILGATE_CONTROL.md T1-T3); lids not drawn.</text><text x="12" y="140" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-010_base_rail  BASE RAIL, 6061-T6, 2 OFF (L/R mirror), bonded to the shell foot</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">section y / height............................680 .. 755 x 25</text><text x="18" y="68" font-family="monospace" font-size="11">length (x)....................................-40 .. 1306</text><text x="18" y="82" font-family="monospace" font-size="11">port obround slots............................22.5 x 16.0 thru, at (307, +724), (307, -724), (1154, +710), (1154, -710)</text><text x="18" y="96" font-family="monospace" font-size="11">  slot position tol...........................+/-0.2 to datum A (rail inner face) / B (front end)</text><text x="18" y="110" font-family="monospace" font-size="11">wrench pocket.................................44 wide x 12 deep, open to the inboard edge, floor z 35</text><text x="18" y="124" font-family="monospace" font-size="11">  pocket floor................................flatness 0.05, Ra 1.6 (slot-washer seat)</text><text x="18" y="138" font-family="monospace" font-size="11">underside (bond face).........................flatness 0.3 over 1,346; masked from anodise, Ra 3.2</text><text x="18" y="152" font-family="monospace" font-size="11">control wells (clear).........................120 x 70 at WELL_GT_L x=60, WELL_GT_R x=60, WELL_TG x=1300</text><text x="18" y="166" font-family="monospace" font-size="11">general tol...................................ISO 2768-mK; break edges 0.3</text><text x="12" y="188" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="202" font-family="monospace" font-size="11">1. Material 6061-T6 (AMS-QQ-A-200/8 bar 80 x 30), CNC; black anodise MIL-A-8625 Type II Class 2 except the bond face. Well and port x-positions PROVISIONAL until taped (T1-T3, P-CAL-01).</text><text x="12" y="224" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

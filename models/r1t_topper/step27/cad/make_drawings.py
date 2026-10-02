@@ -10,6 +10,9 @@ control need a controlled drawing, and every one of them gets one here:
   DWG-27-003  module plug frame         DWG-27-008  hatch surround (top-hat)
   DWG-27-004  striker bracket           DWG-27-010  base rail + OEM control-well cut-outs
   DWG-27-011  hatch leaf (inside-glazed)
+  DWG-27-012  port spacer (compression stop)   DWG-27-013  port slot washer + shim kit
+  DWG-27-014..020  glazing/retainer, cage, toolbox, window pane, hardpoint + potted insert,
+                   leaf arm + strut boss, front pane
 """
 from __future__ import annotations
 
@@ -180,15 +183,53 @@ def main():
         [stamp, "Wet channel between seal and recess wall drains at both ends of the bottom run."],
         scale=0.3))
 
+    st = mounts.stack_report()
+    MT = G.MT
+    stn = ", ".join(f"({x:.0f}, {y:+.0f})" for x, y in mounts.stations())
     made.append(sheet(
         "DWG-27-010_base_rail", mounts.base_rails()[0], Plane.XY,
-        "BASE RAIL, 6061-T6, 2 OFF, with OEM control-well cut-outs", [
-            ("section y", f'{G.BR["y_in"]:.0f} .. {G.BR["y_out"]:.0f} x {G.BR["h"]:.0f}'),
-            ("port adapter bores", f'{mounts.ADAPTER["shank_d"] + 1:.0f} at the 4 Rivian bed ports'),
+        "BASE RAIL, 6061-T6, 2 OFF (L/R mirror), bonded to the shell foot", [
+            ("section y / height", f'{G.BR["y_in"]:.0f} .. {G.BR["y_out"]:.0f} x {G.BR["h"]:.0f}'),
+            ("length (x)", f"{mounts.RAIL_X[0]:.0f} .. {mounts.RAIL_X[1]:.0f}"),
+            ("port obround slots", f'{MT["rail_slot_x"]:.1f} x {MT["rail_slot_y"]:.1f} thru, at {stn}'),
+            ("  slot position tol", "+/-0.2 to datum A (rail inner face) / B (front end)"),
+            ("wrench pocket", f'{MT["rail_pocket_x"]:.0f} wide x {MT["rail_pocket_depth"]:.0f} deep, '
+                              f'open to the inboard edge, floor z {st["pocket_floor"]:.0f}'),
+            ("  pocket floor", "flatness 0.05, Ra 1.6 (slot-washer seat)"),
+            ("underside (bond face)", "flatness 0.3 over 1,346; masked from anodise, Ra 3.2"),
             ("control wells (clear)", f'{mounts.WELL["lx"]:.0f} x {mounts.WELL["ly"]:.0f} at '
-                                      + ", ".join(f"{n} x={x:.0f}" for n, x, _ in mounts.WELLS))],
-        ["Well x-positions PROVISIONAL until taped (TAILGATE_CONTROL.md T1-T3); lids not drawn."],
+                                      + ", ".join(f"{n} x={x:.0f}" for n, x, _ in mounts.WELLS)),
+            ("general tol", "ISO 2768-mK; break edges 0.3")],
+        ["Material 6061-T6 (AMS-QQ-A-200/8 bar 80 x 30), CNC; black anodise MIL-A-8625 Type II "
+         "Class 2 except the bond face. Well and port x-positions PROVISIONAL until taped "
+         "(T1-T3, P-CAL-01)."],
         scale=0.3))
+
+    x0, y0 = mounts.stations()[0]
+    made.append(sheet(
+        "DWG-27-012_port_spacer", Pos(-x0, -y0, -mounts.SHIM_TOP) * mounts.port_spacer(x0, y0), Plane.XZ,
+        "PORT SPACER, 6061-T6, 4 OFF (the compression stop)", [
+            ("OD", f'{MT["spacer_d"]:.0f} h11'),
+            ("bore", f"{mounts.CLEAR_D:.1f} H13 (M10 clearance)"),
+            ("HEIGHT", f'{st["spacer_h"]:.2f} +/-0.02 -> pad {st["pad_comp"]:.1f} of {st["pad_free"]:.1f} '
+                       f'({100 * st["pad_strain"]:.0f} %)'),
+            ("faces", "parallel 0.02, Ra 1.6"),
+            ("finish", "clear anodise Type II")],
+        ["Height is DERIVED: foot top z 22 - adapter top (P-CAL-01) - 1.0 nominal shim. Re-cut "
+         "only if the measured adapter height is outside the 0-2 mm shim range."],
+        scale=3.0))
+    made.append(sheet(
+        "DWG-27-013_slot_washer_shim", Pos(-x0, -y0, -mounts.POCKET_FLOOR) * mounts.slot_washer(x0, y0), Plane.XY,
+        "PORT SLOT WASHER 316, 4 OFF + SHIM KIT 316, Dia 36", [
+            ("slot washer", f'{MT["slot_washer_x"]:.0f} x {MT["slot_washer_y"]:.0f} x '
+                            f'{MT["slot_washer_t"]:.1f}, R6, hole {mounts.CLEAR_D:.1f}'),
+            ("  faces", "surface ground, parallel 0.03 (Nord-Lock needs a hard flat seat)"),
+            ("shims", f'Dia {MT["shim_d"]:.0f} / {mounts.CLEAR_D:.1f}: 0.5 x 8 (2 per station '
+                      'nominal) + fit-up kit 0.5 x 8, 1.0 x 4'),
+            ("  thickness tol", "+/-0.02 (precision shim stock)"),
+            ("finish", "laser cut, deburr, passivate ASTM A967")],
+        ["Washer lands >= 8.75 mm on the rail all round the +/-6 x +/-2.75 obround float."],
+        scale=3.0))
 
     made.append(sheet(
         "DWG-27-011_hatch_leaf", HA.leaf_shell(), Plane.XY,
@@ -200,6 +241,93 @@ def main():
         ["Pane sits behind a 3 mm carbon lip (cannot leave outward) and is clamped by a screwed "
          "6061 retainer (cannot fall inward)."],
         scale=0.3))
+
+    # ---- rev 10: a controlled sheet for EVERY remaining fabricated family (BOM27 cites these)
+    from build123d import Cylinder, Align
+    gen = "ISO 2768-mK unless stated; break edges 0.3"
+    an = "black anodise MIL-A-8625 Type II Class 2"
+
+    def _at_origin(p):
+        c = p.bounding_box().center()
+        return Pos(-c.X, -c.Y, -c.Z) * p
+
+    def _bb(p):
+        b = p.bounding_box().size
+        return f"{b.X:.1f} x {b.Y:.1f} x {b.Z:.1f}"
+
+    pane = HA.glazing_pane(1)
+    ret = HA.glazing_retainer(1)
+    made.append(sheet(
+        "DWG-27-014_hatch_glazing_pane_retainer", _at_origin(ret), Plane.XY,
+        "HATCH GLAZING PANE (PC) + RETAINER (6061), 2 + 2 OFF (L/R mirror)", [
+            ("pane envelope", _bb(pane)), ("pane", "5 mm hard-coat PC (Makrolon AR / Lexan Margard MR10)"),
+            ("pane profile tol", "+/-0.5; edges routed + flame-free polish"),
+            ("retainer envelope", _bb(ret)), ("retainer", f"6061-T6 5 mm plate, CNC; {an}"),
+            ("retainer screws", "M4 at <= 90 mm pitch into potted inserts (DWG-27-018)"),
+            ("general", gen)],
+        ["Pane is inside-glazed behind the 3 mm carbon lip; 1 mm EPDM glazing gasket each face; "
+         "1.2 Nm on the retainer screws (clamp, do not crush)."], scale=0.6))
+    cage = SS.payload("CAGE")
+    bar = [c for c in cage if "BAR" in c.label][0]
+    rail = [c for c in cage if "RAIL" in c.label][0]
+    made.append(sheet(
+        "DWG-27-015_cage_bar_rail", _at_origin(rail), Plane.XY,
+        f"CAGE MODULE: BAR 316 Dia 10 x {len([c for c in cage if 'BAR' in c.label])} + RAIL 316 8 x 4, 2 OFF",
+        [("bar envelope", _bb(bar)), ("rail envelope", _bb(rail)),
+         ("bar pitch", "equal, ends on the straight run of the R34 plug-tube corners"),
+         ("weld", "TIG, ER316L, bars to rails, fixture-welded; flatness of the welded cage 1.0"),
+         ("rail fixing", "2 x M6x16 A4 per rail end-tab into the plug frame (J13)"),
+         ("finish", "electropolish ASTM B912"), ("general", gen)],
+        ["Dog-safe: no exposed weld spatter; all bar ends radiused R2."], scale=0.6))
+    tb = SS.payload("TOOLBOX")
+    door = [c for c in tb if "DOOR" in c.label][0]
+    tub = [c for c in tb if "TUB" in c.label][0]
+    made.append(sheet(
+        "DWG-27-016_toolbox_door_tub", _at_origin(tub), Plane.XY,
+        "TOOLBOX MODULE: DOOR (carbon 6 mm) + TUB (3 mm ABS/PMMA), 1 + 1 OFF", [
+            ("door envelope", _bb(door)), ("door", "carbon/PET 6 mm sandwich, vacuum infusion, UV clear"),
+            ("tub envelope", _bb(tub)), ("tub", "3 mm ABS/PMMA (Kydex-class) thermoform, grained black"),
+            ("tub fixing", "10 x M5x10 BHCS A4 through the flange into the plug frame (J14)"),
+            ("profile tol", "door +/-0.3 to the module flange; tub +/-1.0"), ("general", gen)],
+        ["Door hinge/lock (E3-108-015 keyed, key-alike) is NOT modelled: Step 27 open item."], scale=0.6))
+    wp = SS.payload("WINDOW")[0]
+    made.append(sheet(
+        "DWG-27-017_window_module_pane", _at_origin(wp), Plane.XY,
+        "WINDOW MODULE PANE, 5 mm HARD-COAT PC, FLAT, 2 OFF", [
+            ("envelope", _bb(wp)), ("flatness", "1.0 (flat by Nate's direction, decision 1320686)"),
+            ("bond", "3M VHB 5952 12 mm perimeter to the plug-frame flange (J15)"),
+            ("profile tol", "+/-0.5"), ("general", gen)],
+        ["Edges routed and polished; hard coat both faces."], scale=0.6))
+    hp = SH.roof_hardpoints()[0]
+    ins = Cylinder(5.0, 12.0, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    ins += Cylinder(7.0, 1.0, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    ins -= Pos(0, 0, -1) * Cylinder(1.7, 14.0, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    made.append(sheet(
+        "DWG-27-018_roof_hardpoint_potted_insert", _at_origin(hp), Plane.XZ,
+        "ROOF HARDPOINT 6061 M8 (4 OFF) + POTTED INSERT 6061 M4 (26 OFF)", [
+            ("hardpoint", f'Dia {SH.HARDPOINT["dia"]:.0f} x {SH.HARDPOINT["depth"]:.0f}, M8x1.25-6H 14 deep, top flush 0/-0.3'),
+            ("potted insert", "Dia 10 x 12, flange Dia 14 x 1, M4x0.7-6H thru, knurled OD (straight 0.8 pitch)"),
+            ("insert installation", "core-out Dia 12, pot in 3M DP460, flange flush with the inner skin"),
+            ("finish", "clear anodise Type II; bond faces masked"), ("general", gen)],
+        ["Hardpoint load is limited to the 24 kg dynamic roof allowance (check_mounting) until FEA."],
+        scale=2.0))
+    made.append(sheet(
+        "DWG-27-019_leaf_arm_strut_boss", _at_origin(HA.leaf_striker_arm(HA.LATCH_XS[1])), Plane.XY,
+        "HATCH LEAF STRIKER ARM (2 OFF) + STRUT BOSS (2 OFF), 6061-T6", [
+            ("striker arm", f"envelope {_bb(HA.leaf_striker_arm(HA.LATCH_XS[1]))}, M10x1.5-6H 20 deep"),
+            ("strut boss", "22 x 22, M8x1.25-6H 14 deep (Stabilus 4486MD)"),
+            ("bond", "both bonded to the leaf inner skin, DP460, 0.25 bondline"),
+            ("position", "+/-0.5 to the hinge axis datum (drives strut geometry)"),
+            ("finish", an), ("general", gen)],
+        ["Striker bolt R4-90-321-20 is adjusted +/-3 mm in its slotted bracket (DWG-27-004) before torque."],
+        scale=2.0))
+    fp = SH.front_pane()
+    made.append(sheet(
+        "DWG-27-020_front_pass_through_pane", _at_origin(fp), Plane.YZ,
+        "FRONT PASS-THROUGH PANE, 5 mm HARD-COAT PC, 1 OFF", [
+            ("envelope", _bb(fp)), ("bond", "DP460 is NOT used on PC: 3M VHB 5952 20 mm overlap all round"),
+            ("profile tol", "+/-0.5"), ("general", gen)],
+        ["Faces the R1T cab back glass; drain path below."], scale=0.5))
 
     for m in made:
         print(f"  {m.relative_to(DWG.parent)}")

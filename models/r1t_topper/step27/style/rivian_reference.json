@@ -2223,6 +2223,17 @@
   "name": "R1S"
  },
  "r1t_plan": {
+  "bed_accessory_ports_x_halfy": [
+   [
+    0.3073,
+    0.7243
+   ],
+   [
+    1.1539,
+    0.7101
+   ]
+  ],
+  "bed_accessory_ports_note": "Upfit p.59 plan view, orange port symbols; x from the bed's inside front wall, half-width from the drawing centreline; both sides averaged",
   "anchor": "overall length 5514 mm",
   "scale_mm_per_px": 1.8186,
   "cross_checks": {

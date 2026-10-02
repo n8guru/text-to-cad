@@ -365,7 +365,29 @@ def plan_view(png: Path) -> dict:
         if len(c):
             outline.append([X(Xp), Yw(c.min())])
     mid = (bf + br) // 2
+    # bed accessory ports: the page draws every port as a pair of ORANGE half-pills (Upfit p.59,
+    # "Accessory ports are also located along the top of the truck bed"). Centre = mean of a pair.
+    rgb = np.asarray(Image.open(png).convert("RGB")).astype(int)
+    org = (rgb[..., 0] > 200) & (rgb[..., 1] > 130) & (rgb[..., 1] < 200) & (rgb[..., 2] < 80)
+    lab, n_ = ndi.label(org)
+    cen = [c for c, k in zip(ndi.center_of_mass(org, lab, range(1, n_ + 1)),
+                             ndi.sum(org, lab, range(1, n_ + 1))) if k > 50]
+    bed = sorted((c[1], c[0]) for c in cen if bf - 20 < c[1] < br + 20)      # (x_px, y_px)
+    ports = {}
+    # group by x into the front and rear port rows (the two pill halves are ~30 px apart)
+    groups, cur = [], [bed[0]]
+    for c in bed[1:]:
+        if c[0] - cur[-1][0] > 100:
+            groups.append(cur)
+            cur = []
+        cur.append(c)
+    groups.append(cur)
+    ports = [[X(float(np.mean([c[0] for c in g]))),
+              rnd(float(np.mean([abs(cy - c[1]) for c in g])) * s / 1000.0)] for g in groups]
     return {
+        "bed_accessory_ports_x_halfy": ports,
+        "bed_accessory_ports_note": "Upfit p.59 plan view, orange port symbols; x from the bed's inside "
+                                    "front wall, half-width from the drawing centreline; both sides averaged",
         "anchor": "overall length 5514 mm", "scale_mm_per_px": rnd(s, 5),
         "cross_checks": {"bed_inside_length_mm": [rnd((br - bf) * s, 1), PUBLISHED["r1t_bed_len_rail"][0]]},
         "bed_inside_front_x": 0.0, "bed_inside_rear_x": X(br),

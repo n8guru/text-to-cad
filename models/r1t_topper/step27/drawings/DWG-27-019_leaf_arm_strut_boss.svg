@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="84.6mm" height="112.6mm" viewBox="-21.15 -28.15 42.3 56.3" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.3" id="outline">
+      <line x1="-6.0" y1="-13.0" x2="-6.0" y2="13.0" />
+      <line x1="-6.0" y1="-13.0" x2="6.0" y2="-13.0" />
+      <line x1="-6.0" y1="13.0" x2="6.0" y2="13.0" />
+      <line x1="6.0" y1="-13.0" x2="6.0" y2="13.0" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.125" id="hidden" stroke-dasharray="1.5875 0.79375">
+      <line x1="-6.0" y1="-13.0" x2="-6.0" y2="13.0" />
+      <path d="M -6.0,0.0 L -6.0,0.559822 L -6.0,1.112605 L -6.0,1.651395 L -6.0,2.169419 L -6.0,2.66016 L -6.0,3.117449 L -6.0,3.535534 L -6.0,3.909157 L -6.0,4.233621 L -6.0,4.504844 L -6.0,4.719417 L -6.0,4.87464 L -6.0,4.968561 L -6.0,5.0" />
+      <path d="M -6.0,5.0 L -6.0,4.87464 L -6.0,4.504844 L -6.0,3.909157 L -6.0,3.117449 L -6.0,2.169419 L -6.0,1.112605 L -6.0,0.0 L -6.0,-1.112605 L -6.0,-2.169419 L -6.0,-3.117449 L -6.0,-3.909157 L -6.0,-4.504844 L -6.0,-4.87464 L -6.0,-5.0" />
+      <path d="M -6.0,-5.0 Q -6.0,-4.984281 -6.0,-4.968561 Q -6.0,-4.9216 -6.0,-4.87464 Q -6.0,-4.797028 -6.0,-4.719417 Q -6.0,-4.61213 -6.0,-4.504844 Q -6.0,-4.369233 -6.0,-4.233621 Q -6.0,-4.071389 -6.0,-3.909157 Q -6.0,-3.722346 -6.0,-3.535534 Q -6.0,-3.326491 -6.0,-3.117449 Q -6.0,-2.888805 -6.0,-2.66016 Q -6.0,-2.41479 -6.0,-2.169419 Q -6.0,-1.910407 -6.0,-1.651395 Q -6.0,-1.382 -6.0,-1.112605 Q -6.0,-0.561797 -6.0,0.0" />
+      <line x1="-6.0" y1="-13.0" x2="6.0" y2="-13.0" />
+      <line x1="-6.0" y1="13.0" x2="6.0" y2="13.0" />
+      <line x1="6.0" y1="-13.0" x2="6.0" y2="13.0" />
+      <path d="M 6.0,0.0 L 6.0,0.559822 L 6.0,1.112605 L 6.0,1.651395 L 6.0,2.169419 L 6.0,2.66016 L 6.0,3.117449 L 6.0,3.535534 L 6.0,3.909157 L 6.0,4.233621 L 6.0,4.504844 L 6.0,4.719417 L 6.0,4.87464 L 6.0,4.968561 L 6.0,5.0" />
+      <path d="M 6.0,5.0 L 6.0,4.87464 L 6.0,4.504844 L 6.0,3.909157 L 6.0,3.117449 L 6.0,2.169419 L 6.0,1.112605 L 6.0,0.0 L 6.0,-1.112605 L 6.0,-2.169419 L 6.0,-3.117449 L 6.0,-3.909157 L 6.0,-4.504844 L 6.0,-4.87464 L 6.0,-5.0" />
+      <path d="M 6.0,-5.0 Q 6.0,-4.984281 6.0,-4.968561 Q 6.0,-4.9216 6.0,-4.87464 Q 6.0,-4.797028 6.0,-4.719417 Q 6.0,-4.61213 6.0,-4.504844 Q 6.0,-4.369233 6.0,-4.233621 Q 6.0,-4.071389 6.0,-3.909157 Q 6.0,-3.722346 6.0,-3.535534 Q 6.0,-3.326491 6.0,-3.117449 Q 6.0,-2.888805 6.0,-2.66016 Q 6.0,-2.41479 6.0,-2.169419 Q 6.0,-1.910407 6.0,-1.651395 Q 6.0,-1.382 6.0,-1.112605 Q 6.0,-0.561797 6.0,0.0" />
+      <line x1="6.0" y1="5.0" x2="-6.0" y2="5.0" />
+      <line x1="6.0" y1="-5.0" x2="-6.0" y2="-5.0" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-019_leaf_arm_strut_boss  HATCH LEAF STRIKER ARM (2 OFF) + STRUT BOSS (2 OFF), 6061-T6</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">striker arm...................................envelope 12.0 x 26.0 x 44.0, M10x1.5-6H 20 deep</text><text x="18" y="68" font-family="monospace" font-size="11">strut boss....................................22 x 22, M8x1.25-6H 14 deep (Stabilus 4486MD)</text><text x="18" y="82" font-family="monospace" font-size="11">bond..........................................both bonded to the leaf inner skin, DP460, 0.25 bondline</text><text x="18" y="96" font-family="monospace" font-size="11">position......................................+/-0.5 to the hinge axis datum (drives strut geometry)</text><text x="18" y="110" font-family="monospace" font-size="11">finish........................................black anodise MIL-A-8625 Type II Class 2</text><text x="18" y="124" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="146" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="160" font-family="monospace" font-size="11">1. Striker bolt R4-90-321-20 is adjusted +/-3 mm in its slotted bracket (DWG-27-004) before torque.</text><text x="12" y="182" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

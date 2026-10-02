@@ -1,0 +1,121 @@
+{
+ "mass_kg": 88.67,
+ "cg_mm": [
+  706.1,
+  0.7,
+  206.7
+ ],
+ "cases": [
+  {
+   "case": "LC1 vertical bump",
+   "accel_g": [
+    0.0,
+    0.0,
+    -3.0
+   ],
+   "aero_lift_N": 0.0,
+   "port_compression_N": 690.3,
+   "port_tension_N": 0.0,
+   "port_shear_N": 0.0,
+   "port_resultant_N": 690.3,
+   "limit_class": "limit"
+  },
+  {
+   "case": "LC2 rebound + highway lift",
+   "accel_g": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "aero_lift_N": 600.0,
+   "port_compression_N": 0.0,
+   "port_tension_N": 380.1,
+   "port_shear_N": 0.0,
+   "port_resultant_N": 380.1,
+   "limit_class": "limit"
+  },
+  {
+   "case": "LC3 braking",
+   "accel_g": [
+    -1.0,
+    0.0,
+    -1.0
+   ],
+   "aero_lift_N": 0.0,
+   "port_compression_N": 336.2,
+   "port_tension_N": 0.0,
+   "port_shear_N": 217.4,
+   "port_resultant_N": 400.4,
+   "limit_class": "limit"
+  },
+  {
+   "case": "LC4 cornering",
+   "accel_g": [
+    0.0,
+    1.0,
+    -1.0
+   ],
+   "aero_lift_N": 0.0,
+   "port_compression_N": 293.4,
+   "port_tension_N": 0.0,
+   "port_shear_N": 217.4,
+   "port_resultant_N": 365.1,
+   "limit_class": "limit"
+  },
+  {
+   "case": "LC5 off-road combined",
+   "accel_g": [
+    -0.5,
+    0.7,
+    -2.0
+   ],
+   "aero_lift_N": 0.0,
+   "port_compression_N": 557.6,
+   "port_tension_N": 0.0,
+   "port_shear_N": 187.0,
+   "port_resultant_N": 588.1,
+   "limit_class": "limit"
+  },
+  {
+   "case": "LC6 forward crash pulse",
+   "accel_g": [
+    -10.0,
+    0.0,
+    -1.0
+   ],
+   "aero_lift_N": 0.0,
+   "port_compression_N": 1290.9,
+   "port_tension_N": 856.1,
+   "port_shear_N": 2173.9,
+   "port_resultant_N": 2528.3,
+   "limit_class": "ultimate"
+  }
+ ],
+ "preload_N": [
+  15000,
+  20000
+ ],
+ "slip_capacity_N": 3000,
+ "stack": {
+  "foot_top": 22.0,
+  "rail_top": 47.0,
+  "pad_comp": 4.0,
+  "pad_free": 6.0,
+  "pad_strain": 0.33333333333333337,
+  "adapter_top": 12.0,
+  "pocket_floor": 35.0,
+  "rail_under_pocket": 13.0,
+  "shim_top": 13.0,
+  "spacer_h": 9.0,
+  "head_seat": 42.4,
+  "bolt_tip": -5.600000000000001,
+  "engagement": 17.6,
+  "grip": 30.4,
+  "nut_top": 50.8,
+  "protrusion": 3.6000000000000014,
+  "slot_float_x": 6.0,
+  "slot_float_y": 2.75,
+  "washer_land_x": 8.75,
+  "washer_land_y": 10.0
+ }
+}

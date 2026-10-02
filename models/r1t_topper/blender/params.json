@@ -8,6 +8,7 @@
   "truck.rail_cap_*": "Upfit p.59 plan view line clusters at mid-bed (0.644 inner wall, 0.783, 0.828)",
   "truck.rear_axle_x": "side-view tailgate face minus published 1381 mm bed length and a 60 mm tailgate shell",
   "truck.tailgate_x": "R1T side view tailgate outer face",
+  "truck.bed_ports": "Upfit p.59 plan view, orange accessory-port symbols, measured by step27/style/rivian_reference.py (r1t_plan.bed_accessory_ports_x_halfy, both sides averaged); rev 10 replaces the earlier unsourced (0.305, 0.731)/(1.158, 0.731). Drawing-derived: tape before the rail slots are cut (P-CAL-02)",
   "truck.rail_flat_end_x / tailgate_top_z": "R1T side view: rail top flat to x 1.365, rounding down to the tailgate top 32 mm lower",
   "published": "overall_length, body_width, wheelbase, track, tire_r, bed_* from the R1T Upfitting Guide pp.28-30",
   "shell.*": "design decisions against R1T/R1S targets, see STYLE27.md; lean 21 deg = R1T C-pillar 21.8 / R1S D-pillar 20.1; rake 15 deg = R1S liftgate 15.2",
@@ -37,7 +38,7 @@
   "cab_back": [[-0.150, 0.045], [-0.164, 0.196], [-0.172, 0.292], [-0.180, 0.355]],
   "spoiler_tip": [-0.132, 0.427],
   "spoiler_root": [-0.296, 0.447],
-  "bed_ports": [[0.305, 0.731], [1.158, 0.731]],
+  "bed_ports": [[0.307, 0.724], [1.154, 0.710]],
   "roof_ports_x": [-1.6, -0.675],
   "roof_ports_half_y": 0.61
  },
@@ -54,7 +55,7 @@
   "rear_rake_deg": 15.0,
   "rear_r": 0.100,
   "wall": 0.022,
-  "foot_w": 0.115
+  "foot_w": 0.125
  },
  "socket": {
   "centers_x": [0.280, 0.932],
@@ -80,6 +81,18 @@
   "y_in": 0.680,
   "y_out": 0.755,
   "h": 0.025
+ },
+ "mount": {
+  "_doc": "Step 27 rev 10 topper-to-truck attachment (step27/cad/mounts.py). Metres. adapter_* is the PROVISIONAL above-cap envelope of the purchased Weistec 09-111-00078-7 port adapter (no public drawing): capture it from the received part at the tape session (P-CAL-01) and re-run.",
+  "pad_free": 0.006, "pad_comp": 0.004, "pad_w": 0.100,
+  "adapter_env_x": 0.060, "adapter_env_y": 0.036, "adapter_env_h": 0.012,
+  "adapter_plug_d": 0.030, "adapter_plug_depth": 0.025,
+  "pocket_clear": 0.004, "pocket_r": 0.008,
+  "spacer_d": 0.036, "shim_nom": 0.001, "shim_d": 0.036,
+  "slot_washer_x": 0.040, "slot_washer_y": 0.036, "slot_washer_t": 0.004,
+  "rail_slot_x": 0.0225, "rail_slot_y": 0.016,
+  "bolt_d": 0.010, "bolt_len": 0.060, "rail_pocket_x": 0.044, "rail_pocket_depth": 0.012, "rail_pocket_out": 0.021, "nut_af": 0.016, "nut_h": 0.0084, "stud_engagement": 0.0176,
+  "wedge_washer_t": 0.0034, "wedge_washer_od": 0.0166
  },
  "roof_ports_x": [0.05, 1.10],
  "roof_ports_y": 0.50

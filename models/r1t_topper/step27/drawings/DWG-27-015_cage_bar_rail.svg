@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="329.4mm" height="65.4mm" viewBox="-274.5 -54.5 549.0 109.0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="1.0" id="outline">
+      <line x1="-224.0" y1="-4.0" x2="-224.0" y2="4.0" />
+      <line x1="224.0" y1="-4.0" x2="224.0" y2="4.0" />
+      <line x1="-224.0" y1="-4.0" x2="224.0" y2="-4.0" />
+      <line x1="-224.0" y1="4.0" x2="224.0" y2="4.0" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.4166666666666667" id="hidden" stroke-dasharray="5.291667 2.645833">
+      <line x1="-224.0" y1="-4.0" x2="-224.0" y2="4.0" />
+      <line x1="224.0" y1="-4.0" x2="224.0" y2="4.0" />
+      <line x1="-224.0" y1="-4.0" x2="224.0" y2="-4.0" />
+      <line x1="-224.0" y1="4.0" x2="224.0" y2="4.0" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-015_cage_bar_rail  CAGE MODULE: BAR 316 Dia 10 x 11 + RAIL 316 8 x 4, 2 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">bar envelope..................................10.0 x 186.0 x 10.0</text><text x="18" y="68" font-family="monospace" font-size="11">rail envelope.................................448.0 x 8.0 x 4.0</text><text x="18" y="82" font-family="monospace" font-size="11">bar pitch.....................................equal, ends on the straight run of the R34 plug-tube corners</text><text x="18" y="96" font-family="monospace" font-size="11">weld..........................................TIG, ER316L, bars to rails, fixture-welded; flatness of the welded cage 1.0</text><text x="18" y="110" font-family="monospace" font-size="11">rail fixing...................................2 x M6x16 A4 per rail end-tab into the plug frame (J13)</text><text x="18" y="124" font-family="monospace" font-size="11">finish........................................electropolish ASTM B912</text><text x="18" y="138" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="160" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="174" font-family="monospace" font-size="11">1. Dog-safe: no exposed weld spatter; all bar ends radiused R2.</text><text x="12" y="196" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

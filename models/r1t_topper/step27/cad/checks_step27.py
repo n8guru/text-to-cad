@@ -91,6 +91,8 @@ ALLOWED = (
     ("STRIKER_BOLT", "fork_bolt"),           # captured bar: covered by the escape-corridor check
     ("STRIKER_BOLT", "pawl"),
     ("PORT_ADAPTER", "BODY_BELOW_RAIL"),     # the adapter goes INTO Rivian's bed port by design
+    ("PORT_STUD", "BODY_BELOW_RAIL"),        # ... and the stud threads into the adapter inside it
+    ("PORT_STUD", "PORT_ADAPTER"),           # thread engagement (stud shown at minor dia)
 )
 
 
@@ -179,7 +181,7 @@ def check_style_targets():
     rs = REF["r1s_side"]["liftgate_rake_deg"]
     check("rear_rake_matches_r1s_liftgate", abs(rake - rs) <= 2.0,
           f"rear face {rake:.1f} deg vs R1S liftgate {rs:.1f} deg")
-    base = _probe_side(sh, 1.0)
+    base = _probe_side(sh, mounts.PAD_C + 1.0)        # the foot bears on the pad (z = PAD_C), rev 10
     check("base_lands_on_rail_cap", T["rail_cap_flat_out"] - 30 <= base <= T["rail_cap_out"],
           f"skin at the base y = {base:.0f}; rail-cap flat ends {T['rail_cap_flat_out']:.0f}, outer "
           f"edge {T['rail_cap_out']:.0f}")
@@ -310,7 +312,7 @@ def check_truck_clearance():
     bad, gap = [], 1e9
     for n, p in P:
         for kn, k in (("cab", cab), ("body", body), ("tailgate", tg)):
-            if kn == "body" and "PORT_ADAPTER" in n:
+            if kn == "body" and ("PORT_ADAPTER" in n or "PORT_STUD" in n):
                 continue
             v = clash_volume(p, k)
             if v > 0.5:
@@ -694,6 +696,154 @@ def check_bom():
         open_item(f"bom_series_only_{k}", str(items[k].get("open") or items[k].get("pn_placeholder_note")))
 
 
+# ================================================================ attachment (rev 10)
+def _station_parts(x, y):
+    return {p.label: p for p in mounts.port_station(x, y)}
+
+
+def topper_mass_cg():
+    """Mass and CG of everything Step 27 owns, from the manifest (mass x centroid per part)."""
+    man = json.loads((ROOT / "out" / "parts_manifest.json").read_text())
+    m = sum(p["mass_kg"] for p in man)
+    cg = [sum(p["mass_kg"] * p["centroid_mm"][i] for p in man) / m for i in range(3)]
+    return m, cg
+
+
+def mounting_analysis():
+    M = hw.HW["mounting"]
+    m, cg = topper_mass_cg()
+    cases = mounts.port_loads(m, cg, M["load_cases"])
+    k_lo, k_hi = M["nut_factor_K"]
+    fp_min = mounts.preload(M["port_torque_Nm"], k_hi, 10.0)
+    fp_max = mounts.preload(M["port_torque_Nm"], k_lo, 10.0)
+    slip = M["friction_mu"] * fp_min                    # per slip plane, at the LOW preload
+    return {"mass_kg": round(m, 2), "cg_mm": [round(c, 1) for c in cg], "cases": cases,
+            "preload_N": [round(fp_min), round(fp_max)], "slip_capacity_N": round(slip),
+            "stack": mounts.stack_report()}
+
+
+def check_mounting():
+    st = mounts.stack_report()
+    # 1. the stack, measured from the solids of one station
+    x, y = mounts.stations()[0]
+    P = _station_parts(x, y)
+    rail = [r for r in mounts.base_rails() if r.bounding_box().center().Y * y > 0][0]
+    sp = P["PORT_SPACER_6061"].bounding_box()
+    shims = [p for p in mounts.port_shims(x, y)]
+    ad = P["PORT_ADAPTER_WEISTEC"].bounding_box()
+    stack_ok = (abs(sp.max.Z - rail.bounding_box().min.Z) < 0.01
+                and abs(sp.min.Z - max(s.bounding_box().max.Z for s in shims)) < 0.01
+                and abs(min(s.bounding_box().min.Z for s in shims) - ad.max.Z) < 0.01)
+    check("port_stack_metal_to_metal", stack_ok,
+          f"rail underside {rail.bounding_box().min.Z:.2f} = spacer top {sp.max.Z:.2f}; spacer "
+          f"{sp.min.Z:.2f} on shims; shims on adapter {ad.max.Z:.2f}: the carbon is not in the clamp")
+    pads = mounts.foot_pads()
+    pz = max(p.bounding_box().max.Z for p in pads)
+    sh = SH.shell()
+    foot_low = min(f.center().Z for f in sh.faces() if f.normal_at().Z < -0.99
+                   and abs(f.center().Y) > G.S["base_half_w"] - G.S["foot_w"]
+                   and f.center().X < G.T["rail_flat_end_x"])
+    check("pad_compression_set_by_stop", abs(pz - mounts.PAD_C) < 0.01 and abs(foot_low - mounts.PAD_C) < 0.05,
+          f"foot underside z {foot_low:.2f} = compressed pad top {pz:.2f} when the spacer bottoms; "
+          f"free {st['pad_free']:.1f} -> {st['pad_comp']:.1f} mm = {100 * st['pad_strain']:.0f} %")
+    tol = 1.0
+    lo = 1 - (mounts.PAD_C + tol) / st["pad_free"]
+    hi = 1 - (mounts.PAD_C - tol) / st["pad_free"]
+    check("pad_strain_band_15_55pct", 0.15 <= lo and hi <= 0.55,
+          f"with +/-{tol:.1f} mm foot/rail-cap profile tolerance the pad works at "
+          f"{100 * lo:.0f}-{100 * hi:.0f} % (closed-cell EPDM 2B2)")
+    eng = st["engagement"]
+    check("port_thread_engagement_ge_1p5d", eng >= hw.HW["mounting"]["thread_engagement_min_d"] * 10.0
+          and st["protrusion"] >= 1.5,
+          f"M10 x 60 stud engages {eng:.1f} mm of the adapter thread (>= 15.0) and stands "
+          f"{st['protrusion']:.1f} mm past the nut (>= 1.5); grip {st['grip']:.1f} mm")
+    open_item("port_adapter_envelope_P-CAL-01",
+              "Weistec 09-111-00078-7 above-cap envelope, M10 thread depth and centre are PROVISIONAL "
+              f"({G.MT['adapter_env_x']:.0f} x {G.MT['adapter_env_y']:.0f} x {G.MT['adapter_env_h']:.0f} mm); "
+              "measure the received part latched on the truck and re-run")
+    meas = REF["r1t_plan"]["bed_accessory_ports_x_halfy"]
+    dev = max(max(abs(a[0] * 1000 - b[0]), abs(a[1] * 1000 - b[1])) for a, b in zip(meas, G.T["bed_ports"]))
+    check("bed_ports_match_reference", len(meas) == len(G.T["bed_ports"]) and dev <= 3.0,
+          f"station x/half-y {G.T['bed_ports']} vs Upfit p.59 port symbols {meas} m: max {dev:.1f} mm")
+    open_item("bed_port_positions_P-CAL-02",
+              "port positions are drawing-derived (plan-view scale cross-check 0.6-1.2 %, i.e. up to "
+              "+/-8 mm): tape all four port centres before the rail slots are machined")
+    req_x, req_y = 3.0, 2.0
+    check("port_slot_float_covers_tolerance", st["slot_float_x"] >= req_x and st["slot_float_y"] >= req_y
+          and st["washer_land_x"] >= 8 and st["washer_land_y"] >= 8,
+          f"rail obround float +/-{st['slot_float_x']:.2f} x +/-{st['slot_float_y']:.2f} mm (need "
+          f"+/-{req_x:.0f} x +/-{req_y:.0f}: truck-to-truck port position); slot washer lands "
+          f"{st['washer_land_x']:.1f} / {st['washer_land_y']:.1f} mm")
+    A = mounting_analysis()
+    rating = hw.HW["port_adapter"]["port_rating_N"]
+    lim = [c for c in A["cases"] if c["limit_class"] == "limit"]
+    worst = max(lim, key=lambda c: c["port_resultant_N"])
+    check("port_loads_within_rivian_rating", worst["port_resultant_N"] <= rating,
+          f"topper {A['mass_kg']} kg, CG {A['cg_mm']} mm; worst limit case {worst['case']}: "
+          f"{worst['port_resultant_N']:.0f} N per port <= {rating:.0f} N (Upfit p.59)")
+    ult = [c for c in A["cases"] if c["limit_class"] == "ultimate"]
+    for c in ult:
+        state = "PASS" if c["port_resultant_N"] <= rating else "OPEN"
+        check("port_crash_pulse_vs_rating", c["port_resultant_N"] <= rating,
+              f"{c['case']}: {c['port_resultant_N']:.0f} N per port vs {rating:.0f} N - information "
+              "only (no regulation covers a cap; Rivian rates the port, not a crash case)", state=state)
+    max_shear = max(c["port_shear_N"] for c in lim)
+    check("port_joint_slip_resistant", A["slip_capacity_N"] >= 1.25 * max_shear,
+          f"preload {A['preload_N'][0]}-{A['preload_N'][1]} N at {hw.HW['mounting']['port_torque_Nm']:.0f} Nm; "
+          f"friction {A['slip_capacity_N']} N per slip plane (mu 0.20, low preload) >= 1.25 x "
+          f"{max_shear:.0f} N worst limit shear")
+    a_s = 58.0                                          # M10 coarse tensile stress area, ISO 898-1
+    sig = A["preload_N"][1] / a_s
+    check("port_stud_preload_below_proof", sig <= 0.9 * 450.0,
+          f"max preload stress {sig:.0f} MPa (K 0.15) <= 0.9 x Rp0.2 450 MPa (A4-70 stud, ISO 3506-1)")
+    cfd_hi = hw.HW["foot_pad"]["cfd_25pct_kPa"][1] * 1.3            # 33 % ~ 1.3 x the 25 % value
+    pad_area = sum(p.volume for p in pads) / mounts.PAD_C / 1e6
+    seat = cfd_hi * 1e3 * pad_area / 4.0
+    check("pad_seats_within_preload", seat < 0.5 * A["preload_N"][0],
+          f"pad reaction at 33 % <= {seat:.0f} N per station (2B2 upper CFD x 1.3, {pad_area:.3f} m^2) "
+          f"< half the minimum preload: every station reaches its stop")
+    bench = hw.HW["mounting"]["benchmark_kg"]
+    check("mass_within_rivian_4_port_benchmark", A["mass_kg"] <= bench,
+          f"{A['mass_kg']} kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar "
+          f"pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to "
+          f"{bench - A['mass_kg']:.0f} kg dynamic until FEA")
+    # tool access: 16 mm ratcheting box wrench on the nut, handle swung inboard (horizontal)
+    Pall = _topper_leaves(0.0)
+    blocked = []
+    for sx, sy_ in mounts.stations():
+        z0, z1 = mounts.HEAD_SEAT, mounts.NUT_TOP + 3.0
+        ring = Pos(sx, sy_, z0) * Cylinder(15.0, z1 - z0, align=(Align.CENTER, Align.CENTER, Align.MIN))
+        arm = Pos(sx, sy_ - math.copysign(110.0, sy_), (z0 + z1) / 2) * Box(
+            36.0, 200.0, z1 - z0, align=(Align.CENTER, Align.CENTER, Align.CENTER))
+        for n, p in Pall:
+            if "PORT_STUD" in n or "PORT_NUT" in n:
+                continue
+            for tn, t in (("wrench head", ring), ("handle swing", arm)):
+                if clash_volume(p, t) > 0.5:
+                    blocked.append((round(sx), tn, n[-30:]))
+    check("port_nuts_tool_accessible", not blocked,
+          "16 mm ratcheting box wrench: head (R15) round every nut and a 200 mm handle swing "
+          "inboard at nut height, closed assembly, all modules fitted" if not blocked else f"{blocked[:6]}")
+    (ROOT / "out" / "mounting_analysis.json").write_text(json.dumps(A, indent=1) + "\n")
+
+
+def check_fastener_schedule():
+    import fasteners as FS
+    rows, totals, custom = FS.schedule()
+    zero = [r["id"] for r in rows if r["n"] == 0]
+    check("every_joint_found_in_geometry", not zero,
+          f"{len(rows)} joints, counts from the manifest" if not zero else f"no instances: {zero}")
+    j = {r["id"]: r["n"] for r in rows}
+    expect = {"J01": len(mounts.stations()), "J02": 10, "J03": 10, "J06": 2, "J07": 4}
+    bad = {k: (j[k], v) for k, v in expect.items() if j[k] != v}
+    check("joint_counts_match_product_structure", not bad,
+          "4 port stations, 10 latches, 10 strikers, 2 hinges, 4 ball studs" if not bad else f"{bad}")
+    unk = [k for k in list(totals) if k not in hw.HW["fasteners"]]
+    check("every_fastener_is_specified", not unk,
+          f"{sum(totals.values())} fasteners of {len(totals)} specs, each with standard/size/material"
+          if not unk else f"unspecified: {unk}")
+
+
 # ================================================================ provenance / portability
 def check_portability():
     hits = []
@@ -721,6 +871,8 @@ NOT_CHECKED = [
     "Rotor/pawl internals: a representation (G6); rotor-vs-striker contact is not a rigid sweep",
     "GN 7233 coupler curve (G5): hatch sweep assumes pure rotation about the design pivot",
     "Fabrication release, tooling, prototype fit, purchases, Nate-only design approval",
+    "Attachment: port/adapter strength beyond Rivian's 2,500 N rating, crash retention, rail/foot "
+    "bond strength and fatigue - load cases are stated assumptions, not FEA or test",
 ]
 
 
@@ -729,7 +881,8 @@ def main() -> int:
                check_flanges_seat_on_flat_skin, check_part_connectivity, check_socket_identity,
                check_seal_geometry, check_stops_and_contacts, check_latch, check_latch_loads,
                check_closing_sequence, check_tolerances, check_release, check_struts,
-               check_hatch_misc, check_controls_and_power, check_bom, check_portability,
+               check_hatch_misc, check_controls_and_power, check_bom, check_mounting,
+               check_fastener_schedule, check_portability,
                check_module_removal_path, check_interference_shut, check_truck_clearance,
                check_hatch_sweep, check_provenance):
         try:

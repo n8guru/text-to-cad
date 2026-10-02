@@ -15,6 +15,39 @@ This file carries no commit hash: a commit cannot contain its own hash, which is
 
 ---
 
+## Rev 10 addendum (mesh task 136191, 2026-10-02): attaching hardware + costed BOM
+
+**Runtime model: `claude-opus-5-5`.** Scope per operator 2026-09-30 (Studio 75785): design the
+attaching/mounting hardware and a detailed BOM with part numbers, quantity, material, supplier and
+cost, on top of `df01d411`. **Still not a Step 27 completion claim for the items in §9 and no
+Step 21 input**: nothing purchased, quoted, fabricated or approved.
+
+| Delivered | Where |
+|---|---|
+| Topper-to-truck attachment at the 4 Rivian bed accessory ports (2,500 N each, Upfit p.59) through a purchased non-modifying adapter (Weistec 09-111-00078-7, $100): metal-to-metal stud/nut clamp stack, machined compression stop setting the EPDM foot pad at 33 %, slot float ±6 / ±2.75 mm + 0–2 mm shims, wrench pocket for service with the topper built | `MOUNTING27.md`, `cad/mounts.py`, `SEC-27-008`, `SEC-27-008D`, `DWG-27-010/012/013` |
+| Bed-port positions re-measured from the SHA-pinned Upfit p.59 plan view (rear ports were 21 mm off the carried value) | `style/rivian_reference.py` → `r1t_plan.bed_accessory_ports_x_halfy`; check `bed_ports_match_reference` |
+| Load cases LC1–LC6 on the ports, slip, stud preload, pad seating, Rivian 113 kg 4-port benchmark (roof load on topper hardpoints limited to ~24 kg dynamic) | `out/mounting_analysis.json`, `check_mounting` |
+| Joint schedule: all 17 joints, 204 fasteners of 14 specs + 26 potted inserts, torques from Upfit p.57 | `cad/fasteners.py`, BOM27 §3 |
+| BOM with quantities from the geometry, exact PNs, supplier URLs and **dated (2026-10-02) unit/extended prices** verified against a pinned research file; fabricated parts with material, process, finish, drawing, critical tolerances and a stated ROM cost model | `BOM27.md`, `out/BOM27.csv`, `bom_prices.json`, `research/pricing_2026-10.json` |
+| Controlled drawings for every remaining fabricated family | `DWG-27-014` … `DWG-27-020` |
+| Playbook phase | `PLAYBOOK-PHASE-27r10.md` (also appended to `forge-agent-os/tools/r1t-opus-pass/PLAYBOOK-NOTES.md`) |
+
+Roll-up (floor, not a price): purchased hardware $2,275.53 priced (5 lines unpriced), fasteners +
+consumables $489.13 (1 unpriced), fabricated-part ROM ~$19.1k (class 5, tooling excluded).
+
+Checks: **87 PASS, 0 FAIL, 10 OPEN** (`out/checks.json`). New OPEN: `port_adapter_envelope_P-CAL-01`,
+`bed_port_positions_P-CAL-02`, `port_crash_pulse_vs_rating` (10 g pulse = 2,528 N/port vs 2,500).
+Unpriced lines: MISUMI pins ×2 and bushing (office-hours API), McMaster plunger (login), Aptiv
+13897598 housing (distributors block scripted reads), VHB 5952. EQUIV price proxies (release cable,
+DD6139 seal, foot pad, some fasteners) are labelled with the reason; order the specified PN.
+Not done in rev 10: new renders/animation of the port station (the CAD-driven evidence lane from
+`df01d411` is unchanged), FEA, hatch exterior release (G8), rear-sill seal (G9).
+
+Regenerate: the §1 command list, unchanged in order (`make_bom.py` now also writes `out/BOM27.csv`;
+`checks_step27.py` writes `out/mounting_analysis.json`).
+
+---
+
 ## 0. The six asks and what happened
 
 | # | Ask | Result |
@@ -301,4 +334,4 @@ models/r1t_topper/blender/
   params.json  r1t_lib.py  s11_truck.py  s12_topper.py  s13_hero.py  s14_anim.py  s15_clip.py
 ```
 
-Branch `agents/claude/r1t-opus-pass`, parent `57634ea0`. Local only, not pushed.
+Branch `agents/claude/r1t-opus-pass`, parent `57634ea0`. Rev 10: branch `agents/claude/task-136191-r1t-hardware-bom`, parent `df01d411`.

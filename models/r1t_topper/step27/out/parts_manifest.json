@@ -2,15 +2,20 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 72435952.4,
-    "mass_kg": 19.097,
+    "volume_mm3": 71465455.9,
+    "mass_kg": 18.841,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      608.9,
+      -1.2,
+      323.4
+    ]
   },
   {
     "part": "ROOF_HARDPOINT_R0",
@@ -23,7 +28,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      50.0,
+      -500.0,
+      443.2
+    ]
   },
   {
     "part": "ROOF_HARDPOINT_L0",
@@ -36,7 +46,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      50.0,
+      500.0,
+      443.2
+    ]
   },
   {
     "part": "ROOF_HARDPOINT_R1",
@@ -49,7 +64,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1100.0,
+      -500.0,
+      443.2
+    ]
   },
   {
     "part": "ROOF_HARDPOINT_L1",
@@ -62,7 +82,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1100.0,
+      500.0,
+      443.2
+    ]
   },
   {
     "part": "FRONT_PASS_THROUGH_PANE_PC",
@@ -75,85 +100,660 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      -75.5,
+      0.0,
+      200.0
+    ]
   },
   {
     "part": "BASE_RAIL_6061_R",
     "stl": "BASE_RAIL_6061_R.stl",
-    "volume_mm3": 2321011.6,
-    "mass_kg": 6.267,
+    "volume_mm3": 2289566.8,
+    "mass_kg": 6.182,
     "material": "6061-T6",
     "process": "CNC from 80x30 bar",
     "finish": "black anodise Type II",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      672.7,
+      -718.4,
+      34.3
+    ]
   },
   {
     "part": "BASE_RAIL_6061_L",
     "stl": "BASE_RAIL_6061_L.stl",
-    "volume_mm3": 2230261.6,
-    "mass_kg": 6.022,
+    "volume_mm3": 2198816.8,
+    "mass_kg": 5.937,
     "material": "6061-T6",
     "process": "CNC from 80x30 bar",
     "finish": "black anodise Type II",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      647.9,
+      718.9,
+      34.3
+    ]
   },
   {
-    "part": "PORT_ADAPTER_6061",
-    "stl": "PORT_ADAPTER_6061.stl",
-    "volume_mm3": 57541.4,
-    "mass_kg": 0.155,
-    "material": "6061-T6",
-    "process": "CNC turn",
-    "finish": "clear anodise",
+    "part": "FOOT_PAD_EPDM_R",
+    "stl": "FOOT_PAD_EPDM_R.stl",
+    "volume_mm3": 525743.8,
+    "mass_kg": 0.079,
+    "material": "closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
+    "process": "purchased strip, knife-cut to the drawing",
+    "finish": "black",
+    "manufacturer": "spec: ASTM D1056 Type 2 Class B Grade 2 (2B2) closed-cell EPDM sponge, 6.35 mm (1/4 in), PSA one side",
+    "pn": "see pricing file (vendor PN for 2B2 EPDM 1/4 in x 4 in PSA strip)",
+    "status": "ORDERABLE",
+    "source_url": "https://www.astm.org/d1056-20.html",
+    "centroid_mm": [
+      662.8,
+      -742.6,
+      2.0
+    ]
+  },
+  {
+    "part": "FOOT_PAD_EPDM_L",
+    "stl": "FOOT_PAD_EPDM_L.stl",
+    "volume_mm3": 505273.8,
+    "mass_kg": 0.076,
+    "material": "closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
+    "process": "purchased strip, knife-cut to the drawing",
+    "finish": "black",
+    "manufacturer": "spec: ASTM D1056 Type 2 Class B Grade 2 (2B2) closed-cell EPDM sponge, 6.35 mm (1/4 in), PSA one side",
+    "pn": "see pricing file (vendor PN for 2B2 EPDM 1/4 in x 4 in PSA strip)",
+    "status": "ORDERABLE",
+    "source_url": "https://www.astm.org/d1056-20.html",
+    "centroid_mm": [
+      637.1,
+      743.8,
+      2.0
+    ]
+  },
+  {
+    "part": "PORT_ADAPTER_WEISTEC",
+    "stl": "PORT_ADAPTER_WEISTEC.stl",
+    "volume_mm3": 42108.4,
+    "mass_kg": 0.114,
+    "material": "billet 6061, clear anodise (vendor)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
+    "pn": "09-111-00078-7",
+    "status": "ORDERABLE",
+    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "centroid_mm": [
+      307.0,
+      724.0,
+      -1.7
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5",
+    "stl": "PORT_SHIM_316_0p5.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      12.2
+    ]
   },
   {
-    "part": "PORT_ADAPTER_6061_2",
-    "stl": "PORT_ADAPTER_6061_2.stl",
-    "volume_mm3": 57541.4,
-    "mass_kg": 0.155,
-    "material": "6061-T6",
-    "process": "CNC turn",
-    "finish": "clear anodise",
+    "part": "PORT_SHIM_316_0p5_2",
+    "stl": "PORT_SHIM_316_0p5_2.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      12.8
+    ]
   },
   {
-    "part": "PORT_ADAPTER_6061_3",
-    "stl": "PORT_ADAPTER_6061_3.stl",
-    "volume_mm3": 57541.4,
-    "mass_kg": 0.155,
+    "part": "PORT_SPACER_6061",
+    "stl": "PORT_SPACER_6061.stl",
+    "volume_mm3": 8381.6,
+    "mass_kg": 0.023,
     "material": "6061-T6",
-    "process": "CNC turn",
-    "finish": "clear anodise",
+    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
+    "finish": "clear anodise Type II",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      17.5
+    ]
   },
   {
-    "part": "PORT_ADAPTER_6061_4",
-    "stl": "PORT_ADAPTER_6061_4.stl",
-    "volume_mm3": 57541.4,
-    "mass_kg": 0.155,
-    "material": "6061-T6",
-    "process": "CNC turn",
-    "finish": "clear anodise",
+    "part": "PORT_SLOT_WASHER_316",
+    "stl": "PORT_SLOT_WASHER_316.stl",
+    "volume_mm3": 5290.0,
+    "mass_kg": 0.042,
+    "material": "316 stainless 4 mm plate",
+    "process": "laser cut + surface grind",
+    "finish": "passivate",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      37.0
+    ]
+  },
+  {
+    "part": "WEDGE_WASHER_NL10SS",
+    "stl": "WEDGE_WASHER_NL10SS.stl",
+    "volume_mm3": 430.1,
+    "mass_kg": 0.003,
+    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Nord-Lock",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      40.7
+    ]
+  },
+  {
+    "part": "PORT_STUD_M10x60_A4",
+    "stl": "PORT_STUD_M10x60_A4.stl",
+    "volume_mm3": 3325.1,
+    "mass_kg": 0.027,
+    "material": "A4-70 stainless (ISO 3506-1)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      24.4
+    ]
+  },
+  {
+    "part": "PORT_NUT_M10_A4",
+    "stl": "PORT_NUT_M10_A4.stl",
+    "volume_mm3": 1385.6,
+    "mass_kg": 0.011,
+    "material": "A4-80 stainless (ISO 3506-2)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      724.0,
+      46.6
+    ]
+  },
+  {
+    "part": "PORT_ADAPTER_WEISTEC_2",
+    "stl": "PORT_ADAPTER_WEISTEC_2.stl",
+    "volume_mm3": 42108.4,
+    "mass_kg": 0.114,
+    "material": "billet 6061, clear anodise (vendor)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
+    "pn": "09-111-00078-7",
+    "status": "ORDERABLE",
+    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      -1.7
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_3",
+    "stl": "PORT_SHIM_316_0p5_3.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      12.2
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_4",
+    "stl": "PORT_SHIM_316_0p5_4.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      12.8
+    ]
+  },
+  {
+    "part": "PORT_SPACER_6061_2",
+    "stl": "PORT_SPACER_6061_2.stl",
+    "volume_mm3": 8381.6,
+    "mass_kg": 0.023,
+    "material": "6061-T6",
+    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
+    "finish": "clear anodise Type II",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      17.5
+    ]
+  },
+  {
+    "part": "PORT_SLOT_WASHER_316_2",
+    "stl": "PORT_SLOT_WASHER_316_2.stl",
+    "volume_mm3": 5290.0,
+    "mass_kg": 0.042,
+    "material": "316 stainless 4 mm plate",
+    "process": "laser cut + surface grind",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      37.0
+    ]
+  },
+  {
+    "part": "WEDGE_WASHER_NL10SS_2",
+    "stl": "WEDGE_WASHER_NL10SS_2.stl",
+    "volume_mm3": 430.1,
+    "mass_kg": 0.003,
+    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Nord-Lock",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      40.7
+    ]
+  },
+  {
+    "part": "PORT_STUD_M10x60_A4_2",
+    "stl": "PORT_STUD_M10x60_A4_2.stl",
+    "volume_mm3": 3325.1,
+    "mass_kg": 0.027,
+    "material": "A4-70 stainless (ISO 3506-1)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      24.4
+    ]
+  },
+  {
+    "part": "PORT_NUT_M10_A4_2",
+    "stl": "PORT_NUT_M10_A4_2.stl",
+    "volume_mm3": 1385.6,
+    "mass_kg": 0.011,
+    "material": "A4-80 stainless (ISO 3506-2)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -724.0,
+      46.6
+    ]
+  },
+  {
+    "part": "PORT_ADAPTER_WEISTEC_3",
+    "stl": "PORT_ADAPTER_WEISTEC_3.stl",
+    "volume_mm3": 42108.4,
+    "mass_kg": 0.114,
+    "material": "billet 6061, clear anodise (vendor)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
+    "pn": "09-111-00078-7",
+    "status": "ORDERABLE",
+    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      -1.7
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_5",
+    "stl": "PORT_SHIM_316_0p5_5.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      12.2
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_6",
+    "stl": "PORT_SHIM_316_0p5_6.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      12.8
+    ]
+  },
+  {
+    "part": "PORT_SPACER_6061_3",
+    "stl": "PORT_SPACER_6061_3.stl",
+    "volume_mm3": 8381.6,
+    "mass_kg": 0.023,
+    "material": "6061-T6",
+    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
+    "finish": "clear anodise Type II",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      17.5
+    ]
+  },
+  {
+    "part": "PORT_SLOT_WASHER_316_3",
+    "stl": "PORT_SLOT_WASHER_316_3.stl",
+    "volume_mm3": 5290.0,
+    "mass_kg": 0.042,
+    "material": "316 stainless 4 mm plate",
+    "process": "laser cut + surface grind",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      37.0
+    ]
+  },
+  {
+    "part": "WEDGE_WASHER_NL10SS_3",
+    "stl": "WEDGE_WASHER_NL10SS_3.stl",
+    "volume_mm3": 430.1,
+    "mass_kg": 0.003,
+    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Nord-Lock",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      40.7
+    ]
+  },
+  {
+    "part": "PORT_STUD_M10x60_A4_3",
+    "stl": "PORT_STUD_M10x60_A4_3.stl",
+    "volume_mm3": 3325.1,
+    "mass_kg": 0.027,
+    "material": "A4-70 stainless (ISO 3506-1)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      24.4
+    ]
+  },
+  {
+    "part": "PORT_NUT_M10_A4_3",
+    "stl": "PORT_NUT_M10_A4_3.stl",
+    "volume_mm3": 1385.6,
+    "mass_kg": 0.011,
+    "material": "A4-80 stainless (ISO 3506-2)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      710.0,
+      46.6
+    ]
+  },
+  {
+    "part": "PORT_ADAPTER_WEISTEC_4",
+    "stl": "PORT_ADAPTER_WEISTEC_4.stl",
+    "volume_mm3": 42108.4,
+    "mass_kg": 0.114,
+    "material": "billet 6061, clear anodise (vendor)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
+    "pn": "09-111-00078-7",
+    "status": "ORDERABLE",
+    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      -1.7
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_7",
+    "stl": "PORT_SHIM_316_0p5_7.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      12.2
+    ]
+  },
+  {
+    "part": "PORT_SHIM_316_0p5_8",
+    "stl": "PORT_SHIM_316_0p5_8.stl",
+    "volume_mm3": 465.6,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 0.5 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      12.8
+    ]
+  },
+  {
+    "part": "PORT_SPACER_6061_4",
+    "stl": "PORT_SPACER_6061_4.stl",
+    "volume_mm3": 8381.6,
+    "mass_kg": 0.023,
+    "material": "6061-T6",
+    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
+    "finish": "clear anodise Type II",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      17.5
+    ]
+  },
+  {
+    "part": "PORT_SLOT_WASHER_316_4",
+    "stl": "PORT_SLOT_WASHER_316_4.stl",
+    "volume_mm3": 5290.0,
+    "mass_kg": 0.042,
+    "material": "316 stainless 4 mm plate",
+    "process": "laser cut + surface grind",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      37.0
+    ]
+  },
+  {
+    "part": "WEDGE_WASHER_NL10SS_4",
+    "stl": "WEDGE_WASHER_NL10SS_4.stl",
+    "volume_mm3": 430.1,
+    "mass_kg": 0.003,
+    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "Nord-Lock",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      40.7
+    ]
+  },
+  {
+    "part": "PORT_STUD_M10x60_A4_4",
+    "stl": "PORT_STUD_M10x60_A4_4.stl",
+    "volume_mm3": 3325.1,
+    "mass_kg": 0.027,
+    "material": "A4-70 stainless (ISO 3506-1)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      24.4
+    ]
+  },
+  {
+    "part": "PORT_NUT_M10_A4_4",
+    "stl": "PORT_NUT_M10_A4_4.stl",
+    "volume_mm3": 1385.6,
+    "mass_kg": 0.011,
+    "material": "A4-80 stainless (ISO 3506-2)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -710.0,
+      46.6
+    ]
   },
   {
     "part": "L0_SOCKET_FRAME_6061",
@@ -166,7 +766,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      279.4,
+      665.9,
+      200.1
+    ]
   },
   {
     "part": "L0_BULB_SEAL_DD6139",
@@ -179,7 +784,12 @@
     "manufacturer": "Trim-Lok",
     "pn": "DD6139",
     "status": "ORDERABLE",
-    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg"
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "centroid_mm": [
+      280.0,
+      714.1,
+      205.1
+    ]
   },
   {
     "part": "L0_BUSHING_round",
@@ -192,7 +802,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      390.0,
+      653.4,
+      310.4
+    ]
   },
   {
     "part": "L0_BUSHING_diamond",
@@ -205,7 +820,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      130.0,
+      653.4,
+      310.4
+    ]
   },
   {
     "part": "L0_LATCH_latch_housing_R4-30",
@@ -218,7 +838,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      566.5,
+      246.8
+    ]
   },
   {
     "part": "L0_LATCH_fork_bolt-closed",
@@ -231,7 +856,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      587.4,
+      253.9
+    ]
   },
   {
     "part": "L0_LATCH_pawl-closed",
@@ -244,7 +874,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      563.1,
+      249.1
+    ]
   },
   {
     "part": "L0_RELEASE_CABLE_AC",
@@ -257,7 +892,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      402.4,
+      443.9,
+      279.8
+    ]
   },
   {
     "part": "L0_LATCH_latch_housing_R4-30_2",
@@ -270,7 +910,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      566.5,
+      246.8
+    ]
   },
   {
     "part": "L0_LATCH_fork_bolt-closed_2",
@@ -283,7 +928,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      587.4,
+      253.9
+    ]
   },
   {
     "part": "L0_LATCH_pawl-closed_2",
@@ -296,7 +946,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      563.1,
+      249.1
+    ]
   },
   {
     "part": "L0_RELEASE_CABLE_AC_2",
@@ -309,7 +964,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      157.6,
+      443.9,
+      279.8
+    ]
   },
   {
     "part": "L0_CABLE_SPLITTER_AC-05-301-11",
@@ -322,7 +982,12 @@
     "manufacturer": "Southco",
     "pn": "AC-05-301-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      280.8,
+      418.7,
+      336.5
+    ]
   },
   {
     "part": "L0_HANDLE_handle_pan",
@@ -335,7 +1000,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      280.0,
+      447.4,
+      262.4
+    ]
   },
   {
     "part": "L0_HANDLE_handle_paddle",
@@ -348,7 +1018,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      280.0,
+      444.4,
+      261.2
+    ]
   },
   {
     "part": "L0_COMPRESSION_LIMITER_custom_UHMW",
@@ -361,7 +1036,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      445.0,
+      673.5,
+      315.4
+    ]
   },
   {
     "part": "L0_COMPRESSION_LIMITER_custom_UHMW_2",
@@ -374,7 +1054,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      185.0,
+      673.5,
+      315.4
+    ]
   },
   {
     "part": "L0_COMPRESSION_LIMITER_custom_UHMW_3",
@@ -387,7 +1072,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.0,
+      757.8,
+      96.0
+    ]
   },
   {
     "part": "L0_MOD_MODULE_PLUG_FRAME_6061",
@@ -400,7 +1090,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      279.2,
+      699.5,
+      202.8
+    ]
   },
   {
     "part": "L0_MOD_J_HOOK_316",
@@ -413,7 +1108,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      445.0,
+      672.1,
+      92.4
+    ]
   },
   {
     "part": "L0_MOD_J_HOOK_316_2",
@@ -426,7 +1126,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      115.0,
+      672.1,
+      92.4
+    ]
   },
   {
     "part": "L0_MOD_STRIKER_BOLT_R4-90-321-20",
@@ -439,7 +1144,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      432.2,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L0_MOD_STRIKER_BRACKET_custom",
@@ -452,7 +1162,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      412.3,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L0_MOD_STRIKER_BOLT_R4-90-321-20_2",
@@ -465,7 +1180,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      132.2,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L0_MOD_STRIKER_BRACKET_custom_2",
@@ -478,7 +1198,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      112.3,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L0_MOD_LOCATING_PIN_ROUND_MISUMI",
@@ -491,7 +1216,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPA6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      390.0,
+      659.5,
+      312.7
+    ]
   },
   {
     "part": "L0_MOD_LOCATING_PIN_DIAMOND_MISUMI",
@@ -504,7 +1234,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPD6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      130.0,
+      659.9,
+      312.9
+    ]
   },
   {
     "part": "L0_MOD_BALL_PLUNGER_85015A51",
@@ -517,7 +1252,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      503.8,
+      682.7,
+      193.1
+    ]
   },
   {
     "part": "L0_MOD_BALL_PLUNGER_85015A51_2",
@@ -530,7 +1270,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      56.2,
+      682.7,
+      193.1
+    ]
   },
   {
     "part": "L0_MOD_WINDOW_PANE_PC",
@@ -543,7 +1288,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.0,
+      716.8,
+      206.2
+    ]
   },
   {
     "part": "L1_SOCKET_FRAME_6061",
@@ -556,7 +1306,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      931.4,
+      665.9,
+      200.1
+    ]
   },
   {
     "part": "L1_BULB_SEAL_DD6139",
@@ -569,7 +1324,12 @@
     "manufacturer": "Trim-Lok",
     "pn": "DD6139",
     "status": "ORDERABLE",
-    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg"
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "centroid_mm": [
+      932.0,
+      714.1,
+      205.1
+    ]
   },
   {
     "part": "L1_BUSHING_round",
@@ -582,7 +1342,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      1042.0,
+      653.4,
+      310.4
+    ]
   },
   {
     "part": "L1_BUSHING_diamond",
@@ -595,7 +1360,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      782.0,
+      653.4,
+      310.4
+    ]
   },
   {
     "part": "L1_LATCH_latch_housing_R4-30",
@@ -608,7 +1378,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      566.5,
+      246.8
+    ]
   },
   {
     "part": "L1_LATCH_fork_bolt-closed",
@@ -621,7 +1396,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      587.4,
+      253.9
+    ]
   },
   {
     "part": "L1_LATCH_pawl-closed",
@@ -634,7 +1414,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      563.1,
+      249.1
+    ]
   },
   {
     "part": "L1_RELEASE_CABLE_AC",
@@ -647,7 +1432,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      1054.4,
+      443.9,
+      279.8
+    ]
   },
   {
     "part": "L1_LATCH_latch_housing_R4-30_2",
@@ -660,7 +1450,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      566.5,
+      246.8
+    ]
   },
   {
     "part": "L1_LATCH_fork_bolt-closed_2",
@@ -673,7 +1468,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      587.4,
+      253.9
+    ]
   },
   {
     "part": "L1_LATCH_pawl-closed_2",
@@ -686,7 +1486,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      563.1,
+      249.1
+    ]
   },
   {
     "part": "L1_RELEASE_CABLE_AC_2",
@@ -699,7 +1504,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      809.6,
+      443.9,
+      279.8
+    ]
   },
   {
     "part": "L1_CABLE_SPLITTER_AC-05-301-11",
@@ -712,7 +1522,12 @@
     "manufacturer": "Southco",
     "pn": "AC-05-301-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      932.8,
+      418.7,
+      336.5
+    ]
   },
   {
     "part": "L1_HANDLE_handle_pan",
@@ -725,7 +1540,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      932.0,
+      447.4,
+      262.4
+    ]
   },
   {
     "part": "L1_HANDLE_handle_paddle",
@@ -738,7 +1558,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      932.0,
+      444.4,
+      261.2
+    ]
   },
   {
     "part": "L1_COMPRESSION_LIMITER_custom_UHMW",
@@ -751,7 +1576,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1097.0,
+      673.5,
+      315.4
+    ]
   },
   {
     "part": "L1_COMPRESSION_LIMITER_custom_UHMW_2",
@@ -764,7 +1594,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      837.0,
+      673.5,
+      315.4
+    ]
   },
   {
     "part": "L1_COMPRESSION_LIMITER_custom_UHMW_3",
@@ -777,7 +1612,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      757.8,
+      96.0
+    ]
   },
   {
     "part": "L1_MOD_MODULE_PLUG_FRAME_6061",
@@ -790,7 +1630,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      931.2,
+      699.5,
+      202.8
+    ]
   },
   {
     "part": "L1_MOD_J_HOOK_316",
@@ -803,7 +1648,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1097.0,
+      672.1,
+      92.4
+    ]
   },
   {
     "part": "L1_MOD_J_HOOK_316_2",
@@ -816,7 +1666,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      767.0,
+      672.1,
+      92.4
+    ]
   },
   {
     "part": "L1_MOD_STRIKER_BOLT_R4-90-321-20",
@@ -829,7 +1684,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1084.2,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L1_MOD_STRIKER_BRACKET_custom",
@@ -842,7 +1702,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1064.3,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L1_MOD_STRIKER_BOLT_R4-90-321-20_2",
@@ -855,7 +1720,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      784.2,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L1_MOD_STRIKER_BRACKET_custom_2",
@@ -868,7 +1738,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      764.3,
+      595.2,
+      247.2
+    ]
   },
   {
     "part": "L1_MOD_LOCATING_PIN_ROUND_MISUMI",
@@ -881,7 +1756,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPA6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      1042.0,
+      659.5,
+      312.7
+    ]
   },
   {
     "part": "L1_MOD_LOCATING_PIN_DIAMOND_MISUMI",
@@ -894,7 +1774,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPD6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      782.0,
+      659.9,
+      312.9
+    ]
   },
   {
     "part": "L1_MOD_BALL_PLUNGER_85015A51",
@@ -907,7 +1792,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      1155.8,
+      682.7,
+      193.1
+    ]
   },
   {
     "part": "L1_MOD_BALL_PLUNGER_85015A51_2",
@@ -920,7 +1810,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      708.2,
+      682.7,
+      193.1
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316",
@@ -933,7 +1828,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1117.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_2",
@@ -946,7 +1846,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1080.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_3",
@@ -959,7 +1864,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1043.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_4",
@@ -972,7 +1882,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1006.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_5",
@@ -985,7 +1900,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      969.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_6",
@@ -998,7 +1918,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_7",
@@ -1011,7 +1936,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      895.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_8",
@@ -1024,7 +1954,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      858.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_9",
@@ -1037,7 +1972,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      821.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_10",
@@ -1050,7 +1990,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      784.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_BAR_316_11",
@@ -1063,7 +2008,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      747.0,
+      711.6,
+      204.2
+    ]
   },
   {
     "part": "L1_MOD_CAGE_RAIL_316",
@@ -1076,7 +2026,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      723.7,
+      153.1
+    ]
   },
   {
     "part": "L1_MOD_CAGE_RAIL_316_2",
@@ -1089,7 +2044,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      686.5,
+      250.2
+    ]
   },
   {
     "part": "R0_SOCKET_FRAME_6061",
@@ -1102,7 +2062,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.6,
+      -665.9,
+      200.1
+    ]
   },
   {
     "part": "R0_BULB_SEAL_DD6139",
@@ -1115,7 +2080,12 @@
     "manufacturer": "Trim-Lok",
     "pn": "DD6139",
     "status": "ORDERABLE",
-    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg"
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "centroid_mm": [
+      280.0,
+      -714.1,
+      205.1
+    ]
   },
   {
     "part": "R0_BUSHING_round",
@@ -1128,7 +2098,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      170.0,
+      -653.4,
+      310.4
+    ]
   },
   {
     "part": "R0_BUSHING_diamond",
@@ -1141,7 +2116,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      430.0,
+      -653.4,
+      310.4
+    ]
   },
   {
     "part": "R0_LATCH_latch_housing_R4-30",
@@ -1154,7 +2134,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      -566.5,
+      246.8
+    ]
   },
   {
     "part": "R0_LATCH_fork_bolt-closed",
@@ -1167,7 +2152,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      -587.4,
+      253.9
+    ]
   },
   {
     "part": "R0_LATCH_pawl-closed",
@@ -1180,7 +2170,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      130.0,
+      -563.1,
+      249.1
+    ]
   },
   {
     "part": "R0_RELEASE_CABLE_AC",
@@ -1193,7 +2188,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      157.6,
+      -443.9,
+      279.8
+    ]
   },
   {
     "part": "R0_LATCH_latch_housing_R4-30_2",
@@ -1206,7 +2206,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      -566.5,
+      246.8
+    ]
   },
   {
     "part": "R0_LATCH_fork_bolt-closed_2",
@@ -1219,7 +2224,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      -587.4,
+      253.9
+    ]
   },
   {
     "part": "R0_LATCH_pawl-closed_2",
@@ -1232,7 +2242,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      430.0,
+      -563.1,
+      249.1
+    ]
   },
   {
     "part": "R0_RELEASE_CABLE_AC_2",
@@ -1245,7 +2260,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      402.4,
+      -443.9,
+      279.8
+    ]
   },
   {
     "part": "R0_CABLE_SPLITTER_AC-05-301-11",
@@ -1258,7 +2278,12 @@
     "manufacturer": "Southco",
     "pn": "AC-05-301-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      279.2,
+      -418.7,
+      336.5
+    ]
   },
   {
     "part": "R0_HANDLE_handle_pan",
@@ -1271,7 +2296,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      280.0,
+      -447.4,
+      262.4
+    ]
   },
   {
     "part": "R0_HANDLE_handle_paddle",
@@ -1284,7 +2314,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      280.0,
+      -444.4,
+      261.2
+    ]
   },
   {
     "part": "R0_COMPRESSION_LIMITER_custom_UHMW",
@@ -1297,7 +2332,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      115.0,
+      -673.5,
+      315.4
+    ]
   },
   {
     "part": "R0_COMPRESSION_LIMITER_custom_UHMW_2",
@@ -1310,7 +2350,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      375.0,
+      -673.5,
+      315.4
+    ]
   },
   {
     "part": "R0_COMPRESSION_LIMITER_custom_UHMW_3",
@@ -1323,7 +2368,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.0,
+      -757.8,
+      96.0
+    ]
   },
   {
     "part": "R0_MOD_MODULE_PLUG_FRAME_6061",
@@ -1336,7 +2386,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.8,
+      -699.5,
+      202.8
+    ]
   },
   {
     "part": "R0_MOD_J_HOOK_316",
@@ -1349,7 +2404,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      115.0,
+      -672.1,
+      92.4
+    ]
   },
   {
     "part": "R0_MOD_J_HOOK_316_2",
@@ -1362,7 +2422,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      445.0,
+      -672.1,
+      92.4
+    ]
   },
   {
     "part": "R0_MOD_STRIKER_BOLT_R4-90-321-20",
@@ -1375,7 +2440,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      127.8,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R0_MOD_STRIKER_BRACKET_custom",
@@ -1388,7 +2458,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      147.7,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R0_MOD_STRIKER_BOLT_R4-90-321-20_2",
@@ -1401,7 +2476,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      427.8,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R0_MOD_STRIKER_BRACKET_custom_2",
@@ -1414,7 +2494,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      447.7,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R0_MOD_LOCATING_PIN_ROUND_MISUMI",
@@ -1427,7 +2512,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPA6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      170.0,
+      -659.5,
+      312.7
+    ]
   },
   {
     "part": "R0_MOD_LOCATING_PIN_DIAMOND_MISUMI",
@@ -1440,7 +2530,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPD6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      430.0,
+      -659.9,
+      312.9
+    ]
   },
   {
     "part": "R0_MOD_BALL_PLUNGER_85015A51",
@@ -1453,7 +2548,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      56.2,
+      -682.7,
+      193.1
+    ]
   },
   {
     "part": "R0_MOD_BALL_PLUNGER_85015A51_2",
@@ -1466,7 +2566,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      503.8,
+      -682.7,
+      193.1
+    ]
   },
   {
     "part": "R0_MOD_WINDOW_PANE_PC",
@@ -1479,7 +2584,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      280.0,
+      -716.8,
+      206.2
+    ]
   },
   {
     "part": "R1_SOCKET_FRAME_6061",
@@ -1492,7 +2602,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.6,
+      -665.9,
+      200.1
+    ]
   },
   {
     "part": "R1_BULB_SEAL_DD6139",
@@ -1505,7 +2620,12 @@
     "manufacturer": "Trim-Lok",
     "pn": "DD6139",
     "status": "ORDERABLE",
-    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg"
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "centroid_mm": [
+      932.0,
+      -714.1,
+      205.1
+    ]
   },
   {
     "part": "R1_BUSHING_round",
@@ -1518,7 +2638,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      822.0,
+      -653.4,
+      310.4
+    ]
   },
   {
     "part": "R1_BUSHING_diamond",
@@ -1531,7 +2656,12 @@
     "manufacturer": "MISUMI",
     "pn": "JBHC10-15",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110302666420&partNumber=JBHC10-15&field=@detail",
+    "centroid_mm": [
+      1082.0,
+      -653.4,
+      310.4
+    ]
   },
   {
     "part": "R1_LATCH_latch_housing_R4-30",
@@ -1544,7 +2674,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      -566.5,
+      246.8
+    ]
   },
   {
     "part": "R1_LATCH_fork_bolt-closed",
@@ -1557,7 +2692,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      -587.4,
+      253.9
+    ]
   },
   {
     "part": "R1_LATCH_pawl-closed",
@@ -1570,7 +2710,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      782.0,
+      -563.1,
+      249.1
+    ]
   },
   {
     "part": "R1_RELEASE_CABLE_AC",
@@ -1583,7 +2728,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      809.6,
+      -443.9,
+      279.8
+    ]
   },
   {
     "part": "R1_LATCH_latch_housing_R4-30_2",
@@ -1596,7 +2746,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      -566.5,
+      246.8
+    ]
   },
   {
     "part": "R1_LATCH_fork_bolt-closed_2",
@@ -1609,7 +2764,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      -587.4,
+      253.9
+    ]
   },
   {
     "part": "R1_LATCH_pawl-closed_2",
@@ -1622,7 +2782,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1082.0,
+      -563.1,
+      249.1
+    ]
   },
   {
     "part": "R1_RELEASE_CABLE_AC_2",
@@ -1635,7 +2800,12 @@
     "manufacturer": "Southco",
     "pn": "AC-CKK0-9-0450-TTT",
     "status": "SERIES_ONLY",
-    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/AC-CA.en.pdf",
+    "centroid_mm": [
+      1054.4,
+      -443.9,
+      279.8
+    ]
   },
   {
     "part": "R1_CABLE_SPLITTER_AC-05-301-11",
@@ -1648,7 +2818,12 @@
     "manufacturer": "Southco",
     "pn": "AC-05-301-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      931.2,
+      -418.7,
+      336.5
+    ]
   },
   {
     "part": "R1_HANDLE_handle_pan",
@@ -1661,7 +2836,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      932.0,
+      -447.4,
+      262.4
+    ]
   },
   {
     "part": "R1_HANDLE_handle_paddle",
@@ -1674,7 +2854,12 @@
     "manufacturer": "Southco",
     "pn": "AC-75-101-11",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/ac.en.pdf",
+    "centroid_mm": [
+      932.0,
+      -444.4,
+      261.2
+    ]
   },
   {
     "part": "R1_COMPRESSION_LIMITER_custom_UHMW",
@@ -1687,7 +2872,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      767.0,
+      -673.5,
+      315.4
+    ]
   },
   {
     "part": "R1_COMPRESSION_LIMITER_custom_UHMW_2",
@@ -1700,7 +2890,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1027.0,
+      -673.5,
+      315.4
+    ]
   },
   {
     "part": "R1_COMPRESSION_LIMITER_custom_UHMW_3",
@@ -1713,7 +2908,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      -757.8,
+      96.0
+    ]
   },
   {
     "part": "R1_MOD_MODULE_PLUG_FRAME_6061",
@@ -1726,7 +2926,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.8,
+      -699.5,
+      202.8
+    ]
   },
   {
     "part": "R1_MOD_J_HOOK_316",
@@ -1739,7 +2944,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      767.0,
+      -672.1,
+      92.4
+    ]
   },
   {
     "part": "R1_MOD_J_HOOK_316_2",
@@ -1752,7 +2962,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1097.0,
+      -672.1,
+      92.4
+    ]
   },
   {
     "part": "R1_MOD_STRIKER_BOLT_R4-90-321-20",
@@ -1765,7 +2980,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      779.8,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R1_MOD_STRIKER_BRACKET_custom",
@@ -1778,7 +2998,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      799.7,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R1_MOD_STRIKER_BOLT_R4-90-321-20_2",
@@ -1791,7 +3016,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1079.8,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R1_MOD_STRIKER_BRACKET_custom_2",
@@ -1804,7 +3034,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1099.7,
+      -595.2,
+      247.2
+    ]
   },
   {
     "part": "R1_MOD_LOCATING_PIN_ROUND_MISUMI",
@@ -1817,7 +3052,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPA6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPA6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      822.0,
+      -659.5,
+      312.7
+    ]
   },
   {
     "part": "R1_MOD_LOCATING_PIN_DIAMOND_MISUMI",
@@ -1830,7 +3070,12 @@
     "manufacturer": "MISUMI",
     "pn": "CFPBPD6-P10-L10-B8",
     "status": "ORDERABLE",
-    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail"
+    "source_url": "https://api.us.misumi-ec.com/api/v1/partNumber/search?applicationId=72c49146-6b86-4155-a63c-499b00972294&lang=ENG&seriesCode=110300557320&partNumber=CFPBPD6-P10-L10-B8&field=@detail",
+    "centroid_mm": [
+      1082.0,
+      -659.9,
+      312.9
+    ]
   },
   {
     "part": "R1_MOD_BALL_PLUNGER_85015A51",
@@ -1843,7 +3088,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      708.2,
+      -682.7,
+      193.1
+    ]
   },
   {
     "part": "R1_MOD_BALL_PLUNGER_85015A51_2",
@@ -1856,7 +3106,12 @@
     "manufacturer": "McMaster-Carr",
     "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/"
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      1155.8,
+      -682.7,
+      193.1
+    ]
   },
   {
     "part": "R1_MOD_TOOLBOX_DOOR_CARBON",
@@ -1869,7 +3124,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      -721.9,
+      208.1
+    ]
   },
   {
     "part": "R1_MOD_TOOLBOX_TUB_ABS",
@@ -1882,7 +3142,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      932.0,
+      -573.3,
+      129.1
+    ]
   },
   {
     "part": "HATCH_HATCH_SURROUND_6061",
@@ -1895,7 +3160,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1339.3,
+      -0.0,
+      192.3
+    ]
   },
   {
     "part": "HATCH_HATCH_DRAIN_TUBE_R",
@@ -1908,7 +3178,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1385.5,
+      -440.0,
+      28.7
+    ]
   },
   {
     "part": "HATCH_HATCH_DRAIN_TUBE_L",
@@ -1921,7 +3196,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1385.5,
+      440.0,
+      28.7
+    ]
   },
   {
     "part": "HATCH_BULB_SEAL_DD6139",
@@ -1934,7 +3214,12 @@
     "manufacturer": "Trim-Lok",
     "pn": "DD6139",
     "status": "ORDERABLE",
-    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg"
+    "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
+    "centroid_mm": [
+      1350.6,
+      -0.0,
+      197.6
+    ]
   },
   {
     "part": "HATCH_LEAF_HATCH_LEAF_CARBON",
@@ -1947,7 +3232,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1368.5,
+      0.0,
+      202.8
+    ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_PANE_R",
@@ -1960,7 +3250,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1375.6,
+      -251.0,
+      204.3
+    ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_RETAINER_R",
@@ -1973,7 +3268,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1370.7,
+      -251.0,
+      203.0
+    ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_PANE_L",
@@ -1986,7 +3286,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1375.6,
+      251.0,
+      204.3
+    ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_RETAINER_L",
@@ -1999,7 +3304,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1370.7,
+      251.0,
+      203.0
+    ]
   },
   {
     "part": "HATCH_LEAF_T_HANDLE_E3-18-15",
@@ -2012,7 +3322,12 @@
     "manufacturer": "Southco",
     "pn": "E3-18-15",
     "status": "ORDERABLE",
-    "source_url": "https://media.southco.com/media/static/Literature/e3.en.pdf"
+    "source_url": "https://media.southco.com/media/static/Literature/e3.en.pdf",
+    "centroid_mm": [
+      1391.2,
+      1.3,
+      105.8
+    ]
   },
   {
     "part": "HATCH_LEAF_CHMSL_M63319R",
@@ -2025,7 +3340,12 @@
     "manufacturer": "Maxxima",
     "pn": "M63319R",
     "status": "ORDERABLE",
-    "source_url": "https://www.vehiclesafetysupply.com/maxxima-surface-mount-id-bar-center-high-mount-stop-light-m63319r-p-83938.html"
+    "source_url": "https://www.vehiclesafetysupply.com/maxxima-surface-mount-id-bar-center-high-mount-stop-light-m63319r-p-83938.html",
+    "centroid_mm": [
+      1359.2,
+      0.0,
+      323.1
+    ]
   },
   {
     "part": "HATCH_LEAF_STRIKER_BOLT_R4-90-321-20",
@@ -2038,7 +3358,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1354.6,
+      -422.8,
+      110.7
+    ]
   },
   {
     "part": "HATCH_LEAF_STRIKER_BRACKET_custom",
@@ -2051,7 +3376,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1354.6,
+      -442.7,
+      110.7
+    ]
   },
   {
     "part": "HATCH_LEAF_LEAF_STRIKER_ARM_6061",
@@ -2064,7 +3394,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1356.6,
+      -451.7,
+      111.3
+    ]
   },
   {
     "part": "HATCH_LEAF_STRIKER_BOLT_R4-90-321-20_2",
@@ -2077,7 +3412,12 @@
     "manufacturer": "Southco",
     "pn": "R4-90-321-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1354.6,
+      422.8,
+      110.7
+    ]
   },
   {
     "part": "HATCH_LEAF_STRIKER_BRACKET_custom_2",
@@ -2090,7 +3430,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1354.6,
+      442.7,
+      110.7
+    ]
   },
   {
     "part": "HATCH_LEAF_LEAF_STRIKER_ARM_6061_2",
@@ -2103,7 +3448,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1356.6,
+      451.7,
+      111.3
+    ]
   },
   {
     "part": "HATCH_LEAF_HINGE_GN7233_door_leaf",
@@ -2116,7 +3466,12 @@
     "manufacturer": "JW Winco",
     "pn": "GN 7233-NI-50-L-MT + GN 7233-NI-50-R-MT",
     "status": "ORDERABLE",
-    "source_url": "https://live-catalog.jwwinco.com/pdf/winco/us/7233.pdf"
+    "source_url": "https://live-catalog.jwwinco.com/pdf/winco/us/7233.pdf",
+    "centroid_mm": [
+      1324.5,
+      -452.0,
+      296.2
+    ]
   },
   {
     "part": "HATCH_LEAF_HINGE_GN7233_door_leaf_2",
@@ -2129,7 +3484,12 @@
     "manufacturer": "JW Winco",
     "pn": "GN 7233-NI-50-L-MT + GN 7233-NI-50-R-MT",
     "status": "ORDERABLE",
-    "source_url": "https://live-catalog.jwwinco.com/pdf/winco/us/7233.pdf"
+    "source_url": "https://live-catalog.jwwinco.com/pdf/winco/us/7233.pdf",
+    "centroid_mm": [
+      1324.5,
+      452.0,
+      296.2
+    ]
   },
   {
     "part": "HATCH_LEAF_LEAF_STRUT_BOSS_6061",
@@ -2142,7 +3502,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1326.4,
+      -474.0,
+      270.9
+    ]
   },
   {
     "part": "HATCH_LEAF_BALL_STUD_4486MD",
@@ -2155,7 +3520,12 @@
     "manufacturer": "Stabilus",
     "pn": "4486MD",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1314.2,
+      -474.0,
+      267.6
+    ]
   },
   {
     "part": "HATCH_LEAF_LEAF_STRUT_BOSS_6061_2",
@@ -2168,7 +3538,12 @@
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
-    "source_url": null
+    "source_url": null,
+    "centroid_mm": [
+      1326.4,
+      474.0,
+      270.9
+    ]
   },
   {
     "part": "HATCH_LEAF_BALL_STUD_4486MD_2",
@@ -2181,7 +3556,12 @@
     "manufacturer": "Stabilus",
     "pn": "4486MD",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1314.2,
+      474.0,
+      267.6
+    ]
   },
   {
     "part": "HATCH_LATCH_latch_housing_R4-30",
@@ -2194,7 +3574,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1328.4,
+      -425.0,
+      98.7
+    ]
   },
   {
     "part": "HATCH_LATCH_fork_bolt-closed",
@@ -2207,7 +3592,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1350.4,
+      -425.0,
+      101.3
+    ]
   },
   {
     "part": "HATCH_LATCH_pawl-closed",
@@ -2220,7 +3610,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1326.4,
+      -425.0,
+      95.2
+    ]
   },
   {
     "part": "HATCH_LATCH_latch_housing_R4-30_2",
@@ -2233,7 +3628,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1328.4,
+      425.0,
+      98.7
+    ]
   },
   {
     "part": "HATCH_LATCH_fork_bolt-closed_2",
@@ -2246,7 +3646,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1350.4,
+      425.0,
+      101.3
+    ]
   },
   {
     "part": "HATCH_LATCH_pawl-closed_2",
@@ -2259,7 +3664,12 @@
     "manufacturer": "Southco",
     "pn": "R4-30-41-501-20",
     "status": "ORDERABLE",
-    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf"
+    "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
+    "centroid_mm": [
+      1326.4,
+      425.0,
+      95.2
+    ]
   },
   {
     "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II",
@@ -2272,7 +3682,12 @@
     "manufacturer": "Stabilus",
     "pn": "6462II",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1256.3,
+      -481.8,
+      162.8
+    ]
   },
   {
     "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II",
@@ -2285,7 +3700,12 @@
     "manufacturer": "Stabilus",
     "pn": "6462II",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1300.5,
+      -474.7,
+      255.8
+    ]
   },
   {
     "part": "HATCH_BALL_STUD_4486MD",
@@ -2298,7 +3718,12 @@
     "manufacturer": "Stabilus",
     "pn": "4486MD",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1217.5,
+      -497.7,
+      81.2
+    ]
   },
   {
     "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II_2",
@@ -2311,7 +3736,12 @@
     "manufacturer": "Stabilus",
     "pn": "6462II",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1256.3,
+      481.8,
+      162.8
+    ]
   },
   {
     "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II_2",
@@ -2324,7 +3754,12 @@
     "manufacturer": "Stabilus",
     "pn": "6462II",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1300.5,
+      474.7,
+      255.8
+    ]
   },
   {
     "part": "HATCH_BALL_STUD_4486MD_2",
@@ -2337,6 +3772,11 @@
     "manufacturer": "Stabilus",
     "pn": "4486MD",
     "status": "ORDERABLE",
-    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf"
+    "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
+    "centroid_mm": [
+      1217.5,
+      497.7,
+      81.2
+    ]
   }
 ]

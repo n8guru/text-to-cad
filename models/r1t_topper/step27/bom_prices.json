@@ -1,0 +1,344 @@
+{
+  "_doc": "Curated price SELECTION for BOM27 (Step 27 rev 10). Every row points at one entry of research/pricing_2026-10.json by (pn, vendor) and make_bom.py refuses to run if that entry is missing or its price differs. basis: EXACT = same manufacturer part number; EQUIV = stated equivalent (same function/size, different grade, pack or listing) - the reason is in 'why'; NONE = no public price was obtainable read-only (status says why). Public list prices, retrieved 2026-10-02, USD, excluding tax and freight unless stated. Nothing was ordered, no quote requested.",
+  "retrieved": "2026-10-02",
+  "lines": {
+    "rotary_latch": {
+      "pn": "R4-30-41-501-20",
+      "vendor": "Bisco Industries",
+      "unit": 20.69,
+      "break": "10+",
+      "basis": "EXACT",
+      "note": "qty-1 $25.28; Bisco 'non-stock' pricing"
+    },
+    "striker": {
+      "pn": "R4-90-321-20",
+      "vendor": "Bisco Industries",
+      "unit": 7.13,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "support_plate": {
+      "pn": "R4-38-101-10",
+      "vendor": "Bisco Industries",
+      "unit": 1.65,
+      "break": "MOQ 100",
+      "moq": 100,
+      "basis": "EXACT"
+    },
+    "release_handle": {
+      "pn": "AC-75-101-11",
+      "vendor": "Bisco Industries",
+      "unit": 19.77,
+      "break": "MOQ 10",
+      "moq": 10,
+      "basis": "EXACT",
+      "note": "qty-1 alternative $39.14 (Amazon third party)"
+    },
+    "cable_splitter": {
+      "pn": "AC-05-301-11",
+      "vendor": "Bisco Industries",
+      "unit": 9.63,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "release_cable": {
+      "pn": "AC-CAB1-3-0450-048",
+      "vendor": "Bisco Industries",
+      "unit": 61.45,
+      "break": "5+",
+      "basis": "EQUIV",
+      "why": "Same Southco AC rotary-latch cable family at the same 450 mm length; the design PN AC-CKK0-9-0450-TTT stays SERIES_ONLY (fitting letters need Southco). Bisco page showed out of stock / quick quote."
+    },
+    "clip_trigger": {
+      "pn": "R4-0-43922-2",
+      "vendor": "Bossard",
+      "unit": 0.3264,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "cable_bracket": {
+      "pn": "R4-0-50253-1",
+      "vendor": "Bisco Industries",
+      "unit": 3.34,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "t_handle": {
+      "pn": "E3-18-15",
+      "vendor": "Bisco Industries",
+      "unit": 41.1,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "t_gasket": {
+      "pn": "E5-17",
+      "vendor": "Bisco Industries",
+      "unit": 0.55,
+      "break": "MOQ 100",
+      "moq": 100,
+      "basis": "EXACT"
+    },
+    "t_spur_washer": {
+      "pn": "90-6-875",
+      "vendor": "Bisco Industries",
+      "unit": 0.94,
+      "break": "MOQ 10",
+      "moq": 10,
+      "basis": "EXACT"
+    },
+    "t_keys": {
+      "pn": "PK-10-01",
+      "vendor": "Bisco Industries",
+      "unit": 5.32,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "hinge_L": {
+      "pn": "GN 7233-NI-50-L-MT",
+      "vendor": "JW Winco (jwwinco.com, US)",
+      "unit": 148.73,
+      "break": "1-9",
+      "basis": "EXACT"
+    },
+    "hinge_R": {
+      "pn": "GN 7233-NI-50-R-MT",
+      "vendor": "JW Winco (jwwinco.com, US)",
+      "unit": 148.73,
+      "break": "1-9",
+      "basis": "EXACT"
+    },
+    "gas_strut": {
+      "pn": "6462II",
+      "vendor": "Hinscha (hinscha.com, Belgium; USD display)",
+      "unit": 74.09,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "excl. VAT and shipping; 12-14 wk lead"
+    },
+    "ball_stud": {
+      "pn": "4486MD",
+      "vendor": "Hinscha (hinscha.com, Belgium; USD display)",
+      "unit": 3.32,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "excl. VAT and shipping"
+    },
+    "bulb_seal": {
+      "pn": "DD6100",
+      "vendor": "trimlok.com (Trim-Lok direct)",
+      "unit": 353.4,
+      "break": "200 ft roll",
+      "per_roll_m": 60.96,
+      "basis": "EQUIV",
+      "why": "DD6139 is not on trimlok.com (rep / RFQ part). DD6100 is the same Trim-Lok co-extruded EPDM bulb-on-clip family, sold only as a 200 ft roll; its bulb and clamp range are NOT yet matched to the DD6139 section - cost proxy only."
+    },
+    "locating_pin_round": {
+      "pn": "CFPBPA6-P10-L10-B8",
+      "vendor": "MISUMI USA",
+      "unit": null,
+      "basis": "NONE",
+      "why": "orderable PN confirmed; price is client-rendered and the price API was outside office hours"
+    },
+    "locating_pin_diamond": {
+      "pn": "CFPBPD6-P10-L10-B8",
+      "vendor": "MISUMI USA",
+      "unit": null,
+      "basis": "NONE",
+      "why": "as above"
+    },
+    "bushing": {
+      "pn": "JBHC10-15",
+      "vendor": "MISUMI USA",
+      "unit": null,
+      "basis": "NONE",
+      "why": "as above"
+    },
+    "ball_plunger": {
+      "pn": "85015A51",
+      "vendor": "McMaster-Carr",
+      "unit": null,
+      "basis": "NONE",
+      "why": "McMaster product tables need a login"
+    },
+    "chmsl": {
+      "pn": "M63319R",
+      "vendor": "Mid Eastern Inc",
+      "unit": 19.95,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "harness_connector": {
+      "pn": "13897598",
+      "vendor": "Mouser (829-13897598, not verified)",
+      "unit": null,
+      "basis": "NONE",
+      "why": "Mouser/Digi-Key/Newark/Allied blocked scripted access"
+    },
+    "harness_terminal": {
+      "pn": "12034047-L",
+      "vendor": "Custom Connector Kits",
+      "unit": 0.26,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "loose-piece SKU of Aptiv 12034047"
+    },
+    "port_adapter": {
+      "pn": "09-111-00078-7",
+      "vendor": "Weistec Engineering",
+      "unit": 100.0,
+      "break": "1+ (sold individually)",
+      "basis": "EXACT"
+    },
+    "foot_pad": {
+      "pn": "02-K127-P0125 Closed Cell Rubber - Blend - 39in x 78in - Adhesive Backed, 1/8in",
+      "vendor": "Rubber-Cal",
+      "unit": 61.34,
+      "break": "1 sheet",
+      "basis": "EQUIV",
+      "why": "Specified part is a 1/4 in ASTM D1056 2B2 EPDM PSA strip (Pres-On P9200 matches but shows no public price). Proxy: one 39 x 78 in sheet of 1/8 in PSA closed-cell blend yields the 4 strips for two laminated layers - cost proxy only; the blend is NOT EPDM and is not the release material."
+    },
+    "SHCS_1/4-20x5/8_316": {
+      "pn": "25C62SHCSSS/316",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.46,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "SHCS_M6x20_A4": {
+      "pn": "M6C20SHCSA4/D",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.59,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "vendor sells A4-70 and does not cite ISO 4762 - verify head dims"
+    },
+    "SHCS_M6x16_A4": {
+      "pn": "M6C16SHCSA4/D",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.57,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "FHCS_M6x12_A4": {
+      "pn": "M6-1.00x12 Stainless A4-70 Flat Head Socket Cap Screws",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.45,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "BHCS_M6x16_A4": {
+      "pn": "M6-1.00x16 Stainless A4-70 Button Head Socket Cap Screws",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.46,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "BHCS_M5x10_A4": {
+      "pn": "M5C10BSHCSA4/D",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.3,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "BHCS_M4x12_A4": {
+      "pn": "M4-0.70x12 Stainless A4-70 Button Head Socket Cap Screws",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.19,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "STUD_M10x60_A4": {
+      "pn": "M10-1.50x1000 A4-70 Stainless Steel Fully Threaded Rods",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 113.65,
+      "break": "1 m rod",
+      "basis": "EXACT",
+      "per_rod": 16,
+      "note": "studs are cut from DIN 975 A4-70 rod (60 mm, chamfer both ends): 1 m rod = 16 studs"
+    },
+    "NUT_M10_A4": {
+      "pn": "M10-1.5 Stainless Steel A4 Finished Hex Nuts",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.8,
+      "break": "1+",
+      "basis": "EQUIV",
+      "why": "A4 finished hex nut, property class not stated on the listing; A4-80 specified"
+    },
+    "NL10SS": {
+      "pn": "NL10ss (Tanner SKU NORD NL10-SS)",
+      "vendor": "Tanner Bolt & Nut (tannerbolt.com)",
+      "unit": 2.224,
+      "break": "box of 200 ($444.80)",
+      "moq": 200,
+      "basis": "EXACT",
+      "note": "Tanner does not say whether 200 = pieces or pairs; Hartmann lists article 1575 at $8.23 per 10 pairs (low confidence) - conservative Tanner figure used"
+    },
+    "NUT_M6_NYLOC_A4": {
+      "pn": "M2Y106C(PAK50)",
+      "vendor": "Bolt Bandits (boltbandits.com)",
+      "unit": 0.075,
+      "break": "pack of 50 ($3.75)",
+      "moq": 50,
+      "basis": "EQUIV",
+      "why": "A2-70 nylon-insert nut priced; A4 specified - cost proxy"
+    },
+    "NUT_M4_NYLOC_A4": {
+      "pn": "M4-0.7 A2-70 Stainless Steel Nylon Insert Hex Jam Nuts",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.15,
+      "break": "1+",
+      "basis": "EQUIV",
+      "why": "A2-70 nylon-insert JAM nut priced; A4 DIN 985 full nut specified - cost proxy"
+    },
+    "WASHER_M6_A4": {
+      "pn": "M6SFWA4",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.1,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "WASHER_M4_A4": {
+      "pn": "M4 A4-70 Stainless Steel Flat Washers",
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": 0.06,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "structural_adhesive": {
+      "pn": "DP460 OFF-WHITE 50ML (3M ID 7100148768; 3M cat. 460 / 5-digit 08998)",
+      "vendor": "Ellsworth Adhesives",
+      "unit": 59.98,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "mix_nozzle": {
+      "pn": "01003 (3M ID 7100148765) Scotch-Weld EPX Mixing Nozzle, Square Green, 48.5 mL and 50 mL",
+      "vendor": "Alloy Coating Supply",
+      "unit": 2.11,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "unclear whether per nozzle or per pack"
+    },
+    "threadlocker": {
+      "pn": "1329837 (Loctite 243 Threadlocker, Blue, medium strength, 10 mL bottle)",
+      "vendor": "Ellsworth Adhesives",
+      "unit": 21.45,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "anti_seize": {
+      "pn": "Tef-Gel 1 oz tube (Hamilton Marine P/N USS-TEF20-CC, HM Order # 135591)",
+      "vendor": "Hamilton Marine",
+      "unit": 36.39,
+      "break": "1+",
+      "basis": "EXACT"
+    },
+    "glazing_tape": {
+      "pn": null,
+      "vendor": null,
+      "unit": null,
+      "basis": "NONE",
+      "why": "VHB 5952 not in the price research request"
+    }
+  }
+}

@@ -21,10 +21,12 @@ MODEL = STEP27.parent                     # models/r1t_topper
 OUT = STEP27 / "out" / "PROVENANCE.json"
 
 INPUTS = ["blender/params.json", "step27/hardware.json", "step27/style/rivian_reference.json",
-          "step27/style/rivian_reference.py"] + \
+          "step27/style/rivian_reference.py", "step27/bom_prices.json",
+          "step27/research/pricing_2026-10.json"] + \
          sorted(f"step27/cad/{p.name}" for p in HERE.glob("*.py"))
 OUTPUT_GLOBS = ["step27/out/*.step", "step27/out/parts_manifest.json", "step27/out/kinematics.json",
-                "step27/out/checks.json", "step27/drawings/*.svg", "step27/BOM27.md"]
+                "step27/out/checks.json", "step27/out/mounting_analysis.json", "step27/out/BOM27.csv",
+                "step27/drawings/*.svg", "step27/BOM27.md"]
 COMMANDS = ["python step27/style/rivian_reference.py", "python step27/cad/assembly_step27.py",
             "python step27/cad/make_drawings.py", "python step27/cad/make_bom.py",
             "python step27/cad/checks_step27.py", "python step27/cad/provenance.py"]

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="530.6mm" height="195.6mm" viewBox="-530.6 -195.6 1061.2 391.2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="1.2" id="outline">
+      <line x1="-470.0" y1="70.0" x2="-470.0" y2="-70.0" />
+      <path d="M -405.0,135.0 A 65.0,65.0 180.0 0,1 -470.0,70.0" />
+      <line x1="-405.0" y1="135.0" x2="405.0" y2="135.0" />
+      <path d="M 470.0,70.0 A 65.0,65.0 180.0 0,1 405.0,135.0" />
+      <line x1="470.0" y1="70.0" x2="470.0" y2="-70.0" />
+      <path d="M 405.0,-135.0 A 65.0,65.0 180.0 0,1 470.0,-70.0" />
+      <line x1="-405.0" y1="-135.0" x2="405.0" y2="-135.0" />
+      <path d="M -470.0,-70.0 A 65.0,65.0 180.0 0,1 -405.0,-135.0" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.5" id="hidden" stroke-dasharray="6.35 3.175">
+      <line x1="-470.0" y1="70.0" x2="-470.0" y2="-70.0" />
+      <path d="M -405.0,135.0 A 65.0,65.0 180.0 0,1 -470.0,70.0" />
+      <line x1="-405.0" y1="135.0" x2="405.0" y2="135.0" />
+      <path d="M 470.0,70.0 A 65.0,65.0 180.0 0,1 405.0,135.0" />
+      <line x1="470.0" y1="70.0" x2="470.0" y2="-70.0" />
+      <path d="M 405.0,-135.0 A 65.0,65.0 180.0 0,1 470.0,-70.0" />
+      <line x1="-405.0" y1="-135.0" x2="405.0" y2="-135.0" />
+      <path d="M -470.0,-70.0 A 65.0,65.0 180.0 0,1 -405.0,-135.0" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-020_front_pass_through_pane  FRONT PASS-THROUGH PANE, 5 mm HARD-COAT PC, 1 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">envelope......................................5.0 x 940.0 x 270.0</text><text x="18" y="68" font-family="monospace" font-size="11">bond..........................................DP460 is NOT used on PC: 3M VHB 5952 20 mm overlap all round</text><text x="18" y="82" font-family="monospace" font-size="11">profile tol...................................+/-0.5</text><text x="18" y="96" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="118" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="132" font-family="monospace" font-size="11">1. Faces the R1T cab back glass; drain path below.</text><text x="12" y="154" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

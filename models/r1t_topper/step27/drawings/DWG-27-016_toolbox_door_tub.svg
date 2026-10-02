@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="300.6mm" height="139.209815mm" viewBox="-250.5 -116.008179 501.0 232.016358" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="1.0" id="outline">
+      <line x1="-200.0" y1="-65.508179" x2="-200.0" y2="65.508179" />
+      <line x1="-200.0" y1="-65.508179" x2="200.0" y2="-65.508179" />
+      <line x1="-200.0" y1="65.508179" x2="200.0" y2="65.508179" />
+      <line x1="200.0" y1="-65.508179" x2="200.0" y2="65.508179" />
+      <line x1="197.0" y1="-62.508179" x2="-197.0" y2="-62.508179" />
+      <line x1="197.0" y1="-62.508179" x2="197.0" y2="62.508179" />
+      <line x1="197.0" y1="62.508179" x2="-197.0" y2="62.508179" />
+      <line x1="-197.0" y1="-62.508179" x2="-197.0" y2="62.508179" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.4166666666666667" id="hidden" stroke-dasharray="5.291667 2.645833">
+      <line x1="-200.0" y1="-65.508179" x2="-200.0" y2="65.508179" />
+      <line x1="-200.0" y1="-65.508179" x2="200.0" y2="-65.508179" />
+      <line x1="-200.0" y1="65.508179" x2="200.0" y2="65.508179" />
+      <line x1="200.0" y1="-65.508179" x2="200.0" y2="65.508179" />
+      <line x1="-197.0" y1="-62.508179" x2="197.0" y2="-62.508179" />
+      <line x1="197.0" y1="-62.508179" x2="197.0" y2="62.508179" />
+      <line x1="-197.0" y1="62.508179" x2="197.0" y2="62.508179" />
+      <line x1="-197.0" y1="-62.508179" x2="-197.0" y2="62.508179" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-016_toolbox_door_tub  TOOLBOX MODULE: DOOR (carbon 6 mm) + TUB (3 mm ABS/PMMA), 1 + 1 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">door envelope.................................428.0 x 166.0 x 6.0</text><text x="18" y="68" font-family="monospace" font-size="11">door..........................................carbon/PET 6 mm sandwich, vacuum infusion, UV clear</text><text x="18" y="82" font-family="monospace" font-size="11">tub envelope..................................400.0 x 131.0 x 290.0</text><text x="18" y="96" font-family="monospace" font-size="11">tub...........................................3 mm ABS/PMMA (Kydex-class) thermoform, grained black</text><text x="18" y="110" font-family="monospace" font-size="11">tub fixing....................................10 x M5x10 BHCS A4 through the flange into the plug frame (J14)</text><text x="18" y="124" font-family="monospace" font-size="11">profile tol...................................door +/-0.3 to the module flange; tub +/-1.0</text><text x="18" y="138" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="160" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="174" font-family="monospace" font-size="11">1. Door hinge/lock (E3-108-015 keyed, key-alike) is NOT modelled: Step 27 open item.</text><text x="12" y="196" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg width="328.8mm" height="171.609815mm" viewBox="-274.0 -143.008179 548.0 286.016358" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="scale(1,-1)" stroke-linecap="round">
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="1.0" id="outline">
+      <line x1="-223.5" y1="-57.508179" x2="-223.5" y2="57.508179" />
+      <path d="M -188.5,-92.508179 A 35.0,35.0 180.0 0,0 -223.5,-57.508179" />
+      <line x1="-188.5" y1="-92.508179" x2="188.5" y2="-92.508179" />
+      <path d="M 223.5,-57.508179 A 35.0,35.0 180.0 0,0 188.5,-92.508179" />
+      <line x1="223.5" y1="-57.508179" x2="223.5" y2="57.508179" />
+      <path d="M 188.5,92.508179 A 35.0,35.0 180.0 0,0 223.5,57.508179" />
+      <line x1="-188.5" y1="92.508179" x2="188.5" y2="92.508179" />
+      <path d="M -223.5,57.508179 A 35.0,35.0 180.0 0,0 -188.5,92.508179" />
+    </g>
+    <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.4166666666666667" id="hidden" stroke-dasharray="5.291667 2.645833">
+      <line x1="-223.5" y1="-57.508179" x2="-223.5" y2="57.508179" />
+      <path d="M -188.5,-92.508179 A 35.0,35.0 180.0 0,0 -223.5,-57.508179" />
+      <line x1="-188.5" y1="-92.508179" x2="188.5" y2="-92.508179" />
+      <path d="M 223.5,-57.508179 A 35.0,35.0 180.0 0,0 188.5,-92.508179" />
+      <line x1="223.5" y1="-57.508179" x2="223.5" y2="57.508179" />
+      <path d="M 188.5,92.508179 A 35.0,35.0 180.0 0,0 223.5,57.508179" />
+      <line x1="-188.5" y1="92.508179" x2="188.5" y2="92.508179" />
+      <path d="M -223.5,57.508179 A 35.0,35.0 180.0 0,0 -188.5,92.508179" />
+    </g>
+  </g>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-017_window_module_pane  WINDOW MODULE PANE, 5 mm HARD-COAT PC, FLAT, 2 OFF</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">envelope......................................447.0 x 185.0 x 5.0</text><text x="18" y="68" font-family="monospace" font-size="11">flatness......................................1.0 (flat by Nate's direction, decision 1320686)</text><text x="18" y="82" font-family="monospace" font-size="11">bond..........................................3M VHB 5952 12 mm perimeter to the plug-frame flange (J15)</text><text x="18" y="96" font-family="monospace" font-size="11">profile tol...................................+/-0.5</text><text x="18" y="110" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="132" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="146" font-family="monospace" font-size="11">1. Edges routed and polished; hard coat both faces.</text><text x="12" y="168" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
