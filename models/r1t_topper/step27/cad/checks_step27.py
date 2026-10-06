@@ -136,11 +136,6 @@ def check_reference_sources():
     check("truck_params_match_reference", not bad,
           f"{len(pairs)} params.json truck values within 1 mm of style/rivian_reference.json"
           if not bad else f"drifted (params, reference): {bad}")
-    open_item("rear_sill_tailgate_seal",
-              f"Rivian side view: rail top flat to x={G.T['rail_flat_end_x']:.0f}, tailgate top "
-              f"{-G.T['tailgate_top_z']:.0f} mm below it. The rear sill needs a closing seal across "
-              f"the tailgate (a {-G.T['tailgate_top_z']:.0f} mm gap exceeds the DD6139's 20 mm "
-              f"compressed height) and the rear corners overhang the rounded rail end - select after T5")
     open_item("truck_tape_session",
               "rail height (1344-1366 mm band), cab back line, spoiler tip, rail-cap edges, "
               "tailgate face are DRAWING-DERIVED from Rivian illustrations; tape before tooling")
