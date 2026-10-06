@@ -2,7 +2,7 @@
 
 Everything in 10_TOPPER_CAD is an STL exported by step27/cad/assembly_step27.py in vehicle
 coordinates: the styled carbon shell, 4 top-hat socket frames with latches, the default module kit
-(L0 WINDOW, L1 CAGE, R0 WINDOW, R1 TOOLBOX), the hatch, base rails and bed-port adapters. Blender
+(L0 WINDOW, L1 CAGE, R0 WINDOW, R1 TOOLBOX), the hatch, base rails and the four Port Latch Feet (PLF_*). Blender
 models none of it.
 
 Scores are measured in this scene, between the imported CAD meshes and the traced truck:

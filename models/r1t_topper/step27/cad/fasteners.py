@@ -84,15 +84,19 @@ def joints():
     st = mounts.stack_report()
     retainer_n = glazing_retainer_screws()
     return [
-        {"id": "J01", "joint": "Port clamp station: base rail -> Weistec port adapter (OEM bed port)",
-         "count": ("PORT_STUD",), "per": [("STUD_M10x60_A4", 1), ("NUT_M10_A4", 1), ("NL10SS", 1)],
-         "custom_per": [("PORT_SLOT_WASHER_316", 1), ("PORT_SPACER_6061", 1), ("PORT_SHIM_316_0p5", 2)],
-         "torque": "stud: Loctite 243 into the adapter, hand-tight + 10 Nm; nut: 30 Nm, Tef-Gel on the "
-                   "thread (Upfit p.57: M10 8.8 hard joint 27-54 Nm; A4-70 stud 75 % -> 20-40 Nm)",
-         "grip": f"grip {st['grip']:.1f} mm, stud in adapter {st['engagement']:.1f} mm, "
-                 f"{st['protrusion']:.1f} mm past the nut "
-                 f"(>= 1.5 d = 15.0 required; adapter thread depth is P-CAL-01)",
-         "access": "16 mm ratcheting box wrench swung inboard at nut height (check_mounting)"},
+        {"id": "J01", "joint": "Port Latch Foot (Rivian-crossbar style): hook teeth -> OEM port latch pins; "
+                               "PLF body -> base rail strip (shop fit-up, topper off the truck)",
+         "count": ("PLF_BODY",),
+         "per": [("SHCS_M6x30_A4", 2), ("SSCREW_M6x20_A4", 1), ("PIN_DOWEL_5x80_A4", 1)],
+         "custom_per": [("PLF_PADDLE_6061", 1), ("PLF_HOOK_SLIDER_17_4PH", 1), ("PLF_SHIM_316_1p0", 2)],
+         "torque": "rail screws 6 Nm (A4-70 M6 into tapped 6061, soft joint), Tef-Gel, Loctite 243 once the shim "
+                   "pack is set; tuning screw: set at P-CAL-01b / prototype; hinge pin: press fit in one ear",
+         "grip": f"rail screw: seat to strip face {st['screw_grip']:.1f} mm (incl. {st['shim_nominal']:.1f} mm "
+                 f"shim pack, kit 0 - {st['shim_range'][1]:.0f}), {st['screw_engagement']:.1f} mm thread in a "
+                 f"{st['rail_strip_t_min']:.1f} mm strip (>= 1.5 d = 9.0 required); in the field the foot is "
+                 f"latched by the paddle - no fastener, no tool but the key. Purchased per station: 1 x CompX "
+                 f"C8053 lock, 1 x M8 detent plunger (BOM section 1)",
+         "access": "paddle + lock face INBOARD, serviced from the bed (check_plf_paddle_sweep)"},
         {"id": "J02", "joint": "R4-30 rotary latch -> latch carrier plate (3.5 mm), cable bracket "
                                "R4-0-50253-1 sandwiched", "count": ("latch_housing_R4",),
          "per": [("SHCS_1/4-20x5/8_316", 2)], "torque": "5 Nm, Loctite 243 (into the latch's "

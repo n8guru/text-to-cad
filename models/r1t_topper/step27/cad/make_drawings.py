@@ -10,7 +10,7 @@ control need a controlled drawing, and every one of them gets one here:
   DWG-27-003  module plug frame         DWG-27-008  hatch surround (top-hat)
   DWG-27-004  striker bracket           DWG-27-010  base rail + OEM control-well cut-outs
   DWG-27-011  hatch leaf (inside-glazed)
-  DWG-27-012  port spacer (compression stop)   DWG-27-013  port slot washer + shim kit
+  DWG-27-012  Port Latch Foot body              DWG-27-013  PLF paddle + hook slider + shim
   DWG-27-014..020  glazing/retainer, cage, toolbox, window pane, hardpoint + potted insert,
                    leaf arm + strut boss, front pane
 """
@@ -191,45 +191,71 @@ def main():
         "BASE RAIL, 6061-T6, 2 OFF (L/R mirror), bonded to the shell foot", [
             ("section y / height", f'{G.BR["y_in"]:.0f} .. {G.BR["y_out"]:.0f} x {G.BR["h"]:.0f}'),
             ("length (x)", f"{mounts.RAIL_X[0]:.0f} .. {mounts.RAIL_X[1]:.0f}"),
-            ("port obround slots", f'{MT["rail_slot_x"]:.1f} x {MT["rail_slot_y"]:.1f} thru, at {stn}'),
-            ("  slot position tol", "+/-0.2 to datum A (rail inner face) / B (front end)"),
-            ("wrench pocket", f'{MT["rail_pocket_x"]:.0f} wide x {MT["rail_pocket_depth"]:.0f} deep, '
-                              f'open to the inboard edge, floor z {st["pocket_floor"]:.0f}'),
-            ("  pocket floor", "flatness 0.05, Ra 1.6 (slot-washer seat)"),
+            ("PLF notches (2 per rail)", f'{mounts.NOTCH_X:.0f} wide (x), open to the inboard edge, to the strip face '
+                                          f'u = +{mounts.NOTCH_WALL_U:.0f} from the port centre, at {stn}'),
+            ("  notch position tol", "+/-0.2 to datum A (rail inner face) / B (front end); width 78 +0.2/0"),
+            ("strip (outboard of the notch)", f'{st["rail_strip_t_min"]:.0f} mm thick min (front stations)'),
+            ("rail-screw taps (2 per notch)", f'M6x1-6H, tap drill 5.0, {MT["rail_tap_depth"]:.1f} deep, x +/-{MT["rail_screw_x"]:.0f}, '
+                                              f'z {MT["rail_screw_z"]:.0f} above the rail underside datum - match-drilled from the PLF body at shop fit-up'),
             ("underside (bond face)", "flatness 0.3 over 1,346; masked from anodise, Ra 3.2"),
             ("control wells (clear)", f'{mounts.WELL["lx"]:.0f} x {mounts.WELL["ly"]:.0f} at '
                                       + ", ".join(f"{n} x={x:.0f}" for n, x, _ in mounts.WELLS)),
             ("general tol", "ISO 2768-mK; break edges 0.3")],
         ["Material 6061-T6 (AMS-QQ-A-200/8 bar 80 x 30), CNC; black anodise MIL-A-8625 Type II "
-         "Class 2 except the bond face. Well and port x-positions PROVISIONAL until taped "
-         "(T1-T3, P-CAL-01)."],
+         "Class 2 except the bond face. Notch and well x-positions PROVISIONAL until taped "
+         "(T1-T3, P-CAL-02) and until the port is measured (P-CAL-01b)."],
         scale=0.3))
 
     x0, y0 = mounts.stations()[0]
     made.append(sheet(
-        "DWG-27-012_port_spacer", Pos(-x0, -y0, -mounts.SHIM_TOP) * mounts.port_spacer(x0, y0), Plane.XZ,
-        "PORT SPACER, 6061-T6, 4 OFF (the compression stop)", [
-            ("OD", f'{MT["spacer_d"]:.0f} h11'),
-            ("bore", f"{mounts.CLEAR_D:.1f} H13 (M10 clearance)"),
-            ("HEIGHT", f'{st["spacer_h"]:.2f} +/-0.02 -> pad {st["pad_comp"]:.1f} of {st["pad_free"]:.1f} '
-                       f'({100 * st["pad_strain"]:.0f} %)'),
-            ("faces", "parallel 0.02, Ra 1.6"),
-            ("finish", "clear anodise Type II")],
-        ["Height is DERIVED: foot top z 22 - adapter top (P-CAL-01) - 1.0 nominal shim. Re-cut "
-         "only if the measured adapter height is outside the 0-2 mm shim range."],
-        scale=3.0))
+        "DWG-27-012_plf_body", mounts.body_local(), Plane.YZ,
+        "PORT LATCH FOOT BODY, 6061-T6, 4 OFF (one part; the passenger side is the same part rotated 180 deg)", [
+            ("stem (through the foot pocket, into the port)", f'{MT["stem_x"]:.0f} x {MT["stem_u1"] - MT["stem_u0"]:.0f}, '
+                                                               f'z {MT["stem_bottom"]:.0f} .. {MT["head_z0"] + 2:.1f} (PROVISIONAL)'),
+            ("seat flange (the pad STOP)", f'{MT["flange_x"]:.0f} x {MT["flange_u1"] - MT["flange_u0"]:.0f} x {MT["flange_t"]:.1f}; '
+                                           f'top z {MT["flange_t"]:.2f} +0/-0.05, underside z 0 (bears on the rail cap)'),
+            ("head (in the rail notch)", f'{MT["head_x"]:.0f} x {MT["head_u1"] - MT["head_u0"]:.0f}, z {MT["head_z0"]:.1f} .. {MT["head_top"]:.1f}'),
+            ("hook slider cross-slot", f'{MT["slot_x"]:.0f} wide, z {MT["slot_z0"]:.1f} .. {MT["slot_z1"]:.1f}; floor/roof parallel 0.03'),
+            ("pin channels (2)", f'{MT["chan_w"]:.0f} wide at x +/-{MT["pin_pitch"] / 2:.1f}, u {MT["chan_u0"]:.0f} .. {MT["chan_u1"]:.0f}, '
+                                  f'open at the stem bottom (the stem drops past the pins)'),
+            ("hinge ears (2) + pin bore", f'x {MT["ear_x0"]:.1f} .. {MT["ear_x1"]:.0f}, bore 5.0 H7 coaxial 0.03 at '
+                                          f'u {MT["hinge_u"]:.1f}, z {MT["hinge_z"]:.1f}'),
+            ("lock bore", f'{MT["lock_bore"]:.1f} H11 x {MT["lock_len"]:.1f} deep from the inboard face, axis // u, z {MT["lock_z"]:.0f}; '
+                          f'cam pocket {MT["lock_cam_pocket_d"]:.0f}'),
+            ("rail-screw holes (2)", f'obround 6.6 x {6.6 + 2 * MT["rail_slot_z"]:.1f} (z +/-{MT["rail_slot_z"]:.0f}), cbore '
+                                      f'{MT["rail_cbore_d"]:.0f} x {MT["rail_cbore_depth"]:.0f}, x +/-{MT["rail_screw_x"]:.0f}, z {MT["rail_screw_z"]:.0f}'),
+            ("tuning-screw tap", f'M6, tap drill 5.0, x {MT["tune_x"]:.0f}, z {MT["tune_z"]:.0f}, 14 deep'),
+            ("detent bore", f'M8x1.25 (tap 6.8) in the +x ear, {MT["detent_len"]:.0f} deep, {MT["detent_r"]:.1f} above the hinge axis'),
+            ("finish", "hard anodise Type III clear; seat flange, slot floor, ear faces ground / masked"),
+            ("general tol", "ISO 2768-mK; break edges 0.3")],
+        ["EVERY dimension that touches the port (stem, channels, pin height, slot) is PROVISIONAL: Rivian publishes "
+         "neither the port nor the crossbar foot. Calibration P-CAL-01b before release.",
+         "Rivian forbids modifying the ports: nothing here cuts or drills the truck.",
+         "Stem depth leaves 2 mm above the (provisional) recess floor; the SEAT FLANGE, not the stem, sets height."],
+        scale=1.2))
+
+    from build123d import Compound
+    shim = mounts.shims_local()[0]
+    pk = Compound(children=[mounts.paddle_closed_local(), mounts.slider_closed_local(), shim])
     made.append(sheet(
-        "DWG-27-013_slot_washer_shim", Pos(-x0, -y0, -mounts.POCKET_FLOOR) * mounts.slot_washer(x0, y0), Plane.XY,
-        "PORT SLOT WASHER 316, 4 OFF + SHIM KIT 316, Dia 36", [
-            ("slot washer", f'{MT["slot_washer_x"]:.0f} x {MT["slot_washer_y"]:.0f} x '
-                            f'{MT["slot_washer_t"]:.1f}, R6, hole {mounts.CLEAR_D:.1f}'),
-            ("  faces", "surface ground, parallel 0.03 (Nord-Lock needs a hard flat seat)"),
-            ("shims", f'Dia {MT["shim_d"]:.0f} / {mounts.CLEAR_D:.1f}: 0.5 x 8 (2 per station '
-                      'nominal) + fit-up kit 0.5 x 8, 1.0 x 4'),
-            ("  thickness tol", "+/-0.02 (precision shim stock)"),
-            ("finish", "laser cut, deburr, passivate ASTM A967")],
-        ["Washer lands >= 8.75 mm on the rail all round the +/-6 x +/-2.75 obround float."],
-        scale=3.0))
+        "DWG-27-013_plf_paddle_slider_shim", pk, Plane.YZ,
+        "PLF PADDLE 6061 (4 OFF) + HOOK SLIDER 17-4PH (4 OFF) + SHIM 316 1.0 (8 OFF + fit-up kit)", [
+            ("paddle plate", f'{MT["paddle_x"]:.0f} x {MT["paddle_t"]:.0f} x {MT["paddle_h"]:.0f}; knuckle dia {MT["knuckle_d"]:.0f} x {MT["paddle_x"]:.0f}, bore 5.2 H8'),
+            ("paddle detent dimples", f'2 x sphere R2.3 +/-0.05 at {MT["detent_r"]:.1f} from the axis, at {mounts.DIMPLE_DEG[0]:.0f} / '
+                                       f'{mounts.DIMPLE_DEG[1]:.0f} deg (closed / stage 1, {mounts.STAGE1_DEG:.0f} deg apart)'),
+            ("paddle states", f'closed 0, stage 1 {mounts.STAGE1_DEG:.0f}, open {mounts.OPEN_DEG:.0f} deg (inboard)'),
+            ("hook slider", f'bar {MT["bar_x"]:.0f} x {MT["bar_u1"] - MT["bar_u0"]:.0f} x {MT["bar_z1"] - MT["bar_z0"]:.1f}; 2 teeth '
+                            f'{MT["tooth_w"]:.0f} wide at x +/-{MT["pin_pitch"] / 2:.1f}, z {MT["tooth_z0"]:.0f} .. {MT["tooth_z1"]:.0f}, '
+                            f'tip +{MT["tooth_tip"]:.0f} past the datum (clamped pose)'),
+            ("  tooth top faces", "ground flat 0.02; pin-bottom datum z -18.00 +/-0.05 from the cap"),
+            ("  travel", f'{MT["slider_travel"]:.1f} along u: dwell closed -> stage 1 (0.45), retract by stage 1 -> open'),
+            ("shim", "316, 1.0 +/-0.02, 42 x 14, two obround 6.6 x 12.6; kit 0.5 / 1.0 for a 0 - 4 mm pack"),
+            ("finish", "paddle black anodise Type II; slider + shim passivate ASTM A967")],
+        ["Slider 17-4 PH H1025, wire-EDM + ground, sliding fit 0.2 in the slot (DWG-27-012).",
+         "Drive link paddle cam -> slider and the lock-cam keeper are NOT drawn (OPEN plf_drive_link_and_lock_interlock).",
+         "Paddle hinge pin: ISO 2338 d5 m6 x 80, cut/ground to 76, press fit in one ear. Detent: M8 ball plunger "
+         "(McMaster 85015A51, same as the module plunger)."],
+        scale=1.4))
 
     made.append(sheet(
         "DWG-27-011_hatch_leaf", HA.leaf_shell(), Plane.XY,

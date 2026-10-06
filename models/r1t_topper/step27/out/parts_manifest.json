@@ -2,8 +2,8 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 71465455.9,
-    "mass_kg": 18.841,
+    "volume_mm3": 71509519.9,
+    "mass_kg": 18.853,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
@@ -12,9 +12,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      608.9,
+      609.0,
       -1.2,
-      323.4
+      323.2
     ]
   },
   {
@@ -110,8 +110,8 @@
   {
     "part": "BASE_RAIL_6061_R",
     "stl": "BASE_RAIL_6061_R.stl",
-    "volume_mm3": 2289566.8,
-    "mass_kg": 6.182,
+    "volume_mm3": 2140546.8,
+    "mass_kg": 5.779,
     "material": "6061-T6",
     "process": "CNC from 80x30 bar",
     "finish": "black anodise Type II",
@@ -120,16 +120,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      672.7,
-      -718.4,
-      34.3
+      672.9,
+      -719.3,
+      34.5
     ]
   },
   {
     "part": "BASE_RAIL_6061_L",
     "stl": "BASE_RAIL_6061_L.stl",
-    "volume_mm3": 2198816.8,
-    "mass_kg": 5.937,
+    "volume_mm3": 2049796.8,
+    "mass_kg": 5.534,
     "material": "6061-T6",
     "process": "CNC from 80x30 bar",
     "finish": "black anodise Type II",
@@ -138,16 +138,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      647.9,
-      718.9,
-      34.3
+      646.3,
+      719.9,
+      34.5
     ]
   },
   {
     "part": "FOOT_PAD_EPDM_R",
     "stl": "FOOT_PAD_EPDM_R.stl",
-    "volume_mm3": 525743.8,
-    "mass_kg": 0.079,
+    "volume_mm3": 520921.0,
+    "mass_kg": 0.078,
     "material": "closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
     "process": "purchased strip, knife-cut to the drawing",
     "finish": "black",
@@ -157,15 +157,15 @@
     "source_url": "https://www.astm.org/d1056-20.html",
     "centroid_mm": [
       662.8,
-      -742.6,
+      -742.9,
       2.0
     ]
   },
   {
     "part": "FOOT_PAD_EPDM_L",
     "stl": "FOOT_PAD_EPDM_L.stl",
-    "volume_mm3": 505273.8,
-    "mass_kg": 0.076,
+    "volume_mm3": 500451.0,
+    "mass_kg": 0.075,
     "material": "closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
     "process": "purchased strip, knife-cut to the drawing",
     "finish": "black",
@@ -174,269 +174,125 @@
     "status": "ORDERABLE",
     "source_url": "https://www.astm.org/d1056-20.html",
     "centroid_mm": [
-      637.1,
-      743.8,
+      636.9,
+      744.2,
       2.0
     ]
   },
   {
-    "part": "PORT_ADAPTER_WEISTEC",
-    "stl": "PORT_ADAPTER_WEISTEC.stl",
-    "volume_mm3": 42108.4,
-    "mass_kg": 0.114,
-    "material": "billet 6061, clear anodise (vendor)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
-    "pn": "09-111-00078-7",
-    "status": "ORDERABLE",
-    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
-    "centroid_mm": [
-      307.0,
-      724.0,
-      -1.7
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5",
-    "stl": "PORT_SHIM_316_0p5.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      12.2
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5_2",
-    "stl": "PORT_SHIM_316_0p5_2.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      12.8
-    ]
-  },
-  {
-    "part": "PORT_SPACER_6061",
-    "stl": "PORT_SPACER_6061.stl",
-    "volume_mm3": 8381.6,
-    "mass_kg": 0.023,
+    "part": "PLF_BODY_6061",
+    "stl": "PLF_BODY_6061.stl",
+    "volume_mm3": 162877.8,
+    "mass_kg": 0.44,
     "material": "6061-T6",
-    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
-    "finish": "clear anodise Type II",
+    "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
+    "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      307.0,
-      724.0,
-      17.5
+      306.9,
+      721.0,
+      25.2
     ]
   },
   {
-    "part": "PORT_SLOT_WASHER_316",
-    "stl": "PORT_SLOT_WASHER_316.stl",
-    "volume_mm3": 5290.0,
-    "mass_kg": 0.042,
-    "material": "316 stainless 4 mm plate",
-    "process": "laser cut + surface grind",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      37.0
-    ]
-  },
-  {
-    "part": "WEDGE_WASHER_NL10SS",
-    "stl": "WEDGE_WASHER_NL10SS.stl",
-    "volume_mm3": 430.1,
-    "mass_kg": 0.003,
-    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Nord-Lock",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      40.7
-    ]
-  },
-  {
-    "part": "PORT_STUD_M10x60_A4",
-    "stl": "PORT_STUD_M10x60_A4.stl",
-    "volume_mm3": 3325.1,
-    "mass_kg": 0.027,
-    "material": "A4-70 stainless (ISO 3506-1)",
-    "process": "purchased",
-    "finish": "plain",
-    "manufacturer": "any ISO-conforming",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      24.4
-    ]
-  },
-  {
-    "part": "PORT_NUT_M10_A4",
-    "stl": "PORT_NUT_M10_A4.stl",
-    "volume_mm3": 1385.6,
-    "mass_kg": 0.011,
-    "material": "A4-80 stainless (ISO 3506-2)",
-    "process": "purchased",
-    "finish": "plain",
-    "manufacturer": "any ISO-conforming",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      724.0,
-      46.6
-    ]
-  },
-  {
-    "part": "PORT_ADAPTER_WEISTEC_2",
-    "stl": "PORT_ADAPTER_WEISTEC_2.stl",
-    "volume_mm3": 42108.4,
-    "mass_kg": 0.114,
-    "material": "billet 6061, clear anodise (vendor)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
-    "pn": "09-111-00078-7",
-    "status": "ORDERABLE",
-    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
-    "centroid_mm": [
-      307.0,
-      -724.0,
-      -1.7
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5_3",
-    "stl": "PORT_SHIM_316_0p5_3.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      -724.0,
-      12.2
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5_4",
-    "stl": "PORT_SHIM_316_0p5_4.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      -724.0,
-      12.8
-    ]
-  },
-  {
-    "part": "PORT_SPACER_6061_2",
-    "stl": "PORT_SPACER_6061_2.stl",
-    "volume_mm3": 8381.6,
-    "mass_kg": 0.023,
+    "part": "PLF_PADDLE_6061",
+    "stl": "PLF_PADDLE_6061.stl",
+    "volume_mm3": 14340.8,
+    "mass_kg": 0.039,
     "material": "6061-T6",
-    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
-    "finish": "clear anodise Type II",
+    "process": "CNC from 50 x 32 bar",
+    "finish": "black anodise Type II",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
       307.0,
-      -724.0,
-      17.5
+      694.5,
+      38.2
     ]
   },
   {
-    "part": "PORT_SLOT_WASHER_316_2",
-    "stl": "PORT_SLOT_WASHER_316_2.stl",
-    "volume_mm3": 5290.0,
-    "mass_kg": 0.042,
-    "material": "316 stainless 4 mm plate",
-    "process": "laser cut + surface grind",
-    "finish": "passivate",
+    "part": "PLF_HOOK_SLIDER_17_4PH",
+    "stl": "PLF_HOOK_SLIDER_17_4PH.stl",
+    "volume_mm3": 2685.0,
+    "mass_kg": 0.021,
+    "material": "17-4 PH stainless, H1025",
+    "process": "wire-EDM from 10 mm plate + grind tooth faces",
+    "finish": "passivate ASTM A967",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
       307.0,
-      -724.0,
-      37.0
+      721.1,
+      -19.8
     ]
   },
   {
-    "part": "WEDGE_WASHER_NL10SS_2",
-    "stl": "WEDGE_WASHER_NL10SS_2.stl",
-    "volume_mm3": 430.1,
+    "part": "PLF_LOCK_CYLINDER_COMPX",
+    "stl": "PLF_LOCK_CYLINDER_COMPX.stl",
+    "volume_mm3": 8880.5,
+    "mass_kg": 0.031,
+    "material": "zinc-alloy cam lock, nickel (CompX National C8053 series)",
+    "process": "purchased",
+    "finish": "as supplied (effective density: the envelope is modelled solid)",
+    "manufacturer": "CompX National",
+    "pn": "C8053-C346A-14A",
+    "status": "ORDERABLE",
+    "source_url": "https://www.amazon.com/dp/B0FPPSF66D",
+    "centroid_mm": [
+      307.0,
+      718.5,
+      50.0
+    ]
+  },
+  {
+    "part": "PLF_HINGE_PIN_5x76_A4",
+    "stl": "PLF_HINGE_PIN_5x76_A4.stl",
+    "volume_mm3": 1492.3,
+    "mass_kg": 0.012,
+    "material": "A4-70 stainless dowel (ISO 2338 d 5 m6)",
+    "process": "purchased, cut to length",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      694.5,
+      32.5
+    ]
+  },
+  {
+    "part": "PLF_DETENT_PLUNGER_M8",
+    "stl": "PLF_DETENT_PLUNGER_M8.stl",
+    "volume_mm3": 593.4,
+    "mass_kg": 0.005,
+    "material": "18-8 stainless body, 440C nose (M8 ball-nose plunger)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
+    "status": "ORDERABLE",
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      336.8,
+      694.5,
+      40.0
+    ]
+  },
+  {
+    "part": "PLF_TUNE_SCREW_M6x20_A4",
+    "stl": "PLF_TUNE_SCREW_M6x20_A4.stl",
+    "volume_mm3": 392.7,
     "mass_kg": 0.003,
-    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Nord-Lock",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      307.0,
-      -724.0,
-      40.7
-    ]
-  },
-  {
-    "part": "PORT_STUD_M10x60_A4_2",
-    "stl": "PORT_STUD_M10x60_A4_2.stl",
-    "volume_mm3": 3325.1,
-    "mass_kg": 0.027,
-    "material": "A4-70 stainless (ISO 3506-1)",
+    "material": "A4-70 stainless set screw (ISO 4026)",
     "process": "purchased",
     "finish": "plain",
     "manufacturer": "any ISO-conforming",
@@ -444,17 +300,17 @@
     "status": "ORDERABLE",
     "source_url": null,
     "centroid_mm": [
-      307.0,
-      -724.0,
-      24.4
+      291.0,
+      707.0,
+      44.0
     ]
   },
   {
-    "part": "PORT_NUT_M10_A4_2",
-    "stl": "PORT_NUT_M10_A4_2.stl",
-    "volume_mm3": 1385.6,
-    "mass_kg": 0.011,
-    "material": "A4-80 stainless (ISO 3506-2)",
+    "part": "PLF_RAIL_SCREW_M6x30_A4",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
     "process": "purchased",
     "finish": "plain",
     "manufacturer": "any ISO-conforming",
@@ -462,35 +318,35 @@
     "status": "ORDERABLE",
     "source_url": null,
     "centroid_mm": [
-      307.0,
-      -724.0,
-      46.6
+      291.0,
+      727.0,
+      31.0
     ]
   },
   {
-    "part": "PORT_ADAPTER_WEISTEC_3",
-    "stl": "PORT_ADAPTER_WEISTEC_3.stl",
-    "volume_mm3": 42108.4,
-    "mass_kg": 0.114,
-    "material": "billet 6061, clear anodise (vendor)",
+    "part": "PLF_RAIL_SCREW_M6x30_A4_2",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_2.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
     "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
-    "pn": "09-111-00078-7",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
     "status": "ORDERABLE",
-    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
+    "source_url": null,
     "centroid_mm": [
-      1154.0,
-      710.0,
-      -1.7
+      323.0,
+      727.0,
+      31.0
     ]
   },
   {
-    "part": "PORT_SHIM_316_0p5_5",
-    "stl": "PORT_SHIM_316_0p5_5.stl",
-    "volume_mm3": 465.6,
+    "part": "PLF_SHIM_316_1p0",
+    "stl": "PLF_SHIM_316_1p0.stl",
+    "volume_mm3": 440.4,
     "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
+    "material": "316 stainless shim stock 1.0 mm",
     "process": "laser cut, deburr",
     "finish": "passivate",
     "manufacturer": null,
@@ -498,17 +354,17 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1154.0,
-      710.0,
-      12.2
+      307.0,
+      738.5,
+      31.0
     ]
   },
   {
-    "part": "PORT_SHIM_316_0p5_6",
-    "stl": "PORT_SHIM_316_0p5_6.stl",
-    "volume_mm3": 465.6,
+    "part": "PLF_SHIM_316_1p0_2",
+    "stl": "PLF_SHIM_316_1p0_2.stl",
+    "volume_mm3": 440.4,
     "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
+    "material": "316 stainless shim stock 1.0 mm",
     "process": "laser cut, deburr",
     "finish": "passivate",
     "manufacturer": null,
@@ -516,180 +372,378 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1154.0,
-      710.0,
-      12.8
+      307.0,
+      739.5,
+      31.0
     ]
   },
   {
-    "part": "PORT_SPACER_6061_3",
-    "stl": "PORT_SPACER_6061_3.stl",
-    "volume_mm3": 8381.6,
-    "mass_kg": 0.023,
+    "part": "PLF_BODY_6061_2",
+    "stl": "PLF_BODY_6061_2.stl",
+    "volume_mm3": 162877.8,
+    "mass_kg": 0.44,
     "material": "6061-T6",
-    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
-    "finish": "clear anodise Type II",
+    "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
+    "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1154.0,
-      710.0,
-      17.5
+      307.1,
+      -721.0,
+      25.2
     ]
   },
   {
-    "part": "PORT_SLOT_WASHER_316_3",
-    "stl": "PORT_SLOT_WASHER_316_3.stl",
-    "volume_mm3": 5290.0,
-    "mass_kg": 0.042,
-    "material": "316 stainless 4 mm plate",
-    "process": "laser cut + surface grind",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      710.0,
-      37.0
-    ]
-  },
-  {
-    "part": "WEDGE_WASHER_NL10SS_3",
-    "stl": "WEDGE_WASHER_NL10SS_3.stl",
-    "volume_mm3": 430.1,
-    "mass_kg": 0.003,
-    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Nord-Lock",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      710.0,
-      40.7
-    ]
-  },
-  {
-    "part": "PORT_STUD_M10x60_A4_3",
-    "stl": "PORT_STUD_M10x60_A4_3.stl",
-    "volume_mm3": 3325.1,
-    "mass_kg": 0.027,
-    "material": "A4-70 stainless (ISO 3506-1)",
-    "process": "purchased",
-    "finish": "plain",
-    "manufacturer": "any ISO-conforming",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      710.0,
-      24.4
-    ]
-  },
-  {
-    "part": "PORT_NUT_M10_A4_3",
-    "stl": "PORT_NUT_M10_A4_3.stl",
-    "volume_mm3": 1385.6,
-    "mass_kg": 0.011,
-    "material": "A4-80 stainless (ISO 3506-2)",
-    "process": "purchased",
-    "finish": "plain",
-    "manufacturer": "any ISO-conforming",
-    "pn": null,
-    "status": "ORDERABLE",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      710.0,
-      46.6
-    ]
-  },
-  {
-    "part": "PORT_ADAPTER_WEISTEC_4",
-    "stl": "PORT_ADAPTER_WEISTEC_4.stl",
-    "volume_mm3": 42108.4,
-    "mass_kg": 0.114,
-    "material": "billet 6061, clear anodise (vendor)",
-    "process": "purchased",
-    "finish": "as supplied",
-    "manufacturer": "Weistec Engineering (Direct Current Engineering)",
-    "pn": "09-111-00078-7",
-    "status": "ORDERABLE",
-    "source_url": "https://www.weistec.com/accessory_port_adapter_for_rivian.html",
-    "centroid_mm": [
-      1154.0,
-      -710.0,
-      -1.7
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5_7",
-    "stl": "PORT_SHIM_316_0p5_7.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      -710.0,
-      12.2
-    ]
-  },
-  {
-    "part": "PORT_SHIM_316_0p5_8",
-    "stl": "PORT_SHIM_316_0p5_8.stl",
-    "volume_mm3": 465.6,
-    "mass_kg": 0.004,
-    "material": "316 stainless shim stock 0.5 mm",
-    "process": "laser cut, deburr",
-    "finish": "passivate",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1154.0,
-      -710.0,
-      12.8
-    ]
-  },
-  {
-    "part": "PORT_SPACER_6061_4",
-    "stl": "PORT_SPACER_6061_4.stl",
-    "volume_mm3": 8381.6,
-    "mass_kg": 0.023,
+    "part": "PLF_PADDLE_6061_2",
+    "stl": "PLF_PADDLE_6061_2.stl",
+    "volume_mm3": 14340.8,
+    "mass_kg": 0.039,
     "material": "6061-T6",
-    "process": "CNC turn from Dia 38 bar, faces ground parallel 0.02",
-    "finish": "clear anodise Type II",
+    "process": "CNC from 50 x 32 bar",
+    "finish": "black anodise Type II",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -694.5,
+      38.2
+    ]
+  },
+  {
+    "part": "PLF_HOOK_SLIDER_17_4PH_2",
+    "stl": "PLF_HOOK_SLIDER_17_4PH_2.stl",
+    "volume_mm3": 2685.0,
+    "mass_kg": 0.021,
+    "material": "17-4 PH stainless, H1025",
+    "process": "wire-EDM from 10 mm plate + grind tooth faces",
+    "finish": "passivate ASTM A967",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -721.1,
+      -19.8
+    ]
+  },
+  {
+    "part": "PLF_LOCK_CYLINDER_COMPX_2",
+    "stl": "PLF_LOCK_CYLINDER_COMPX_2.stl",
+    "volume_mm3": 8880.5,
+    "mass_kg": 0.031,
+    "material": "zinc-alloy cam lock, nickel (CompX National C8053 series)",
+    "process": "purchased",
+    "finish": "as supplied (effective density: the envelope is modelled solid)",
+    "manufacturer": "CompX National",
+    "pn": "C8053-C346A-14A",
+    "status": "ORDERABLE",
+    "source_url": "https://www.amazon.com/dp/B0FPPSF66D",
+    "centroid_mm": [
+      307.0,
+      -718.5,
+      50.0
+    ]
+  },
+  {
+    "part": "PLF_HINGE_PIN_5x76_A4_2",
+    "stl": "PLF_HINGE_PIN_5x76_A4_2.stl",
+    "volume_mm3": 1492.3,
+    "mass_kg": 0.012,
+    "material": "A4-70 stainless dowel (ISO 2338 d 5 m6)",
+    "process": "purchased, cut to length",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -694.5,
+      32.5
+    ]
+  },
+  {
+    "part": "PLF_DETENT_PLUNGER_M8_2",
+    "stl": "PLF_DETENT_PLUNGER_M8_2.stl",
+    "volume_mm3": 593.4,
+    "mass_kg": 0.005,
+    "material": "18-8 stainless body, 440C nose (M8 ball-nose plunger)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
+    "status": "ORDERABLE",
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      277.2,
+      -694.5,
+      40.0
+    ]
+  },
+  {
+    "part": "PLF_TUNE_SCREW_M6x20_A4_2",
+    "stl": "PLF_TUNE_SCREW_M6x20_A4_2.stl",
+    "volume_mm3": 392.7,
+    "mass_kg": 0.003,
+    "material": "A4-70 stainless set screw (ISO 4026)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      323.0,
+      -707.0,
+      44.0
+    ]
+  },
+  {
+    "part": "PLF_RAIL_SCREW_M6x30_A4_3",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_3.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      323.0,
+      -727.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_RAIL_SCREW_M6x30_A4_4",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_4.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      291.0,
+      -727.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_SHIM_316_1p0_3",
+    "stl": "PLF_SHIM_316_1p0_3.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -738.5,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_SHIM_316_1p0_4",
+    "stl": "PLF_SHIM_316_1p0_4.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      307.0,
+      -739.5,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_BODY_6061_3",
+    "stl": "PLF_BODY_6061_3.stl",
+    "volume_mm3": 162877.8,
+    "mass_kg": 0.44,
+    "material": "6061-T6",
+    "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
+    "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1153.9,
+      707.0,
+      25.2
+    ]
+  },
+  {
+    "part": "PLF_PADDLE_6061_3",
+    "stl": "PLF_PADDLE_6061_3.stl",
+    "volume_mm3": 14340.8,
+    "mass_kg": 0.039,
+    "material": "6061-T6",
+    "process": "CNC from 50 x 32 bar",
+    "finish": "black anodise Type II",
     "manufacturer": null,
     "pn": null,
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
       1154.0,
-      -710.0,
-      17.5
+      680.5,
+      38.2
     ]
   },
   {
-    "part": "PORT_SLOT_WASHER_316_4",
-    "stl": "PORT_SLOT_WASHER_316_4.stl",
-    "volume_mm3": 5290.0,
-    "mass_kg": 0.042,
-    "material": "316 stainless 4 mm plate",
-    "process": "laser cut + surface grind",
+    "part": "PLF_HOOK_SLIDER_17_4PH_3",
+    "stl": "PLF_HOOK_SLIDER_17_4PH_3.stl",
+    "volume_mm3": 2685.0,
+    "mass_kg": 0.021,
+    "material": "17-4 PH stainless, H1025",
+    "process": "wire-EDM from 10 mm plate + grind tooth faces",
+    "finish": "passivate ASTM A967",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      707.1,
+      -19.8
+    ]
+  },
+  {
+    "part": "PLF_LOCK_CYLINDER_COMPX_3",
+    "stl": "PLF_LOCK_CYLINDER_COMPX_3.stl",
+    "volume_mm3": 8880.5,
+    "mass_kg": 0.031,
+    "material": "zinc-alloy cam lock, nickel (CompX National C8053 series)",
+    "process": "purchased",
+    "finish": "as supplied (effective density: the envelope is modelled solid)",
+    "manufacturer": "CompX National",
+    "pn": "C8053-C346A-14A",
+    "status": "ORDERABLE",
+    "source_url": "https://www.amazon.com/dp/B0FPPSF66D",
+    "centroid_mm": [
+      1154.0,
+      704.5,
+      50.0
+    ]
+  },
+  {
+    "part": "PLF_HINGE_PIN_5x76_A4_3",
+    "stl": "PLF_HINGE_PIN_5x76_A4_3.stl",
+    "volume_mm3": 1492.3,
+    "mass_kg": 0.012,
+    "material": "A4-70 stainless dowel (ISO 2338 d 5 m6)",
+    "process": "purchased, cut to length",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      680.5,
+      32.5
+    ]
+  },
+  {
+    "part": "PLF_DETENT_PLUNGER_M8_3",
+    "stl": "PLF_DETENT_PLUNGER_M8_3.stl",
+    "volume_mm3": 593.4,
+    "mass_kg": 0.005,
+    "material": "18-8 stainless body, 440C nose (M8 ball-nose plunger)",
+    "process": "purchased",
+    "finish": "as supplied",
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
+    "status": "ORDERABLE",
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "centroid_mm": [
+      1183.8,
+      680.5,
+      40.0
+    ]
+  },
+  {
+    "part": "PLF_TUNE_SCREW_M6x20_A4_3",
+    "stl": "PLF_TUNE_SCREW_M6x20_A4_3.stl",
+    "volume_mm3": 392.7,
+    "mass_kg": 0.003,
+    "material": "A4-70 stainless set screw (ISO 4026)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1138.0,
+      693.0,
+      44.0
+    ]
+  },
+  {
+    "part": "PLF_RAIL_SCREW_M6x30_A4_5",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_5.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1138.0,
+      713.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_RAIL_SCREW_M6x30_A4_6",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_6.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1170.0,
+      713.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_SHIM_316_1p0_5",
+    "stl": "PLF_SHIM_316_1p0_5.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
     "finish": "passivate",
     "manufacturer": null,
     "pn": null,
@@ -697,34 +751,142 @@
     "source_url": null,
     "centroid_mm": [
       1154.0,
-      -710.0,
-      37.0
+      724.5,
+      31.0
     ]
   },
   {
-    "part": "WEDGE_WASHER_NL10SS_4",
-    "stl": "WEDGE_WASHER_NL10SS_4.stl",
-    "volume_mm3": 430.1,
-    "mass_kg": 0.003,
-    "material": "stainless 1.4404 / 316L (Nord-Lock ss)",
+    "part": "PLF_SHIM_316_1p0_6",
+    "stl": "PLF_SHIM_316_1p0_6.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      725.5,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_BODY_6061_4",
+    "stl": "PLF_BODY_6061_4.stl",
+    "volume_mm3": 162877.8,
+    "mass_kg": 0.44,
+    "material": "6061-T6",
+    "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
+    "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.1,
+      -707.0,
+      25.2
+    ]
+  },
+  {
+    "part": "PLF_PADDLE_6061_4",
+    "stl": "PLF_PADDLE_6061_4.stl",
+    "volume_mm3": 14340.8,
+    "mass_kg": 0.039,
+    "material": "6061-T6",
+    "process": "CNC from 50 x 32 bar",
+    "finish": "black anodise Type II",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -680.5,
+      38.2
+    ]
+  },
+  {
+    "part": "PLF_HOOK_SLIDER_17_4PH_4",
+    "stl": "PLF_HOOK_SLIDER_17_4PH_4.stl",
+    "volume_mm3": 2685.0,
+    "mass_kg": 0.021,
+    "material": "17-4 PH stainless, H1025",
+    "process": "wire-EDM from 10 mm plate + grind tooth faces",
+    "finish": "passivate ASTM A967",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -707.1,
+      -19.8
+    ]
+  },
+  {
+    "part": "PLF_LOCK_CYLINDER_COMPX_4",
+    "stl": "PLF_LOCK_CYLINDER_COMPX_4.stl",
+    "volume_mm3": 8880.5,
+    "mass_kg": 0.031,
+    "material": "zinc-alloy cam lock, nickel (CompX National C8053 series)",
+    "process": "purchased",
+    "finish": "as supplied (effective density: the envelope is modelled solid)",
+    "manufacturer": "CompX National",
+    "pn": "C8053-C346A-14A",
+    "status": "ORDERABLE",
+    "source_url": "https://www.amazon.com/dp/B0FPPSF66D",
+    "centroid_mm": [
+      1154.0,
+      -704.5,
+      50.0
+    ]
+  },
+  {
+    "part": "PLF_HINGE_PIN_5x76_A4_4",
+    "stl": "PLF_HINGE_PIN_5x76_A4_4.stl",
+    "volume_mm3": 1492.3,
+    "mass_kg": 0.012,
+    "material": "A4-70 stainless dowel (ISO 2338 d 5 m6)",
+    "process": "purchased, cut to length",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -680.5,
+      32.5
+    ]
+  },
+  {
+    "part": "PLF_DETENT_PLUNGER_M8_4",
+    "stl": "PLF_DETENT_PLUNGER_M8_4.stl",
+    "volume_mm3": 593.4,
+    "mass_kg": 0.005,
+    "material": "18-8 stainless body, 440C nose (M8 ball-nose plunger)",
     "process": "purchased",
     "finish": "as supplied",
-    "manufacturer": "Nord-Lock",
-    "pn": null,
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
     "status": "ORDERABLE",
-    "source_url": null,
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
     "centroid_mm": [
-      1154.0,
-      -710.0,
-      40.7
+      1124.2,
+      -680.5,
+      40.0
     ]
   },
   {
-    "part": "PORT_STUD_M10x60_A4_4",
-    "stl": "PORT_STUD_M10x60_A4_4.stl",
-    "volume_mm3": 3325.1,
-    "mass_kg": 0.027,
-    "material": "A4-70 stainless (ISO 3506-1)",
+    "part": "PLF_TUNE_SCREW_M6x20_A4_4",
+    "stl": "PLF_TUNE_SCREW_M6x20_A4_4.stl",
+    "volume_mm3": 392.7,
+    "mass_kg": 0.003,
+    "material": "A4-70 stainless set screw (ISO 4026)",
     "process": "purchased",
     "finish": "plain",
     "manufacturer": "any ISO-conforming",
@@ -732,17 +894,17 @@
     "status": "ORDERABLE",
     "source_url": null,
     "centroid_mm": [
-      1154.0,
-      -710.0,
-      24.4
+      1170.0,
+      -693.0,
+      44.0
     ]
   },
   {
-    "part": "PORT_NUT_M10_A4_4",
-    "stl": "PORT_NUT_M10_A4_4.stl",
-    "volume_mm3": 1385.6,
-    "mass_kg": 0.011,
-    "material": "A4-80 stainless (ISO 3506-2)",
+    "part": "PLF_RAIL_SCREW_M6x30_A4_7",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_7.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
     "process": "purchased",
     "finish": "plain",
     "manufacturer": "any ISO-conforming",
@@ -750,9 +912,63 @@
     "status": "ORDERABLE",
     "source_url": null,
     "centroid_mm": [
+      1170.0,
+      -713.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_RAIL_SCREW_M6x30_A4_8",
+    "stl": "PLF_RAIL_SCREW_M6x30_A4_8.stl",
+    "volume_mm3": 1060.3,
+    "mass_kg": 0.008,
+    "material": "A4-70 stainless SHCS (ISO 4762)",
+    "process": "purchased",
+    "finish": "plain",
+    "manufacturer": "any ISO-conforming",
+    "pn": null,
+    "status": "ORDERABLE",
+    "source_url": null,
+    "centroid_mm": [
+      1138.0,
+      -713.0,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_SHIM_316_1p0_7",
+    "stl": "PLF_SHIM_316_1p0_7.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
       1154.0,
-      -710.0,
-      46.6
+      -724.5,
+      31.0
+    ]
+  },
+  {
+    "part": "PLF_SHIM_316_1p0_8",
+    "stl": "PLF_SHIM_316_1p0_8.stl",
+    "volume_mm3": 440.4,
+    "mass_kg": 0.004,
+    "material": "316 stainless shim stock 1.0 mm",
+    "process": "laser cut, deburr",
+    "finish": "passivate",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1154.0,
+      -725.5,
+      31.0
     ]
   },
   {

@@ -1,9 +1,9 @@
 {
- "mass_kg": 88.67,
+ "mass_kg": 89.26,
  "cg_mm": [
-  706.1,
+  706.8,
   0.7,
-  206.7
+  205.5
  ],
  "cases": [
   {
@@ -14,10 +14,10 @@
     -3.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 690.3,
+   "port_compression_N": 693.8,
    "port_tension_N": 0.0,
    "port_shear_N": 0.0,
-   "port_resultant_N": 690.3,
+   "port_resultant_N": 693.8,
    "limit_class": "limit"
   },
   {
@@ -29,9 +29,9 @@
    ],
    "aero_lift_N": 600.0,
    "port_compression_N": 0.0,
-   "port_tension_N": 380.1,
+   "port_tension_N": 381.3,
    "port_shear_N": 0.0,
-   "port_resultant_N": 380.1,
+   "port_resultant_N": 381.3,
    "limit_class": "limit"
   },
   {
@@ -42,10 +42,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 336.2,
+   "port_compression_N": 337.5,
    "port_tension_N": 0.0,
-   "port_shear_N": 217.4,
-   "port_resultant_N": 400.4,
+   "port_shear_N": 218.8,
+   "port_resultant_N": 402.2,
    "limit_class": "limit"
   },
   {
@@ -56,10 +56,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 293.4,
+   "port_compression_N": 294.6,
    "port_tension_N": 0.0,
-   "port_shear_N": 217.4,
-   "port_resultant_N": 365.1,
+   "port_shear_N": 218.8,
+   "port_resultant_N": 367.0,
    "limit_class": "limit"
   },
   {
@@ -70,10 +70,10 @@
     -2.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 557.6,
+   "port_compression_N": 560.0,
    "port_tension_N": 0.0,
-   "port_shear_N": 187.0,
-   "port_resultant_N": 588.1,
+   "port_shear_N": 188.3,
+   "port_resultant_N": 590.8,
    "limit_class": "limit"
   },
   {
@@ -84,38 +84,54 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 1290.9,
-   "port_tension_N": 856.1,
-   "port_shear_N": 2173.9,
-   "port_resultant_N": 2528.3,
+   "port_compression_N": 1293.4,
+   "port_tension_N": 855.7,
+   "port_shear_N": 2188.4,
+   "port_resultant_N": 2542.1,
    "limit_class": "ultimate"
   }
  ],
- "preload_N": [
-  15000,
-  20000
- ],
- "slip_capacity_N": 3000,
+ "plf_strength_at_port_rating": {
+  "tooth_bending_MPa": 257.8,
+  "tooth_bending_allow_MPa": 600.0,
+  "tooth_shear_MPa": 31.2,
+  "rail_screw_shear_MPa": 62.2,
+  "rail_screw_shear_allow_MPa": 270.0,
+  "rail_thread_strip_N": 19509,
+  "slot_floor_bearing_MPa": 8.5,
+  "tooth": {
+   "b": 10.0,
+   "t": 4.0,
+   "L": 5.5,
+   "F_per_tooth_N": 1250.0
+  },
+  "screw_engagement_mm": 10.0
+ },
  "stack": {
   "foot_top": 22.0,
   "rail_top": 47.0,
   "pad_comp": 4.0,
   "pad_free": 6.0,
   "pad_strain": 0.33333333333333337,
-  "adapter_top": 12.0,
-  "pocket_floor": 35.0,
-  "rail_under_pocket": 13.0,
-  "shim_top": 13.0,
-  "spacer_h": 9.0,
-  "head_seat": 42.4,
-  "bolt_tip": -5.600000000000001,
-  "engagement": 17.6,
-  "grip": 30.4,
-  "nut_top": 50.8,
-  "protrusion": 3.6000000000000014,
-  "slot_float_x": 6.0,
-  "slot_float_y": 2.75,
-  "washer_land_x": 8.75,
-  "washer_land_y": 10.0
+  "flange_top": 4.0,
+  "stem_bottom": -28.0,
+  "stem_to_port_floor": 2.0,
+  "head_z0": 22.5,
+  "head_under_gap": 0.5,
+  "head_top": 63.6,
+  "hinge_z": 32.5,
+  "hinge_u": -29.5,
+  "notch_float_x": 3.0,
+  "shim_nominal": 2.0,
+  "shim_range": [
+   0.0,
+   4.0
+  ],
+  "slot_float_z": 3.0,
+  "rail_strip_t_min": 15.0,
+  "screw_engagement": 10.0,
+  "screw_grip": 20.0,
+  "tooth_tip_past_pin_centre": 1.0,
+  "slider_travel": 6.5
  }
 }

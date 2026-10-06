@@ -1,161 +1,171 @@
-# Step 27 rev 10 — attaching / mounting hardware
+# Step 27 rev 11 — attaching the topper to the truck: the Port Latch Foot
 
-**Producer:** Claude Opus 5.5 mesh worker, task 136191 (project 924515 Step 27 rev 10).
-**Scope (operator, 2026-09-30, Studio insight 75785):** design the topper's attaching/mounting
-hardware and a detailed BOM (part numbers, quantity, material, supplier, cost), building on
-`agents/claude/r1t-opus-pass@57634ea0` → `df01d411`. Nothing purchased, quoted or fabricated;
-no fitment, structural or sealing claim; no Nate approval claimed.
+**Task 139737, project r1t-topper Step 29, repo n8guru/text-to-cad.** Replaces the rev-10 design (task
+136191: a purchased Weistec adapter with an M10 stud / nut / Nord-Lock stack at each of four ports).
+Design package only: nothing purchased, quoted or fabricated; no fitment, structural or sealing result is
+claimed; no Nate approval is claimed.
 
-Sources of truth: geometry `cad/mounts.py` (stack derived from `blender/params.json` → `mount`),
-engineering inputs `hardware.json` → `port_adapter`, `foot_pad`, `fasteners`, `consumables`,
-`mounting`; joint schedule `cad/fasteners.py`; checks `cad/checks_step27.py::check_mounting`,
-`check_fastener_schedule`; numbers `out/mounting_analysis.json`.
+Sources of truth: geometry `cad/mounts.py` (dimensions in `blender/params.json` → `mount`), inputs
+`hardware.json` → `port_latch_foot`, `plf_lock`, `plf_detent`, `crossbar_reference`, `mounting`; joint
+J01 in `cad/fasteners.py`; checks `cad/checks_step27.py::check_mounting` (+ `check_plf_kinematics_exported`);
+numbers `out/mounting_analysis.json`; sweep `out/kinematics.json` → `port_latch`; sources
+`research/PORT_MECHANISM_SOURCES.md`.
 
 ---
 
-## 1. What attaches the topper to the truck
+## 1. Why it was redone (operator card 2081357)
 
-The R1T gives an upfitter exactly one sanctioned structural interface on the bed: **four bed
-accessory ports**, two per rail cap, rated by Rivian at **2,500 N each** (Upfitting Guide
-2025-09-24 p.59). Rivian forbids modifying them and does not publish their geometry. Drilling
-the rail caps or clamping under them (the conventional cap method) is therefore rejected.
+Nate: *"it appears you do not understand the rivian custom attach points that the topper needs to connect to.
+the topper is meant to connect to the truck bed the same way that the rivian crossbars attach. there is a
+clever hardware gizmo."*
 
-The topper anchors at those four ports through a **purchased, non-modifying adapter** that
-latches into the OEM port and presents an M10 thread:
+Correct. Rev 10 assumed a stud-and-nut interface (a bolt-on port adapter). That is **not** how the Rivian
+crossbars attach. The accepted design emulates the crossbar-end mechanism.
 
-* **Weistec Engineering (Direct Current Engineering) 09-111-00078-7** "Accessory Port Adapter
-  for Rivian" — billet 6061, clear anodise, 5-axis CNC, "R1T needs 4 for the bed", accessories
-  bolt on "using M10 bolts", "no permanent modification to accessory ports". **$100.00 each**
-  (weistec.com, retrieved 2026-10-02). Second source: Mars Adventure Gear port adapter, two M8
-  points 25 mm apart, $59 per pair (would need a second station drawing).
+## 2. The mechanism being emulated (researched — not verified on hardware)
 
-### 1.1 The port station (×4) — `SEC-27-008`, `SEC-27-008D`, `DWG-27-010/012/013`
+Each Rivian crossbar END is a foot with a hinged **paddle** latch (Owner's Guide 2022-10-17 p.152-154):
 
-Top down; every height is derived in `mounts.py`, not typed:
+1. **Lift the paddle**, set the foot into the accessory port — **click 1**: the foot is caught on the port's
+   cleat / latch pin. Centre it, **push the paddle down** — **click 2**: clamped. "If you don't hear two clicks
+   the crossbar may not be latched."
+2. A **key lock cylinder** sits under the paddle; the closed paddle covers it. Lock with the key (clockwise).
+3. Remove: push the paddle up halfway to reach the lock, unlock, lift the paddle while raising the bar.
+4. The latch can be **tuned** ("Crossbar latch tuning", p.154).
 
-| Item | Part | z (mm, rail-cap top = 0) |
+The port is a rounded-rectangular recess in the rail cap with a cleat / **dual-barrel latch-pin pair** (two
+anchor points per port; Mars Adventure Gear: two M8 points 25 mm apart). Rating **2,500 N per port**; Rivian
+forbids modifying the ports (Upfit Guide 2025-09-24 p.59). URLs and fetch dates:
+`research/PORT_MECHANISM_SOURCES.md`.
+
+## 3. Researched vs physically verified
+
+| Item | Researched? | Verified on hardware? |
 |---|---|---|
-| Nut | M10 ISO 4032 A4-80, 16 AF, **30 Nm**, Tef-Gel | 42.4 – 50.8 |
-| Lock | Nord-Lock NL10ss wedge pair (art. 1575) | 39.0 – 42.4 |
-| Slot washer | 316, 40 × 36 × 4, ground — covers the rail obround | 35.0 – 39.0 |
-| Base rail | 6061-T6 75 × 25, bonded on the foot; **12 mm wrench pocket**, open to the inboard edge; obround 22.5 × 16 (±6 x / ±2.75 y float) | 22 – 47 (13 under the pocket) |
-| **Port spacer = the stop** | 6061, Ø36 × 9.00 ±0.02, in a through-pocket in the carbon foot | 13 – 22 |
-| Shims | 316 Ø36, 2 × 0.5 nominal (fit-up kit 0 – 2 mm) | 12 – 13 |
-| Port adapter | Weistec 09-111-00078-7, latched in the OEM port, M10 female | ≤ 12 (PROVISIONAL) |
-| Stud | M10 × 60 A4-70, cut from DIN 975 rod, Loctite 243 into the adapter, 17.6 engaged, 3.6 past the nut | −5.6 – 54.4 |
+| Foot + hinged paddle, two clicks, lock under paddle, tuning | yes (Owner's Guide p.152-154, trailrivian.com) | **no** |
+| Port = recess + dual-barrel pin pair, 2 anchors 25 mm apart | yes (Team 1EV, Mars Adventure Gear, Upfit p.59) | **no** |
+| 2,500 N per port; do not modify | yes (Upfit p.59) | Rivian's value, not tested |
+| Port recess size / depth, pin dia / position, Rivian foot hook / paddle / lock geometry | **not published** | **no — PROVISIONAL** |
+| Paddle, hook, lock, detent geometry of OUR foot | designed here (assumption-level) | **no** |
+| CompX C8053 lock dimensions | listing only (compx.com 403) | **no — ESTIMATED** |
 
-Design intent, each a check:
+Every dimension at the port or in the Rivian foot is flagged: OPEN check `plf_port_internals_P-CAL-01b`.
 
-* **Metal-to-metal clamp; the carbon is not in the bolt's clamp path** (`port_stack_metal_to_metal`):
-  composite under a bolt creeps and loses preload. The foot is captured indirectly: the rail is
-  bonded to it and the pad reacts it.
-* **Preload/compression stop** (`pad_compression_set_by_stop`): the EPDM pad under the foot is
-  6.0 mm free; when the spacer bottoms on the shims it is exactly 4.0 mm (33 %). Torque cannot
-  over-crush the pad or load the paint; ±1.0 mm of foot/rail-cap profile keeps it in 17–50 %
-  (`pad_strain_band_15_55pct`). The pad needs < half the minimum preload to seat
-  (`pad_seats_within_preload`), so every station reaches its stop.
-* **Slip-critical joint** (`port_joint_slip_resistant`): 30 Nm → 15–20 kN preload (K 0.20–0.15);
-  μ 0.20 per slip plane gives 3.0 kN at the low preload, ≥ 1.25 × the worst limit shear. The stud
-  never bears in its slot under limit loads.
-* **Tolerance absorbed, not machined away** (`port_slot_float_covers_tolerance`): ±6 mm along the
-  rail, ±2.75 mm across, ±1 mm in height (shims) — truck-to-truck port position and moulding
-  variation are dialled out at fit-up.
-* **Serviceable with the topper fully built** (`port_nuts_tool_accessible`): the first layout (a
-  socket-head screw from above) FAILED its own access check — the socket frames' return lips sit
-  ~15 mm above the heads. Fix: stud + nut dropped into a 12 mm pocket milled in the rail top and
-  open to the inboard edge, so a 16 mm ratcheting box wrench swings in horizontally from the bed.
-  Checked against the closed assembly with all four modules fitted.
-* **The studs stay in the truck.** Lift-off = 4 nuts; re-fit = lower the topper over the studs —
-  the rail obrounds are the lead-in, so the topper self-locates on its four studs.
+## 4. The Port Latch Foot (PLF), ×4 — one part, passenger side rotated 180°
 
-### 1.2 Foot pad and foot
+Station frame: x along the rail, u OUTBOARD, z up from the rail-cap top. Parts (exact manifest names):
 
-ASTM D1056 **2B2** closed-cell EPDM, 1/4 in, PSA one side, 100 mm wide strip under each foot
-(Pres-On P9200 is a spec match; any certified 2B2 is interchangeable). The shell foot underside is
-relieved by the 4 mm compressed pad height, so the A-surface does not move. Foot widened
-115 → 125 mm so the measured rear port (y 710) keeps a full pocket wall.
+| Part | Material / process | What it does |
+|---|---|---|
+| `PLF_BODY_6061` | 6061-T6, 5-axis CNC, hard anodise III (DWG-27-012) | **stem** 62 × 26 drops through the foot pocket into the port recess; **seat flange** (z 0–4) bears on the rail cap and is the pad's compression STOP; **head** sits in a notch of the base rail; two hinge ears; hook-slider cross-slot, two pin channels, lock bore, rail-screw and tuning-screw holes |
+| `PLF_HOOK_SLIDER_17_4PH` | 17-4 PH H1025, wire-EDM + ground (DWG-27-013) | comb slider, **two hook teeth 25 mm apart** that slide under the port's two latch pins; dwell while the paddle goes closed → stage 1, retracts 6.5 mm between stage 1 and open |
+| `PLF_PADDLE_6061` | 6061-T6 CNC (DWG-27-013) | hinged **drop-down paddle on the INBOARD face**, axis ∥ rail; closed it covers the lock and the tuning screw |
+| `PLF_LOCK_CYLINDER_COMPX` | purchased CompX National **C8053-C346A-14A** | key cam lock under the paddle; keyed alike, one key for four feet |
+| `PLF_HINGE_PIN_5x76_A4` | ISO 2338 d5 m6, cut to 76 | paddle hinge |
+| `PLF_DETENT_PLUNGER_M8` | purchased M8 ball plunger (McMaster 85015A51) | two detents: stage 1 (68°, click 1) and closed (0°, click 2) |
+| `PLF_TUNE_SCREW_M6x20_A4` | ISO 4026 set screw | latch tuning: closed-stop screw under the paddle |
+| `PLF_RAIL_SCREW_M6x30_A4` ×2 | ISO 4762 A4-70 | fasten the base rail strip to the body **at the shop** |
+| `PLF_SHIM_316_1p0` ×2 | 316, 1.0 mm | across-rail fit-up pack (0–4 mm with the kit) |
 
-### 1.3 Loads (stated design cases — not a standard, not FEA)
+Also changed: `BASE_RAIL_6061_L/R` (U-notch per foot + tapped strip), `FOOT_PAD_EPDM_L/R` (cut around the
+flange), shell foot pockets (`mounts.foot_cuts()`). **Removed from the primary design:** Weistec adapter,
+M10 stud / nut, Nord-Lock, slot washer, port spacer, shims (kept only as the documented fallback,
+`hardware.json` → `port_adapter`, BOM section 2c).
 
-Mass and CG come from the manifest (mass × centroid per part). Per-port reactions: elastic
-bolt-group distribution about the port-pattern centroid. Table regenerated by the check suite
-into `out/mounting_analysis.json`; values at this commit:
+### 4.1 States and the sweep (`out/kinematics.json` → `port_latch`)
 
-Topper system mass **88.67 kg**, CG (706.1, 0.7, 206.7) mm (x from the bed front wall, z above
-the rail cap). Worst port per case:
+| State | Paddle | Hooks (cam law, PROVISIONAL) | Lock |
+|---|---|---|---|
+| Open | 82° inboard (lies out over the bed side) | retracted 6.5 mm: 2.8 mm clear of the pins; the foot can be dropped in / lifted out | face exposed |
+| **Stage 1 — "caught"** | 68° (detent, click 1) | teeth under the pins, tip 0.55 mm past the pin centre | key reaches the face (check `plf_key_reaches_lock_at_stage1`) |
+| **Stage 2 — closed** | 0° (detent, click 2) | teeth on the pins, tip 1.0 mm past centre | covered by the paddle |
 
-| Case | Accel (g) x / y / z | Extra | Compression N | Tension N | Shear N | **Resultant N** | Class |
-|---|---|---|---|---|---|---|---|
-| LC1 vertical bump | 0 / 0 / −3 | — | 690 | 0 | 0 | **690** | limit |
-| LC2 rebound + highway lift | 0 / 0 / +1 | 600 N aero lift | 0 | 380 | 0 | **380** | limit |
-| LC3 braking | −1 / 0 / −1 | — | 336 | 0 | 217 | **400** | limit |
-| LC4 cornering | 0 / 1 / −1 | — | 293 | 0 | 217 | **365** | limit |
-| LC5 off-road combined | −0.5 / 0.7 / −2 | — | 558 | 0 | 187 | **588** | limit |
-| LC6 forward crash pulse | −10 / 0 / −1 | — | 1,291 | 856 | 2,174 | **2,528** | ultimate (info) |
+The sweep is computed for 0–80° in 5° steps + stage 1 + open at all four stations against the whole closed
+assembly and the cab / body / tailgate keep-outs (`plf_paddle_sweep_clear`). **Difference from Rivian,
+stated:** our paddle must reach 68° (not "halfway") for a straight key shank to clear it, because the lock face
+is covered by a full-height plate.
 
-Joint: preload 15,000–20,000 N at 30 Nm; slip capacity 3,000 N per plane (μ 0.20, low preload)
-vs 217 N worst limit shear.
+### 4.2 Load path at stage 2 (closed) — all metal (`plf_stage2_load_path_metal_to_metal`)
 
-* All limit cases sit far inside Rivian's 2,500 N per port (`port_loads_within_rivian_rating`).
-* **LC6 (10 g forward crash pulse) is reported, not passed:** it lands at 2,528 N per port, 1 % over the 2,500 N rating (friction slip capacity 3.0 kN still holds).
-  No regulation covers a cap and Rivian rates the port, not a crash case. Remedy if Step 25 wants
-  crash retention: two forward tethers from the shell's front hardpoints to the bed's front
-  corner tie-downs (Owner's Guide p.297), after P-CAL-04 locates them. Not designed here.
-* **Benchmark** (`mass_within_rivian_4_port_benchmark`): Rivian allows 113 kg dynamic on a
-  crossbar pair on 4 roof ports. The topper system is ~89 kg on 4 bed ports, so **roof load on the
-  topper's own hardpoints is limited to ~24 kg dynamic** until FEA.
+port pin → hook tooth → slider bar → slot floor → body → 2 × M6 (shear) + shim pack → 6061 rail strip →
+bond line → carbon foot. The EPDM pad (33 % compressed) is **not** in the clamp path; the seat flange sets
+the height (`plf_seat_flange_is_the_pad_stop`).
 
-## 2. Every other attachment — the joint schedule
+### 4.3 Fit-up (`plf_fit_up_float_covers_tolerance`)
 
-`cad/fasteners.py` lists all 17 joints in the product once each (J01 – J17): count from the
-geometry, fastener per joint, torque and treatment (Upfitting Guide p.57 torque table), grip
-arithmetic. BOM27 §3 prints it. 204 fasteners of 14 specifications, all A4/316, plus 26 potted
-M4 inserts (`DWG-27-018`). `every_joint_found_in_geometry`, `joint_counts_match_product_structure`
-and `every_fastener_is_specified` check it.
+±3 mm along the rail (notch clearance), 0–4 mm across (shim pack, nominal 2), ±3 mm in height (slotted screw
+holes) against ±3 / ±2 / ±1 required for port-position and moulding variation. The rail taps are match-drilled
+from the body at shop fit-up; the foot pockets are cut after the port centres are taped (P-CAL-02).
 
-## 3. Installation (driveway, two people, no drilling)
+## 5. Loads (stated cases, not a standard, not FEA)
 
-1. Wash and dry the rail caps; apply clear PPF over the pad footprint if desired.
-2. Latch the four Weistec adapters into the bed ports (vendor instruction). **P-CAL-01 on first
-   fit:** measure adapter top height, thread depth and centre; set `mount.adapter_*` and re-run.
-3. Thread the four M10 studs (Loctite 243) into the adapters; hand-tight + 10 Nm.
-4. Shims: nominal 2 × 0.5 on each stud (from P-CAL-01: total = 22 − 9.00 − adapter height).
-5. Spacers onto the studs (they sit in the foot pockets once the shell is down).
-6. Two people lower the topper (pad already bonded to the foot) over the studs; the rail
-   obrounds are the lead-in.
-7. Slot washer, Nord-Lock pair, nut on each stud. Torque all four to 30 Nm in a cross pattern,
-   two passes. The pad is now at its 4 mm stop everywhere.
-8. Check: the four OEM rail-cap buttons press freely through the control wells
-   (`oem_buttons_not_covered`); modules latch in all four sockets.
+Topper system **89.26 kg**, CG (706.8, 0.7, 205.5) mm. Worst port per case (`out/mounting_analysis.json`):
 
-## 4. Service
+| Case | g (x/y/z) | Compression N | Tension N | Shear N | **Resultant N** | Class |
+|---|---|---|---|---|---|---|
+| LC1 vertical bump | 0/0/−3 | 694 | 0 | 0 | **694** | limit |
+| LC2 rebound + 600 N lift | 0/0/+1 | 0 | 381 | 0 | **381** | limit |
+| LC3 braking | −1/0/−1 | 338 | 0 | 219 | **402** | limit |
+| LC4 cornering | 0/1/−1 | 295 | 0 | 219 | **367** | limit |
+| LC5 off-road | −0.5/0.7/−2 | 560 | 0 | 188 | **591** | limit |
+| LC6 forward crash pulse | −10/0/−1 | 1,293 | 856 | 2,188 | **2,542** | ultimate (info) |
 
-* **Remove topper:** open the hatch, reach in, four nuts with a 16 mm ratcheting box wrench,
-  lift off. Studs, shims and spacers stay; re-fit is steps 6–7.
-* **Re-torque:** at 500 km after first fit, then every 6 months: 30 Nm; Nord-Lock pairs
-  are reusable unless the cam faces are damaged.
-* **Corrosion:** A4 into anodised 6061 is isolated by Tef-Gel on every thread and anodise on every
-  face except the bond faces (masked, bonded, sealed by the bondline).
+* All limit cases are far inside Rivian's 2,500 N per port (`port_loads_within_rivian_rating`).
+* **LC6 is reported, not passed:** 2,542 N per port is 1.7 % over the rating (OPEN `port_crash_pulse_vs_rating`).
+  No regulation covers a cap and Rivian rates the port, not a crash case. Remedy if Step 25 wants crash
+  retention: forward tethers to the bed's front tie-downs (Owner's Guide p.297), after P-CAL-04. Not designed.
+* Hand check at the port rating (ESTIMATED material values, **not FEA**): each station at 2,500 N → hook tooth
+  bending 258 MPa vs 600 allowable (0.6 × Rp0.2 of 17-4 PH H1025), tooth shear 31 MPa, rail-screw shear
+  62 MPa vs 270, thread strip-out 19.5 kN, slot-floor bearing 8.5 MPa.
+* **A real finding, open (`plf_drive_link_and_lock_interlock`):** the 2B2 foot pad, compressed to the flange stop
+  (33 %), reacts up to ~2.8 kN per station (0.255 m² of pad, upper-bound CFD) against 219 N of dead weight per
+  station. Rev 10 had 15–20 kN of bolt preload to do that; a paddle latch will not. Before release either
+  reduce the pad (short pads at the stations, softer grade, or a thinner free height) or show the paddle
+  clamp can pull the foot down without loading the port beyond its rating. The hook force, over-centre
+  preload and detent force are **not computed**.
+* Benchmark: Rivian allows 113 kg dynamic on a crossbar pair on 4 roof ports; the topper is ~89 kg on 4 bed
+  ports, so roof load on the topper's own hardpoints stays limited to ~24 kg dynamic until FEA.
 
-## 5. Measurements this design depends on — researched vs physically verified
+## 6. Installation and service
 
-None of these has been measured on a truck. Every one is a **calibration need**, in the order it
-should be done:
+**Shop (factory step, topper OFF the truck, ordinary fasteners):** fit the four PLF bodies to the base rails
+(2 × M6 + shim pack each, Loctite 243 once set), bond the rails to the shell foot, fit slider, paddle, pin,
+detent, lock and tuning screw. Set the tuning screw at P-CAL-01b / prototype.
 
-| ID | Dimension | Value used | Source (researched) | Physically verified? |
-|---|---|---|---|---|
-| P-CAL-01 | Weistec adapter above-cap envelope, thread depth, centre | 60 × 36 × 12, ≥ 18 deep (PROVISIONAL) | none published (vendor page states M10 only) | **No** — measure the received part latched on the truck |
-| P-CAL-02 | Bed accessory port centres | (307, ±724), (1154, ±710) mm from the bed's inside front wall | Upfit p.59 plan view, port symbols, `rivian_reference.py` (scale by 5,514 mm length; bed width/length cross-checks 0.6 / 1.2 %) | **No** — tape all four before the rail slots are cut |
-| P-CAL-03 | Rail-cap flatness/profile under the 100 mm pad band | flat, ±1.0 assumed | Upfit p.59 line clusters (0.644 / 0.783 / 0.828 m) | **No** — straightedge + feelers along both caps |
-| P-CAL-04 | Bed front corner tie-down positions (optional crash tethers) | — | Owner's Guide p.297 (location only) | **No** |
-| T1–T3 | OEM rail-cap button positions (control wells) | x 60 / 1300 | TAILGATE_CONTROL.md | **No** |
-| — | Port rating | 2,500 N per port | Upfit p.59 | Rivian's published value; not tested |
-| — | Torque window M10 8.8 hard joint | 27–54 Nm | Upfit p.57 | standard table |
+**Field install (two people, no tools):** paddles open (82°) → lower the topper so the four stems drop into the
+ports → paddles to stage 1 (click 1: caught) → paddles closed (click 2: clamped) → lock with the key. Check the
+four OEM rail-cap buttons press through the control wells; modules latch in all four sockets.
 
-## 6. Open, named
+**Field removal (same user experience as removing Rivian crossbars):** stand in the bed with the hatch open;
+the paddles and lock faces are INBOARD, in reach (`plf_serviceable_from_bed_no_tools`: lock face normal
+toward the bed centre, hand corridor clear, socket-frame ceiling z 66 vs paddle top 61.5). Raise each paddle
+to stage 1, unlock with the key, lift the paddle fully and the topper off. **Tool required: the key only.**
 
-`port_adapter_envelope_P-CAL-01`, `bed_port_positions_P-CAL-02`, `port_crash_pulse_vs_rating`
-(OPEN in the suite); plus the Step 27 items carried from `df01d411` (rear-sill seal, tape session,
-latch sustained rating, GN 7233 coupler curve, T-handle grip, control wells, release cable
-SERIES_ONLY). FEA of the rail/foot bond, adapter strength beyond Rivian's rating, fatigue, water
-ingress at the pad, real-truck fit, fabrication release and Nate-only approval are later gates.
+## 7. Calibration list — every item is a physical measurement not yet made
+
+| ID | What | Value used | Status |
+|---|---|---|---|
+| **P-CAL-01b** | Buy ONE **Rivian Cargo Crossbars** set (gearshop.rivian.com/products/cargo-crossbars, Bright $700 / Dark $800, read 2026-10-06) as the reference article. Photograph + measure the foot (hook / tang, paddle, lock position, tuning screw) and, on a real truck, the port (recess L × W × depth, cleat / pin positions, pin diameter and pitch). Set `mount.port_*`, `pin_*`, `hook_*` and re-run | recess 70 × 34 × 30, pins Ø8 at 25 pitch, z −14 | **not done** — PROVISIONAL |
+| P-CAL-01c | Received CompX C8053 cylinder: body Ø, flange, cam, key code | Ø19 / 28.7 / flange Ø23 | **not done** — ESTIMATED |
+| P-CAL-02 | Tape all four bed-port centres before the foot pockets are cut | (307, ±724), (1154, ±710) | **not done** |
+| P-CAL-03 | Rail-cap flatness / profile under the 100 mm pad band | flat, ±1.0 | **not done** |
+| P-CAL-04 | Bed front corner tie-downs (optional crash tethers) | — | **not done** |
+| T1–T3 | OEM rail-cap button positions (control wells) | x 60 / 1300 | **not done** |
+
+(P-CAL-01 of rev 10, the Weistec adapter envelope, applies only if the fallback is ever taken.)
+
+## 8. Open, named
+
+`plf_port_internals_P-CAL-01b`, `plf_drive_link_and_lock_interlock` (link paddle-cam → slider and lock-cam
+keeper not drawn; hook force / preload / detent not computed; pad-set force vs rating), `bed_port_positions_P-CAL-02`,
+`port_crash_pulse_vs_rating` (OPEN in the suite); plus the Step 27 items carried from `df01d411` (rear-sill seal,
+tape session, latch sustained rating, GN 7233 coupler curve, T-handle grip, control wells, release cable
+SERIES_ONLY). FEA, fatigue, water ingress at the pad, real-truck fit, fabrication release and Nate-only
+approval are later gates.
+
+## 9. Every other attachment — the joint schedule
+
+`cad/fasteners.py` lists the 17 joints once each (J01 – J17), counts from the geometry. J01 is now the PLF
+(4 stations; 8 rail screws, 4 tuning screws, 4 hinge pins as fasteners; 4 locks and 4 plungers as purchased
+parts). BOM27 §3 prints it. `every_joint_found_in_geometry`, `joint_counts_match_product_structure` and
+`every_fastener_is_specified` check it.

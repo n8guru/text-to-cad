@@ -125,3 +125,5 @@ Read-only; no purchases/quotes. Per-entry evidence & URLs in `pricing_2026-10.js
 | 23 | 1329837 (Loctite 243 Threadlocker, Blue, medium strength, 10 mL bottle) | Ellsworth Adhesives | PUBLIC_PRICE | 21.45 | 1-12 ea |
 | 23 | 1999560 (LB 8009 Heavy Duty Anti-Seize, 7 g brush-top tube) | Ellsworth Adhesives | RFQ_ONLY | None | 1 ea |
 | 23 | Tef-Gel 1 oz tube (Hamilton Marine P/N USS-TEF20-CC, HM Order # 135591) | Hamilton Marine | PUBLIC_PRICE | 36.39 | 1 ea |
+| 24 | C8053-C346A-14A (CompX National cam lock, keyed alike C346A; rev 11 PLF lock, 2026-10-06) | Amazon.com (third-party listing) | PUBLIC_PRICE | 13.77 | 1 ea |
+| 24 | R1 Cargo Crossbars (Bright) (Rivian reference article P-CAL-01b, 2026-10-06; Dark $800) | Rivian Gear Shop (gearshop.rivian.com) | PUBLIC_PRICE | 700.0 | 1 set |

@@ -1,40 +1,48 @@
-"""Topper-to-truck attachment (Step 27 rev 10): port clamp stations, base rails, foot pad.
+"""Topper-to-truck attachment (Step 27 rev 11): four PORT LATCH FEET (PLF), Rivian-crossbar style.
 
-The shell's foot bears on the OEM bed-rail caps (z = 0) through a closed-cell EPDM pad. Each 6061
-base rail is bonded on the foot and clamped to Rivian's own bed accessory ports (Upfitting Guide
-p.59: 2 per side, 2,500 N per port) at four PORT STATIONS. Rivian does not publish the port, so
-the station starts from a PURCHASED, non-modifying adapter that latches into it and presents an
-M10 thread (Weistec / Direct Current Engineering 09-111-00078-7, "R1T needs 4 for the bed").
+WHY (operator card 2081357): the Rivian crossbar does not bolt to the bed accessory port with a stud
+and nut. Each crossbar END is a foot with a hinged PADDLE latch (Owner's Guide 2022-10-17 p.152-154):
+lift the paddle, set the foot into the port (click 1: the foot is caught on the port's cleat / latch
+pin), push the paddle down (click 2: clamped); a key lock cylinder under the paddle locks it; the
+latch can be tuned. The port presents a "dual-barrel" latch-pin pair (two anchor points per port,
+Mars Adventure Gear: ~25 mm apart). The topper must attach the same way, so every one of the four
+stations is such a foot. Sources and dates: step27/research/PORT_MECHANISM_SOURCES.md.
 
-Clamp path at a station, top down (all metal; the carbon is NOT in the bolt's clamp path, so the
-laminate cannot creep the preload away):
+NOTHING about the port interior or the Rivian foot is published. Every dimension below that touches
+the port (recess, pin pair, depth) or the foot (hook, paddle, lock) is PROVISIONAL, comes from
+blender/params.json ``mount`` and is flagged by the OPEN check ``plf_port_internals_P-CAL-01b``.
 
-    M10 ISO 4032 A4-80 hex nut        (16 AF: ratcheting box wrench swung INBOARD, horizontally -
-                                       there is no room above the front stations for a hex key)
-    Nord-Lock NL10ss wedge-locking washer pair
-    M10 x 60 A4-70 stud, DIN 976-1    (Loctite 243 into the adapter; stays put when the topper
-                                       is lifted off, so the stations re-locate on the studs)
-    316 slot washer, 40 x 36 x 4      (covers the rail's +/-6 x +/-2.75 obround: port tolerance)
-    6061 base rail, 25 thick          (bonded on the foot; 12 deep wrench pocket at the station,
-                                       open to the rail's inboard edge)
-    6061 port spacer, Dia 36          (in a through-pocket in the foot)
-    316 shims, 0.5 / 1.0              (nominal 1.0: sets the stop height, +/-1 mm at fit-up)
-    Weistec port adapter              (latched into the OEM port; M10 female)
+Station frame (local): x along the rail, u OUTBOARD (the +Y side for the driver stations, a 180 deg
+rotation about Z for the passenger stations, so the four feet are ONE part), z up from the rail-cap
+top. Parts of one station (inboard to outboard):
 
-Preload/compression stop: the pad is 6 mm free and 4 mm (33 %) when the spacer bottoms on the
-shims; the spacer is the stop, so torque can never over-crush the pad or load the paint. Lateral
-and fore-aft load cross the station by FRICTION in two slip planes, checked against the port
-loads in ``port_loads`` (checks_step27.check_mounting).
+    PLF_PADDLE_6061          hinged drop-down flap on the INBOARD face (axis // x). Closed it covers
+                             the lock cylinder and the tuning screw; opened 82 deg it lies out over
+                             the bed side, clear of the socket frames (ceiling z 66 above the rail).
+    PLF_LOCK_CYLINDER_COMPX  purchased cam lock, axis // u, face INBOARD, under the paddle.
+    PLF_BODY_6061            machined foot: head (in a notch of the base rail), stem (through the
+                             foot pocket and into the port recess), seat flange (z 0..4, bears on
+                             the rail cap and is the pad's compression STOP), two hinge ears.
+    PLF_HOOK_SLIDER_17_4PH   comb slider in a cross-slot of the stem: two teeth, 25 mm apart, that
+                             slide under the two port latch pins ("dual-barrel"). Driven by the
+                             paddle cam: dwell while the paddle is closed .. stage 1, retracts
+                             between stage 1 and fully open (cam law below, link NOT drawn).
+    PLF_HINGE_PIN, PLF_DETENT_PLUNGER (2 dimples: closed / stage 1), PLF_TUNE_SCREW (closed
+    stop = latch tuning), PLF_RAIL_SCREW x2 + PLF_SHIM x2 (shop fit-up of the base rail to the body).
 
-Everything sized here from the adapter is PROVISIONAL (P-CAL-01): Weistec publishes no drawing.
-OEM controls on the rail caps (TAILGATE_CONTROL.md) stay pressable: foot, pad and rail are cut
-through over each button. Positions are PROVISIONAL until taped (T1-T3).
+Load path at stage 2 (closed), all metal: port pin -> hook tooth -> slider bar -> slot floor ->
+body -> 2 x M6 (in shear, 1 mm shim-able) -> 6061 base rail strip -> bond line -> carbon foot. The
+EPDM pad (33 % compressed) is NOT in the clamp path: the seat flange, not the pad, sets the height.
+
+Everything sized here is checked by checks_step27.check_mounting / check_plf_*; none of it is a
+fitment, structural or sealing result.
 """
 from __future__ import annotations
 
 import math
+from functools import lru_cache
 
-from build123d import Align, Box, Cylinder, Pos, extrude
+from build123d import Align, Box, Cylinder, Location, Pos, Rot, Sphere, extrude
 
 import geom as G
 
@@ -47,25 +55,36 @@ RAIL_X = (G.S["x0"] + 60.0, G.S["x1"] - 130.0)   # clear of the front roll and r
 WELLS = (("WELL_GT_L", 60.0, 1), ("WELL_GT_R", 60.0, -1), ("WELL_TG", 1300.0, 1))
 WELL = {"lx": 120.0, "ly": 70.0, "y": 700.0}
 
-# ---------------------------------------------------------------- the stack, derived not typed
+# ---------------------------------------------------------------- derived heights, not typed
 FOOT_TOP = G.WALL                                 # rail underside / foot top
 RAIL_TOP = G.WALL + BR["h"]
-PAD_C = MT["pad_comp"]                            # pad compressed = foot underside height
-ADAPTER_TOP = MT["adapter_env_h"]                 # PROVISIONAL (P-CAL-01)
-SHIM_TOP = ADAPTER_TOP + MT["shim_nom"]
-SPACER_H = FOOT_TOP - SHIM_TOP                    # the stop: closes when the pad is at PAD_C
-POCKET_FLOOR = RAIL_TOP - MT["rail_pocket_depth"]   # wrench pocket milled in the rail top
-WASHER_TOP = POCKET_FLOOR + MT["slot_washer_t"]
-HEAD_SEAT = WASHER_TOP + MT["wedge_washer_t"]     # nut bearing face
-NUT_TOP = HEAD_SEAT + MT["nut_h"]
-ENGAGEMENT = MT["stud_engagement"]                # stud thread inside the adapter (P-CAL-01)
-BOLT_TIP = ADAPTER_TOP - ENGAGEMENT               # stud bottom
-STUD_TOP = BOLT_TIP + MT["bolt_len"]
-PROTRUSION = STUD_TOP - NUT_TOP                   # stud past the nut (>= 1 pitch)
-GRIP = HEAD_SEAT - ADAPTER_TOP                    # clamped length
-POCKET_X = MT["adapter_env_x"] + 2 * MT["pocket_clear"]
-POCKET_Y = MT["adapter_env_y"] + 2 * MT["pocket_clear"]
-CLEAR_D = 10.5                                    # M10 clearance, ISO 273 medium
+PAD_C = MT["pad_comp"]                            # pad compressed = foot underside = seat-flange top
+FLANGE_T = MT["flange_t"]
+POCKET_X = MT["stem_x"] + 2 * MT["pocket_clear"]
+POCKET_U0 = MT["stem_u0"] - MT["pocket_clear"]
+POCKET_U1 = MT["stem_u1"] + MT["pocket_clear"]
+NOTCH_X = MT["head_x"] + 2 * MT["notch_clear_x"]
+NOTCH_WALL_U = MT["head_u1"] + MT["notch_shim_nom"]     # rail strip inboard face, local u
+HEAD_UNDER_GAP = MT["head_z0"] - FOOT_TOP
+# paddle states (deg). Stage 1 = "caught / halfway": hooks under the pins, lock face reachable.
+STAGE1_DEG = 68.0
+OPEN_DEG = 82.0
+# cam law: paddle angle -> slider retraction along u (mm, 0 = fully advanced = clamped). Dwell
+# from closed to stage 1 (hooks stay under the pins), then the hooks retract by the full travel
+# between stage 1 and open. PROVISIONAL: the drive link is not drawn.
+CAM_LAW = ((0.0, 0.0), (STAGE1_DEG, 0.45), (OPEN_DEG, MT["slider_travel"]))
+SWEEP_DEG = tuple(float(a) for a in range(0, 81, 5)) + (STAGE1_DEG, OPEN_DEG)
+
+
+def cam_retract(theta: float) -> float:
+    """Slider retraction (mm, along -u) at paddle angle theta (deg), piecewise linear."""
+    pts = CAM_LAW
+    if theta <= pts[0][0]:
+        return pts[0][1]
+    for (a0, d0), (a1, d1) in zip(pts, pts[1:]):
+        if theta <= a1:
+            return d0 + (d1 - d0) * (theta - a0) / (a1 - a0)
+    return pts[-1][1]
 
 
 def stations():
@@ -73,12 +92,265 @@ def stations():
     return [(x, sy * y) for x, y in T["bed_ports"] for sy in (1, -1)]
 
 
-def _rr(lx, ly, r, h, z0):
-    return Pos(0, 0, z0) * extrude(G.rrect(lx, ly, r), amount=h)
+def station_loc(x, y):
+    """Local -> vehicle: origin at the port centre on the rail-cap top; u outboard."""
+    return Location((x, y, 0)) * Rot(0, 0, 0 if y > 0 else 180)
 
 
-def _obround(lx, ly, h, z0):
-    return _rr(lx, ly, ly / 2 - 0.01, h, z0)
+# ---------------------------------------------------------------- local-frame helpers
+def _box(x0, x1, u0, u1, z0, z1):
+    return Pos((x0 + x1) / 2, (u0 + u1) / 2, z0) * Box(x1 - x0, u1 - u0, z1 - z0, align=(CC, CC, CMIN))
+
+
+def _rrbox(x0, x1, u0, u1, z0, z1, r):
+    return Pos((x0 + x1) / 2, (u0 + u1) / 2, z0) * extrude(G.rrect(x1 - x0, u1 - u0, r), amount=z1 - z0)
+
+
+def _cyl_u(x, z, d, u0, u1):
+    """Cylinder with its axis along u (local +Y), from u0 to u1."""
+    return Pos(x, (u0 + u1) / 2, z) * Rot(X=90) * Cylinder(d / 2, u1 - u0)
+
+
+def _cyl_x(u, z, d, x0, x1):
+    return Pos((x0 + x1) / 2, u, z) * Rot(Y=90) * Cylinder(d / 2, x1 - x0)
+
+
+def _cyl_z(x, u, d, z0, z1):
+    return Pos(x, u, z0) * Cylinder(d / 2, z1 - z0, align=(CC, CC, CMIN))
+
+
+def _vslot_u(x, z, d, dz, u0, u1):
+    """Obround hole (diameter d, vertical float +/-dz) along u."""
+    s = _cyl_u(x, z - dz, d, u0, u1) + _cyl_u(x, z + dz, d, u0, u1)
+    s += _box(x - d / 2, x + d / 2, u0, u1, z - dz, z + dz)
+    return s
+
+
+# ---------------------------------------------------------------- the port (REFERENCE, PROVISIONAL)
+PORT_X, PORT_U, PORT_R, PORT_DEPTH = MT["port_x"], MT["port_u"], MT["port_r"], MT["port_depth"]
+PIN_XS = (-MT["pin_pitch"] / 2, MT["pin_pitch"] / 2)
+
+
+def port_recess_local():
+    """The port recess as a SOLID (the void in the rail cap), local frame. Reference only."""
+    return _rrbox(-PORT_X / 2, PORT_X / 2, -PORT_U / 2, PORT_U / 2, -PORT_DEPTH, 0.0, PORT_R)
+
+
+def port_pins_local():
+    """The dual-barrel latch-pin pair, two barrels along x, 25 mm apart. Reference only."""
+    out = []
+    for i, px in enumerate(PIN_XS):
+        p = _cyl_x(MT["pin_u"], MT["pin_z"], MT["pin_d"], px - MT["pin_len"] / 2, px + MT["pin_len"] / 2)
+        p.label = f"PORT_REF_PIN_{'AB'[i]}"
+        out.append(p)
+    return out
+
+
+def port_reference(x, y):
+    """(recess, [pin A, pin B]) in the vehicle frame for the station at (x, y)."""
+    loc = station_loc(x, y)
+    rec = loc * port_recess_local()
+    rec.label = "PORT_REF_RECESS"
+    return rec, [loc * p for p in port_pins_local()]
+
+
+# ---------------------------------------------------------------- the machined foot (local frame)
+def _ears_x():
+    return [(MT["ear_x0"], MT["ear_x1"]), (-MT["ear_x1"], -MT["ear_x0"])]
+
+
+@lru_cache(maxsize=1)
+def body_local():
+    sb = MT["stem_bottom"]
+    stem = _rrbox(-MT["stem_x"] / 2, MT["stem_x"] / 2, MT["stem_u0"], MT["stem_u1"], sb,
+                  MT["head_z0"] + 2.0, MT["stem_r"])
+    head = _rrbox(-MT["head_x"] / 2, MT["head_x"] / 2, MT["head_u0"], MT["head_u1"], MT["head_z0"],
+                  MT["head_top"], 2.0)
+    flange = _rrbox(-MT["flange_x"] / 2, MT["flange_x"] / 2, MT["flange_u0"], MT["flange_u1"], 0.0,
+                    FLANGE_T, MT["flange_r"])
+    b = stem + head + flange
+    for x0, x1 in _ears_x():
+        b += _box(x0, x1, MT["ear_u0"], MT["head_u0"] + 0.5, MT["head_z0"], MT["ear_z1"])
+    # hook slider cross-slot and the two vertical pin channels (the stem drops past the pins)
+    b -= _box(-MT["slot_x"] / 2, MT["slot_x"] / 2, MT["stem_u0"] - 1, MT["stem_u1"] + 1,
+              MT["slot_z0"], MT["slot_z1"])
+    for px in PIN_XS:
+        b -= _box(px - MT["chan_w"] / 2, px + MT["chan_w"] / 2, MT["chan_u0"], MT["chan_u1"],
+                  sb - 1, MT["chan_top"])
+    # lock bore (axis // u from the inboard face) and the cam pocket behind it
+    u0 = MT["head_u0"]
+    b -= _cyl_u(0.0, MT["lock_z"], MT["lock_bore"], u0 - 1, u0 + MT["lock_len"] + 0.3)
+    b -= _cyl_u(0.0, MT["lock_z"], MT["lock_cam_pocket_d"], u0 + MT["lock_len"] - 0.5,
+                u0 + MT["lock_len"] + 2.3)
+    # rail screws: obround through-holes (vertical float) with a counterbore from the inboard face
+    for sx in (-1, 1):
+        x = sx * MT["rail_screw_x"]
+        b -= _vslot_u(x, MT["rail_screw_z"], 6.6, MT["rail_slot_z"], u0 - 1, MT["head_u1"] + 1)
+        b -= _vslot_u(x, MT["rail_screw_z"], MT["rail_cbore_d"], MT["rail_slot_z"], u0 - 1,
+                      u0 + MT["rail_cbore_depth"])
+    # tuning screw: M6 tapped, from the inboard face (tap drill 5.0), x < 0 side
+    b -= _cyl_u(MT["tune_x"], MT["tune_z"], 5.0, u0 - 1, u0 + 14.0)
+    # hinge pin through both ears; detent plunger bore (M8 tap drill 6.8) in the +x ear
+    hu, hz = MT["hinge_u"], MT["hinge_z"]
+    b -= _cyl_x(hu, hz, MT["hinge_pin_d"], -MT["ear_x1"] - 1, MT["ear_x1"] + 1)
+    b -= _cyl_x(hu, hz + MT["detent_r"], 6.8, MT["ear_x1"] - MT["detent_len"], MT["ear_x1"] + 1)
+    b.label = "PLF_BODY_6061"
+    return b
+
+
+# ---------------------------------------------------------------- paddle, slider, purchased parts
+HU, HZ = MT["hinge_u"], MT["hinge_z"]
+PLUNGER_X0 = MT["ear_x1"] - MT["detent_len"]                  # plunger body inner end (x)
+PLUNGER_BALL_X = PLUNGER_X0 + 0.75                            # ball centre (1.5 mm extension)
+BALL_R = 2.25
+DIMPLE_DEG = (90.0, 90.0 - STAGE1_DEG)                        # dimples on the knuckle end: closed, stage 1
+# (the open position has no dimple: it is the cam-link over-travel limit, 82 deg, not drawn)
+
+
+@lru_cache(maxsize=1)
+def paddle_closed_local():
+    px = MT["paddle_x"] / 2
+    plate = _box(-px, px, HU - MT["paddle_t"] / 2, HU + MT["paddle_t"] / 2, HZ, HZ + MT["paddle_h"])
+    knuckle = _cyl_x(HU, HZ, MT["knuckle_d"], -px, px)
+    p = plate + knuckle
+    p -= _cyl_x(HU, HZ, MT["hinge_pin_d"] + 0.2, -px - 1, px + 1)
+    # detent dimples on the +x knuckle end, r = detent_r from the hinge axis
+    for a in DIMPLE_DEG:
+        ar = math.radians(a)
+        p -= Pos(PLUNGER_BALL_X, HU + MT["detent_r"] * math.cos(ar), HZ + MT["detent_r"] * math.sin(ar)) \
+            * Sphere(BALL_R + 0.05)
+    p.label = "PLF_PADDLE_6061"
+    return p
+
+
+def rot_about_hinge(shape, theta):
+    """Rotate about the hinge axis (// local x); + = the paddle top swings INBOARD (toward -u)."""
+    return Pos(0, HU, HZ) * Rot(X=theta) * Pos(0, -HU, -HZ) * shape
+
+
+def paddle_local(theta=0.0):
+    p = paddle_closed_local()
+    q = rot_about_hinge(p, theta) if theta else Pos(0, 0, 0) * p
+    q.label = "PLF_PADDLE_6061"
+    return q
+
+
+def slider_closed_local():
+    """Hook slider in the CLAMPED pose: bar behind the pins, two teeth under them."""
+    bar = _box(-MT["bar_x"] / 2, MT["bar_x"] / 2, MT["bar_u0"], MT["bar_u1"], MT["bar_z0"], MT["bar_z1"])
+    s = bar
+    for px in PIN_XS:
+        s += _box(px - MT["tooth_w"] / 2, px + MT["tooth_w"] / 2, MT["bar_u1"] - 0.5, MT["tooth_tip"],
+                  MT["tooth_z0"], MT["tooth_z1"])
+    s.label = "PLF_HOOK_SLIDER_17_4PH"
+    return s
+
+
+def slider_local(theta=0.0):
+    s = Pos(0, -cam_retract(theta), 0) * slider_closed_local()
+    s.label = "PLF_HOOK_SLIDER_17_4PH"
+    return s
+
+
+def lock_local(locked=True):
+    """CompX C8053 cam lock envelope: flange on the inboard face, body in the bore, cam behind."""
+    u0 = MT["head_u0"]
+    fl = _cyl_u(0.0, MT["lock_z"], MT["lock_flange_d"], u0 - MT["lock_flange_t"], u0)
+    body = _cyl_u(0.0, MT["lock_z"], MT["lock_d"], u0, u0 + MT["lock_len"])
+    cu0 = u0 + MT["lock_len"]
+    if locked:      # blade across the keeper (horizontal), unlocked = vertical
+        cam = _box(-MT["lock_cam_x"] / 2, MT["lock_cam_x"] / 2, cu0, cu0 + MT["lock_cam_t"],
+                   MT["lock_z"] - 1.5, MT["lock_z"] + 1.5)
+    else:
+        cam = _box(-1.5, 1.5, cu0, cu0 + MT["lock_cam_t"], MT["lock_z"] - MT["lock_cam_x"] / 2,
+                   MT["lock_z"] + MT["lock_cam_x"] / 2)
+    lk = fl + body + cam
+    lk.label = "PLF_LOCK_CYLINDER_COMPX"
+    return lk
+
+
+def key_envelope_local():
+    """Key shank swept into the lock face (a reach test, not a part): dia 8 x 32 along -u."""
+    u0 = MT["head_u0"] - MT["lock_flange_t"]
+    return _cyl_u(0.0, MT["lock_z"], 8.0, u0 - 32.0, u0)
+
+
+def hinge_pin_local():
+    p = _cyl_x(HU, HZ, MT["hinge_pin_d"], -MT["ear_x1"], MT["ear_x1"])
+    p.label = "PLF_HINGE_PIN_5x76_A4"
+    return p
+
+
+def plunger_local():
+    body = _cyl_x(HU, HZ + MT["detent_r"], 6.8, PLUNGER_X0, MT["ear_x1"])    # shown at the thread minor
+    ball = Pos(PLUNGER_BALL_X, HU, HZ + MT["detent_r"]) * Sphere(BALL_R)
+    p = body + ball
+    p.label = "PLF_DETENT_PLUNGER_M8"
+    return p
+
+
+def tune_screw_local():
+    u0 = MT["head_u0"]
+    # M6 x 20 ISO 4026 flat-point set screw (tap minor 5.0): tip on the closed paddle's inner face
+    tip = HU + MT["paddle_t"] / 2
+    s = _cyl_u(MT["tune_x"], MT["tune_z"], 5.0, tip, tip + MT["tune_len"])
+    s.label = "PLF_TUNE_SCREW_M6x20_A4"
+    return s
+
+
+def rail_screws_local():
+    out = []
+    seat = MT["head_u0"] + MT["rail_cbore_depth"]
+    for sx in (-1, 1):
+        x = sx * MT["rail_screw_x"]
+        head = _cyl_u(x, MT["rail_screw_z"], 10.0, seat - 6.0, seat)
+        shank = _cyl_u(x, MT["rail_screw_z"], 5.0, seat, seat + MT["rail_screw_len"])
+        s = head + shank
+        s.label = "PLF_RAIL_SCREW_M6x30_A4"
+        out.append(s)
+    return out
+
+
+def shims_local():
+    """Two 1.0 mm 316 plates between the head's outboard face and the rail strip (0..4 mm kit)."""
+    out = []
+    n = int(round(MT["notch_shim_nom"] / MT["shim_t"]))
+    for k in range(n):
+        u0 = MT["head_u1"] + k * MT["shim_t"]
+        s = _box(-21.0, 21.0, u0, u0 + MT["shim_t"], MT["rail_screw_z"] - 7.0, MT["rail_screw_z"] + 7.0)
+        for sx in (-1, 1):
+            s -= _vslot_u(sx * MT["rail_screw_x"], MT["rail_screw_z"], 6.6, MT["rail_slot_z"], u0 - 1,
+                          u0 + MT["shim_t"] + 1)
+        s.label = "PLF_SHIM_316_1p0"
+        out.append(s)
+    return out
+
+
+# ---------------------------------------------------------------- placed station parts
+def _place(shape, loc, label=None):
+    s = loc * shape
+    s.label = label or shape.label
+    return s
+
+
+def port_station(x, y, theta=0.0):
+    """Every part of the foot at station (x, y), vehicle frame, paddle at ``theta`` deg."""
+    loc = station_loc(x, y)
+    parts = [body_local(), paddle_local(theta), slider_local(theta), lock_local(True),
+             hinge_pin_local(), plunger_local(), tune_screw_local()] + rail_screws_local() + shims_local()
+    return [_place(p, loc) for p in parts]
+
+
+def port_stations(theta=0.0):
+    out = []
+    for x, y in stations():
+        out += port_station(x, y, theta)
+    return out
+
+
+def port_adapters():
+    """Back-compat name used by assembly/checks: every part of every station."""
+    return port_stations()
 
 
 # ---------------------------------------------------------------- cut-outs (shell foot, rail, pad)
@@ -88,8 +360,17 @@ def well_cut(x, sy):
 
 
 def foot_pocket(x, y):
-    """Through-pocket in the foot over the adapter; the spacer and shims live in it."""
-    return Pos(x, y, 0) * _rr(POCKET_X, POCKET_Y, MT["pocket_r"], FOOT_TOP + 2.0, -1.0)
+    """Through-pocket in the shell foot for the stem (the seat flange is below the foot, z 0..4)."""
+    loc = station_loc(x, y)
+    return loc * _rrbox(-POCKET_X / 2, POCKET_X / 2, POCKET_U0, POCKET_U1, -1.0, FOOT_TOP + 2.0,
+                        MT["pocket_r"])
+
+
+def flange_pad_cut(x, y):
+    """The pad strip is cut round the seat flange (it occupies the pad plane, z 0..4)."""
+    loc = station_loc(x, y)
+    return loc * _rrbox(-MT["flange_x"] / 2 - 2.0, MT["flange_x"] / 2 + 2.0, MT["flange_u0"] - 2.0,
+                        MT["flange_u1"] + 2.0, -1.0, PAD_C + 0.5, MT["flange_r"] + 2.0)
 
 
 def pad_relief():
@@ -105,18 +386,36 @@ def pad_relief():
 
 
 def foot_cuts():
-    """Everything the shell must lose for the attachment: pad relief, adapter pockets, wells."""
+    """Everything the shell must lose for the attachment: pad relief, stem pockets, wells."""
     cuts = pad_relief()
     cuts += [foot_pocket(x, y) for x, y in stations()]
     cuts += [well_cut(x, side) for _, x, side in WELLS]
     return cuts
 
 
-# ---------------------------------------------------------------- custom parts
+# ---------------------------------------------------------------- custom parts: rail, pad
 def _rail_solid(sy):
     y0, y1 = BR["y_in"], BR["y_out"]
     return Pos((RAIL_X[0] + RAIL_X[1]) / 2, sy * (y0 + y1) / 2, FOOT_TOP) * Box(
         RAIL_X[1] - RAIL_X[0], y1 - y0, BR["h"], align=(CC, CC, CMIN))
+
+
+def rail_notch(x, y):
+    """U-notch in the rail at a station, open to the inboard edge (paddle bay + head pocket)."""
+    loc = station_loc(x, y)
+    u_in = -(abs(y) - (BR["y_in"] - 1.0))
+    return loc * _box(-NOTCH_X / 2, NOTCH_X / 2, u_in, NOTCH_WALL_U, FOOT_TOP - 1.0, RAIL_TOP + 1.0)
+
+
+def rail_taps(x, y):
+    """Two M6 tapped blind holes (tap drill 5.0) in the strip's inboard face, for the rail screws."""
+    loc = station_loc(x, y)
+    t = None
+    for sx in (-1, 1):
+        h = _cyl_u(sx * MT["rail_screw_x"], MT["rail_screw_z"], 5.0, NOTCH_WALL_U - 0.5,
+                   NOTCH_WALL_U + MT["rail_tap_depth"])
+        t = h if t is None else t + h
+    return loc * t
 
 
 def base_rails():
@@ -125,25 +424,14 @@ def base_rails():
         r = _rail_solid(sy)
         for x, y in stations():
             if y * sy > 0:
-                r -= Pos(x, y, 0) * _obround(MT["rail_slot_x"], MT["rail_slot_y"],
-                                             BR["h"] + 2.0, FOOT_TOP - 1.0)
-                r -= wrench_pocket(x, y)
+                r -= rail_notch(x, y)
+                r -= rail_taps(x, y)
         for _, x, side in WELLS:
             if side == sy:
                 r -= well_cut(x, sy)
         r.label = f"BASE_RAIL_6061_{'L' if sy > 0 else 'R'}"
         out.append(r)
     return out
-
-
-def wrench_pocket(x, y):
-    """Spot-face in the rail top, open to the rail's INBOARD edge: drops the nut 12 mm below the
-    socket frame's return lip and lets a ratcheting box wrench swing in from the bed side."""
-    sy = 1 if y > 0 else -1
-    y_out = abs(y) + MT["rail_pocket_out"]
-    y_in = BR["y_in"] - 2.0
-    return Pos(x, sy * (y_in + y_out) / 2, POCKET_FLOOR) * Box(
-        MT["rail_pocket_x"], y_out - y_in, MT["rail_pocket_depth"] + 1.0, align=(CC, CC, CMIN))
 
 
 def foot_pads():
@@ -157,6 +445,7 @@ def foot_pads():
         for x, y in stations():
             if y * sy > 0:
                 p -= foot_pocket(x, y)
+                p -= flange_pad_cut(x, y)
         for _, x, side in WELLS:
             if side == sy:
                 p -= well_cut(x, sy)
@@ -165,103 +454,46 @@ def foot_pads():
     return out
 
 
-def port_spacer(x, y):
-    s = Pos(x, y, SHIM_TOP) * Cylinder(MT["spacer_d"] / 2, SPACER_H, align=(CC, CC, CMIN))
-    s -= Pos(x, y, SHIM_TOP - 1) * Cylinder(CLEAR_D / 2, SPACER_H + 2, align=(CC, CC, CMIN))
-    s.label = "PORT_SPACER_6061"
-    return s
-
-
-def port_shims(x, y):
-    """Nominal stack 2 x 0.5 (the fit-up kit adds 0.5 / 1.0 to range 0 .. 2.0 mm)."""
-    out = []
-    t = MT["shim_nom"] / 2
-    for k in range(2):
-        s = Pos(x, y, ADAPTER_TOP + k * t) * Cylinder(MT["shim_d"] / 2, t, align=(CC, CC, CMIN))
-        s -= Pos(x, y, ADAPTER_TOP - 1) * Cylinder(CLEAR_D / 2, 3.0, align=(CC, CC, CMIN))
-        s.label = "PORT_SHIM_316_0p5"
-        out.append(s)
-    return out
-
-
-def slot_washer(x, y):
-    w = Pos(x, y, POCKET_FLOOR) * _rr(MT["slot_washer_x"], MT["slot_washer_y"], 6.0,
-                                      MT["slot_washer_t"], 0.0)
-    w -= Pos(x, y, POCKET_FLOOR - 1) * Cylinder(CLEAR_D / 2, MT["slot_washer_t"] + 2, align=(CC, CC, CMIN))
-    w.label = "PORT_SLOT_WASHER_316"
-    return w
-
-
-# ---------------------------------------------------------------- purchased parts (envelopes)
-def port_adapter(x, y):
-    """Weistec 09-111-00078-7 REPRESENTATION: plug into the OEM port + above-cap body, M10 female.
-
-    The envelope is PROVISIONAL (P-CAL-01): no public drawing. Its job here is to reserve space
-    and carry the thread the station is designed around.
-    """
-    a = Pos(x, y, 0) * _rr(MT["adapter_env_x"], MT["adapter_env_y"], 6.0, ADAPTER_TOP, 0.0)
-    a += Pos(x, y, 0) * Cylinder(MT["adapter_plug_d"] / 2, MT["adapter_plug_depth"],
-                                 align=(CC, CC, CMAX))
-    a -= Pos(x, y, ADAPTER_TOP + 1) * Cylinder(8.5 / 2, ENGAGEMENT + 3.0, align=(CC, CC, CMAX))
-    a.label = "PORT_ADAPTER_WEISTEC"
-    return a
-
-
-def port_stud(x, y):
-    """M10 x 60 A4-70 stud (DIN 976-1), shown at the minor diameter so it threads, not clashes."""
-    s = Pos(x, y, BOLT_TIP) * Cylinder(MT["bolt_d"] / 2 - 0.8, MT["bolt_len"], align=(CC, CC, CMIN))
-    s.label = "PORT_STUD_M10x60_A4"
-    return s
-
-
-def port_nut(x, y):
-    """M10 ISO 4032 A4-80 hex nut, 16 AF."""
-    from build123d import RegularPolygon
-    af = MT["nut_af"]
-    n = Pos(x, y, HEAD_SEAT) * extrude(RegularPolygon(af / 2 / math.cos(math.pi / 6), 6),
-                                       amount=MT["nut_h"])
-    n -= Pos(x, y, HEAD_SEAT - 1) * Cylinder(MT["bolt_d"] / 2 - 0.75, MT["nut_h"] + 2, align=(CC, CC, CMIN))
-    n.label = "PORT_NUT_M10_A4"
-    return n
-
-
-def wedge_washer(x, y):
-    w = Pos(x, y, WASHER_TOP) * Cylinder(MT["wedge_washer_od"] / 2, MT["wedge_washer_t"],
-                                         align=(CC, CC, CMIN))
-    w -= Pos(x, y, WASHER_TOP - 1) * Cylinder(10.7 / 2, MT["wedge_washer_t"] + 2, align=(CC, CC, CMIN))
-    w.label = "WEDGE_WASHER_NL10SS"
-    return w
-
-
-def port_station(x, y):
-    return ([port_adapter(x, y)] + port_shims(x, y)
-            + [port_spacer(x, y), slot_washer(x, y), wedge_washer(x, y), port_stud(x, y),
-               port_nut(x, y)])
-
-
-def port_stations():
-    out = []
+# ---------------------------------------------------------------- kinematics (written to out/kinematics.json)
+def plf_kinematics() -> dict:
+    """Paddle + hook sweep for the render lane: hinge axis, states, cam law, per-station frames."""
+    states = {"closed": 0.0, "stage1_caught": STAGE1_DEG, "open": OPEN_DEG}
+    sts = []
     for x, y in stations():
-        out += port_station(x, y)
-    return out
-
-
-def port_adapters():
-    """Back-compat name used by assembly/checks: every part of every station."""
-    return port_stations()
+        loc = station_loc(x, y)
+        o = loc * Location((0, HU, HZ))
+        axis = (loc * Location((1, 0, 0))).position - loc.position
+        uvec = (loc * Location((0, 1, 0))).position - loc.position
+        sts.append({"station": [x, y], "hinge_point": [round(c, 3) for c in o.position],
+                    "hinge_axis": [round(c, 4) for c in axis], "outboard": [round(c, 4) for c in uvec],
+                    "slider_axis": [round(c, 4) for c in uvec]})
+    return {
+        "note": "PROVISIONAL (P-CAL-01b). + angle swings the paddle top INBOARD about the hinge axis "
+                "(right-hand rule about hinge_axis); slider retracts along -outboard by cam_law_mm.",
+        "states_deg": states, "paddle_sweep_deg": list(SWEEP_DEG),
+        "cam_law_deg_to_retract_mm": [list(p) for p in CAM_LAW],
+        "slider_retract_mm_by_state": {k: round(cam_retract(v), 3) for k, v in states.items()},
+        "detent_dimple_deg_on_knuckle": {"closed": DIMPLE_DEG[0], "stage1_caught": DIMPLE_DEG[1]},
+        "paddle_size_mm": [MT["paddle_x"], MT["paddle_t"], MT["paddle_h"]],
+        "stations": sts,
+    }
 
 
 # ---------------------------------------------------------------- engineering numbers
 def stack_report() -> dict:
     return {
         "foot_top": FOOT_TOP, "rail_top": RAIL_TOP, "pad_comp": PAD_C, "pad_free": MT["pad_free"],
-        "pad_strain": 1 - PAD_C / MT["pad_free"], "adapter_top": ADAPTER_TOP,
-        "pocket_floor": POCKET_FLOOR, "rail_under_pocket": POCKET_FLOOR - FOOT_TOP,
-        "shim_top": SHIM_TOP, "spacer_h": SPACER_H, "head_seat": HEAD_SEAT, "bolt_tip": BOLT_TIP,
-        "engagement": ENGAGEMENT, "grip": GRIP, "nut_top": NUT_TOP, "protrusion": PROTRUSION,
-        "slot_float_x": (MT["rail_slot_x"] - CLEAR_D) / 2, "slot_float_y": (MT["rail_slot_y"] - CLEAR_D) / 2,
-        "washer_land_x": (MT["slot_washer_x"] - MT["rail_slot_x"]) / 2,
-        "washer_land_y": (MT["slot_washer_y"] - MT["rail_slot_y"]) / 2,
+        "pad_strain": 1 - PAD_C / MT["pad_free"], "flange_top": FLANGE_T,
+        "stem_bottom": MT["stem_bottom"], "stem_to_port_floor": PORT_DEPTH + MT["stem_bottom"],
+        "head_z0": MT["head_z0"], "head_under_gap": HEAD_UNDER_GAP, "head_top": MT["head_top"],
+        "hinge_z": HZ, "hinge_u": HU,
+        "notch_float_x": MT["notch_clear_x"], "shim_nominal": MT["notch_shim_nom"],
+        "shim_range": (0.0, 4.0), "slot_float_z": MT["rail_slot_z"],
+        "rail_strip_t_min": BR["y_out"] - (max(abs(y) for _, y in stations()) + NOTCH_WALL_U),
+        "screw_engagement": (MT["head_u0"] + MT["rail_cbore_depth"] + MT["rail_screw_len"]) - NOTCH_WALL_U,
+        "screw_grip": NOTCH_WALL_U - (MT["head_u0"] + MT["rail_cbore_depth"]),
+        "tooth_tip_past_pin_centre": MT["tooth_tip"] - MT["pin_u"],
+        "slider_travel": MT["slider_travel"],
     }
 
 
@@ -280,7 +512,7 @@ def load_cases(mount: dict) -> list[dict]:
 def port_loads(mass_kg, cg, cases, plan_c=None):
     """Rigid-body reactions at the four ports for each case.
 
-    Statically indeterminate in z with 4 supports: elastic bolt-group distribution about the
+    Statically indeterminate in z with 4 supports: elastic port-group distribution about the
     pattern centroid (equal stiffness; exact for the near-rectangular port pattern, which is
     slightly trapezoidal on the R1T). Shear (x, y) is shared equally. Returns per case the
     worst port's tension, compression, shear and resultant, in newtons.
@@ -297,7 +529,6 @@ def port_loads(mass_kg, cg, cases, plan_c=None):
         F = [mass_kg * G0 * ax, mass_kg * G0 * ay, mass_kg * G0 * az]   # load ON the topper
         lift = c.get("aero_lift_N", 0.0)
         Fz_down = -F[2] - lift                       # net downward force the ports must react
-        # moments about the pattern centroid at the port plane (z = 0); bolt-group distribution
         h = cg[2]
         Mx_tip = F[1] * h + (-F[2]) * (cg[1] - ym)  # loads the +y (driver) ports
         My_pitch = F[0] * h + (-F[2]) * (cg[0] - xm) - lift * (plan_c[0] - xm)
@@ -314,7 +545,3 @@ def port_loads(mass_kg, cg, cases, plan_c=None):
                     "port_shear_N": round(shear, 1), "port_resultant_N": round(res, 1),
                     "limit_class": c.get("class", "limit")})
     return out
-
-
-def preload(torque_nm, k_nut, d_mm):
-    return torque_nm * 1000.0 / (k_nut * d_mm)
