@@ -530,6 +530,21 @@
   {
    "item_key": "gas_strut",
    "manufacturer": "Stabilus",
+   "part_number": "6467IK",
+   "vendor": "Hinscha (hinscha.com, Belgium; USD display)",
+   "product_url": "https://www.hinscha.com/en/p/gas-spring-stabilus-lift-o-mat-6467ik-0050n",
+   "unit_price_usd": 75.9,
+   "qty_break": "1 ea",
+   "per_piece_usd": 75.9,
+   "currency": "EUR",
+   "date_retrieved": "2026-10-06",
+   "evidence": "Gas spring Stabilus Lift-o-mat 6467IK 0050N | 874815 ... Reference: 6467IK ... force 50N, total extended length 375,5mm; page price EUR 67.18 (schema.org price 67.18), fetched 2026-10-06 (task 139737). Same store's 6462II shows EUR 65.58 here and USD 74.09 on the 2026-10-02 USD display, rate 1.1298 -> 67.18 x 1.1298 = USD 75.90",
+   "status": "PUBLIC_PRICE",
+   "notes": "USD figure DERIVED from the store's EUR price with the store's own USD/EUR display rate measured on 6462II (not read from a USD display page). Step 29 replaces 6462II (120 stroke) with 6467IK (150 stroke, 50 N, ext. 375.5) because the full-height hatch leaf is 3.75 kg. Excl. VAT and shipping; ships from Belgium; stock/lead time not captured. Re-check on the USD display before ordering."
+  },
+  {
+   "item_key": "gas_strut",
+   "manufacturer": "Stabilus",
    "part_number": "6462II",
    "vendor": "Siross / Enea Rossi (sirossrl.it, Italy)",
    "product_url": "https://www.sirossrl.it/prodotto/6462ii-molla-a-gas-lift-o-mat-spinta-50-n/",

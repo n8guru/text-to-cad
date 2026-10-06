@@ -93,6 +93,11 @@ fit, then re-verified:
 * Sockets: two per side, aperture **470 × 208** (was 640 × 353) on a tightened border.
 * Hatch: aperture **1,000 × 226** (was 1,280 × 412), 3.28 kg leaf, struts re-selected from the
   Stabilus table (6462II, 50 N) — the old 150 N strut would have been ~3× over-sprung.
+  **Superseded in Step 29 (task 139737, Nate's change request on card 2081357):** the slot started
+  100 mm above the rail with a fixed ~74 mm band under it, which is the "crossbar where there should
+  be none". The aperture is now **1,000 × 292** with its lower edge 34 mm up the face (leaf lower
+  edge 1 mm above the rail-cap plane), the surround's bottom run is removed between two corner
+  stubs, and the leaf is 3.75 kg on 6467IK struts. See `REVISION29.md`.
 
 ## 6. Not done here, and why
 

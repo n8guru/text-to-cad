@@ -2,8 +2,8 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 71465455.9,
-    "mass_kg": 18.841,
+    "volume_mm3": 69986383.6,
+    "mass_kg": 18.451,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
@@ -12,9 +12,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      608.9,
+      591.8,
       -1.2,
-      323.4
+      329.5
     ]
   },
   {
@@ -3152,8 +3152,8 @@
   {
     "part": "HATCH_HATCH_SURROUND_6061",
     "stl": "HATCH_HATCH_SURROUND_6061.stl",
-    "volume_mm3": 2057393.4,
-    "mass_kg": 5.555,
+    "volume_mm3": 1478274.5,
+    "mass_kg": 3.991,
     "material": "6061-T6",
     "process": "CNC from 12 mm plate",
     "finish": "black anodise Type II",
@@ -3162,52 +3162,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1339.3,
+      1325.4,
       -0.0,
-      192.3
-    ]
-  },
-  {
-    "part": "HATCH_HATCH_DRAIN_TUBE_R",
-    "stl": "HATCH_HATCH_DRAIN_TUBE_R.stl",
-    "volume_mm3": 6800.0,
-    "mass_kg": 0.007,
-    "material": "PA12 tube 8 x 5, representation solid",
-    "process": "cut to length",
-    "finish": "black",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1385.5,
-      -440.0,
-      28.7
-    ]
-  },
-  {
-    "part": "HATCH_HATCH_DRAIN_TUBE_L",
-    "stl": "HATCH_HATCH_DRAIN_TUBE_L.stl",
-    "volume_mm3": 6800.0,
-    "mass_kg": 0.007,
-    "material": "PA12 tube 8 x 5, representation solid",
-    "process": "cut to length",
-    "finish": "black",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1385.5,
-      440.0,
-      28.7
+      234.8
     ]
   },
   {
     "part": "HATCH_BULB_SEAL_DD6139",
     "stl": "HATCH_BULB_SEAL_DD6139.stl",
-    "volume_mm3": 230157.9,
-    "mass_kg": 0.161,
+    "volume_mm3": 169271.6,
+    "mass_kg": 0.118,
     "material": "EPDM sponge bulb on dense EPDM 70 Shore A base, aluminium wire carrier",
     "process": "purchased extrusion, cut and bonded at the joint",
     "finish": "black",
@@ -3216,16 +3180,16 @@
     "status": "ORDERABLE",
     "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
     "centroid_mm": [
-      1350.6,
+      1341.0,
       -0.0,
-      197.6
+      233.5
     ]
   },
   {
     "part": "HATCH_LEAF_HATCH_LEAF_CARBON",
     "stl": "HATCH_LEAF_HATCH_LEAF_CARBON.stl",
-    "volume_mm3": 3643351.3,
-    "mass_kg": 0.812,
+    "volume_mm3": 4212667.3,
+    "mass_kg": 0.939,
     "material": "carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core",
     "process": "vacuum infusion, female mould",
     "finish": "UV clear",
@@ -3234,16 +3198,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1368.5,
-      0.0,
-      202.8
+      1377.0,
+      -0.0,
+      170.9
     ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_PANE_R",
     "stl": "HATCH_LEAF_GLAZING_PANE_R.stl",
-    "volume_mm3": 368494.3,
-    "mass_kg": 0.442,
+    "volume_mm3": 487954.3,
+    "mass_kg": 0.586,
     "material": "5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard)",
     "process": "CNC rout + polish",
     "finish": "hard coat both faces",
@@ -3252,16 +3216,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1375.6,
+      1384.1,
       -251.0,
-      204.3
+      172.4
     ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_RETAINER_R",
     "stl": "HATCH_LEAF_GLAZING_RETAINER_R.stl",
-    "volume_mm3": 85112.1,
-    "mass_kg": 0.23,
+    "volume_mm3": 96332.1,
+    "mass_kg": 0.26,
     "material": "6061-T6",
     "process": "CNC",
     "finish": "black anodise Type II",
@@ -3270,16 +3234,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1370.7,
+      1379.3,
       -251.0,
-      203.0
+      171.1
     ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_PANE_L",
     "stl": "HATCH_LEAF_GLAZING_PANE_L.stl",
-    "volume_mm3": 368494.3,
-    "mass_kg": 0.442,
+    "volume_mm3": 487954.3,
+    "mass_kg": 0.586,
     "material": "5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard)",
     "process": "CNC rout + polish",
     "finish": "hard coat both faces",
@@ -3288,16 +3252,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1375.6,
+      1384.1,
       251.0,
-      204.3
+      172.4
     ]
   },
   {
     "part": "HATCH_LEAF_GLAZING_RETAINER_L",
     "stl": "HATCH_LEAF_GLAZING_RETAINER_L.stl",
-    "volume_mm3": 85112.1,
-    "mass_kg": 0.23,
+    "volume_mm3": 96332.1,
+    "mass_kg": 0.26,
     "material": "6061-T6",
     "process": "CNC",
     "finish": "black anodise Type II",
@@ -3306,9 +3270,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1370.7,
+      1379.3,
       251.0,
-      203.0
+      171.1
     ]
   },
   {
@@ -3324,9 +3288,9 @@
     "status": "ORDERABLE",
     "source_url": "https://media.southco.com/media/static/Literature/e3.en.pdf",
     "centroid_mm": [
-      1391.2,
+      1408.3,
       1.3,
-      105.8
+      42.1
     ]
   },
   {
@@ -3360,9 +3324,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1354.6,
+      1371.7,
       -422.8,
-      110.7
+      46.9
     ]
   },
   {
@@ -3378,9 +3342,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1354.6,
+      1371.7,
       -442.7,
-      110.7
+      46.9
     ]
   },
   {
@@ -3396,9 +3360,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1356.6,
+      1373.7,
       -451.7,
-      111.3
+      47.5
     ]
   },
   {
@@ -3414,9 +3378,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1354.6,
+      1371.7,
       422.8,
-      110.7
+      46.9
     ]
   },
   {
@@ -3432,9 +3396,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1354.6,
+      1371.7,
       442.7,
-      110.7
+      46.9
     ]
   },
   {
@@ -3450,9 +3414,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1356.6,
+      1373.7,
       451.7,
-      111.3
+      47.5
     ]
   },
   {
@@ -3494,8 +3458,8 @@
   {
     "part": "HATCH_LEAF_LEAF_STRUT_BOSS_6061",
     "stl": "HATCH_LEAF_LEAF_STRUT_BOSS_6061.stl",
-    "volume_mm3": 9026.5,
-    "mass_kg": 0.024,
+    "volume_mm3": 13866.5,
+    "mass_kg": 0.037,
     "material": "6061-T6 bonded boss, M8",
     "process": "CNC",
     "finish": "black anodise Type II",
@@ -3504,9 +3468,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1326.4,
+      1328.5,
       -474.0,
-      270.9
+      244.5
     ]
   },
   {
@@ -3522,16 +3486,16 @@
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1314.2,
+      1311.3,
       -474.0,
-      267.6
+      239.9
     ]
   },
   {
     "part": "HATCH_LEAF_LEAF_STRUT_BOSS_6061_2",
     "stl": "HATCH_LEAF_LEAF_STRUT_BOSS_6061_2.stl",
-    "volume_mm3": 9026.5,
-    "mass_kg": 0.024,
+    "volume_mm3": 13866.5,
+    "mass_kg": 0.037,
     "material": "6061-T6 bonded boss, M8",
     "process": "CNC",
     "finish": "black anodise Type II",
@@ -3540,9 +3504,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1326.4,
+      1328.5,
       474.0,
-      270.9
+      244.5
     ]
   },
   {
@@ -3558,9 +3522,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1314.2,
+      1311.3,
       474.0,
-      267.6
+      239.9
     ]
   },
   {
@@ -3576,9 +3540,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1328.4,
+      1346.0,
       -425.0,
-      98.7
+      33.9
     ]
   },
   {
@@ -3594,9 +3558,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1350.4,
+      1367.9,
       -425.0,
-      101.3
+      37.4
     ]
   },
   {
@@ -3612,9 +3576,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1326.4,
+      1344.1,
       -425.0,
-      95.2
+      30.3
     ]
   },
   {
@@ -3630,9 +3594,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1328.4,
+      1346.0,
       425.0,
-      98.7
+      33.9
     ]
   },
   {
@@ -3648,9 +3612,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1350.4,
+      1367.9,
       425.0,
-      101.3
+      37.4
     ]
   },
   {
@@ -3666,45 +3630,45 @@
     "status": "ORDERABLE",
     "source_url": "https://www.marek.eu/katalog-obrazku/produkt-27975/66617-r4-r-en.pdf",
     "centroid_mm": [
-      1326.4,
+      1344.1,
       425.0,
-      95.2
+      30.3
     ]
   },
   {
-    "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II",
-    "stl": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II.stl",
-    "volume_mm3": 30686.7,
-    "mass_kg": 0.241,
+    "part": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_BODY_6467IK",
+    "stl": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_BODY_6467IK.stl",
+    "volume_mm3": 35988.1,
+    "mass_kg": 0.283,
     "material": "PURCHASED - see hardware.json for PN and material",
     "process": "purchased",
     "finish": "as supplied",
     "manufacturer": "Stabilus",
-    "pn": "6462II",
+    "pn": "6467IK",
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1256.3,
-      -481.8,
-      162.8
+      1259.3,
+      -481.6,
+      118.8
     ]
   },
   {
-    "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II",
-    "stl": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II.stl",
-    "volume_mm3": 2771.3,
-    "mass_kg": 0.022,
+    "part": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_ROD_6467IK",
+    "stl": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_ROD_6467IK.stl",
+    "volume_mm3": 2706.4,
+    "mass_kg": 0.021,
     "material": "PURCHASED - see hardware.json for PN and material",
     "process": "purchased",
     "finish": "as supplied",
     "manufacturer": "Stabilus",
-    "pn": "6462II",
+    "pn": "6467IK",
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1300.5,
-      -474.7,
-      255.8
+      1298.6,
+      -474.6,
+      228.0
     ]
   },
   {
@@ -3720,45 +3684,45 @@
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1217.5,
+      1223.7,
       -497.7,
-      81.2
+      19.7
     ]
   },
   {
-    "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II_2",
-    "stl": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_BODY_6462II_2.stl",
-    "volume_mm3": 30686.7,
-    "mass_kg": 0.241,
+    "part": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_BODY_6467IK_2",
+    "stl": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_BODY_6467IK_2.stl",
+    "volume_mm3": 35988.1,
+    "mass_kg": 0.283,
     "material": "PURCHASED - see hardware.json for PN and material",
     "process": "purchased",
     "finish": "as supplied",
     "manufacturer": "Stabilus",
-    "pn": "6462II",
+    "pn": "6467IK",
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1256.3,
-      481.8,
-      162.8
+      1259.3,
+      481.6,
+      118.8
     ]
   },
   {
-    "part": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II_2",
-    "stl": "HATCH_GAS_STRUT_6462II-204mm__GAS_STRUT_ROD_6462II_2.stl",
-    "volume_mm3": 2771.3,
-    "mass_kg": 0.022,
+    "part": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_ROD_6467IK_2",
+    "stl": "HATCH_GAS_STRUT_6467IK-232mm__GAS_STRUT_ROD_6467IK_2.stl",
+    "volume_mm3": 2706.4,
+    "mass_kg": 0.021,
     "material": "PURCHASED - see hardware.json for PN and material",
     "process": "purchased",
     "finish": "as supplied",
     "manufacturer": "Stabilus",
-    "pn": "6462II",
+    "pn": "6467IK",
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1300.5,
-      474.7,
-      255.8
+      1298.6,
+      474.6,
+      228.0
     ]
   },
   {
@@ -3774,9 +3738,9 @@
     "status": "ORDERABLE",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
     "centroid_mm": [
-      1217.5,
+      1223.7,
       497.7,
-      81.2
+      19.7
     ]
   }
 ]

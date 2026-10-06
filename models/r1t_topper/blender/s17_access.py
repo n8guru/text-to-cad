@@ -70,7 +70,7 @@ L.link(cargo, "20_ACCESS")
 # ---- measures -------------------------------------------------------------------------------
 shell = objs["SHELL_CARBON_SANDWICH"]
 top_cargo = floor + ch
-leaf = [o for n, o in objs.items() if n.startswith("HATCH_LEAF_CARBON")]
+leaf = [o for n, o in objs.items() if n.startswith("HATCH_LEAF_HATCH_LEAF_CARBON")]
 lowest_leaf = min(L.bbox(o)[0][2] for o in leaf)
 dg = bpy.context.evaluated_depsgraph_get()
 # rays from the cargo's rear face, straight back (+x) through the doorway: no TOPPER part may be hit

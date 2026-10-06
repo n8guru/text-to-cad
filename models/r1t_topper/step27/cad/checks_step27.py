@@ -276,9 +276,11 @@ def check_flanges_seat_on_flat_skin():
     hp = G.hatch_plane()
     W, HH = G.hatch_wh()
     e = (G.H_RECESS_OUT + G.H_BOND_OUT) / 2
+    # Step 29: no bottom bond flange (the bottom run is gone, nothing below the rail plane) -> the
+    # hatch surround bonds along the top and both sides only
     for x, y in [(x, HH / 2 + e) for x in (-W / 2 + 60, 0, W / 2 - 60)] + \
-                [(x, -HH / 2 - e) for x in (-W / 2 + 60, 0, W / 2 - 60)] + \
-                [(sx * (W / 2 + e), 0) for sx in (-1, 1)]:
+                [(sx * (W / 2 + e), 0) for sx in (-1, 1)] + \
+                [(sx * (W / 2 + e), -HH / 4) for sx in (-1, 1)]:
         p = (hp * Pos(x, y, G.BOND_N[1])).position
         pr = Pos(p.X, p.Y, p.Z) * Box(1, 1, 1, align=CC)
         d = min_dist(pr, sh) + 0.5
