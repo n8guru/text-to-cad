@@ -1,9 +1,9 @@
 {
- "mass_kg": 89.26,
+ "mass_kg": 87.83,
  "cg_mm": [
-  706.8,
+  696.1,
   0.7,
-  205.5
+  206.5
  ],
  "cases": [
   {
@@ -14,10 +14,10 @@
     -3.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 693.8,
+   "port_compression_N": 699.1,
    "port_tension_N": 0.0,
    "port_shear_N": 0.0,
-   "port_resultant_N": 693.8,
+   "port_resultant_N": 699.1,
    "limit_class": "limit"
   },
   {
@@ -29,9 +29,9 @@
    ],
    "aero_lift_N": 600.0,
    "port_compression_N": 0.0,
-   "port_tension_N": 381.3,
+   "port_tension_N": 383.0,
    "port_shear_N": 0.0,
-   "port_resultant_N": 381.3,
+   "port_resultant_N": 383.0,
    "limit_class": "limit"
   },
   {
@@ -42,10 +42,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 337.5,
+   "port_compression_N": 338.1,
    "port_tension_N": 0.0,
-   "port_shear_N": 218.8,
-   "port_resultant_N": 402.2,
+   "port_shear_N": 215.3,
+   "port_resultant_N": 400.8,
    "limit_class": "limit"
   },
   {
@@ -56,10 +56,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 294.6,
+   "port_compression_N": 295.7,
    "port_tension_N": 0.0,
-   "port_shear_N": 218.8,
-   "port_resultant_N": 367.0,
+   "port_shear_N": 215.3,
+   "port_resultant_N": 365.8,
    "limit_class": "limit"
   },
   {
@@ -70,10 +70,10 @@
     -2.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 560.0,
+   "port_compression_N": 562.4,
    "port_tension_N": 0.0,
-   "port_shear_N": 188.3,
-   "port_resultant_N": 590.8,
+   "port_shear_N": 185.2,
+   "port_resultant_N": 592.2,
    "limit_class": "limit"
   },
   {
@@ -84,10 +84,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 1293.4,
-   "port_tension_N": 855.7,
-   "port_shear_N": 2188.4,
-   "port_resultant_N": 2542.1,
+   "port_compression_N": 1283.3,
+   "port_tension_N": 852.6,
+   "port_shear_N": 2153.4,
+   "port_resultant_N": 2506.8,
    "limit_class": "ultimate"
   }
  ],

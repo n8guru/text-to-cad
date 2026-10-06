@@ -26,11 +26,6 @@
       "detail": "8 params.json truck values within 1 mm of style/rivian_reference.json"
     },
     {
-      "name": "rear_sill_tailgate_seal",
-      "state": "OPEN",
-      "detail": "Rivian side view: rail top flat to x=1365, tailgate top 32 mm below it. The rear sill needs a closing seal across the tailgate (a 32 mm gap exceeds the DD6139's 20 mm compressed height) and the rear corners overhang the rounded rail end - select after T5"
-    },
-    {
       "name": "truck_tape_session",
       "state": "OPEN",
       "detail": "rail height (1344-1366 mm band), cab back line, spoiler tip, rail-cap edges, tailgate face are DRAWING-DERIVED from Rivian illustrations; tape before tooling"
@@ -83,7 +78,7 @@
     {
       "name": "shell_one_valid_solid",
       "state": "PASS",
-      "detail": "1 solid(s), valid=True, 18.9 kg at 5.8 kg/m^2"
+      "detail": "1 solid(s), valid=True, 18.5 kg at 5.8 kg/m^2"
     },
     {
       "name": "shell_wall_22mm",
@@ -98,7 +93,7 @@
     {
       "name": "fabricated_parts_are_single_solids",
       "state": "PASS",
-      "detail": "106 distinct parts checked"
+      "detail": "104 distinct parts checked"
     },
     {
       "name": "socket_identity_4x",
@@ -118,7 +113,7 @@
     {
       "name": "hatch_seal_under_its_leaf",
       "state": "PASS",
-      "detail": "seal footprint +/-523 x +/-136 inside leaf +/-526 x +/-139; compressed top +0.00 mm from the leaf inner face"
+      "detail": "seal footprint +/-523 x +/-169 inside leaf +/-526 x +/-172; compressed top +0.00 mm from the leaf inner face"
     },
     {
       "name": "seal_bulb_deflection_25_35_pct",
@@ -253,7 +248,7 @@
     {
       "name": "strut_within_catalogue_stroke",
       "state": "PASS",
-      "detail": "6462II (5025DT with studs): L 204.1 -> 309.0 inside 195.5-315.5 with 5 mm margins"
+      "detail": "6467IK (5072DE with studs): L 231.8 -> 369.4 inside 225.5-375.5 with 5 mm margins"
     },
     {
       "name": "strut_extends_monotonically",
@@ -263,27 +258,27 @@
     {
       "name": "struts_hold_open_with_margin",
       "state": "PASS",
-      "detail": "leaf 3.28 kg: 8.26 N.m vs gravity 4.42 N.m (ratio 1.87)"
+      "detail": "leaf 3.78 kg: 10.64 N.m vs gravity 6.25 N.m (ratio 1.70)"
     },
     {
       "name": "hatch_close_force_reasonable",
       "state": "PASS",
-      "detail": "1.6 N at the handle"
+      "detail": "1.9 N at the handle"
     },
     {
       "name": "strut_selection_is_catalogue_exact",
       "state": "PASS",
-      "detail": "6462II is a Standard Program p.17 column-1 Ref.-No."
+      "detail": "6467IK is a Standard Program p.17 column-1 Ref.-No."
     },
     {
       "name": "leaf_open_above_bed_rail",
       "state": "PASS",
-      "detail": "lowest leaf point at full open z = 303 mm"
+      "detail": "lowest leaf point at full open z = 302 mm"
     },
     {
       "name": "hinge_virtual_pivot_outboard",
       "state": "PASS",
-      "detail": "design-intent pivot at y=141, z=+2: the leaf's top edge moves away from the recess wall; GN 7233 must realise this virtual pivot (G5)"
+      "detail": "design-intent pivot at y=174, z=+2: the leaf's top edge moves away from the recess wall; GN 7233 must realise this virtual pivot (G5)"
     },
     {
       "name": "hinge_swing_exceeds_hatch_open",
@@ -311,9 +306,9 @@
       "detail": "Southco E3-18-15 grip 11.4-27.2 mm < 52.25 mm leaf + seal + land stack: re-select a keyed lock (longer grip or keeper standoff) - modelled as a lock body only, not an engaged cam"
     },
     {
-      "name": "wet_zone_drains_exit_below_the_seal",
+      "name": "wet_zone_drains_out_of_open_bottom_run",
       "state": "PASS",
-      "detail": "two drains from the channel between seal and recess wall, out through the skin below the bond flange"
+      "detail": "the bottom run of seal + wet channel is removed between the corner stubs: the channel is open at the stub ends (|x| >= 390) and drains onto the rail cap, outside the seal (rev 10's two skin-exit tubes are deleted with the fixed bottom run)"
     },
     {
       "name": "oem_buttons_not_covered",
@@ -433,7 +428,7 @@
     {
       "name": "plf_drive_link_and_lock_interlock",
       "state": "OPEN",
-      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 219 N of dead weight per station"
+      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 215 N of dead weight per station"
     },
     {
       "name": "bed_port_positions_P-CAL-02",
@@ -443,12 +438,12 @@
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 89.26 kg, CG [706.8, 0.7, 205.5] mm; worst limit case LC1 vertical bump: 694 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 87.83 kg, CG [696.1, 0.7, 206.5] mm; worst limit case LC1 vertical bump: 699 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
       "state": "OPEN",
-      "detail": "LC6 forward crash pulse: 2542 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
+      "detail": "LC6 forward crash pulse: 2507 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
     },
     {
       "name": "plf_hook_and_screws_within_allowable_at_port_rating",
@@ -458,7 +453,7 @@
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "89.26 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to 24 kg dynamic until FEA"
+      "detail": "87.83 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to 25 kg dynamic until FEA"
     },
     {
       "name": "plf_kinematics_exported",
@@ -478,7 +473,7 @@
     {
       "name": "every_fastener_is_specified",
       "state": "PASS",
-      "detail": "208 fasteners of 14 specs, each with standard/size/material"
+      "detail": "210 fasteners of 14 specs, each with standard/size/material"
     },
     {
       "name": "no_hardcoded_home_paths",
@@ -498,7 +493,7 @@
     {
       "name": "no_interference_closed_assembly",
       "state": "PASS",
-      "detail": "222 parts, 24531 pairs, allow-list 9 designed contacts"
+      "detail": "220 parts, 24090 pairs, allow-list 9 designed contacts"
     },
     {
       "name": "topper_clear_of_r1t_keepouts",
@@ -514,6 +509,31 @@
       "name": "hatch_sweep_clear_of_shell_and_frame",
       "state": "PASS",
       "detail": "leaf + glazing + strikers + studs + struts swept 0..95 deg in 5 deg steps against the shell and all fixed parts"
+    },
+    {
+      "name": "rear_doorway_free_hatch_open",
+      "state": "PASS",
+      "detail": "hatch at 95 deg: 220 topper parts vs the 778 x 324 mm doorway (rail-cap plane to aperture top, through the wall): no volume"
+    },
+    {
+      "name": "no_fixed_crossbar_across_rear_opening",
+      "state": "PASS",
+      "detail": "16 horizontal slices from the rail-cap plane to the header, each 778 mm wide: no fixed part crosses any"
+    },
+    {
+      "name": "hatch_open_clear_of_lowered_tailgate",
+      "state": "PASS",
+      "detail": "hatch open 95 deg vs the tailgate folded flat at the bed floor (z -465 .. -405): no topper part reaches it"
+    },
+    {
+      "name": "rear_opening_larger_than_rev10",
+      "state": "PASS",
+      "detail": "clear doorway 778 x 315 mm starting AT the rail-cap plane (z 0 .. 315); rev 10 was a 1000 x 226 slot starting 100 mm up with a fixed band z 0 .. 97 under it (+89 mm of clear height, band removed)"
+    },
+    {
+      "name": "rear_leaf_bottom_seal_on_tailgate",
+      "state": "OPEN",
+      "detail": "The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is 32 mm below it; the bottom edge seal that closes on the tailgate cap (and the rounded rail ends) is not designed - select after T5 (supersedes rev-10 G9 for the removed bottom run)"
     },
     {
       "name": "no_self_hash_claim",
@@ -532,7 +552,7 @@
     "Attachment: Port Latch Foot hook / paddle / lock force, over-centre preload, detent force, port strength beyond Rivian's 2,500 N rating, crash retention, rail/foot bond strength and fatigue - load cases and the hand strength check are stated assumptions, not FEA or test",
     "Attachment: the port internals and the Rivian crossbar foot are NOT published - every PLF dimension at the port is PROVISIONAL until calibration P-CAL-01b (a physical Rivian crossbar + port)"
   ],
-  "pass": 93,
+  "pass": 97,
   "fail": 0,
   "open": 11
 }

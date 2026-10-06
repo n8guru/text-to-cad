@@ -1,0 +1,107 @@
+{
+  "run": "r1t-step29-final",
+  "run_dir": "/home/n8/evidence/blender-loop/r1t-step29-final",
+  "created": "2026-10-06T22:14:40Z",
+  "intent": "Step 29: full-height hatch, lowered-tailgate access, Port Latch Foot",
+  "steps": [
+    {
+      "step": "S11_truck",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S11_truck_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S11_truck_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S11_truck_front.png"
+      },
+      "scores": {
+        "length_m": 5.318399906158447,
+        "width_m": 2.0139999389648438,
+        "roof_no_fin_above_ground_m": 1.8350999984741212,
+        "top_with_fin_above_ground_m": 1.8930000100135804,
+        "rail_above_ground_m": 1.366,
+        "bed_depth_m": 0.4650000333786011,
+        "cab_back_x": -0.15,
+        "wheelbase_m": 3.45,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step29-final/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S12_topper",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S12_topper_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S12_topper_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S12_topper_front.png"
+      },
+      "scores": {
+        "imported_parts": 220,
+        "roof_step_mm": -8.646875619888306,
+        "cab_gap_mm": 22.39999920129776,
+        "base_gap_max_mm": 4.0000006556510925,
+        "base_gap_min_mm": 4.0000006556510925,
+        "base_samples": 1,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step29-final/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S13_hero",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S13_hero_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S13_hero_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S13_hero_front.png"
+      },
+      "scores": {
+        "lum_hero_rear3q": 0.6322651437969439,
+        "lum_hero_front3q": 0.5723379079995068,
+        "lum_hero_side": 0.6375314123792963,
+        "lum_hero_junction": 0.38974658533643997,
+        "roof_step_mm": -8.646875619888306,
+        "min_lum": 0.38974658533643997,
+        "max_lum": 0.6375314123792963,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step29-final/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S16_mount",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S16_mount_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S16_mount_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S16_mount_front.png"
+      },
+      "scores": {
+        "stations": 4.0,
+        "paddle_inboard_mm": 22.000133991241455,
+        "lock_under_paddle_mm": 0.007152557373046875,
+        "lum_mount_cutaway": 0.3722419769716948,
+        "lum_mount_service": 0.03184157057233035,
+        "lum_mount_overview": 0.6268650634871097,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step29-final/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S17_access",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S17_access_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S17_access_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-step29-final/stills/S17_access_front.png"
+      },
+      "scores": {
+        "imported_parts": 220,
+        "lowest_open_leaf_point_mm": 316.82804226875305,
+        "cargo_top_above_rail_mm": 134.99999999999994,
+        "cargo_exit_rays_clear": 10,
+        "cargo_exit_rays_total": 10,
+        "bed_floor_below_rail_mm": 465.0,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-step29-final/scene.blend",
+      "arms": []
+    }
+  ],
+  "last_step": "S17_access"
+}

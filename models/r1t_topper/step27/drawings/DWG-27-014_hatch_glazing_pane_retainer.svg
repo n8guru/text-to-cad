@@ -1,41 +1,41 @@
 <?xml version='1.0' encoding='utf-8'?>
-<svg width="277.8mm" height="186.6mm" viewBox="-231.5 -155.5 463.0 311.0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="277.8mm" height="226.2mm" viewBox="-231.5 -188.5 463.0 377.0" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <g transform="scale(1,-1)" stroke-linecap="round">
     <g fill="none" stroke="rgb(0,0,0)" stroke-width="1.0" id="outline">
-      <line x1="-181.0" y1="-53.0" x2="-181.0" y2="53.0" />
-      <path d="M -181.0,-53.0 A 52.0,52.0 0.0 0,1 -129.0,-105.0" />
-      <path d="M -129.0,105.0 A 52.0,52.0 0.0 0,1 -181.0,53.0" />
-      <line x1="-129.0" y1="-105.0" x2="129.0" y2="-105.0" />
-      <line x1="-129.0" y1="105.0" x2="129.0" y2="105.0" />
-      <path d="M 129.0,-105.0 A 52.0,52.0 0.0 0,1 181.0,-53.0" />
-      <path d="M 181.0,53.0 A 52.0,52.0 0.0 0,1 129.0,105.0" />
-      <line x1="181.0" y1="-53.0" x2="181.0" y2="53.0" />
-      <line x1="-164.0" y1="53.0" x2="-164.0" y2="-53.0" />
-      <path d="M -129.0,-88.0 A 35.0,35.0 180.0 0,0 -164.0,-53.0" />
-      <line x1="129.0" y1="-88.0" x2="-129.0" y2="-88.0" />
-      <path d="M 164.0,-53.0 A 35.0,35.0 180.0 0,0 129.0,-88.0" />
-      <line x1="164.0" y1="53.0" x2="164.0" y2="-53.0" />
-      <path d="M 129.0,88.0 A 35.0,35.0 180.0 0,0 164.0,53.0" />
-      <line x1="129.0" y1="88.0" x2="-129.0" y2="88.0" />
-      <path d="M -164.0,53.0 A 35.0,35.0 180.0 0,0 -129.0,88.0" />
+      <line x1="-181.0" y1="-86.0" x2="-181.0" y2="86.0" />
+      <path d="M -181.0,-86.0 A 52.0,52.0 0.0 0,1 -129.0,-138.0" />
+      <path d="M -129.0,138.0 A 52.0,52.0 0.0 0,1 -181.0,86.0" />
+      <line x1="-129.0" y1="-138.0" x2="129.0" y2="-138.0" />
+      <line x1="-129.0" y1="138.0" x2="129.0" y2="138.0" />
+      <path d="M 129.0,-138.0 A 52.0,52.0 0.0 0,1 181.0,-86.0" />
+      <path d="M 181.0,86.0 A 52.0,52.0 0.0 0,1 129.0,138.0" />
+      <line x1="181.0" y1="-86.0" x2="181.0" y2="86.0" />
+      <line x1="-164.0" y1="86.0" x2="-164.0" y2="-86.0" />
+      <path d="M -129.0,-121.0 A 35.0,35.0 180.0 0,0 -164.0,-86.0" />
+      <line x1="129.0" y1="-121.0" x2="-129.0" y2="-121.0" />
+      <path d="M 164.0,-86.0 A 35.0,35.0 180.0 0,0 129.0,-121.0" />
+      <line x1="164.0" y1="86.0" x2="164.0" y2="-86.0" />
+      <path d="M 129.0,121.0 A 35.0,35.0 180.0 0,0 164.0,86.0" />
+      <line x1="129.0" y1="121.0" x2="-129.0" y2="121.0" />
+      <path d="M -164.0,86.0 A 35.0,35.0 180.0 0,0 -129.0,121.0" />
     </g>
     <g fill="none" stroke="rgb(0,0,0)" stroke-width="0.4166666666666667" id="hidden" stroke-dasharray="5.291667 2.645833">
-      <line x1="-181.0" y1="-53.0" x2="-181.0" y2="53.0" />
-      <path d="M -181.0,-53.0 A 52.0,52.0 0.0 0,1 -129.0,-105.0" />
-      <path d="M -129.0,105.0 A 52.0,52.0 0.0 0,1 -181.0,53.0" />
-      <line x1="-129.0" y1="-105.0" x2="129.0" y2="-105.0" />
-      <line x1="-129.0" y1="105.0" x2="129.0" y2="105.0" />
-      <path d="M 129.0,-105.0 A 52.0,52.0 0.0 0,1 181.0,-53.0" />
-      <path d="M 181.0,53.0 A 52.0,52.0 0.0 0,1 129.0,105.0" />
-      <line x1="181.0" y1="-53.0" x2="181.0" y2="53.0" />
-      <line x1="-164.0" y1="53.0" x2="-164.0" y2="-53.0" />
-      <path d="M -129.0,-88.0 A 35.0,35.0 180.0 0,0 -164.0,-53.0" />
-      <line x1="129.0" y1="-88.0" x2="-129.0" y2="-88.0" />
-      <path d="M 164.0,-53.0 A 35.0,35.0 180.0 0,0 129.0,-88.0" />
-      <line x1="164.0" y1="53.0" x2="164.0" y2="-53.0" />
-      <path d="M 129.0,88.0 A 35.0,35.0 180.0 0,0 164.0,53.0" />
-      <line x1="129.0" y1="88.0" x2="-129.0" y2="88.0" />
-      <path d="M -164.0,53.0 A 35.0,35.0 180.0 0,0 -129.0,88.0" />
+      <line x1="-181.0" y1="-86.0" x2="-181.0" y2="86.0" />
+      <path d="M -181.0,-86.0 A 52.0,52.0 0.0 0,1 -129.0,-138.0" />
+      <path d="M -129.0,138.0 A 52.0,52.0 0.0 0,1 -181.0,86.0" />
+      <line x1="-129.0" y1="-138.0" x2="129.0" y2="-138.0" />
+      <line x1="-129.0" y1="138.0" x2="129.0" y2="138.0" />
+      <path d="M 129.0,-138.0 A 52.0,52.0 0.0 0,1 181.0,-86.0" />
+      <path d="M 181.0,86.0 A 52.0,52.0 0.0 0,1 129.0,138.0" />
+      <line x1="181.0" y1="-86.0" x2="181.0" y2="86.0" />
+      <line x1="-164.0" y1="86.0" x2="-164.0" y2="-86.0" />
+      <path d="M -129.0,-121.0 A 35.0,35.0 180.0 0,0 -164.0,-86.0" />
+      <line x1="129.0" y1="-121.0" x2="-129.0" y2="-121.0" />
+      <path d="M 164.0,-86.0 A 35.0,35.0 180.0 0,0 129.0,-121.0" />
+      <line x1="164.0" y1="86.0" x2="164.0" y2="-86.0" />
+      <path d="M 129.0,121.0 A 35.0,35.0 180.0 0,0 164.0,86.0" />
+      <line x1="129.0" y1="121.0" x2="-129.0" y2="121.0" />
+      <path d="M -164.0,86.0 A 35.0,35.0 180.0 0,0 -129.0,121.0" />
     </g>
   </g>
-<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-014_hatch_glazing_pane_retainer  HATCH GLAZING PANE (PC) + RETAINER (6061), 2 + 2 OFF (L/R mirror)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">pane envelope.................................362.0 x 210.0 x 5.0</text><text x="18" y="68" font-family="monospace" font-size="11">pane..........................................5 mm hard-coat PC (Makrolon AR / Lexan Margard MR10)</text><text x="18" y="82" font-family="monospace" font-size="11">pane profile tol..............................+/-0.5; edges routed + flame-free polish</text><text x="18" y="96" font-family="monospace" font-size="11">retainer envelope.............................362.0 x 210.0 x 5.0</text><text x="18" y="110" font-family="monospace" font-size="11">retainer......................................6061-T6 5 mm plate, CNC; black anodise MIL-A-8625 Type II Class 2</text><text x="18" y="124" font-family="monospace" font-size="11">retainer screws...............................M4 at <= 90 mm pitch into potted inserts (DWG-27-018)</text><text x="18" y="138" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="160" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="174" font-family="monospace" font-size="11">1. Pane is inside-glazed behind the 3 mm carbon lip; 1 mm EPDM glazing gasket each face; 1.2 Nm on the retainer screws (clamp, do not crush).</text><text x="12" y="196" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-014_hatch_glazing_pane_retainer  HATCH GLAZING PANE (PC) + RETAINER (6061), 2 + 2 OFF (L/R mirror)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">pane envelope.................................362.0 x 276.0 x 5.0</text><text x="18" y="68" font-family="monospace" font-size="11">pane..........................................5 mm hard-coat PC (Makrolon AR / Lexan Margard MR10)</text><text x="18" y="82" font-family="monospace" font-size="11">pane profile tol..............................+/-0.5; edges routed + flame-free polish</text><text x="18" y="96" font-family="monospace" font-size="11">retainer envelope.............................362.0 x 276.0 x 5.0</text><text x="18" y="110" font-family="monospace" font-size="11">retainer......................................6061-T6 5 mm plate, CNC; black anodise MIL-A-8625 Type II Class 2</text><text x="18" y="124" font-family="monospace" font-size="11">retainer screws...............................M4 at <= 90 mm pitch into potted inserts (DWG-27-018)</text><text x="18" y="138" font-family="monospace" font-size="11">general.......................................ISO 2768-mK unless stated; break edges 0.3</text><text x="12" y="160" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="174" font-family="monospace" font-size="11">1. Pane is inside-glazed behind the 3 mm carbon lip; 1 mm EPDM glazing gasket each face; 1.2 Nm on the retainer screws (clamp, do not crush).</text><text x="12" y="196" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
