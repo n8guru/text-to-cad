@@ -1,5 +1,13 @@
 # Step 27 — styling, authoritative shell CAD, real-R1T evidence (continuation 2)
 
+> **REV 11 SUPERSESSION (task 139737, operator card 2081357).** The attachment described below as "rev 10"
+> (Weistec adapter + M10 stud / nut stack) was rejected: it is not the Rivian crossbar mechanism. It is replaced
+> by the **Port Latch Foot** — a paddle-latch foot with two detent clicks, a key lock under the paddle and a hook
+> pair for the port's dual-barrel pins. See `MOUNTING27.md` (rev 11), `research/PORT_MECHANISM_SOURCES.md`, BOM27
+> §7. Every dimension at the port is PROVISIONAL (calibration P-CAL-01b). Rev-10 passages below that mention the
+> adapter, studs, nuts, spacer, preload or `s16_mount` stud scores are historical; the Blender asserts for rev 11
+> are `stations>=4,paddle_inboard_mm>0,lum_mount_*>=0.05` (not re-run in this pass).
+
 **Runtime model: `claude-opus-5-5`** (the model ID the harness reports for this session; nothing
 inside the session can verify it further).
 

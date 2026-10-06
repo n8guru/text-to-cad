@@ -1,5 +1,5 @@
 {
-  "_doc": "Curated price SELECTION for BOM27 (Step 27 rev 10). Every row points at one entry of research/pricing_2026-10.json by (pn, vendor) and make_bom.py refuses to run if that entry is missing or its price differs. basis: EXACT = same manufacturer part number; EQUIV = stated equivalent (same function/size, different grade, pack or listing) - the reason is in 'why'; NONE = no public price was obtainable read-only (status says why). Public list prices, retrieved 2026-10-02, USD, excluding tax and freight unless stated. Nothing was ordered, no quote requested.",
+  "_doc": "Curated price SELECTION for BOM27 (Step 27 rev 10). Every row points at one entry of research/pricing_2026-10.json by (pn, vendor) and make_bom.py refuses to run if that entry is missing or its price differs. basis: EXACT = same manufacturer part number; EQUIV = stated equivalent (same function/size, different grade, pack or listing) - the reason is in 'why'; NONE = no public price was obtainable read-only (status says why). Public list prices, retrieved 2026-10-02, USD, excluding tax and freight unless stated. Nothing was ordered, no quote requested. Rev 11 (task 139737, 2026-10-06): lines plf_lock and crossbar_reference are public list prices read 2026-10-06; other PLF lines are NONE with the reason. Weistec port_adapter is kept below only as the documented fallback; it is not in the primary BOM.",
   "retrieved": "2026-10-02",
   "lines": {
     "rotary_latch": {
@@ -339,6 +339,50 @@
       "unit": null,
       "basis": "NONE",
       "why": "VHB 5952 not in the price research request"
+    },
+    "plf_lock": {
+      "pn": "C8053-C346A-14A",
+      "vendor": "Amazon.com (third-party listing)",
+      "unit": 13.77,
+      "break": "1+",
+      "basis": "EXACT",
+      "note": "third-party Amazon listing 2026-10-06, excl. shipping; compx.com blocked, authorised-distributor price not checked"
+    },
+    "plf_detent": {
+      "pn": "85015A51",
+      "vendor": "McMaster-Carr",
+      "unit": null,
+      "basis": "NONE",
+      "why": "McMaster product tables need a login (same plunger as ball_plunger)"
+    },
+    "crossbar_reference": {
+      "pn": "R1 Cargo Crossbars (Bright)",
+      "vendor": "Rivian Gear Shop (gearshop.rivian.com)",
+      "unit": 700.0,
+      "break": "1 set",
+      "basis": "EXACT",
+      "note": "Dark $800. Calibration reference article P-CAL-01b, NOT a product part"
+    },
+    "SHCS_M6x30_A4": {
+      "pn": null,
+      "vendor": "Bolts and Nuts (boltsandnuts.com)",
+      "unit": null,
+      "basis": "NONE",
+      "why": "M6 x 30 A4 SHCS was not in the rev-10 research request (only M6 x 16/20/25 were priced); the standard ISO 4762 length is orderable, price not read"
+    },
+    "SSCREW_M6x20_A4": {
+      "pn": null,
+      "vendor": null,
+      "unit": null,
+      "basis": "NONE",
+      "why": "ISO 4026 A4 set screw: no price was read in this pass"
+    },
+    "PIN_DOWEL_5x80_A4": {
+      "pn": null,
+      "vendor": null,
+      "unit": null,
+      "basis": "NONE",
+      "why": "ISO 2338 d5 x 80 A4 pin: no price was read in this pass; cut/ground to 76"
     }
   }
 }

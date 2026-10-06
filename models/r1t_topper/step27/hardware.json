@@ -890,7 +890,7 @@
     "release_lever": "Deleted 2026-09-27. The earlier CUSTOM bell-crank lever existed only to pull two cables with equal travel. Southco already sells exactly that: AC-05-301-11 splitter + AC-75-101-11 paddle. One fewer custom part, one fewer drawing, one fewer tolerance."
   },
   "port_adapter": {
-    "role": "Topper-to-truck anchor: latches into the OEM R1T bed accessory port without modifying it and presents an M10 female thread. 4 off (2 per side).",
+    "role": "DOCUMENTED FALLBACK, NOT IN THE PRIMARY BOM (rev 11). Rev 10 bolted each station to this purchased adapter with an M10 stud/nut/Nord-Lock stack. That is an assumed bolt interface, NOT the Rivian crossbar mechanism (operator card 2081357), so it was replaced by the Port Latch Foot. Kept only as an option if the PLF is abandoned or P-CAL-01b shows the port cannot take a crossbar-style foot. Latches into the OEM port without modifying it and presents an M10 female thread. 4 off if used.",
     "manufacturer": "Weistec Engineering (Direct Current Engineering)",
     "pn": "09-111-00078-7",
     "status": "ORDERABLE",
@@ -912,10 +912,103 @@
       ],
       "why": "Weistec publishes no drawing. The station is designed around a PROVISIONAL envelope (blender/params.json mount.adapter_*) and the M10 thread the vendor states; capture the real part (P-CAL-01) and re-run before the station drawing is released."
     },
-    "calibration": "P-CAL-01: on receipt, measure above-cap height, footprint, M10 thread depth and its position relative to the port centre with the adapter latched on the truck; set mount.adapter_* and re-run assembly/checks. Shim range 0-2 mm absorbs +/-1 mm of height without a re-cut."
+    "calibration": "P-CAL-01: on receipt, measure above-cap height, footprint, M10 thread depth and its position relative to the port centre with the adapter latched on the truck; set mount.adapter_* and re-run assembly/checks. Shim range 0-2 mm absorbs +/-1 mm of height without a re-cut.",
+    "fallback": true
+  },
+  "port_latch_foot": {
+    "role": "Topper-to-truck anchor, 4 off (2 per rail cap): a Rivian-crossbar-style Port Latch Foot. Machined body drops into the OEM accessory port through the shell foot pocket; a comb slider with two hook teeth (25 mm apart, provisional) slides under the port's dual-barrel latch-pin pair; a hinged paddle on the INBOARD face closes over a key lock cylinder; two detent stages (stage 1 caught, stage 2 closed). Field removal: unlock x4, lift paddles, lift the topper - the same user experience as removing Rivian crossbars. The topper's rail is fastened to the body at the shop with ordinary M6 screws (topper off the truck).",
+    "manufacturer": "CUSTOM (our drawings DWG-27-012 body, DWG-27-013 paddle + hook slider + shim)",
+    "pn": null,
+    "status": "CUSTOM",
+    "provenance": "CUSTOM",
+    "mechanism_source": "Rivian R1T Owner's Guide 2022-10-17 p.152-154 (two clicks, paddle, key lock under the paddle, latch tuning); Upfitting Guide 2025-09-24 p.59 (2,500 N per port, two anchor marks per port); trailrivian.com crossbar install thread; Team 1EV 'dual-barrel' mounting link; Mars Adventure Gear port adapter (two M8 points 25 mm apart). Full list with URLs and fetch dates: step27/research/PORT_MECHANISM_SOURCES.md",
+    "qty": 4,
+    "port_rating_N": 2500.0,
+    "port_rating_source": "R1T Upfitting Guide 2025-09-24 p.59: 'Accessory ports are designed to withstand a maximum of 2,500 Newtons (N) or 551 lb (250 kg) per port ... the safety threshold for how much load can be placed on the port without causing damage.' Rivian forbids modifying the ports.",
+    "dims_provenance": {
+      "ESTIMATED": [
+        "port_x/u/r/depth (recess)",
+        "pin_d, pin_len, pin_pitch (25 mm from Mars Adventure Gear), pin_u, pin_z (latch-pin pair)",
+        "stem_*, head_*, flange_*, slot_*, chan_*, bar_*, tooth_*, slider_travel (hook geometry)",
+        "hinge_*, paddle_*, knuckle_d, ear_*, detent_* (paddle and detent)",
+        "lock_* (CompX C8053 envelope, see plf_lock)"
+      ],
+      "why": "Rivian publishes neither the accessory-port internals (cleat / latch-pin dimensions, recess size, depth) nor the crossbar-foot drawing. The foot is designed around a PROVISIONAL port envelope in blender/params.json mount.*; every dimension that touches the port is flagged by the OPEN check plf_port_internals_P-CAL-01b."
+    },
+    "calibration": "P-CAL-01b: buy ONE Rivian Cargo Crossbars set (crossbar_reference) as the reference article. Photograph and measure the crossbar foot (hook / tang, paddle, lock position, latch-tuning screw) and, on a real truck, the port (recess L x W x depth, cleat / pin positions, pin diameter, pin pitch). Set mount.port_* / pin_* / hook_* and re-run assembly + checks before any station drawing is released. Never modify the truck port (Rivian).",
+    "drawings": [
+      "DWG-27-012",
+      "DWG-27-013",
+      "SEC-27-008",
+      "SEC-27-008D",
+      "SEC-27-008E"
+    ],
+    "tolerances": "seat flange top 4.00 +0/-0.05 above the cap (pad stop); hook tooth top faces ground flat 0.02 and 'pin-bottom' datum -18.00 +/-0.05 from the cap; slider-slot floor/roof parallel 0.03; hinge bores 5.00 H7, ears coaxial 0.03; lock bore 19.2 H11.",
+    "material_process": "Body 6061-T6 5-axis CNC, hard anodise Type III; paddle 6061-T6 CNC, black anodise Type II; hook slider 17-4 PH H1025 wire-EDM + ground, passivated; hinge pin A4 dowel; 1.0 mm 316 shims laser-cut."
+  },
+  "plf_lock": {
+    "role": "Key lock cylinder under the closed paddle (Rivian crossbar lock position). Keyed alike so ONE key opens all four stations (as the Rivian crossbar set ships 2 locking keys). Cam interlock with the paddle's keeper is NOT drawn (P-CAL-01b); the cylinder envelope and its cam pocket are.",
+    "manufacturer": "CompX National",
+    "pn": "C8053-C346A-14A",
+    "status": "ORDERABLE",
+    "provenance": "VENDOR_PAGE",
+    "source_url": "https://www.amazon.com/dp/B0FPPSF66D",
+    "source_where": "Amazon listing 'CompX National Cam Lock w/ 2 Keys - Keyed Alike to C346A  C8053-C346A-14A', $13.77, retrieved 2026-10-06 (third-party seller; listing text: 90 deg cam turn, key removable in both locked and unlocked positions, supplied with two keys, trim washer, spur washer, mounting nut and two cams; 1 13/16 in max panel; sibling listings show the 1-3/16 in cylinder-length variant of the same C8053 family). Disc-tumbler key blank CompX National D8785 per the listing.",
+    "alt_pn": "C8053-C420A-14A (same family, key code C420A, Amazon ASIN B01CV16UU4, $11.87, 2026-10-06)",
+    "qty": 4,
+    "dims": {
+      "body_dia": 19.0,
+      "bore_dia": 19.2,
+      "body_len": 28.7,
+      "flange_dia": 23.0,
+      "flange_t": 1.5,
+      "cam_length": 20.0
+    },
+    "dims_provenance": {
+      "ESTIMATED": [
+        "body_dia",
+        "bore_dia",
+        "body_len",
+        "flange_dia",
+        "flange_t",
+        "cam_length"
+      ],
+      "why": "Cylinder length 1-3/16 in (30.2 mm overall) is from the listing family; diameters, flange and cam size are NOT read off a CompX drawing (the C8053 drawing was not retrieved). Re-cut the lock bore from the received part. The cam is trimmed to ~20 mm by the shop (the stock straight cam is 1-1/2 in)."
+    },
+    "open": "Cam interlock with the paddle keeper and the exact cylinder dimensions: confirm on the received part (P-CAL-01b)."
+  },
+  "plf_detent": {
+    "role": "Spring-loaded ball-nose plunger that gives the paddle its two detents (stage 1 = click 1, closed = click 2). One per station, in the +x hinge ear, ball on two dimples in the paddle knuckle end; the open position is the cam-link over-travel limit, not a detent.",
+    "manufacturer": "McMaster-Carr",
+    "pn": "85015A51",
+    "alt_pn": "Elesa+Ganter GN 615-M8-KN",
+    "status": "ORDERABLE",
+    "provenance": "DATASHEET",
+    "source_url": "https://www.mcmaster.com/products/ball-nose-spring-plungers/",
+    "source_where": "Same plunger as 'ball_plunger' (M8x1.25, 16 mm body, 4.5 mm ball, 1.5 mm extension; 15.1-29.8 N). Detent force and dimple depth are NOT tuned: P-CAL-01b / prototype.",
+    "qty": 4,
+    "dims": {
+      "thread": "M8x1.25",
+      "body_len": 16.0,
+      "ball_dia": 4.5,
+      "extension": 1.5,
+      "initial_force_N": 15.1,
+      "end_force_N": 29.8
+    }
+  },
+  "crossbar_reference": {
+    "role": "REFERENCE ARTICLE for calibration P-CAL-01b, not a product part: one Rivian R1 Cargo Crossbars set bought, measured, photographed and returned/kept to calibrate the Port Latch Foot (hook, paddle, lock position, tuning screw) and, on the truck, the port. Within Rivian's 30-day return policy the set can be returned in original condition if it is not opened beyond measurement - Nate's call.",
+    "manufacturer": "Rivian",
+    "pn": "R1 Cargo Crossbars (Bright) - no SKU shown on the page",
+    "status": "ORDERABLE",
+    "provenance": "VENDOR_PAGE",
+    "source_url": "https://gearshop.rivian.com/products/cargo-crossbars",
+    "source_where": "Gear Shop page fetched 2026-10-06: Bright $700 / Dark $800; telescoping 68-82 in; 28 lb; height 4.25 in; 'Telescoping fit for roof and bed rail'; 'One-handed snap-on design'; 'The included lock system securely fastens the crossbars to your accessory ports'; 'Equipped with Rivian Adventure Key Set'; fits R1T R1S. Installation guide linked from the page.",
+    "qty": 1,
+    "reference_article": true
   },
   "foot_pad": {
-    "role": "Foot-to-paint pad and anti-rattle under the shell foot on each bed-rail cap. Closed-cell so it does not wick; 33 % nominal compression set by the port-spacer stop.",
+    "role": "Foot-to-paint pad and anti-rattle under the shell foot on each bed-rail cap. Closed-cell so it does not wick; 33 % nominal compression set by the PLF seat-flange stop (rev 11).",
     "manufacturer": "spec: ASTM D1056 Type 2 Class B Grade 2 (2B2) closed-cell EPDM sponge, 6.35 mm (1/4 in), PSA one side",
     "pn": "see pricing file (vendor PN for 2B2 EPDM 1/4 in x 4 in PSA strip)",
     "status": "ORDERABLE",
@@ -938,7 +1031,7 @@
       "standard": "DIN 976-1 stud cut from DIN 975 A4-70 rod",
       "size": "M10x1.5 x 60",
       "material": "A4-70 (316)",
-      "role": "port station stud, Loctite 243 into the Weistec adapter",
+      "role": "FALLBACK only (Weistec adapter option), not in the rev-11 joint schedule: port station stud, Loctite 243 into the Weistec adapter",
       "manufacturer": "any ISO-conforming",
       "pn": null,
       "status": "ORDERABLE",
@@ -949,7 +1042,7 @@
       "standard": "ISO 4032",
       "size": "M10 (16 AF)",
       "material": "A4-80 (316)",
-      "role": "port station nut, 30 Nm",
+      "role": "FALLBACK only (Weistec adapter option), not in the rev-11 joint schedule: port station nut, 30 Nm",
       "manufacturer": "any ISO-conforming",
       "pn": null,
       "status": "ORDERABLE",
@@ -960,7 +1053,7 @@
       "standard": "Nord-Lock wedge-locking washer pair",
       "size": "NL10ss (M10)",
       "material": "stainless 1.4404",
-      "role": "port clamp lock",
+      "role": "FALLBACK only (Weistec adapter option), not in the rev-11 joint schedule: port clamp lock",
       "manufacturer": "Nord-Lock",
       "pn": null,
       "status": "ORDERABLE",
@@ -972,6 +1065,39 @@
         "id": 10.7
       },
       "note": "t/OD/ID to be confirmed from the Nord-Lock datasheet for the ordered article"
+    },
+    "SHCS_M6x30_A4": {
+      "standard": "ISO 4762",
+      "size": "M6x30",
+      "material": "A4-70 (316)",
+      "role": "PLF rail screw: rail strip <- PLF body (2 per station, in shear), shimmed",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "SSCREW_M6x20_A4": {
+      "standard": "ISO 4026 (hex socket set screw, flat point)",
+      "size": "M6x20",
+      "material": "A4-70 (316)",
+      "role": "PLF latch-tuning / paddle closed-stop screw (1 per station)",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
+    },
+    "PIN_DOWEL_5x80_A4": {
+      "standard": "ISO 2338 (cylindrical pin, m6)",
+      "size": "d5 x 80, ground to 76",
+      "material": "A4 (316)",
+      "role": "PLF paddle hinge pin (1 per station)",
+      "manufacturer": "any ISO-conforming",
+      "pn": null,
+      "status": "ORDERABLE",
+      "provenance": "STANDARD",
+      "source_url": null
     },
     "SHCS_1/4-20x5/8_316": {
       "standard": "ASME B18.3 socket head cap screw",
@@ -1113,14 +1239,14 @@
       "provenance": "DATASHEET"
     },
     "threadlocker": {
-      "role": "Strikers, ball studs, ball plungers, hinge and latch screws.",
+      "role": "Strikers, ball studs, ball plungers, hinge and latch screws, PLF tuning screw (the rail screws take Loctite 243 once the shim pack is set).",
       "manufacturer": "Henkel Loctite",
       "pn": "243, 10 mL",
       "status": "ORDERABLE",
       "provenance": "DATASHEET"
     },
     "anti_seize": {
-      "role": "Stainless into aluminium threads (port screw into the adapter, all A4 into tapped 6061): galling and galvanic isolation.",
+      "role": "Stainless into aluminium threads (PLF rail screws and tuning screw into 6061, A4 into tapped 6061 elsewhere): galling and galvanic isolation.",
       "manufacturer": "Tef-Gel",
       "pn": "Tef-Gel 1/2 oz syringe",
       "status": "ORDERABLE",
@@ -1128,15 +1254,7 @@
     }
   },
   "mounting": {
-    "_doc": "Engineering inputs for checks_step27.check_mounting. Stated design assumptions - not a standard, not FEA. accel_g is the inertial+gravity load ON the topper in g, vehicle frame (X rearward, Y driver, Z up); gravity is the -1 in z.",
-    "port_torque_Nm": 30.0,
-    "port_torque_source": "R1T Upfitting Guide p.57 'Recommended Fastener Torque Values', M10 class 8.8 hard (all-metal) joint 27.0-54 Nm. A4-80 has 8.8-class proof strength; the lower half of the window is used because the female thread is 6061 in the adapter.",
-    "nut_factor_K": [
-      0.15,
-      0.2
-    ],
-    "friction_mu": 0.2,
-    "slip_planes": 2,
+    "_doc": "Engineering inputs for checks_step27.check_mounting. Stated design assumptions - not a standard, not FEA. accel_g is the inertial+gravity load ON the topper in g, vehicle frame (X rearward, Y driver, Z up); gravity is the -1 in z. Rev 11: the stud/nut/torque/slip inputs of rev 10 are gone (no bolt joint at the port); PLF inputs are 'plf_strength' and 'rail_screw_torque_Nm'.",
     "thread_engagement_min_d": 1.5,
     "load_cases": [
       {
@@ -1199,6 +1317,18 @@
       }
     ],
     "benchmark": "Rivian Cargo Crossbars on 4 roof ports: 113 kg dynamic per pair (R1T Owner's Guide p.359 / Upfitting Guide p.59). Used as an independent cross-check of the per-4-port dynamic allowance.",
-    "benchmark_kg": 113.0
+    "benchmark_kg": 113.0,
+    "rail_screw_torque_Nm": 6.0,
+    "rail_screw_torque_source": "A4-70 M6 into tapped 6061 (soft joint): 6 Nm, consistent with J06 (Upfit p.57 M6 table, soft-joint column, A4-70 ~75 %).",
+    "plf_strength": {
+      "_doc": "Stated material values for the assumption-level PLF checks (ESTIMATED - from memory of typical handbook values, not mill certs; verify before release).",
+      "hook_17_4PH_H1025_Rp02_MPa": 1000.0,
+      "a4_70_Rp02_MPa": 450.0,
+      "a4_70_tensile_MPa": 700.0,
+      "al6061_T6_tensile_MPa": 310.0,
+      "al6061_T6_shear_MPa": 207.0,
+      "allowable_fraction_of_yield": 0.6,
+      "hook_load_sharing": "2 teeth per station share the load equally; port load limit 2,500 N"
+    }
   }
 }

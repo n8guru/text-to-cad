@@ -44,17 +44,19 @@ MATERIAL = {
     "SOCKET_FRAME": ("6061-T6", "3+2-axis CNC, one program + one fixture for all four",
                      "black anodise Type II", 2.70e-6),
     "BASE_RAIL": ("6061-T6", "CNC from 80x30 bar", "black anodise Type II", 2.70e-6),
-    "PORT_SPACER": ("6061-T6", "CNC turn from Dia 38 bar, faces ground parallel 0.02",
-                    "clear anodise Type II", 2.70e-6),
-    "PORT_SHIM": ("316 stainless shim stock 0.5 mm", "laser cut, deburr", "passivate", 8.00e-6),
-    "PORT_SLOT_WASHER": ("316 stainless 4 mm plate", "laser cut + surface grind", "passivate",
-                         8.00e-6),
-    "PORT_ADAPTER_WEISTEC": ("billet 6061, clear anodise (vendor)", "purchased", "as supplied",
-                             2.70e-6),
-    "PORT_STUD": ("A4-70 stainless (ISO 3506-1)", "purchased", "plain", 8.00e-6),
-    "PORT_NUT": ("A4-80 stainless (ISO 3506-2)", "purchased", "plain", 8.00e-6),
-    "WEDGE_WASHER": ("stainless 1.4404 / 316L (Nord-Lock ss)", "purchased", "as supplied",
-                     8.00e-6),
+    "PLF_BODY": ("6061-T6", "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
+                 "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)", 2.70e-6),
+    "PLF_PADDLE": ("6061-T6", "CNC from 50 x 32 bar", "black anodise Type II", 2.70e-6),
+    "PLF_HOOK_SLIDER": ("17-4 PH stainless, H1025", "wire-EDM from 10 mm plate + grind tooth faces",
+                        "passivate ASTM A967", 7.80e-6),
+    "PLF_HINGE_PIN": ("A4-70 stainless dowel (ISO 2338 d 5 m6)", "purchased, cut to length", "plain", 8.00e-6),
+    "PLF_LOCK": ("zinc-alloy cam lock, nickel (CompX National C8053 series)", "purchased",
+                 "as supplied (effective density: the envelope is modelled solid)", 3.50e-6),
+    "PLF_DETENT": ("18-8 stainless body, 440C nose (M8 ball-nose plunger)", "purchased", "as supplied",
+                   8.00e-6),
+    "PLF_TUNE_SCREW": ("A4-70 stainless set screw (ISO 4026)", "purchased", "plain", 8.00e-6),
+    "PLF_RAIL_SCREW": ("A4-70 stainless SHCS (ISO 4762)", "purchased", "plain", 8.00e-6),
+    "PLF_SHIM": ("316 stainless shim stock 1.0 mm", "laser cut, deburr", "passivate", 8.00e-6),
     "FOOT_PAD_EPDM": ("closed-cell EPDM sponge, ASTM D1056 2B2, PSA one side",
                       "purchased strip, knife-cut to the drawing", "black", 0.15e-6),
     "ROOF_HARDPOINT": ("6061-T6 bonded insert, M8", "CNC turn", "clear anodise", 2.70e-6),
@@ -93,9 +95,11 @@ PURCHASED_PREFIX = {      # label substring -> hardware.json item (or (item, pn 
     "BALL_STUD": ("gas_strut", "ball_stud"), "CONCEALED_HINGE": "hinge", "HINGE_GN7233": "hinge",
     "T_HANDLE": "t_handle", "CHMSL": "chmsl", "COMPRESSION_LIMITER": "compression_limiter",
     "BULB_SEAL": "bulb_seal",
-    "PORT_ADAPTER_WEISTEC": "port_adapter", "PORT_STUD": ("fasteners", "STUD_M10x60_A4"),
-    "PORT_NUT": ("fasteners", "NUT_M10_A4"),
-    "WEDGE_WASHER": ("fasteners", "NL10SS"), "FOOT_PAD_EPDM": "foot_pad",
+    "PLF_LOCK": "plf_lock", "PLF_DETENT": "plf_detent",
+    "PLF_HINGE_PIN": ("fasteners", "PIN_DOWEL_5x80_A4"),
+    "PLF_TUNE_SCREW": ("fasteners", "SSCREW_M6x20_A4"),
+    "PLF_RAIL_SCREW": ("fasteners", "SHCS_M6x30_A4"),
+    "FOOT_PAD_EPDM": "foot_pad",
 }
 
 
@@ -377,13 +381,21 @@ def export_sections():
                      f"{G.S['rear_rake_deg']:.0f} deg rear rake"))
     xs0, ys0 = mounts.stations()[0]
     near = [G.socket_plane("L", 0) * k for k in _leaves(SS.socket_assembly("closed"))]
-    stn = mounts.base_rails() + mounts.foot_pads() + mounts.port_station(xs0, ys0)
+    rec, pins = mounts.port_reference(xs0, ys0)
+    stn = mounts.base_rails() + mounts.foot_pads() + mounts.port_station(xs0, ys0) + [rec] + pins
     cut8 = Plane(origin=(xs0, 0, 0), x_dir=(0, 1, 0), z_dir=(1, 0, 0))
-    made.append(_svg("SEC-27-008_port_station", [shell] + stn + near + [TR.body_keepout()], cut8,
-                     f"SEC-27-008  port station x={xs0:.0f}: Weistec adapter, shims, spacer stop, "
-                     "rail + wrench pocket, NL10ss, M10 stud/nut, EPDM pad at 33 %"))
-    made.append(_detail(made[-1], "SEC-27-008D_port_station_detail", ys0 - 90.0, 150.0, 200.0,
-                        f"SEC-27-008D  port station detail (x={xs0:.0f}), 1:1 viewBox, mm"))
+    made.append(_svg("SEC-27-008_plf_station", [shell] + stn + near + [TR.body_keepout()], cut8,
+                     f"SEC-27-008  Port Latch Foot x={xs0:.0f}, paddle CLOSED: stem in the port recess "
+                     "(PROVISIONAL), hook teeth under the pin pair, seat flange = pad stop, rail notch, lock under paddle"))
+    made.append(_detail(made[-1], "SEC-27-008D_plf_station_detail", ys0 - 90.0, 150.0, 200.0,
+                        f"SEC-27-008D  Port Latch Foot detail (x={xs0:.0f}), 1:1 viewBox, mm"))
+    loc = mounts.station_loc(xs0, ys0)
+    states = [loc * mounts.body_local()] + [loc * mounts.paddle_local(a) for a in
+                                           (0.0, mounts.STAGE1_DEG, mounts.OPEN_DEG)]
+    states += [loc * mounts.slider_local(0.0), loc * mounts.slider_local(mounts.OPEN_DEG), rec] + pins
+    made.append(_svg("SEC-27-008E_plf_paddle_states", states + near + [shell], cut8,
+                     f"SEC-27-008E  paddle at 0 / {mounts.STAGE1_DEG:.0f} (stage 1, hooks caught) / "
+                     f"{mounts.OPEN_DEG:.0f} deg (open, hooks retracted); hook slider closed + open"))
     return made
 
 
@@ -452,6 +464,7 @@ def kinematics():
                     "latches": [{"fork_pivot": list((_compose(hp, HA.latch_plane(x)) * Pos(
                         0, hw.d("rotary_latch")["pivot_y"], hw.PIVOT_Z)).position),
                         "axis": list(_compose(hp, HA.latch_plane(x)).x_dir)} for x in HA.LATCH_XS]}
+    out["port_latch"] = mounts.plf_kinematics()
     (OUT / "kinematics.json").write_text(json.dumps(out, indent=1, default=float) + "\n")
     return out
 

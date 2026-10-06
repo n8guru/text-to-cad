@@ -83,7 +83,7 @@
     {
       "name": "shell_one_valid_solid",
       "state": "PASS",
-      "detail": "1 solid(s), valid=True, 18.5 kg at 5.8 kg/m^2"
+      "detail": "1 solid(s), valid=True, 18.9 kg at 5.8 kg/m^2"
     },
     {
       "name": "shell_wall_22mm",
@@ -92,13 +92,13 @@
     },
     {
       "name": "bond_flanges_seat_on_flat_skin",
-      "state": "FAIL",
-      "detail": "off-flat stations: [('HATCH', -440.0, -195.0, 28.4), ('HATCH', 0, -195.0, 375.39), ('HATCH', 440.0, -195.0, 28.4)]"
+      "state": "PASS",
+      "detail": "all 4 socket frames + hatch surround: bond face 0.5 mm off the inner skin at every sampled station"
     },
     {
       "name": "fabricated_parts_are_single_solids",
       "state": "PASS",
-      "detail": "102 distinct parts checked"
+      "detail": "106 distinct parts checked"
     },
     {
       "name": "socket_identity_4x",
@@ -118,7 +118,7 @@
     {
       "name": "hatch_seal_under_its_leaf",
       "state": "PASS",
-      "detail": "seal footprint +/-523 x +/-169 inside leaf +/-526 x +/-172; compressed top +0.00 mm from the leaf inner face"
+      "detail": "seal footprint +/-523 x +/-136 inside leaf +/-526 x +/-139; compressed top +0.00 mm from the leaf inner face"
     },
     {
       "name": "seal_bulb_deflection_25_35_pct",
@@ -253,7 +253,7 @@
     {
       "name": "strut_within_catalogue_stroke",
       "state": "PASS",
-      "detail": "6467IK (5072DE with studs): L 231.8 -> 369.4 inside 225.5-375.5 with 5 mm margins"
+      "detail": "6462II (5025DT with studs): L 204.1 -> 309.0 inside 195.5-315.5 with 5 mm margins"
     },
     {
       "name": "strut_extends_monotonically",
@@ -263,27 +263,27 @@
     {
       "name": "struts_hold_open_with_margin",
       "state": "PASS",
-      "detail": "leaf 3.78 kg: 10.64 N.m vs gravity 6.25 N.m (ratio 1.70)"
+      "detail": "leaf 3.28 kg: 8.26 N.m vs gravity 4.42 N.m (ratio 1.87)"
     },
     {
       "name": "hatch_close_force_reasonable",
       "state": "PASS",
-      "detail": "1.9 N at the handle"
+      "detail": "1.6 N at the handle"
     },
     {
       "name": "strut_selection_is_catalogue_exact",
       "state": "PASS",
-      "detail": "6467IK is a Standard Program p.17 column-1 Ref.-No."
+      "detail": "6462II is a Standard Program p.17 column-1 Ref.-No."
     },
     {
       "name": "leaf_open_above_bed_rail",
       "state": "PASS",
-      "detail": "lowest leaf point at full open z = 302 mm"
+      "detail": "lowest leaf point at full open z = 303 mm"
     },
     {
       "name": "hinge_virtual_pivot_outboard",
       "state": "PASS",
-      "detail": "design-intent pivot at y=174, z=+2: the leaf's top edge moves away from the recess wall; GN 7233 must realise this virtual pivot (G5)"
+      "detail": "design-intent pivot at y=141, z=+2: the leaf's top edge moves away from the recess wall; GN 7233 must realise this virtual pivot (G5)"
     },
     {
       "name": "hinge_swing_exceeds_hatch_open",
@@ -311,9 +311,9 @@
       "detail": "Southco E3-18-15 grip 11.4-27.2 mm < 52.25 mm leaf + seal + land stack: re-select a keyed lock (longer grip or keeper standoff) - modelled as a lock body only, not an engaged cam"
     },
     {
-      "name": "wet_zone_drains_out_of_open_bottom_run",
+      "name": "wet_zone_drains_exit_below_the_seal",
       "state": "PASS",
-      "detail": "the bottom run of seal + wet channel is removed between the corner stubs: the channel is open at the stub ends (|x| >= 390) and drains onto the rail cap, outside the seal (rev 10's two skin-exit tubes are deleted with the fixed bottom run)"
+      "detail": "two drains from the channel between seal and recess wall, out through the skin below the bond flange"
     },
     {
       "name": "oem_buttons_not_covered",
@@ -343,7 +343,7 @@
     {
       "name": "bom_has_no_open_items",
       "state": "PASS",
-      "detail": "{'ORDERABLE': 15, 'SERIES_ONLY': 1, 'CUSTOM': 2, 'NO_PART_REQUIRED': 1}"
+      "detail": "{'ORDERABLE': 18, 'SERIES_ONLY': 1, 'CUSTOM': 3, 'NO_PART_REQUIRED': 1}"
     },
     {
       "name": "every_purchased_item_cites_a_source",
@@ -356,14 +356,14 @@
       "detail": "NEEDS SOUTHCO: fitting letters for AC-75-101-11 / AC-05-301-11 and the R4-30 bottom trigger with R4-0-43922-2, TA from the actuator J drawing, type-9 availability at 0450/0650, conduit OD."
     },
     {
-      "name": "port_stack_metal_to_metal",
+      "name": "plf_seat_flange_is_the_pad_stop",
       "state": "PASS",
-      "detail": "rail underside 22.00 = spacer top 22.00; spacer 13.00 on shims; shims on adapter 12.00: the carbon is not in the clamp"
+      "detail": "seat flange z 0.00 .. 4.00 on the rail cap; shell foot underside z 4.00 = compressed pad 4.00: the flange, not torque, sets the pad height; head underside clears the foot top by 0.5 mm"
     },
     {
       "name": "pad_compression_set_by_stop",
       "state": "PASS",
-      "detail": "foot underside z 4.00 = compressed pad top 4.00 when the spacer bottoms; free 6.0 -> 4.0 mm = 33 %"
+      "detail": "foot underside z 4.00 = compressed pad top 4.00 when the foot sits on its flange; free 6.0 -> 4.0 mm = 33 %"
     },
     {
       "name": "pad_strain_band_15_55pct",
@@ -371,14 +371,54 @@
       "detail": "with +/-1.0 mm foot/rail-cap profile tolerance the pad works at 17-50 % (closed-cell EPDM 2B2)"
     },
     {
-      "name": "port_thread_engagement_ge_1p5d",
+      "name": "plf_stem_fits_port_recess_envelope",
       "state": "PASS",
-      "detail": "M10 x 60 stud engages 17.6 mm of the adapter thread (>= 15.0) and stands 3.6 mm past the nut (>= 1.5); grip 30.4 mm"
+      "detail": "stem + hook slider below the rail cap lie inside the PROVISIONAL port recess 70 x 34 x 30 mm (outside volume 0.00 / 0.00 mm^3); stem bottom 28 deep, 2.0 mm above the recess floor"
     },
     {
-      "name": "port_adapter_envelope_P-CAL-01",
-      "state": "OPEN",
-      "detail": "Weistec 09-111-00078-7 above-cap envelope, M10 thread depth and centre are PROVISIONAL (60 x 36 x 12 mm); measure the received part latched on the truck and re-run"
+      "name": "plf_hook_engages_pin_pair",
+      "state": "PASS",
+      "detail": "2 teeth 25 mm apart under the dual-barrel pin pair (PROVISIONAL pin dia 8, u 4, z -14): closed = tooth top on the pin, tip 1.00 mm past the pin centre; stage 1 = 0.55 past; open (82 deg) = hooks retracted, 2.80 mm clear of the pins; no overlap in any state"
+    },
+    {
+      "name": "plf_two_detent_stations_distinct",
+      "state": "PASS",
+      "detail": "detent dimples for closed (0 deg) and stage 1 (68 deg) are 8.4 mm apart on the knuckle (ball dia 4.5); open 82 deg is the link over-travel limit"
+    },
+    {
+      "name": "plf_paddle_sweep_clear",
+      "state": "PASS",
+      "detail": "paddle swept 0..80 deg in 5 deg steps + stage 1 (68) + open (82) at all 4 stations against every part of the closed assembly (shell, rails, socket frames, modules, hatch, own body/lock/pin) and the cab / body / tailgate keep-outs: no clash"
+    },
+    {
+      "name": "plf_paddle_closed_covers_lock",
+      "state": "PASS",
+      "detail": "closed paddle plate x -21.5..+21.5, z 23.5..61.5 covers the lock flange (x -11.5..+11.5, z 38.5..61.5); a key shank cannot enter while it is closed"
+    },
+    {
+      "name": "plf_key_reaches_lock_at_stage1",
+      "state": "PASS",
+      "detail": "at stage 1 (68 deg, hooks still caught) the 8 x 32 mm key shank reaches the lock face with no clash against the paddle or any part: unlock, then lift the paddle on to open (Rivian: 'push up the paddle halfway to access the lock')"
+    },
+    {
+      "name": "plf_serviceable_from_bed_no_tools",
+      "state": "PASS",
+      "detail": "lock face and paddle face INBOARD (normal y -1 toward the bed centre); open paddle lies on the bed side; hand corridor 50 x 120 x 27 mm in front of the paddle is clear of the closed assembly (socket-frame ceiling z 66 vs paddle top z 61.5); tools: the key only"
+    },
+    {
+      "name": "plf_stage2_load_path_metal_to_metal",
+      "state": "PASS",
+      "detail": "port pin -> hook tooth (contact, see plf_hook_engages_pin_pair) -> slider bar -> slot floor (0.00 mm) -> body -> 2 x M6 (0.00 mm in the tapped strip) + shim pack (0.00/0.00 mm) -> 6061 rail; every link 17-4 PH stainless, 316 stainless shim stock 1.0 mm, 6061-T6, A4-70 stainless SHCS (ISO 4762); no EPDM or carbon before the rail's bond line"
+    },
+    {
+      "name": "plf_fit_up_float_covers_tolerance",
+      "state": "PASS",
+      "detail": "+/-3 mm along the rail (notch), 0-4 mm across (nominal 2, +/-2), +/-3 mm in height (slotted screw holes) vs required +/-3 / +/-2 / +/-1 (truck-to-truck port position and moulding variation)"
+    },
+    {
+      "name": "plf_rail_screw_engagement_ge_1p5d",
+      "state": "PASS",
+      "detail": "M6 x 30 engages 10.0 mm of the tapped strip (>= 9.0); strip 15.0 mm thick at the front stations, 5.0 mm behind the tap"
     },
     {
       "name": "bed_ports_match_reference",
@@ -386,49 +426,44 @@
       "detail": "station x/half-y [[307.0, 724.0], [1154.0, 710.0]] vs Upfit p.59 port symbols [[0.3073, 0.7243], [1.1539, 0.7101]] m: max 0.3 mm"
     },
     {
-      "name": "bed_port_positions_P-CAL-02",
+      "name": "plf_port_internals_P-CAL-01b",
       "state": "OPEN",
-      "detail": "port positions are drawing-derived (plan-view scale cross-check 0.6-1.2 %, i.e. up to +/-8 mm): tape all four port centres before the rail slots are machined"
+      "detail": "Rivian publishes NEITHER the accessory-port internals NOR the crossbar-foot drawing: the port recess (70 x 34 x 30 mm), the dual-barrel pin pair (dia 8, pitch 25, u 4, z -14), the hook, paddle, lock position and tuning screw are ALL PROVISIONAL (mount.* in params.json). Buy one Rivian Cargo Crossbars set as the reference article, photograph + measure its foot and a real port, set the numbers and re-run; do not release a station drawing before that"
     },
     {
-      "name": "port_slot_float_covers_tolerance",
-      "state": "PASS",
-      "detail": "rail obround float +/-6.00 x +/-2.75 mm (need +/-3 x +/-2: truck-to-truck port position); slot washer lands 8.8 / 10.0 mm"
+      "name": "plf_drive_link_and_lock_interlock",
+      "state": "OPEN",
+      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 219 N of dead weight per station"
+    },
+    {
+      "name": "bed_port_positions_P-CAL-02",
+      "state": "OPEN",
+      "detail": "port positions are drawing-derived (plan-view scale cross-check 0.6-1.2 %, i.e. up to +/-8 mm): tape all four port centres before the foot pockets are cut in the shell"
     },
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 87.24 kg, CG [695.3, 0.7, 207.7] mm; worst limit case LC1 vertical bump: 696 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 89.26 kg, CG [706.8, 0.7, 205.5] mm; worst limit case LC1 vertical bump: 694 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
-      "state": "PASS",
-      "detail": "LC6 forward crash pulse: 2493 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
+      "state": "OPEN",
+      "detail": "LC6 forward crash pulse: 2542 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
     },
     {
-      "name": "port_joint_slip_resistant",
+      "name": "plf_hook_and_screws_within_allowable_at_port_rating",
       "state": "PASS",
-      "detail": "preload 15000-20000 N at 30 Nm; friction 3000 N per slip plane (mu 0.20, low preload) >= 1.25 x 214 N worst limit shear"
-    },
-    {
-      "name": "port_stud_preload_below_proof",
-      "state": "PASS",
-      "detail": "max preload stress 345 MPa (K 0.15) <= 0.9 x Rp0.2 450 MPa (A4-70 stud, ISO 3506-1)"
-    },
-    {
-      "name": "pad_seats_within_preload",
-      "state": "PASS",
-      "detail": "pad reaction at 33 % <= 2848 N per station (2B2 upper CFD x 1.3, 0.258 m^2) < half the minimum preload: every station reaches its stop"
+      "detail": "each station loaded to 2500 N: tooth bending 258 MPa <= 600 (0.6 x 17-4PH Rp0.2, 1250 N per tooth, root-to-pin 5.5 mm), rail-screw shear 62 MPa <= 270, thread strip-out 19509 N, slot-floor bearing 8 MPa - hand calculation with ESTIMATED material values, not FEA"
     },
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "87.24 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to 26 kg dynamic until FEA"
+      "detail": "89.26 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to 24 kg dynamic until FEA"
     },
     {
-      "name": "port_nuts_tool_accessible",
+      "name": "plf_kinematics_exported",
       "state": "PASS",
-      "detail": "16 mm ratcheting box wrench: head (R15) round every nut and a 200 mm handle swing inboard at nut height, closed assembly, all modules fitted"
+      "detail": "out/kinematics.json port_latch: 4 station hinge axes, states {'closed': 0.0, 'stage1_caught': 68.0, 'open': 82.0}, 19 sweep angles, cam law [[0.0, 0.0], [68.0, 0.45], [82.0, 6.5]]"
     },
     {
       "name": "every_joint_found_in_geometry",
@@ -443,7 +478,7 @@
     {
       "name": "every_fastener_is_specified",
       "state": "PASS",
-      "detail": "206 fasteners of 14 specs, each with standard/size/material"
+      "detail": "208 fasteners of 14 specs, each with standard/size/material"
     },
     {
       "name": "no_hardcoded_home_paths",
@@ -463,7 +498,7 @@
     {
       "name": "no_interference_closed_assembly",
       "state": "PASS",
-      "detail": "208 parts, 21528 pairs, allow-list 9 designed contacts"
+      "detail": "222 parts, 24531 pairs, allow-list 9 designed contacts"
     },
     {
       "name": "topper_clear_of_r1t_keepouts",
@@ -481,31 +516,6 @@
       "detail": "leaf + glazing + strikers + studs + struts swept 0..95 deg in 5 deg steps against the shell and all fixed parts"
     },
     {
-      "name": "rear_doorway_free_hatch_open",
-      "state": "PASS",
-      "detail": "hatch at 95 deg: 208 topper parts vs the 778 x 324 mm doorway (rail-cap plane to aperture top, through the wall): no volume"
-    },
-    {
-      "name": "no_fixed_crossbar_across_rear_opening",
-      "state": "PASS",
-      "detail": "16 horizontal slices from the rail-cap plane to the header, each 778 mm wide: no fixed part crosses any"
-    },
-    {
-      "name": "hatch_open_clear_of_lowered_tailgate",
-      "state": "PASS",
-      "detail": "hatch open 95 deg vs the tailgate folded flat at the bed floor (z -465 .. -405): no topper part reaches it"
-    },
-    {
-      "name": "rear_opening_larger_than_rev10",
-      "state": "PASS",
-      "detail": "clear doorway 778 x 315 mm starting AT the rail-cap plane (z 0 .. 315); rev 10 was a 1000 x 226 slot starting 100 mm up with a fixed band z 0 .. 97 under it (+89 mm of clear height, band removed)"
-    },
-    {
-      "name": "rear_leaf_bottom_seal_on_tailgate",
-      "state": "OPEN",
-      "detail": "The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is 32 mm below it; the bottom edge seal that closes on the tailgate cap (and the rounded rail ends) is not designed - select after T5 (supersedes rev-10 G9 for the removed bottom run)"
-    },
-    {
       "name": "no_self_hash_claim",
       "state": "PASS",
       "detail": "outputs are tied to source hashes in out/PROVENANCE.json, not to a commit id"
@@ -519,9 +529,10 @@
     "Rotor/pawl internals: a representation (G6); rotor-vs-striker contact is not a rigid sweep",
     "GN 7233 coupler curve (G5): hatch sweep assumes pure rotation about the design pivot",
     "Fabrication release, tooling, prototype fit, purchases, Nate-only design approval",
-    "Attachment: port/adapter strength beyond Rivian's 2,500 N rating, crash retention, rail/foot bond strength and fatigue - load cases are stated assumptions, not FEA or test"
+    "Attachment: Port Latch Foot hook / paddle / lock force, over-centre preload, detent force, port strength beyond Rivian's 2,500 N rating, crash retention, rail/foot bond strength and fatigue - load cases and the hand strength check are stated assumptions, not FEA or test",
+    "Attachment: the port internals and the Rivian crossbar foot are NOT published - every PLF dimension at the port is PROVISIONAL until calibration P-CAL-01b (a physical Rivian crossbar + port)"
   ],
-  "pass": 91,
-  "fail": 1,
-  "open": 10
+  "pass": 93,
+  "fail": 0,
+  "open": 11
 }

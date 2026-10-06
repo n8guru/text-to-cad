@@ -422,5 +422,168 @@
     ]
    }
   ]
+ },
+ "port_latch": {
+  "note": "PROVISIONAL (P-CAL-01b). + angle swings the paddle top INBOARD about the hinge axis (right-hand rule about hinge_axis); slider retracts along -outboard by cam_law_mm.",
+  "states_deg": {
+   "closed": 0.0,
+   "stage1_caught": 68.0,
+   "open": 82.0
+  },
+  "paddle_sweep_deg": [
+   0.0,
+   5.0,
+   10.0,
+   15.0,
+   20.0,
+   25.0,
+   30.0,
+   35.0,
+   40.0,
+   45.0,
+   50.0,
+   55.0,
+   60.0,
+   65.0,
+   70.0,
+   75.0,
+   80.0,
+   68.0,
+   82.0
+  ],
+  "cam_law_deg_to_retract_mm": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    68.0,
+    0.45
+   ],
+   [
+    82.0,
+    6.5
+   ]
+  ],
+  "slider_retract_mm_by_state": {
+   "closed": 0.0,
+   "stage1_caught": 0.45,
+   "open": 6.5
+  },
+  "detent_dimple_deg_on_knuckle": {
+   "closed": 90.0,
+   "stage1_caught": 22.0
+  },
+  "paddle_size_mm": [
+   43.0,
+   5.0,
+   29.0
+  ],
+  "stations": [
+   {
+    "station": [
+     307.0,
+     724.0
+    ],
+    "hinge_point": [
+     307.0,
+     694.5,
+     32.5
+    ],
+    "hinge_axis": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "outboard": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "slider_axis": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "station": [
+     307.0,
+     -724.0
+    ],
+    "hinge_point": [
+     307.0,
+     -694.5,
+     32.5
+    ],
+    "hinge_axis": [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    "outboard": [
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "slider_axis": [
+     0.0,
+     -1.0,
+     0.0
+    ]
+   },
+   {
+    "station": [
+     1154.0,
+     710.0
+    ],
+    "hinge_point": [
+     1154.0,
+     680.5,
+     32.5
+    ],
+    "hinge_axis": [
+     1.0,
+     0.0,
+     0.0
+    ],
+    "outboard": [
+     0.0,
+     1.0,
+     0.0
+    ],
+    "slider_axis": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   },
+   {
+    "station": [
+     1154.0,
+     -710.0
+    ],
+    "hinge_point": [
+     1154.0,
+     -680.5,
+     32.5
+    ],
+    "hinge_axis": [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    "outboard": [
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "slider_axis": [
+     0.0,
+     -1.0,
+     0.0
+    ]
+   }
+  ]
  }
 }
