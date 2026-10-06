@@ -40,6 +40,15 @@ def tailgate_keepout():
                                                      align=(CC, CC, CMAX))
 
 
+def tailgate_lowered_keepout():
+    """Tailgate folded down flat (Owner's Guide: the tailgate swings down about its bottom hinge to
+    horizontal): a slab behind the bed at the bed floor, tailgate thickness 60 and 'height'
+    (bed depth) long. Used by the Step 29 rear-access check; TAPE-REQUIRED like the rest."""
+    t, ln = 60.0, T["bed_depth"] + 60.0
+    return Pos(T["tailgate_x"] - 60.0 + ln / 2, 0, -T["bed_depth"] - 1.0) * Box(
+        ln, T["bed_w"], t, align=(CC, CC, CMIN))
+
+
 def port_holes():
     """The OEM bed accessory ports: where the topper is ALLOWED below the rail plane."""
     from build123d import Cylinder

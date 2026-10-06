@@ -639,12 +639,76 @@ def check_hatch_misc():
                   f"Southco E3-18-15 grip {th['grip_min']}-{th['grip_max']} mm < {stack:.2f} mm "
                   f"leaf + seal + land stack: re-select a keyed lock (longer grip or keeper "
                   f"standoff) - modelled as a lock body only, not an engaged cam")
-    dr = HA.drain_tubes()
-    seal = HA.seal_bead().bounding_box()
-    ok = all(t.bounding_box().min.Y < seal.min.Y for t in dr)
-    check("wet_zone_drains_exit_below_the_seal", ok and len(dr) == 2,
-          "two drains from the channel between seal and recess wall, out through the skin below "
-          "the bond flange")
+    cut = HA.STUB_X
+    bead_in_run = clash_volume(HA.seal_bead(), HA.bottom_run_cutter())
+    check("wet_zone_drains_out_of_open_bottom_run", not HA.drain_tubes() and bead_in_run < 1.0,
+          "the bottom run of seal + wet channel is removed between the corner stubs: the channel is "
+          f"open at the stub ends (|x| >= {cut:.0f}) and drains onto the rail cap, outside the seal "
+          "(rev 10's two skin-exit tubes are deleted with the fixed bottom run)")
+
+
+def check_rear_access():
+    """Step 29 acceptance (1): NO fixed rear crossbar; hatch up + tailgate down = open bed access.
+
+    Nate, card 2081357: "a topper is meant to allow the truck tail-gate to open, and the hatch of
+    the topper to open, and then have a large access to truck bed. your version has a crossbar
+    where there should be none." Measured on the solids with the hatch at its open angle:
+    the DOORWAY is the hatch frame's plane between the two bottom corner stubs, from the rail-cap
+    plane (s = 0) up to the aperture's top edge, through the wall depth. Nothing of the topper
+    (shell, surround, seals, struts, hinges, the open leaf) may be inside it, and no fixed part
+    may cross any horizontal slice of it either.
+    """
+    from build123d import Box as _B
+    P = _topper_leaves(HA.OPEN_DEG)
+    skip = ("REFERENCE", "KEEPOUT")
+    parts = [(n, p) for n, p in P if not any(k in n.upper() for k in skip)]
+    hp = G.hatch_plane()
+    sill = G.H["sill_s"]
+    w = 2 * HA.STUB_X - 2.0
+    # doorway prism in the hatch frame: x +/- w/2, y from the rail plane (s=0) to the aperture top
+    y_bot = -(sill + HA.AY)
+    y_top = HA.AY - 2.0
+    door = hp * Pos(0, (y_bot + y_top) / 2, -150.0) * _B(w, y_top - y_bot, 700.0)
+    bad = []
+    for n, p in parts:
+        v = clash_volume(p, door)
+        if v > 0.5:
+            bad.append((n[-34:], round(v, 1)))
+    check("rear_doorway_free_hatch_open", not bad,
+          f"hatch at {HA.OPEN_DEG:.0f} deg: {len(parts)} topper parts vs the {w:.0f} x "
+          f"{y_top - y_bot:.0f} mm doorway (rail-cap plane to aperture top, through the wall): "
+          f"no volume" if not bad else f"parts in the doorway: {bad[:6]}")
+    # no fixed bar across any horizontal slice of the doorway
+    fixed = [(n, p) for n, p in parts if "LEAF_ASSY" not in n and "GAS_STRUT" not in n]
+    worst, crossing = None, []
+    for ys in range(int(y_bot) + 4, int(y_top), 20):
+        sl = hp * Pos(0, ys, -150.0) * _B(w, 1.0, 700.0)
+        for n, p in fixed:
+            if clash_volume(p, sl) > 0.01:
+                crossing.append((ys - y_bot, n[-30:]))
+    check("no_fixed_crossbar_across_rear_opening", not crossing,
+          f"{int((y_top - y_bot) // 20)} horizontal slices from the rail-cap plane to the header, "
+          f"each {w:.0f} mm wide: no fixed part crosses any" if not crossing
+          else f"fixed parts crossing: {crossing[:6]}")
+    # opened leaf swept clear of the lowered tailgate; whole topper stays above the folded gate
+    tg = TR.tailgate_lowered_keepout()
+    low = [(n[-30:], round(p.bounding_box().min.Z, 1)) for n, p in parts
+           if "PORT" not in n and clash_volume(p, tg) > 0.5]
+    check("hatch_open_clear_of_lowered_tailgate", not low,
+          f"hatch open {HA.OPEN_DEG:.0f} deg vs the tailgate folded flat at the bed floor "
+          f"(z {-G.T['bed_depth']:.0f} .. {-G.T['bed_depth'] + 60:.0f}): no topper part reaches it"
+          if not low else f"{low[:5]}")
+    # how much opening: compare with the rev-10 aperture (1000 x 226, 100 mm up, 74 mm fixed band)
+    new_h = (sill + 2 * HA.AY) * math.cos(G.rake_rad())
+    check("rear_opening_larger_than_rev10", new_h >= 300.0 and y_bot <= -sill,
+          f"clear doorway {w:.0f} x {new_h:.0f} mm starting AT the rail-cap plane (z 0 .. {new_h:.0f}); "
+          f"rev 10 was a 1000 x 226 slot starting 100 mm up with a fixed band z 0 .. 97 under it "
+          f"(+{new_h - 226:.0f} mm of clear height, band removed)")
+    open_item("rear_leaf_bottom_seal_on_tailgate",
+              f"The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is "
+              f"{-G.T['tailgate_top_z']:.0f} mm below it; the bottom edge seal that closes on the "
+              f"tailgate cap (and the rounded rail ends) is not designed - select after T5 "
+              f"(supersedes rev-10 G9 for the removed bottom run)")
 
 
 def check_controls_and_power():
@@ -884,7 +948,7 @@ def main() -> int:
                check_hatch_misc, check_controls_and_power, check_bom, check_mounting,
                check_fastener_schedule, check_portability,
                check_module_removal_path, check_interference_shut, check_truck_clearance,
-               check_hatch_sweep, check_provenance):
+               check_hatch_sweep, check_rear_access, check_provenance):
         try:
             fn()
         except Exception as exc:                       # a crashing check is a failing check

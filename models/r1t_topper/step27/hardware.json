@@ -339,7 +339,7 @@
   "gas_strut": {
     "role": "Rear hatch lift support, 2 off, selected by hatch.solve_struts from the Standard Program p.17 table",
     "manufacturer": "Stabilus",
-    "pn": "6462II",
+    "pn": "6467IK",
     "status": "ORDERABLE",
     "provenance": "DATASHEET",
     "source_url": "https://www.stabilus.com/media/default/STABILUS/PDF/Stabilus_Standard_Programm_EN.pdf",
@@ -347,9 +347,9 @@
     "qty": 2,
     "dims": {
       "force_N": 50.0,
-      "stroke": 120.0,
-      "extended_len": 315.5,
-      "compressed_len": 195.5,
+      "stroke": 150.0,
+      "extended_len": 375.5,
+      "compressed_len": 225.5,
       "body_dia": 15.0,
       "rod_dia": 6.0,
       "ball_stud_dia": 10.0,
@@ -375,24 +375,24 @@
     "installed_geometry": {
       "leaf_stud": [
         474.0,
-        77.0,
-        -58.0
+        84.0,
+        -68.0
       ],
       "frame_stud": [
         488.0,
-        -78.0,
-        -190.0
+        -106.0,
+        -200.0
       ],
-      "L_closed": 204.1,
-      "L_open": 309.0,
-      "margin_closed": 8.6,
-      "margin_open": 6.5,
-      "hold_open_ratio": 1.87,
-      "close_force_N": 1.6,
-      "moment_arm_open": 82.6,
-      "moment_arm_closed": 4.2,
-      "leaf_mass_kg": 3.28,
-      "note": "Solved, not placed: hatch.solve_struts searches stud positions (hatch-local mm) x catalogue rows; checks_step27.check_strut_stroke re-derives these numbers from the geometry. Re-solved after the hatch latch stations moved (leaf 3.35 -> 3.28 kg): same entry, same studs."
+      "L_closed": 231.8,
+      "L_open": 369.4,
+      "margin_closed": 6.3,
+      "margin_open": 6.1,
+      "hold_open_ratio": 1.72,
+      "close_force_N": 1.9,
+      "moment_arm_open": 106.4,
+      "moment_arm_closed": 6.1,
+      "leaf_mass_kg": 3.75,
+      "note": "Solved, not placed. Step 29 (task 139737): the full-height hatch (1000 x 292 aperture, leaf 1052 x 344, no fixed bottom run) raised the leaf 3.28 -> 3.75 kg; 6462II (120 stroke) no longer solves, so hatch.solve_struts selected 6467IK (50 N, 150 stroke, extended 375.5). checks_step27.check_struts re-derives these numbers from the geometry."
     },
     "alternates": [
       {
@@ -627,8 +627,8 @@
     ],
     "catalogue_6_15_source": "Stabilus Standard Program EN (PDF created 2026-04-22) p.17, LIFT-O-MAT HD 6-15, forces 50-200 N transcribed; sha256 59571c7175fa5c819481908596b390e91a19fed1a449bf3ab8669592b2a9e312",
     "ref_columns_resolved": "The two Ref.-No. columns are legended by the page's own drawing callouts: column 1 = strut with 18 mm ball sockets (13.3 across) for ball studs to DIN 71803 Dia 10; column 2 = the same strut with the socket fitted with an M8 x 13, SW13 ball stud (12 mm to the ball). Order column 1 + 4486MD studs, or column 2 alone.",
-    "pn_col2": "5025DT",
-    "selection_history": "Previous pass: 6541IS (150 N) for a 1.28 x 0.41 m leaf on a 640 mm-tall shell. The cab-height shell gives a 1.0 x 0.25 m aperture and a 3.5 kg leaf; 150 N would be ~3x over-sprung.",
+    "pn_col2": "5072DE",
+    "selection_history": "Previous pass: 6541IS (150 N) for a 1.28 x 0.41 m leaf on a 640 mm-tall shell. The cab-height shell gives a 1.0 x 0.25 m aperture and a 3.5 kg leaf; 150 N would be ~3x over-sprung. | Step 27 rev 10: 6462II (50 N, 120 stroke) for a 3.28 kg leaf. Step 29: 6467IK (50 N, 150 stroke) for the 3.75 kg full-height leaf.",
     "open_note": "The 'Dia 10 ball' convention: the page states the sockets suit ball studs to DIN 71803 Dia 10 and column 2 fits M8 SW13 studs; our drawing calls M8 explicitly. No 316 stainless variant was selected."
   },
   "hinge": {

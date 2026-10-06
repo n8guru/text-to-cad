@@ -68,6 +68,32 @@ STRIKER_OFF = LATCH["width"] / 2 + 5.0
 BRACKET = {"n": 40.0, "v": 26.0, "t": 6.0}
 
 
+# ---- Step 29: NO fixed rear crossbar ------------------------------------------------------
+# Nate (card 2081357): "a topper is meant to allow the truck tail-gate to open, and the hatch of
+# the topper to open, and then have a large access to truck bed. your version has a crossbar where
+# there should be none." The previous aperture was a 1000 x 226 slot 100 mm above the rail with a
+# fixed 74 mm band (surround bottom run + shell wall) under it. Now the leaf runs from just above
+# the rail-cap plane to the roll-off, and the surround is a ring OPEN AT THE BOTTOM: its bottom run
+# is removed between two corner stubs that carry only the latch carriers and drains. Nothing fixed
+# crosses the opening below the roof header; the leaf's lower edge closes on the tailgate top.
+STUB_X = AX - 110.0                    # |x| beyond which the bottom run stays (corner stubs)
+
+
+def bottom_run_cutter():
+    """Hatch-local box that removes the surround/seal bottom run between the corner stubs."""
+    return Pos(0, -AY - 120.0 + 0.5, (LIP0 - 40.0 + 40.0) / 2) * Box(
+        2 * STUB_X, 240.0, 400.0, align=(CC, CC, CC))
+
+
+def clip_above_rail(part):
+    """Remove everything of a hatch-local part that would lie below the rail-cap plane (z < 0)."""
+    from build123d import Location
+    hp = G.hatch_plane()
+    g = hp * part
+    keep = Pos(1500.0, 0.0, 1000.0) * Box(4000.0, 4000.0, 2000.0, align=(CC, CC, CC))
+    return Location(hp).inverse() * (g & keep)
+
+
 def _side(x: float) -> int:
     """+1: striker bracket on the latch's +X (= hatch -x) side; stations keep it outboard."""
     return 1 if x < 0 else -1
@@ -185,9 +211,8 @@ def hatch_surround():
         br -= Pos(sx * (AX + 3.0), STRUT_FRAME[1], STRUT_FRAME[2]) * Rot(0, 90, 0) * Cylinder(
             4.0, 8.0, align=(CC, CC, CC))                                # M8 tapped
         part += br
-    for x in _drain_x():                                                # drain spigot holes
-        part -= Pos(x, -AY - (G.H_SEAL_OFF + 6.0 + G.H_RECESS_IN) / 2, LAND0 - 1) * Cylinder(
-            2.5, G.LAND_T + 2, align=(CC, CC, CMIN))
+    part -= bottom_run_cutter()                                         # no fixed bottom run
+    part = clip_above_rail(part)                                        # nothing below the rail
     return _lab(part, "HATCH_SURROUND_6061")
 
 
@@ -197,19 +222,11 @@ def _drain_x():
 
 
 def drain_tubes():
-    """Wet-zone drains: from the channel between the seal and the recess wall, at the ends of its
-    straight bottom run, down behind the surround and out through the rear skin below the bond
-    flange. Two separate tubes."""
-    out = []
-    y0 = -AY - (G.H_SEAL_OFF + 6.0 + G.H_RECESS_IN) / 2
-    y1 = -AY - G.H_BOND_OUT - 10.0
-    for x in _drain_x():
-        run = Pos(x, (y0 + y1) / 2, LAND0 - 5.0) * Box(8.0, y0 - y1, 8.0, align=(CC, CC, CC))
-        exit_ = Pos(x, y1 + 4.0, (LAND0 - 9.0 + 1.0) / 2) * Box(8.0, 8.0, 1.0 - (LAND0 - 9.0),
-                                                              align=(CC, CC, CC))
-        spigot = Pos(x, y0, (LAND0 - 1.0 + LAND0 - 9.0) / 2) * Box(8.0, 8.0, 8.0, align=(CC, CC, CC))
-        out.append(_lab(run + exit_ + spigot, f"HATCH_DRAIN_TUBE_{'L' if x > 0 else 'R'}"))
-    return out
+    """Step 29: none. The bottom run of the wet channel is removed between the corner stubs, so the
+    channel is open at the bottom end of each stub and water leaves straight onto the rail cap and
+    tailgate, outside the seal line. (Rev 10 routed two PA12 tubes out through the rear skin below
+    the bond flange; with the fixed bottom run gone that skin no longer exists.)"""
+    return []
 
 
 def seal_land_path():
@@ -218,7 +235,16 @@ def seal_land_path():
 
 
 def seal_bead(compressed: bool = True):
-    return hw.seal_bead(seal_land_path(), up=(0, 0, 1), compressed=compressed)
+    b = hw.seal_bead(seal_land_path(), up=(0, 0, 1), compressed=compressed)
+    # the bottom run between the stubs is gone with the surround land it compressed against
+    cut = bottom_run_cutter()
+    try:
+        lab = b.label
+        b = b - cut
+        b.label = lab
+    except Exception:                                                   # noqa: BLE001
+        pass
+    return b
 
 
 # ------------------------------------------------------------------------------ leaf

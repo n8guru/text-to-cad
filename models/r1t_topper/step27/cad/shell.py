@@ -195,14 +195,8 @@ def hatch_cut():
 
 
 def drain_exit_holes():
-    """Where the two hatch wet-zone drains leave the rear skin (below the surround bond flange)."""
-    import hatch as HA                                   # noqa: WPS433
-    from build123d import Box
-    out = []
-    y = -HA.AY - G.H_BOND_OUT - 10.0 + 4.0
-    for x in HA._drain_x():
-        out.append(G.hatch_plane() * (Pos(x, y, -30.0) * Box(9.0, 9.0, 60.0, align=(CC, CC, CC))))
-    return out
+    """Step 29: none (the hatch's bottom run is open; the wet channel drains out of the stub ends)."""
+    return []
 
 
 FRONT_WIN = {"w": 900.0, "h": 230.0, "r": 45.0, "zc": 200.0, "overlap": 20.0, "t": 5.0}

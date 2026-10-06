@@ -469,6 +469,8 @@ def main():
     man = export_parts(shut)
     print("exporting parts (open) ...")
     export_parts(opened, OUT / "parts_open", write_manifest=False)
+    print("exporting parts (rear-access: hatch open, modules fitted) ...")
+    export_parts(step27_assembly(HA.OPEN_DEG), OUT / "parts_access", write_manifest=False)
     export_parts(truck_reference(), OUT / "reference", write_manifest=False)
     export_parts(payload_set("L1"), OUT / "parts_payloads", write_manifest=False)
     kinematics()

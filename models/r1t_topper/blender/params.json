@@ -67,8 +67,8 @@
  },
  "hatch": {
   "width": 1.000,
-  "height": 0.226,
-  "sill_s": 0.100,
+  "height": 0.292,
+  "sill_s": 0.034,
   "open_deg": 95,
   "mullion": 0.14,
   "corner_r": 0.060
