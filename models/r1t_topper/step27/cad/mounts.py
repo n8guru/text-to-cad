@@ -4,9 +4,10 @@ WHY (operator card 2081357): the Rivian crossbar does not bolt to the bed access
 and nut. Each crossbar END is a foot with a hinged PADDLE latch (Owner's Guide 2022-10-17 p.152-154):
 lift the paddle, set the foot into the port (click 1: the foot is caught on the port's cleat / latch
 pin), push the paddle down (click 2: clamped); a key lock cylinder under the paddle locks it; the
-latch can be tuned. The port presents a "dual-barrel" latch-pin pair (two anchor points per port,
-Mars Adventure Gear: ~25 mm apart). The topper must attach the same way, so every one of the four
-stations is such a foot. Sources and dates: step27/research/PORT_MECHANISM_SOURCES.md.
+latch can be tuned. Step30 represents the source-visible bridge as one continuous reference bar
+and wraps it with two C-jaws. This is OUR provisional crossbar-style capture concept, not an OEM
+reverse-engineering claim. Bridge axis, dimensions and 25 mm jaw spacing remain assumptions.
+Sources and dates: step27/research/PORT_MECHANISM_SOURCES.md and STEP30_MOUNTING.md.
 
 NOTHING about the port interior or the Rivian foot is published. Every dimension below that touches
 the port (recess, pin pair, depth) or the foot (hook, paddle, lock) is PROVISIONAL, comes from
@@ -23,10 +24,10 @@ top. Parts of one station (inboard to outboard):
     PLF_BODY_6061            machined foot: head (in a notch of the base rail), stem (through the
                              foot pocket and into the port recess), seat flange (z 0..4, bears on
                              the rail cap and is the pad's compression STOP), two hinge ears.
-    PLF_HOOK_SLIDER_17_4PH   comb slider in a cross-slot of the stem: two teeth, 25 mm apart, that
-                             slide under the two port latch pins ("dual-barrel"). Driven by the
-                             paddle cam: dwell while the paddle is closed .. stage 1, retracts
-                             between stage 1 and fully open (cam law below, link NOT drawn).
+    PLF_HOOK_SLIDER_17_4PH   two open-sided C-jaws in a cross-slot: upper and lower lips wrap
+                             around the reference bridge; retraction opens the capture throat.
+                             Kinematic law only: dwell closed .. stage1, then release. The cam
+                             linkage and preload remain OPEN, not secretly claimed engineered.
     PLF_HINGE_PIN, PLF_DETENT_PLUNGER (2 dimples: closed / stage 1), PLF_TUNE_SCREW (closed
     stop = latch tuning), PLF_RAIL_SCREW x2 + PLF_SHIM x2 (shop fit-up of the base rail to the body).
 
@@ -137,13 +138,16 @@ def port_recess_local():
 
 
 def port_pins_local():
-    """The dual-barrel latch-pin pair, two barrels along x, 25 mm apart. Reference only."""
-    out = []
-    for i, px in enumerate(PIN_XS):
-        p = _cyl_x(MT["pin_u"], MT["pin_z"], MT["pin_d"], px - MT["pin_len"] / 2, px + MT["pin_len"] / 2)
-        p.label = f"PORT_REF_PIN_{'AB'[i]}"
-        out.append(p)
-    return out
+    """One continuous provisional bridge with two jaw bearing zones.
+
+    Weistec installation imagery and TWRAPS wall surrogate show a bridge/bar,
+    not two isolated studs. Its axis and ALL mating dimensions are provisional.
+    The historical function name is retained for callers; no OEM geometry claim.
+    """
+    half = (MT["pin_pitch"] + MT["pin_len"]) / 2
+    bridge = _cyl_x(MT["pin_u"], MT["pin_z"], MT["pin_d"], -half, half)
+    bridge.label = "PORT_REF_BRIDGE_PROVISIONAL"
+    return [bridge]
 
 
 def port_reference(x, y):
@@ -173,10 +177,12 @@ def body_local():
         b += _box(x0, x1, MT["ear_u0"], MT["head_u0"] + 0.5, MT["head_z0"], MT["ear_z1"])
     # hook slider cross-slot and the two vertical pin channels (the stem drops past the pins)
     b -= _box(-MT["slot_x"] / 2, MT["slot_x"] / 2, MT["stem_u0"] - 1, MT["stem_u1"] + 1,
-              MT["slot_z0"], MT["slot_z1"])
-    for px in PIN_XS:
-        b -= _box(px - MT["chan_w"] / 2, px + MT["chan_w"] / 2, MT["chan_u0"], MT["chan_u1"],
-                  sb - 1, MT["chan_top"])
+              MT["slot_z0"], MT["pin_z"] + MT["pin_d"] / 2 + 3.0)
+    # Continuous bridge needs a continuous downward-open entry channel; two
+    # disconnected pin slots would obstruct lowering the foot onto that bar.
+    bridge_half = (MT["pin_pitch"] + MT["pin_len"]) / 2
+    b -= _box(-bridge_half - 0.5, bridge_half + 0.5, MT["chan_u0"], MT["chan_u1"],
+              sb - 1, MT["chan_top"])
     # lock bore (axis // u from the inboard face) and the cam pocket behind it
     u0 = MT["head_u0"]
     b -= _cyl_u(0.0, MT["lock_z"], MT["lock_bore"], u0 - 1, u0 + MT["lock_len"] + 0.3)
@@ -236,12 +242,23 @@ def paddle_local(theta=0.0):
 
 
 def slider_closed_local():
-    """Hook slider in the CLAMPED pose: bar behind the pins, two teeth under them."""
-    bar = _box(-MT["bar_x"] / 2, MT["bar_x"] / 2, MT["bar_u0"], MT["bar_u1"], MT["bar_z0"], MT["bar_z1"])
-    s = bar
+    """Two C-jaws wrap the provisional bridge, driven by the existing slider.
+
+    Step30 replaces flat teeth with explicit open-sided wrap geometry. The lower
+    lip retains the original tangent bearing face; an upper lip and inboard web
+    prevent the old flat-tooth depiction being mistaken for a threaded adapter.
+    All dimensions remain design assumptions, NOT a reverse-engineered OEM foot.
+    """
+    s = _box(-MT["bar_x"] / 2, MT["bar_x"] / 2, MT["bar_u0"], MT["bar_u1"], MT["bar_z0"], MT["bar_z1"])
     for px in PIN_XS:
-        s += _box(px - MT["tooth_w"] / 2, px + MT["tooth_w"] / 2, MT["bar_u1"] - 0.5, MT["tooth_tip"],
-                  MT["tooth_z0"], MT["tooth_z1"])
+        x0, x1 = px - MT["tooth_w"] / 2, px + MT["tooth_w"] / 2
+        jaw = _box(x0, x1, MT["bar_u0"], MT["tooth_tip"], MT["bar_z0"], MT["pin_z"] + MT["pin_d"] / 2 + 3.0)
+        # Flat-sided throat open toward +u; 0.5 mm upper clearance, bottom
+        # tangent to the reference bridge. Retraction lets the pin leave the mouth.
+        jaw -= _box(x0 - 1, x1 + 1, MT["pin_u"] - MT["pin_d"] / 2 - 0.5,
+                    MT["tooth_tip"] + 1, MT["pin_z"] - MT["pin_d"] / 2,
+                    MT["pin_z"] + MT["pin_d"] / 2 + 0.5)
+        s += jaw
     s.label = "PLF_HOOK_SLIDER_17_4PH"
     return s
 

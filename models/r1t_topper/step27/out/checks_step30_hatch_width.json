@@ -1,0 +1,124 @@
+{
+  "scope": "nominal_geometry_not_fitment",
+  "results": [
+    {
+      "name": "actual_leaf_lower_edge_equals_tailgate_estimate",
+      "passed": true,
+      "measured_mm": 1299.0,
+      "target_mm": 1299.0,
+      "slice_thickness_mm": 0.01,
+      "physical_measurement": false
+    },
+    {
+      "name": "shell_cut_lower_chord_follows_leaf_with_clearance",
+      "passed": true,
+      "measured_mm": 1316.0,
+      "expected_mm": 1316.0
+    },
+    {
+      "name": "upper_shoulders_stay_within_original_width_budget",
+      "passed": true,
+      "upper_strip_mm": 1011.4998151685509,
+      "budget_mm": 1052.0
+    },
+    {
+      "name": "two_pane_leaf_single_valid_solid",
+      "passed": true,
+      "solids": 1
+    },
+    {
+      "name": "leaf_extrudes_in_correct_datum_direction",
+      "passed": true,
+      "zmin_mm": -26.0,
+      "zmax_mm": 0.0
+    },
+    {
+      "name": "surround_single_valid_solid",
+      "passed": true,
+      "solids": 1
+    },
+    {
+      "name": "open_bottom_seal_is_valid_bounded_U",
+      "passed": true,
+      "volume_mm3": 159678.70896846082,
+      "height_mm": 20.25
+    },
+    {
+      "name": "widened_leaf_clearance_0",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_10",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_20",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_30",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_40",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_50",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_60",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_70",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_80",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_90",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    },
+    {
+      "name": "widened_leaf_clearance_95",
+      "passed": true,
+      "shell_mm3": 0,
+      "dry_surround_mm3": 0,
+      "lowered_gate_mm3": 0
+    }
+  ]
+}

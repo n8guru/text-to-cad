@@ -21,7 +21,7 @@ import json
 import math
 from pathlib import Path
 
-from build123d import Plane, Pos, Rectangle, Vector, extrude, fillet
+from build123d import Plane, Polygon, Pos, Rectangle, Vector, extrude, fillet
 
 HERE = Path(__file__).resolve().parent
 PARAMS_PATH = HERE.parents[1] / "blender" / "params.json"
@@ -75,6 +75,50 @@ def border_ring(a_u, a_v, r, e0, e1, n0, n1):
     corner radius r), spanning local z n0..n1. Concentric corners: radius r + e."""
     return rring(2 * (a_u + e1), 2 * (a_v + e1), r + e1,
                  2 * (a_u + e0), 2 * (a_v + e0), max(r + e0, 0.5), n1 - n0, n0)
+
+
+# ------------------------------------------------------------------------------ hatch lower-chord widening (step 30)
+# Step 29 gave the hatch a constant width (1000 mm aperture / 1052 mm leaf) full height, narrower
+# than the tailgate it closes against (bed_w 1299 mm): the leaf's bottom chord read as an inward
+# "swoop" short of the full-width opening below it. Widen ONLY the lower edge, holding the top
+# width fixed -- the top is budget-limited by the styled shoulder/roof and the side sockets; the
+# shell is naturally WIDER at the bottom (tumblehome narrows going UP, see land_y), so there is
+# room there without touching the upper surface.
+#
+# TAILGATE_WIDTH_ESTIMATE_MM is an ESTIMATE, not a direct measurement of the tailgate itself: Rivian
+# gives a bed-width anchor, not a measured tailgate interface here: this uses truck.bed_w
+# (1299 mm Upfitting Guide p.28 per style/rivian_reference.json) as the proxy -- the tailgate
+# closes the bed opening, so its clear width is bounded by it. Re-tape against the actual tailgate
+# before fabrication (see ../TAILGATE_CONTROL.md); this is design-source authority, not a
+# calibration or fabrication claim.
+TAILGATE_WIDTH_ESTIMATE_MM = T["bed_w"]
+# Aperture bottom half-width is derived below, after H_LEAF_OUT is defined.
+
+
+def hatch_outline(half_h, w_top, w_bot, r):
+    """Rounded-trapezoid sketch on Plane.XY, centred: half-width ``w_top`` at y=+half_h (top edge,
+    unchanged), tapering straight to half-width ``w_bot`` at y=-half_h (the widened bottom chord).
+    Reduces to ``rrect`` when w_top == w_bot."""
+    if abs(w_top - w_bot) < 1e-6:
+        return rrect(2 * w_top, 2 * half_h, r)
+    # Counter-clockwise: positive extrusion must follow +Z, as rrect does.
+    pts = [(-w_bot, -half_h), (w_bot, -half_h), (w_top, half_h), (-w_top, half_h)]
+    r = min(r, half_h - 0.01, w_top - 0.01, w_bot - 0.01)
+    outline = Polygon(*pts, align=None)
+    # Preserve rounded upper shoulders, but carry the full straight lower chord
+    # to the tailgate edges. Rounding both lower corners by 86 mm would silently
+    # shorten the actual lower chord by >200 mm, despite the nominal width.
+    return fillet([v for v in outline.vertices() if v.center().Y > 0], radius=r)
+
+
+def border_ring_trapezoid(au_top, au_bot, av, r, e0, e1, n0, n1):
+    """Trapezoid analogue of ``border_ring``: both the inner and outer boundary widen from
+    ``au_top`` at the top edge to ``au_bot`` at the bottom edge, offset e0/e1 mm outward, so the
+    frame tracks the widened leaf at every height instead of only at a fixed width."""
+    outer = hatch_outline(av + e1, au_top + e1, au_bot + e1, r + e1)
+    inner = hatch_outline(av + e0, au_top + e0, au_bot + e0, max(r + e0, 0.5))
+    return (Pos(0, 0, n0) * extrude(outer, amount=n1 - n0)
+            - Pos(0, 0, n0 - 1) * extrude(inner, amount=n1 - n0 + 2))
 
 
 # ------------------------------------------------------------------------------ side land
@@ -164,6 +208,7 @@ LEAF_T = 26.0
 HATCH_FACE_Z = -(LEAF_T + SEAL_COMPRESSED)
 H_SEAL_OFF = 16.0
 H_LEAF_OUT = 26.0
+H_BOTTOM_HALF_W = TAILGATE_WIDTH_ESTIMATE_MM / 2.0 - H_LEAF_OUT
 H_RECESS_IN = H_LEAF_OUT + SHUTLINE
 H_RECESS_OUT = H_RECESS_IN + RECESS_WALL_T
 H_SHELL_CUT = H_RECESS_OUT + BOND_GAP

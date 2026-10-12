@@ -1,0 +1,21 @@
+{
+  "step": "S9_access_final",
+  "stills": {
+    "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_side.png",
+    "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_overhead.png",
+    "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_front.png"
+  },
+  "scores": {
+    "imported_parts": 220,
+    "lowest_open_leaf_point_mm": 316.82804226875305,
+    "cargo_top_above_rail_mm": 134.99999999999994,
+    "cargo_exit_rays_clear": 10,
+    "cargo_exit_rays_total": 10,
+    "bed_floor_below_rail_mm": 465.0,
+    "kind": "r1t_cad"
+  },
+  "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+  "arms": [],
+  "assert_ok": true,
+  "assert_fails": []
+}

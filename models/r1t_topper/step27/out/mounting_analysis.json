@@ -1,9 +1,9 @@
 {
- "mass_kg": 87.83,
+ "mass_kg": 88.3,
  "cg_mm": [
-  696.1,
+  699.6,
   0.7,
-  206.5
+  206.2
  ],
  "cases": [
   {
@@ -14,10 +14,10 @@
     -3.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 699.1,
+   "port_compression_N": 697.5,
    "port_tension_N": 0.0,
    "port_shear_N": 0.0,
-   "port_resultant_N": 699.1,
+   "port_resultant_N": 697.5,
    "limit_class": "limit"
   },
   {
@@ -29,9 +29,9 @@
    ],
    "aero_lift_N": 600.0,
    "port_compression_N": 0.0,
-   "port_tension_N": 383.0,
+   "port_tension_N": 382.5,
    "port_shear_N": 0.0,
-   "port_resultant_N": 383.0,
+   "port_resultant_N": 382.5,
    "limit_class": "limit"
   },
   {
@@ -42,10 +42,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 338.1,
+   "port_compression_N": 337.9,
    "port_tension_N": 0.0,
-   "port_shear_N": 215.3,
-   "port_resultant_N": 400.8,
+   "port_shear_N": 216.5,
+   "port_resultant_N": 401.3,
    "limit_class": "limit"
   },
   {
@@ -56,10 +56,10 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 295.7,
+   "port_compression_N": 295.4,
    "port_tension_N": 0.0,
-   "port_shear_N": 215.3,
-   "port_resultant_N": 365.8,
+   "port_shear_N": 216.5,
+   "port_resultant_N": 366.2,
    "limit_class": "limit"
   },
   {
@@ -70,10 +70,10 @@
     -2.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 562.4,
+   "port_compression_N": 561.7,
    "port_tension_N": 0.0,
-   "port_shear_N": 185.2,
-   "port_resultant_N": 592.2,
+   "port_shear_N": 186.2,
+   "port_resultant_N": 591.8,
    "limit_class": "limit"
   },
   {
@@ -84,14 +84,15 @@
     -1.0
    ],
    "aero_lift_N": 0.0,
-   "port_compression_N": 1283.3,
-   "port_tension_N": 852.6,
-   "port_shear_N": 2153.4,
-   "port_resultant_N": 2506.8,
+   "port_compression_N": 1286.5,
+   "port_tension_N": 853.5,
+   "port_shear_N": 2164.7,
+   "port_resultant_N": 2518.2,
    "limit_class": "ultimate"
   }
  ],
  "plf_strength_at_port_rating": {
+  "scope": "legacy_lower_lip_screening_only_not_C_jaw_capacity",
   "tooth_bending_MPa": 257.8,
   "tooth_bending_allow_MPa": 600.0,
   "tooth_shear_MPa": 31.2,

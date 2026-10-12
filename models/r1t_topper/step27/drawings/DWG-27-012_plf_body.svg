@@ -6,13 +6,13 @@
       <path d="M 12.0,-28.0 Q 11.987424,-28.0 11.974849,-28.0 Q 11.93728,-28.0 11.899712,-28.0 Q 11.837622,-28.0 11.775533,-28.0 Q 11.689704,-28.0 11.603875,-28.0 Q 11.495386,-28.0 11.386897,-28.0 Q 11.257111,-28.0 11.127326,-28.0 Q 10.977876,-28.0 10.828427,-28.0 Q 10.661193,-28.0 10.493959,-28.0 Q 10.311044,-28.0 10.128128,-28.0 Q 9.931832,-28.0 9.735535,-28.0 Q 9.528326,-28.0 9.321116,-28.0 Q 9.1056,-28.0 8.890084,-28.0 Q 8.449437,-28.0 8.0,-28.0" />
       <line x1="-10.0" y1="-28.0" x2="8.0" y2="-28.0" />
       <line x1="12.0" y1="-28.0" x2="12.0" y2="-23.5" />
-      <line x1="12.0" y1="-12.0" x2="12.0" y2="0.0" />
+      <line x1="12.0" y1="-7.0" x2="12.0" y2="0.0" />
       <path d="M -16.0,0.0 L -16.671787,0.0 L -17.335126,0.0 L -17.981674,0.0 L -18.603302,0.0 L -19.192192,0.0 L -19.740939,0.0 L -20.242641,0.0 L -20.690989,0.0 L -21.080345,0.0 L -21.405813,0.0 L -21.6633,0.0 L -21.849567,0.0 L -21.962273,0.0 L -22.0,0.0" />
       <path d="M 18.0,0.0 L 17.962273,0.0 L 17.849567,0.0 L 17.6633,0.0 L 17.405813,0.0 L 17.080345,0.0 L 16.690989,0.0 L 16.242641,0.0 L 15.740939,0.0 L 15.192192,0.0 L 14.603302,0.0 L 13.981674,0.0 L 13.335126,0.0 L 12.671787,0.0 L 12.0,0.0" />
       <line x1="-16.0" y1="0.0" x2="12.0" y2="0.0" />
       <line x1="-14.0" y1="-28.0" x2="-14.0" y2="0.0" />
       <line x1="12.0" y1="-28.0" x2="12.0" y2="0.0" />
-      <line x1="12.0" y1="-12.0" x2="12.0" y2="-23.5" />
+      <line x1="12.0" y1="-7.0" x2="12.0" y2="-23.5" />
       <line x1="18.0" y1="0.0" x2="18.0" y2="4.0" />
       <line x1="-22.0" y1="0.0" x2="-22.0" y2="4.0" />
       <line x1="18.0" y1="0.0" x2="18.0" y2="4.0" />
@@ -58,9 +58,7 @@
       <path d="M 8.0,-28.0 L 8.447858,-28.0 L 8.890084,-28.0 L 9.321116,-28.0 L 9.735535,-28.0 L 10.128128,-28.0 L 10.493959,-28.0 L 10.828427,-28.0 L 11.127326,-28.0 L 11.386897,-28.0 L 11.603875,-28.0 L 11.775533,-28.0 L 11.899712,-28.0 L 11.974849,-28.0 L 12.0,-28.0" />
       <line x1="-1.0" y1="-28.0" x2="9.0" y2="-28.0" />
       <line x1="-1.0" y1="-28.0" x2="9.0" y2="-28.0" />
-      <line x1="-1.0" y1="-28.0" x2="9.0" y2="-28.0" />
-      <line x1="-1.0" y1="-28.0" x2="9.0" y2="-28.0" />
-      <line x1="12.0" y1="-23.5" x2="12.0" y2="-12.0" />
+      <line x1="12.0" y1="-23.5" x2="12.0" y2="-7.0" />
       <path d="M 8.0,0.0 L 8.447858,0.0 L 8.890084,0.0 L 9.321116,0.0 L 9.735535,0.0 L 10.128128,0.0 L 10.493959,0.0 L 10.828427,0.0 L 11.127326,0.0 L 11.386897,0.0 L 11.603875,0.0 L 11.775533,0.0 L 11.899712,0.0 L 11.974849,0.0 L 12.0,0.0" />
       <line x1="-16.0" y1="0.0" x2="12.0" y2="0.0" />
       <path d="M -22.0,0.0 L -21.962273,0.0 L -21.849567,0.0 L -21.6633,0.0 L -21.405813,0.0 L -21.080345,0.0 L -20.690989,0.0 L -20.242641,0.0 L -19.740939,0.0 L -19.192192,0.0 L -18.603302,0.0 L -17.981674,0.0 L -17.335126,0.0 L -16.671787,0.0 L -16.0,0.0" />
@@ -70,15 +68,9 @@
       <line x1="-10.0" y1="0.0" x2="8.0" y2="0.0" />
       <path d="M 12.0,0.0 Q 11.987424,0.0 11.974849,0.0 Q 11.93728,0.0 11.899712,0.0 Q 11.837622,0.0 11.775533,0.0 Q 11.689704,0.0 11.603875,0.0 Q 11.495386,0.0 11.386897,0.0 Q 11.257111,0.0 11.127326,0.0 Q 10.977876,0.0 10.828427,0.0 Q 10.661193,0.0 10.493959,0.0 Q 10.311044,0.0 10.128128,0.0 Q 9.931832,0.0 9.735535,0.0 Q 9.528326,0.0 9.321116,0.0 Q 9.1056,0.0 8.890084,0.0 Q 8.449437,0.0 8.0,0.0" />
       <line x1="-14.0" y1="-28.0" x2="-14.0" y2="0.0" />
-      <line x1="-14.0" y1="-12.0" x2="-14.0" y2="-23.5" />
-      <line x1="-14.0" y1="-12.0" x2="-14.0" y2="-23.5" />
-      <line x1="12.0" y1="-12.0" x2="12.0" y2="-23.5" />
-      <line x1="-1.0" y1="-28.0" x2="-1.0" y2="-23.5" />
-      <line x1="-1.0" y1="-28.0" x2="-1.0" y2="-23.5" />
-      <line x1="-1.0" y1="-23.5" x2="9.0" y2="-23.5" />
-      <line x1="9.0" y1="-28.0" x2="9.0" y2="-23.5" />
-      <line x1="-1.0" y1="-23.5" x2="9.0" y2="-23.5" />
-      <line x1="9.0" y1="-28.0" x2="9.0" y2="-23.5" />
+      <line x1="-14.0" y1="-7.0" x2="-14.0" y2="-23.5" />
+      <line x1="-14.0" y1="-7.0" x2="-14.0" y2="-23.5" />
+      <line x1="12.0" y1="-7.0" x2="12.0" y2="-23.5" />
       <line x1="-1.0" y1="-28.0" x2="-1.0" y2="-23.5" />
       <line x1="-1.0" y1="-28.0" x2="-1.0" y2="-23.5" />
       <line x1="-1.0" y1="-23.5" x2="9.0" y2="-23.5" />
@@ -89,12 +81,8 @@
       <line x1="-22.0" y1="0.0" x2="-22.0" y2="4.0" />
       <path d="M -22.0,4.0 L -21.962273,4.0 L -21.849567,4.0 L -21.6633,4.0 L -21.405813,4.0 L -21.080345,4.0 L -20.690989,4.0 L -20.242641,4.0 L -19.740939,4.0 L -19.192192,4.0 L -18.603302,4.0 L -17.981674,4.0 L -17.335126,4.0 L -16.671787,4.0 L -16.0,4.0" />
       <path d="M 12.0,4.0 L 12.671787,4.0 L 13.335126,4.0 L 13.981674,4.0 L 14.603302,4.0 L 15.192192,4.0 L 15.740939,4.0 L 16.242641,4.0 L 16.690989,4.0 L 17.080345,4.0 L 17.405813,4.0 L 17.6633,4.0 L 17.849567,4.0 L 17.962273,4.0 L 18.0,4.0" />
-      <line x1="-14.0" y1="-12.0" x2="12.0" y2="-12.0" />
-      <line x1="-14.0" y1="-12.0" x2="12.0" y2="-12.0" />
-      <line x1="-1.0" y1="-12.0" x2="9.0" y2="-12.0" />
-      <line x1="-1.0" y1="-12.0" x2="9.0" y2="-12.0" />
-      <line x1="-1.0" y1="-12.0" x2="9.0" y2="-12.0" />
-      <line x1="-1.0" y1="-12.0" x2="9.0" y2="-12.0" />
+      <line x1="-14.0" y1="-7.0" x2="12.0" y2="-7.0" />
+      <line x1="-14.0" y1="-7.0" x2="12.0" y2="-7.0" />
       <line x1="-14.0" y1="-23.5" x2="12.0" y2="-23.5" />
       <line x1="-14.0" y1="-23.5" x2="12.0" y2="-23.5" />
       <path d="M -14.0,4.0 Q -13.987424,4.0 -13.974849,4.0 Q -13.93728,4.0 -13.899712,4.0 Q -13.837622,4.0 -13.775533,4.0 Q -13.689704,4.0 -13.603875,4.0 Q -13.495386,4.0 -13.386897,4.0 Q -13.257111,4.0 -13.127326,4.0 Q -12.977877,4.0 -12.828427,4.0 Q -12.661193,4.0 -12.493959,4.0 Q -12.311044,4.0 -12.128128,4.0 Q -11.931832,4.0 -11.735535,4.0 Q -11.528326,4.0 -11.321116,4.0 Q -11.1056,4.0 -10.890084,4.0 Q -10.449437,4.0 -10.0,4.0" />
@@ -103,18 +91,6 @@
       <path d="M 12.0,4.0 Q 11.987424,4.0 11.974849,4.0 Q 11.93728,4.0 11.899712,4.0 Q 11.837622,4.0 11.775533,4.0 Q 11.689704,4.0 11.603875,4.0 Q 11.495386,4.0 11.386897,4.0 Q 11.257111,4.0 11.127326,4.0 Q 10.977876,4.0 10.828427,4.0 Q 10.661193,4.0 10.493959,4.0 Q 10.311044,4.0 10.128128,4.0 Q 9.931832,4.0 9.735535,4.0 Q 9.528326,4.0 9.321116,4.0 Q 9.1056,4.0 8.890084,4.0 Q 8.449437,4.0 8.0,4.0" />
       <path d="M 8.0,4.0 L 8.447858,4.0 L 8.890084,4.0 L 9.321116,4.0 L 9.735535,4.0 L 10.128128,4.0 L 10.493959,4.0 L 10.828427,4.0 L 11.127326,4.0 L 11.386897,4.0 L 11.603875,4.0 L 11.775533,4.0 L 11.899712,4.0 L 11.974849,4.0 L 12.0,4.0" />
       <line x1="-10.0" y1="4.0" x2="8.0" y2="4.0" />
-      <line x1="-1.0" y1="-12.0" x2="-1.0" y2="-7.0" />
-      <line x1="-1.0" y1="-12.0" x2="-1.0" y2="-7.0" />
-      <line x1="-1.0" y1="-7.0" x2="9.0" y2="-7.0" />
-      <line x1="9.0" y1="-12.0" x2="9.0" y2="-7.0" />
-      <line x1="-1.0" y1="-7.0" x2="9.0" y2="-7.0" />
-      <line x1="9.0" y1="-12.0" x2="9.0" y2="-7.0" />
-      <line x1="-1.0" y1="-12.0" x2="-1.0" y2="-7.0" />
-      <line x1="-1.0" y1="-12.0" x2="-1.0" y2="-7.0" />
-      <line x1="-1.0" y1="-7.0" x2="9.0" y2="-7.0" />
-      <line x1="9.0" y1="-12.0" x2="9.0" y2="-7.0" />
-      <line x1="9.0" y1="-12.0" x2="9.0" y2="-7.0" />
-      <line x1="-1.0" y1="-7.0" x2="9.0" y2="-7.0" />
       <path d="M -14.0,22.5 Q -13.987424,22.5 -13.974849,22.5 Q -13.93728,22.5 -13.899712,22.5 Q -13.837622,22.5 -13.775533,22.5 Q -13.689704,22.5 -13.603875,22.5 Q -13.495386,22.5 -13.386897,22.5 Q -13.257111,22.5 -13.127326,22.5 Q -12.977877,22.5 -12.828427,22.5 Q -12.661193,22.5 -12.493959,22.5 Q -12.311044,22.5 -12.128128,22.5 Q -11.931832,22.5 -11.735535,22.5 Q -11.528326,22.5 -11.321116,22.5 Q -11.1056,22.5 -10.890084,22.5 Q -10.449437,22.5 -10.0,22.5" />
       <line x1="-14.0" y1="4.0" x2="-14.0" y2="22.5" />
       <path d="M -10.0,22.5 L -10.447858,22.5 L -10.890084,22.5 L -11.321116,22.5 L -11.735535,22.5 L -12.128128,22.5 L -12.493959,22.5 L -12.828427,22.5 L -13.127326,22.5 L -13.386897,22.5 L -13.603875,22.5 L -13.775533,22.5 L -13.899712,22.5 L -13.974849,22.5 L -14.0,22.5" />
@@ -255,4 +231,4 @@
       <line x1="12.0" y1="22.5" x2="12.0" y2="63.6" />
     </g>
   </g>
-<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-012_plf_body  PORT LATCH FOOT BODY, 6061-T6, 4 OFF (one part; the passenger side is the same part rotated 180 deg)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">stem (through the foot pocket, into the port).62 x 26, z -28 .. 24.5 (PROVISIONAL)</text><text x="18" y="68" font-family="monospace" font-size="11">seat flange (the pad STOP)....................80 x 40 x 4.0; top z 4.00 +0/-0.05, underside z 0 (bears on the rail cap)</text><text x="18" y="82" font-family="monospace" font-size="11">head (in the rail notch)......................76 x 33, z 22.5 .. 63.6</text><text x="18" y="96" font-family="monospace" font-size="11">hook slider cross-slot........................53 wide, z -23.5 .. -12.0; floor/roof parallel 0.03</text><text x="18" y="110" font-family="monospace" font-size="11">pin channels (2)..............................12 wide at x +/-12.5, u -1 .. 9, open at the stem bottom (the stem drops past the pins)</text><text x="18" y="124" font-family="monospace" font-size="11">hinge ears (2) + pin bore.....................x 23.5 .. 38, bore 5.0 H7 coaxial 0.03 at u -29.5, z 32.5</text><text x="18" y="138" font-family="monospace" font-size="11">lock bore.....................................19.2 H11 x 28.7 deep from the inboard face, axis // u, z 50; cam pocket 22</text><text x="18" y="152" font-family="monospace" font-size="11">rail-screw holes (2)..........................obround 6.6 x 12.6 (z +/-3), cbore 11 x 15, x +/-16, z 31</text><text x="18" y="166" font-family="monospace" font-size="11">tuning-screw tap..............................M6, tap drill 5.0, x -16, z 44, 14 deep</text><text x="18" y="180" font-family="monospace" font-size="11">detent bore...................................M8x1.25 (tap 6.8) in the +x ear, 16 deep, 7.5 above the hinge axis</text><text x="18" y="194" font-family="monospace" font-size="11">finish........................................hard anodise Type III clear; seat flange, slot floor, ear faces ground / masked</text><text x="18" y="208" font-family="monospace" font-size="11">general tol...................................ISO 2768-mK; break edges 0.3</text><text x="12" y="230" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="244" font-family="monospace" font-size="11">1. EVERY dimension that touches the port (stem, channels, pin height, slot) is PROVISIONAL: Rivian publishes neither the port nor the crossbar foot. Calibration P-CAL-01b before release.</text><text x="18" y="258" font-family="monospace" font-size="11">2. Rivian forbids modifying the ports: nothing here cuts or drills the truck.</text><text x="18" y="272" font-family="monospace" font-size="11">3. Stem depth leaves 2 mm above the (provisional) recess floor; the SEAT FLANGE, not the stem, sets height.</text><text x="12" y="294" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-012_plf_body  PORT LATCH FOOT BODY, 6061-T6, 4 OFF (one part; the passenger side is the same part rotated 180 deg)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">stem (through the foot pocket, into the port).62 x 26, z -28 .. 24.5 (PROVISIONAL)</text><text x="18" y="68" font-family="monospace" font-size="11">seat flange (the pad STOP)....................80 x 40 x 4.0; top z 4.00 +0/-0.05, underside z 0 (bears on the rail cap)</text><text x="18" y="82" font-family="monospace" font-size="11">head (in the rail notch)......................76 x 33, z 22.5 .. 63.6</text><text x="18" y="96" font-family="monospace" font-size="11">hook slider cross-slot........................53 wide, z -23.5 .. -7.0; PROVISIONAL</text><text x="18" y="110" font-family="monospace" font-size="11">continuous bridge entry.......................36 wide, u -1 .. 9; open at stem bottom; source-informed topology, not measured OEM fit</text><text x="18" y="124" font-family="monospace" font-size="11">hinge ears (2) + pin bore.....................x 23.5 .. 38, bore 5.0 H7 coaxial 0.03 at u -29.5, z 32.5</text><text x="18" y="138" font-family="monospace" font-size="11">lock bore.....................................19.2 H11 x 28.7 deep from the inboard face, axis // u, z 50; cam pocket 22</text><text x="18" y="152" font-family="monospace" font-size="11">rail-screw holes (2)..........................obround 6.6 x 12.6 (z +/-3), cbore 11 x 15, x +/-16, z 31</text><text x="18" y="166" font-family="monospace" font-size="11">tuning-screw tap..............................M6, tap drill 5.0, x -16, z 44, 14 deep</text><text x="18" y="180" font-family="monospace" font-size="11">detent bore...................................M8x1.25 (tap 6.8) in the +x ear, 16 deep, 7.5 above the hinge axis</text><text x="18" y="194" font-family="monospace" font-size="11">finish........................................hard anodise Type III clear; seat flange, slot floor, ear faces ground / masked</text><text x="18" y="208" font-family="monospace" font-size="11">general tol...................................ISO 2768-mK; break edges 0.3</text><text x="12" y="230" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="244" font-family="monospace" font-size="11">1. EVERY dimension that touches the port (stem, channels, pin height, slot) is PROVISIONAL: Rivian publishes neither the port nor the crossbar foot. Calibration P-CAL-01b before release.</text><text x="18" y="258" font-family="monospace" font-size="11">2. Rivian forbids modifying the ports: nothing here cuts or drills the truck.</text><text x="18" y="272" font-family="monospace" font-size="11">3. Stem depth leaves 2 mm above the (provisional) recess floor; the SEAT FLANGE, not the stem, sets height.</text><text x="12" y="294" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

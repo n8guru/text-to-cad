@@ -1,0 +1,407 @@
+{
+  "scope": "provisional_nominal_geometry_only",
+  "results": [
+    {
+      "name": "continuous_reference_bridge",
+      "passed": true,
+      "provisional": true,
+      "length_mm": 35.0
+    },
+    {
+      "name": "body_single_solid",
+      "passed": true
+    },
+    {
+      "name": "nominal_motion_0",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_5",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_10",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_15",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_20",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_25",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_30",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_35",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_40",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_45",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_50",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_55",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_60",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_65",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_68",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_70",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_75",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_80",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "nominal_motion_82",
+      "passed": true,
+      "bridge_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "captured_against_uplift_0",
+      "passed": true,
+      "virtual_half_mm_uplift_overlap_mm3": 22.239147371642183,
+      "wraps_above_and_below": true
+    },
+    {
+      "name": "captured_against_uplift_68",
+      "passed": true,
+      "virtual_half_mm_uplift_overlap_mm3": 18.441431383000157,
+      "wraps_above_and_below": true
+    },
+    {
+      "name": "released_lift_0",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_1",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_2",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_3",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_4",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_5",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_6",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_7",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_8",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_9",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_10",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_11",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_12",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_13",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_14",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_15",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_16",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_17",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_18",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_19",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_20",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_21",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_22",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_23",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_24",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_25",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_26",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_27",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_28",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_29",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_30",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_31",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_32",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_33",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_34",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_35",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_36",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_37",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_38",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_39",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "released_lift_40",
+      "passed": true,
+      "hook_interference_mm3": 0,
+      "body_interference_mm3": 0
+    },
+    {
+      "name": "primary_assembly_uses_wrap_307_724",
+      "passed": true,
+      "symmetric_difference_mm3": 0
+    },
+    {
+      "name": "primary_assembly_uses_wrap_307_-724",
+      "passed": true,
+      "symmetric_difference_mm3": 0
+    },
+    {
+      "name": "primary_assembly_uses_wrap_1154_710",
+      "passed": true,
+      "symmetric_difference_mm3": 0
+    },
+    {
+      "name": "primary_assembly_uses_wrap_1154_-710",
+      "passed": true,
+      "symmetric_difference_mm3": 0
+    }
+  ]
+}

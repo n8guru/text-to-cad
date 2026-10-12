@@ -8,7 +8,8 @@ models none of it.
 Scores are measured in this scene, between the imported CAD meshes and the traced truck:
   roof_step_mm     topper roof top minus the truck's cab roof (continuity, R1S target ~0)
   cab_gap_mm       closest shell-to-truck-body distance over the cab back / spoiler (>= 20)
-  base_gap_mm      worst gap between the shell foot and the rail caps (seated ~0)
+  base_gap_mm      gap between the shell foot and rail caps (nominal compressed pad)
+  base_pad_error_mm deviation from the authored compressed-pad datum (target ~0)
 """
 import os
 import sys
@@ -21,7 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import r1t_lib as L  # noqa: E402
 
 for o in list(bpy.data.objects):                 # idempotent re-run of this step
-    if any(c.name == "10_TOPPER_CAD" for c in o.users_collection):
+    if any(c.name in ("10_TOPPER_CAD", "30_MOUNT_DETAIL") for c in o.users_collection):
         bpy.data.objects.remove(o, do_unlink=True)
 objs = L.import_parts(L.PARTS, "10_TOPPER_CAD")
 shell = objs["SHELL_CARBON_SANDWICH"]
@@ -58,6 +59,10 @@ scores = {
     "base_gap_max_mm": max(gaps) * 1000 if gaps else -1,
     "base_gap_min_mm": min(gaps) * 1000 if gaps else -1,
     "base_samples": len(gaps),
+    # The rail interface contains the nominal compressed EPDM pad; zero gap is
+    # NOT the seating target. Compare against the authored pad, not bare contact.
+    "base_pad_expected_mm": L.P["mount"]["pad_comp"] * 1000,
+    "base_pad_error_mm": max(abs(g - L.P["mount"]["pad_comp"]) for g in gaps) * 1000 if gaps else -1,
 }
 print("SCORE " + " ".join(f"{k}={v:.2f}" for k, v in scores.items()))
 

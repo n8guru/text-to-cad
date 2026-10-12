@@ -11,13 +11,19 @@
       <path d="M -20.749236,34.60336 A 1.930673457630782,1.930673457630782 -21.455189746609 1,0 -21.74411,37.065761" />
       <circle cx="-29.5" cy="40.0" r="1.930673457630782" />
       <path d="M -20.749236,34.60336 C -20.82312,34.915298 -20.957375,35.382265 -21.150099,35.858444 C -21.34427,36.344453 -21.577159,36.784453 -21.74411,37.065761" />
-      <line x1="-7.0" y1="-23.5" x2="-7.0" y2="-16.0" />
+      <line x1="-7.0" y1="-23.5" x2="-1.0" y2="-23.5" />
+      <line x1="-1.0" y1="-23.5" x2="5.0" y2="-23.5" />
+      <line x1="-0.5" y1="-18.0" x2="-0.5" y2="-9.5" />
+      <line x1="-7.0" y1="-7.0" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-18.0" x2="-0.5" y2="-18.0" />
+      <line x1="-0.5" y1="-18.0" x2="-0.5" y2="-9.5" />
+      <line x1="5.0" y1="-9.5" x2="-0.5" y2="-9.5" />
+      <line x1="5.0" y1="-9.5" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-23.5" x2="5.0" y2="-18.0" />
+      <line x1="-7.0" y1="-16.0" x2="-7.0" y2="-7.0" />
       <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
       <line x1="-1.0" y1="-23.5" x2="-1.0" y2="-16.0" />
-      <line x1="-7.0" y1="-23.5" x2="-1.0" y2="-23.5" />
-      <line x1="-1.0" y1="-18.0" x2="5.0" y2="-18.0" />
-      <line x1="5.0" y1="-22.0" x2="5.0" y2="-18.0" />
-      <line x1="-1.0" y1="-22.0" x2="5.0" y2="-22.0" />
+      <line x1="-7.0" y1="-23.5" x2="-7.0" y2="-16.0" />
       <line x1="14.0" y1="24.0" x2="14.0" y2="38.0" />
       <line x1="14.0" y1="38.0" x2="15.0" y2="38.0" />
       <line x1="15.0" y1="24.0" x2="15.0" y2="38.0" />
@@ -33,19 +39,37 @@
       <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
       <line x1="-1.0" y1="-23.5" x2="-1.0" y2="-16.0" />
       <line x1="-7.0" y1="-23.5" x2="-1.0" y2="-23.5" />
-      <line x1="-1.0" y1="-18.0" x2="-1.0" y2="-22.0" />
-      <line x1="-1.0" y1="-18.0" x2="-1.0" y2="-22.0" />
-      <line x1="-1.0" y1="-18.0" x2="-1.0" y2="-22.0" />
-      <line x1="-1.0" y1="-18.0" x2="-1.0" y2="-22.0" />
-      <line x1="-1.0" y1="-18.0" x2="5.0" y2="-18.0" />
-      <line x1="-1.0" y1="-18.0" x2="5.0" y2="-18.0" />
-      <line x1="5.0" y1="-22.0" x2="5.0" y2="-18.0" />
-      <line x1="-1.0" y1="-22.0" x2="5.0" y2="-22.0" />
-      <line x1="5.0" y1="-22.0" x2="5.0" y2="-18.0" />
-      <line x1="-1.0" y1="-22.0" x2="5.0" y2="-22.0" />
-      <line x1="-1.0" y1="-18.0" x2="5.0" y2="-18.0" />
-      <line x1="-1.0" y1="-22.0" x2="5.0" y2="-22.0" />
-      <line x1="5.0" y1="-22.0" x2="5.0" y2="-18.0" />
+      <line x1="-1.0" y1="-23.5" x2="5.0" y2="-23.5" />
+      <line x1="-1.0" y1="-23.5" x2="5.0" y2="-23.5" />
+      <line x1="-1.0" y1="-23.5" x2="5.0" y2="-23.5" />
+      <line x1="5.0" y1="-9.5" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-9.5" x2="-0.5" y2="-9.5" />
+      <line x1="-0.5" y1="-18.0" x2="-0.5" y2="-9.5" />
+      <line x1="5.0" y1="-18.0" x2="-0.5" y2="-18.0" />
+      <line x1="5.0" y1="-23.5" x2="5.0" y2="-18.0" />
+      <line x1="-1.0" y1="-16.0" x2="-1.0" y2="-23.5" />
+      <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
+      <line x1="-7.0" y1="-16.0" x2="-7.0" y2="-7.0" />
+      <line x1="-7.0" y1="-7.0" x2="5.0" y2="-7.0" />
+      <line x1="-7.0" y1="-7.0" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-18.0" x2="-0.5" y2="-18.0" />
+      <line x1="5.0" y1="-9.5" x2="-0.5" y2="-9.5" />
+      <line x1="5.0" y1="-9.5" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-23.5" x2="5.0" y2="-18.0" />
+      <line x1="-1.0" y1="-16.0" x2="-1.0" y2="-23.5" />
+      <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
+      <line x1="-7.0" y1="-16.0" x2="-7.0" y2="-7.0" />
+      <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
+      <line x1="-1.0" y1="-16.0" x2="-1.0" y2="-23.5" />
+      <line x1="5.0" y1="-9.5" x2="5.0" y2="-7.0" />
+      <line x1="5.0" y1="-9.5" x2="-0.5" y2="-9.5" />
+      <line x1="-0.5" y1="-18.0" x2="-0.5" y2="-9.5" />
+      <line x1="5.0" y1="-18.0" x2="-0.5" y2="-18.0" />
+      <line x1="5.0" y1="-23.5" x2="5.0" y2="-18.0" />
+      <line x1="-7.0" y1="-16.0" x2="-7.0" y2="-7.0" />
+      <line x1="-7.0" y1="-7.0" x2="5.0" y2="-7.0" />
+      <line x1="-1.0" y1="-16.0" x2="-1.0" y2="-23.5" />
+      <line x1="-7.0" y1="-16.0" x2="-1.0" y2="-16.0" />
       <line x1="14.0" y1="24.0" x2="14.0" y2="38.0" />
       <line x1="14.0" y1="38.0" x2="15.0" y2="38.0" />
       <line x1="15.0" y1="24.0" x2="15.0" y2="38.0" />
@@ -88,4 +112,4 @@
       <line x1="15.0" y1="37.3" x2="14.0" y2="37.3" />
     </g>
   </g>
-<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-013_plf_paddle_slider_shim  PLF PADDLE 6061 (4 OFF) + HOOK SLIDER 17-4PH (4 OFF) + SHIM 316 1.0 (8 OFF + fit-up kit)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">paddle plate..................................43 x 5 x 29; knuckle dia 18 x 43, bore 5.2 H8</text><text x="18" y="68" font-family="monospace" font-size="11">paddle detent dimples.........................2 x sphere R2.3 +/-0.05 at 7.5 from the axis, at 90 / 22 deg (closed / stage 1, 68 deg apart)</text><text x="18" y="82" font-family="monospace" font-size="11">paddle states.................................closed 0, stage 1 68, open 82 deg (inboard)</text><text x="18" y="96" font-family="monospace" font-size="11">hook slider...................................bar 49 x 6 x 7.5; 2 teeth 10 wide at x +/-12.5, z -22 .. -18, tip +5 past the datum (clamped pose)</text><text x="18" y="110" font-family="monospace" font-size="11">  tooth top faces.............................ground flat 0.02; pin-bottom datum z -18.00 +/-0.05 from the cap</text><text x="18" y="124" font-family="monospace" font-size="11">  travel......................................6.5 along u: dwell closed -> stage 1 (0.45), retract by stage 1 -> open</text><text x="18" y="138" font-family="monospace" font-size="11">shim..........................................316, 1.0 +/-0.02, 42 x 14, two obround 6.6 x 12.6; kit 0.5 / 1.0 for a 0 - 4 mm pack</text><text x="18" y="152" font-family="monospace" font-size="11">finish........................................paddle black anodise Type II; slider + shim passivate ASTM A967</text><text x="12" y="174" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="188" font-family="monospace" font-size="11">1. Slider 17-4 PH H1025, wire-EDM + ground, sliding fit 0.2 in the slot (DWG-27-012).</text><text x="18" y="202" font-family="monospace" font-size="11">2. Drive link paddle cam -> slider and the lock-cam keeper are NOT drawn (OPEN plf_drive_link_and_lock_interlock).</text><text x="18" y="216" font-family="monospace" font-size="11">3. Paddle hinge pin: ISO 2338 d5 m6 x 80, cut/ground to 76, press fit in one ear. Detent: M8 ball plunger (McMaster 85015A51, same as the module plunger).</text><text x="12" y="238" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>
+<text x="12" y="20" font-family="monospace" font-size="15" font-weight="bold">DWG-27-013_plf_paddle_slider_shim  PLF PADDLE 6061 (4 OFF) + HOOK SLIDER 17-4PH (4 OFF) + SHIM 316 1.0 (8 OFF + fit-up kit)</text><text x="12" y="40" font-family="monospace" font-size="11">DIMENSIONS (mm) — all from step27/hardware.json + blender/params.json</text><text x="18" y="54" font-family="monospace" font-size="11">paddle plate..................................43 x 5 x 29; knuckle dia 18 x 43, bore 5.2 H8</text><text x="18" y="68" font-family="monospace" font-size="11">paddle detent dimples.........................2 x sphere R2.3 +/-0.05 at 7.5 from the axis, at 90 / 22 deg (closed / stage 1, 68 deg apart)</text><text x="18" y="82" font-family="monospace" font-size="11">paddle states.................................closed 0, stage 1 68, open 82 deg (inboard)</text><text x="18" y="96" font-family="monospace" font-size="11">hook slider...................................bar 49 x 6 x 7.5; 2 C-jaws 10 wide at x +/-12.5, z -23.5 .. -7.0; tip u=+5; all interface dimensions PROVISIONAL</text><text x="18" y="110" font-family="monospace" font-size="11">  capture.....................................lower lip tangent to bridge underside; upper lip + web wrap bridge; see SEC-30-001</text><text x="18" y="124" font-family="monospace" font-size="11">  travel......................................6.5 along u: dwell closed -> stage 1 (0.45), retract by stage 1 -> open</text><text x="18" y="138" font-family="monospace" font-size="11">shim..........................................316, 1.0 +/-0.02, 42 x 14, two obround 6.6 x 12.6; kit 0.5 / 1.0 for a 0 - 4 mm pack</text><text x="18" y="152" font-family="monospace" font-size="11">finish........................................paddle black anodise Type II; slider + shim passivate ASTM A967</text><text x="12" y="174" font-family="monospace" font-size="11" font-weight="bold">NOTES</text><text x="18" y="188" font-family="monospace" font-size="11">1. Slider 17-4 PH H1025, wire-EDM + ground, sliding fit 0.2 in the slot (DWG-27-012).</text><text x="18" y="202" font-family="monospace" font-size="11">2. Drive link paddle cam -> slider and the lock-cam keeper are NOT drawn (OPEN plf_drive_link_and_lock_interlock).</text><text x="18" y="216" font-family="monospace" font-size="11">3. Paddle hinge pin: ISO 2338 d5 m6 x 80, cut/ground to 76, press fit in one ear. Detent: M8 ball plunger (McMaster 85015A51, same as the module plunger).</text><text x="12" y="238" font-family="monospace" font-size="10" fill="#a00">NOT RELEASED FOR FABRICATION. Uncalibrated against the physical vehicle. No FEA performed.</text></svg>

@@ -78,7 +78,7 @@
     {
       "name": "shell_one_valid_solid",
       "state": "PASS",
-      "detail": "1 solid(s), valid=True, 18.5 kg at 5.8 kg/m^2"
+      "detail": "1 solid(s), valid=True, 18.2 kg at 5.8 kg/m^2"
     },
     {
       "name": "shell_wall_22mm",
@@ -113,7 +113,7 @@
     {
       "name": "hatch_seal_under_its_leaf",
       "state": "PASS",
-      "detail": "seal footprint +/-523 x +/-169 inside leaf +/-526 x +/-172; compressed top +0.00 mm from the leaf inner face"
+      "detail": "seal footprint +/-646 x +/-169 inside leaf +/-650 x +/-172; compressed top +0.00 mm from the leaf inner face"
     },
     {
       "name": "seal_bulb_deflection_25_35_pct",
@@ -258,7 +258,7 @@
     {
       "name": "struts_hold_open_with_margin",
       "state": "PASS",
-      "detail": "leaf 3.78 kg: 10.64 N.m vs gravity 6.25 N.m (ratio 1.70)"
+      "detail": "leaf 4.06 kg: 10.64 N.m vs gravity 6.71 N.m (ratio 1.59)"
     },
     {
       "name": "hatch_close_force_reasonable",
@@ -373,7 +373,7 @@
     {
       "name": "plf_hook_engages_pin_pair",
       "state": "PASS",
-      "detail": "2 teeth 25 mm apart under the dual-barrel pin pair (PROVISIONAL pin dia 8, u 4, z -14): closed = tooth top on the pin, tip 1.00 mm past the pin centre; stage 1 = 0.55 past; open (82 deg) = hooks retracted, 2.80 mm clear of the pins; no overlap in any state"
+      "detail": "2 teeth 25 mm apart under the continuous reference bridge (two jaw bearing zones) (PROVISIONAL pin dia 8, u 4, z -14): closed = tooth top on the pin, tip 1.00 mm past the pin centre; stage 1 = 0.55 past; open (82 deg) = hooks retracted, 2.80 mm clear of the pins; no overlap in any state"
     },
     {
       "name": "plf_two_detent_stations_distinct",
@@ -423,12 +423,12 @@
     {
       "name": "plf_port_internals_P-CAL-01b",
       "state": "OPEN",
-      "detail": "Rivian publishes NEITHER the accessory-port internals NOR the crossbar-foot drawing: the port recess (70 x 34 x 30 mm), the dual-barrel pin pair (dia 8, pitch 25, u 4, z -14), the hook, paddle, lock position and tuning screw are ALL PROVISIONAL (mount.* in params.json). Buy one Rivian Cargo Crossbars set as the reference article, photograph + measure its foot and a real port, set the numbers and re-run; do not release a station drawing before that"
+      "detail": "Rivian publishes NEITHER the accessory-port internals NOR the crossbar-foot drawing: the port recess (70 x 34 x 30 mm), the continuous reference bridge (two jaw bearing zones) (dia 8, pitch 25, u 4, z -14), the hook, paddle, lock position and tuning screw are ALL PROVISIONAL (mount.* in params.json). Buy one Rivian Cargo Crossbars set as the reference article, photograph + measure its foot and a real port, set the numbers and re-run; do not release a station drawing before that"
     },
     {
       "name": "plf_drive_link_and_lock_interlock",
       "state": "OPEN",
-      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 215 N of dead weight per station"
+      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 216 N of dead weight per station"
     },
     {
       "name": "bed_port_positions_P-CAL-02",
@@ -438,22 +438,22 @@
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 87.83 kg, CG [696.1, 0.7, 206.5] mm; worst limit case LC1 vertical bump: 699 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 88.3 kg, CG [699.6, 0.7, 206.2] mm; worst limit case LC1 vertical bump: 698 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
       "state": "OPEN",
-      "detail": "LC6 forward crash pulse: 2507 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
+      "detail": "LC6 forward crash pulse: 2518 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
     },
     {
       "name": "plf_hook_and_screws_within_allowable_at_port_rating",
-      "state": "PASS",
-      "detail": "each station loaded to 2500 N: tooth bending 258 MPa <= 600 (0.6 x 17-4PH Rp0.2, 1250 N per tooth, root-to-pin 5.5 mm), rail-screw shear 62 MPa <= 270, thread strip-out 19509 N, slot-floor bearing 8 MPa - hand calculation with ESTIMATED material values, not FEA"
+      "state": "OPEN",
+      "detail": "each station loaded to 2500 N: tooth bending 258 MPa <= 600 (0.6 x 17-4PH Rp0.2, 1250 N per tooth, root-to-pin 5.5 mm), rail-screw shear 62 MPa <= 270, thread strip-out 19509 N, slot-floor bearing 8 MPa - legacy lower-lip screening ONLY; does not validate C-jaw web/upper lip or source-derived bridge, no allowable custom clamp load established"
     },
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "87.83 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to 25 kg dynamic until FEA"
+      "detail": "88.3 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
     },
     {
       "name": "plf_kinematics_exported",
@@ -492,8 +492,8 @@
     },
     {
       "name": "no_interference_closed_assembly",
-      "state": "PASS",
-      "detail": "220 parts, 24090 pairs, allow-list 9 designed contacts"
+      "state": "FAIL",
+      "detail": "1 clashes, worst [(491.0, '_STEP27_hatch0/HATCH_HATCH_SURROUND_6061', 'PER_STEP27_hatch0/HATCH_BULB_SEAL_DD6139')]"
     },
     {
       "name": "topper_clear_of_r1t_keepouts",
@@ -552,7 +552,7 @@
     "Attachment: Port Latch Foot hook / paddle / lock force, over-centre preload, detent force, port strength beyond Rivian's 2,500 N rating, crash retention, rail/foot bond strength and fatigue - load cases and the hand strength check are stated assumptions, not FEA or test",
     "Attachment: the port internals and the Rivian crossbar foot are NOT published - every PLF dimension at the port is PROVISIONAL until calibration P-CAL-01b (a physical Rivian crossbar + port)"
   ],
-  "pass": 97,
-  "fail": 0,
-  "open": 11
+  "pass": 95,
+  "fail": 1,
+  "open": 12
 }

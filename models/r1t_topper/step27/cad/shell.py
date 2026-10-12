@@ -175,9 +175,14 @@ def foot():
     return parts[0] + parts[1]
 
 
-def _rrect_prism(pl, half_w, half_h, r, n0, n1):
-    """Rounded-rectangle prism in a local plane, spanning local z from n0 to n1."""
-    sk = G.rrect(2 * half_w, 2 * half_h, r)
+def _rrect_prism(pl, half_w, half_h, r, n0, n1, half_w_bot=None):
+    """Rounded-rectangle (or, with ``half_w_bot`` given, rounded-trapezoid) prism in a local
+    plane, spanning local z from n0 to n1. ``half_w_bot`` widens the -y edge only (used by
+    ``hatch_cut`` for the step 30 lower-chord widening); defaults to a plain rectangle."""
+    if half_w_bot is None:
+        sk = G.rrect(2 * half_w, 2 * half_h, r)
+    else:
+        sk = G.hatch_outline(half_h, half_w, half_w_bot, r)
     return pl * (Pos(0, 0, n0) * extrude(sk, amount=n1 - n0))
 
 
@@ -189,9 +194,13 @@ def socket_cut(side: str, i: int):
 
 
 def hatch_cut():
+    """Step 30: the through-cut widens at the bottom edge with the leaf (geom.H_BOTTOM_HALF_W,
+    the tailgate-width estimate) so the wider leaf has shell clearance to swing; the top stays at
+    the original aperture width (the shoulder/roof budget is tight there, not at the rail)."""
     W, HH = G.hatch_wh()
     e = G.H_SHELL_CUT
-    return _rrect_prism(G.hatch_plane(), W / 2 + e, HH / 2 + e, G.H["corner_r"] + e, -80.0, 40.0)
+    return _rrect_prism(G.hatch_plane(), W / 2 + e, HH / 2 + e, G.H["corner_r"] + e, -80.0, 40.0,
+                        half_w_bot=G.H_BOTTOM_HALF_W + e)
 
 
 def drain_exit_holes():

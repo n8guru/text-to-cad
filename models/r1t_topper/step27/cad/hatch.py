@@ -24,7 +24,7 @@ import math
 from pathlib import Path
 
 from build123d import (
-    Align, Box, Compound, Cylinder, Plane, Pos, Rot, Vector, extrude,
+    Align, Box, Compound, Cylinder, Plane, Pos, Rot, Vector, Wire, extrude,
 )
 
 import geom as G
@@ -118,8 +118,22 @@ STRUT_LEAF = tuple(STRUT["installed_geometry"]["leaf_stud"])     # solved, see s
 STRUT_FRAME = tuple(STRUT["installed_geometry"]["frame_stud"])
 
 
+# Step 30: the lower chord widens to the tailgate estimate (geom.H_BOTTOM_HALF_W); the top chord
+# stays at AX. See geom.py's "hatch lower-chord widening" block for the estimate-vs-measured note.
+AX_BOT = G.H_BOTTOM_HALF_W
+
+
 def ring(e0, e1, z0, z1):
-    return G.border_ring(AX, AY, CR, e0, e1, z0, z1)
+    return G.border_ring_trapezoid(AX, AX_BOT, AY, CR, e0, e1, z0, z1)
+
+
+def half_w_at(y: float) -> float:
+    """Aperture half-width (no border offset) at hatch-local height ``y``, on the same linear
+    taper as ``ring``/the leaf: AX at the top edge (+AY), AX_BOT at the bottom edge (-AY). Lets
+    fixed-x surround features (e.g. the strut frame bracket) that sit right at the aperture edge
+    track the widened frame instead of clashing with the now-wider leaf below the top."""
+    frac = min(1.0, max(0.0, (AY - y) / (2.0 * AY)))
+    return AX + (AX_BOT - AX) * frac
 
 
 def _lab(shape, name):
@@ -206,9 +220,14 @@ def hatch_surround():
     for sx in (-1, 1):                                                  # strut frame brackets
         y0, y1 = STRUT_FRAME[1] - 20.0, STRUT_FRAME[1] + 20.0
         z0 = STRUT_FRAME[2] - 12.0
-        br = Pos(sx * (AX + 3.0), (y0 + y1) / 2, (z0 + LIP0) / 2) * Box(
+        bx = AX + 3.0  # preserve the solved frame stud / strut geometry
+        # Reach the wider side return with a 6 mm web behind the leaf sweep.
+        reach = half_w_at(y0) + G.LIP_T + 5.0
+        part += Pos(sx * (bx + reach) / 2, (y0 + y1) / 2, LIP0 + 3.0) * Box(
+            reach - bx, y1 - y0, 6.0, align=(CC, CC, CC))
+        br = Pos(sx * bx, (y0 + y1) / 2, (z0 + LIP0) / 2) * Box(
             6.0, y1 - y0, LIP0 - z0, align=(CC, CC, CC))
-        br -= Pos(sx * (AX + 3.0), STRUT_FRAME[1], STRUT_FRAME[2]) * Rot(0, 90, 0) * Cylinder(
+        br -= Pos(sx * bx, STRUT_FRAME[1], STRUT_FRAME[2]) * Rot(0, 90, 0) * Cylinder(
             4.0, 8.0, align=(CC, CC, CC))                                # M8 tapped
         part += br
     part -= bottom_run_cutter()                                         # no fixed bottom run
@@ -230,20 +249,25 @@ def drain_tubes():
 
 
 def seal_land_path():
-    sk = G.rrect(2 * (AX + G.H_SEAL_OFF), 2 * (AY + G.H_SEAL_OFF), CR + G.H_SEAL_OFF)
-    return (Pos(0, 0, FACE_Z) * sk).wire()
+    sk = G.hatch_outline(AY + G.H_SEAL_OFF, AX + G.H_SEAL_OFF, AX_BOT + G.H_SEAL_OFF,
+                          CR + G.H_SEAL_OFF)
+    # Open-bottom U path: never sweep a bulb through the sharp lower corners.
+    # OCCT can silently return an invalid giant solid for a sharp closed pipe.
+    # The tailgate bottom seal remains its separately named OPEN interface.
+    edges = [edge for edge in sk.edges()
+             if edge.center().Y > -AY - G.H_SEAL_OFF + 1e-6]
+    return Pos(0, 0, FACE_Z) * Wire.combine(edges)[0]
 
 
 def seal_bead(compressed: bool = True):
     b = hw.seal_bead(seal_land_path(), up=(0, 0, 1), compressed=compressed)
     # the bottom run between the stubs is gone with the surround land it compressed against
     cut = bottom_run_cutter()
-    try:
-        lab = b.label
-        b = b - cut
-        b.label = lab
-    except Exception:                                                   # noqa: BLE001
-        pass
+    lab = b.label
+    b = b - cut
+    b.label = lab
+    if not b.is_valid or b.volume <= 0:
+        raise ValueError("invalid hatch seal sweep; do not export misleading geometry")
     return b
 
 
@@ -260,9 +284,14 @@ def _win_sketch(grow):
 
 
 def leaf_shell():
-    """Carbon leaf, flush: outer skin lip over each pane, inside-glazed pockets, solid mullion."""
+    """Carbon leaf, flush: outer skin lip over each pane, inside-glazed pockets, solid mullion.
+
+    Step 30: the leaf's bottom chord widens from AX (top, unchanged) to AX_BOT (the tailgate-width
+    estimate) so the leaf's lower edge tracks the tailgate instead of swooping inward short of it.
+    """
     e = G.H_LEAF_OUT
-    part = Pos(0, 0, -LEAF_T) * extrude(G.rrect(2 * (AX + e), 2 * (AY + e), CR + e), amount=LEAF_T)
+    sk = G.hatch_outline(AY + e, AX + e, AX_BOT + e, CR + e)
+    part = Pos(0, 0, -LEAF_T) * extrude(sk, amount=LEAF_T)
     for cx in _win_centres():
         part -= Pos(cx, 0, -LEAF_T - 1) * extrude(_win_sketch(0.0), amount=LEAF_T + 2)
         part -= Pos(cx, 0, -LEAF_T - 1) * extrude(_win_sketch(WIN["overlap"] + 0.5),

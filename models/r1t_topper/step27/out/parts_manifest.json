@@ -2,8 +2,8 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 70030447.6,
-    "mass_kg": 18.463,
+    "volume_mm3": 68948133.9,
+    "mass_kg": 18.177,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
@@ -12,9 +12,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      591.9,
+      579.3,
       -1.2,
-      329.3
+      332.6
     ]
   },
   {
@@ -182,8 +182,8 @@
   {
     "part": "PLF_BODY_6061",
     "stl": "PLF_BODY_6061.stl",
-    "volume_mm3": 162877.8,
-    "mass_kg": 0.44,
+    "volume_mm3": 156647.8,
+    "mass_kg": 0.423,
     "material": "6061-T6",
     "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
     "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
@@ -194,7 +194,7 @@
     "centroid_mm": [
       306.9,
       721.0,
-      25.2
+      26.6
     ]
   },
   {
@@ -218,8 +218,8 @@
   {
     "part": "PLF_HOOK_SLIDER_17_4PH",
     "stl": "PLF_HOOK_SLIDER_17_4PH.stl",
-    "volume_mm3": 2685.0,
-    "mass_kg": 0.021,
+    "volume_mm3": 4330.0,
+    "mass_kg": 0.034,
     "material": "17-4 PH stainless, H1025",
     "process": "wire-EDM from 10 mm plate + grind tooth faces",
     "finish": "passivate ASTM A967",
@@ -229,8 +229,8 @@
     "source_url": null,
     "centroid_mm": [
       307.0,
-      721.1,
-      -19.8
+      721.4,
+      -16.9
     ]
   },
   {
@@ -380,8 +380,8 @@
   {
     "part": "PLF_BODY_6061_2",
     "stl": "PLF_BODY_6061_2.stl",
-    "volume_mm3": 162877.8,
-    "mass_kg": 0.44,
+    "volume_mm3": 156647.8,
+    "mass_kg": 0.423,
     "material": "6061-T6",
     "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
     "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
@@ -392,7 +392,7 @@
     "centroid_mm": [
       307.1,
       -721.0,
-      25.2
+      26.6
     ]
   },
   {
@@ -416,8 +416,8 @@
   {
     "part": "PLF_HOOK_SLIDER_17_4PH_2",
     "stl": "PLF_HOOK_SLIDER_17_4PH_2.stl",
-    "volume_mm3": 2685.0,
-    "mass_kg": 0.021,
+    "volume_mm3": 4330.0,
+    "mass_kg": 0.034,
     "material": "17-4 PH stainless, H1025",
     "process": "wire-EDM from 10 mm plate + grind tooth faces",
     "finish": "passivate ASTM A967",
@@ -427,8 +427,8 @@
     "source_url": null,
     "centroid_mm": [
       307.0,
-      -721.1,
-      -19.8
+      -721.4,
+      -16.9
     ]
   },
   {
@@ -578,8 +578,8 @@
   {
     "part": "PLF_BODY_6061_3",
     "stl": "PLF_BODY_6061_3.stl",
-    "volume_mm3": 162877.8,
-    "mass_kg": 0.44,
+    "volume_mm3": 156647.8,
+    "mass_kg": 0.423,
     "material": "6061-T6",
     "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
     "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
@@ -590,7 +590,7 @@
     "centroid_mm": [
       1153.9,
       707.0,
-      25.2
+      26.6
     ]
   },
   {
@@ -614,8 +614,8 @@
   {
     "part": "PLF_HOOK_SLIDER_17_4PH_3",
     "stl": "PLF_HOOK_SLIDER_17_4PH_3.stl",
-    "volume_mm3": 2685.0,
-    "mass_kg": 0.021,
+    "volume_mm3": 4330.0,
+    "mass_kg": 0.034,
     "material": "17-4 PH stainless, H1025",
     "process": "wire-EDM from 10 mm plate + grind tooth faces",
     "finish": "passivate ASTM A967",
@@ -625,8 +625,8 @@
     "source_url": null,
     "centroid_mm": [
       1154.0,
-      707.1,
-      -19.8
+      707.4,
+      -16.9
     ]
   },
   {
@@ -776,8 +776,8 @@
   {
     "part": "PLF_BODY_6061_4",
     "stl": "PLF_BODY_6061_4.stl",
-    "volume_mm3": 162877.8,
-    "mass_kg": 0.44,
+    "volume_mm3": 156647.8,
+    "mass_kg": 0.423,
     "material": "6061-T6",
     "process": "5-axis CNC from 85 x 55 x 95 mm bar, 2 setups, stem + slot + bores",
     "finish": "hard anodise Type III clear (seat flange, slot floor, ears ground/masked)",
@@ -788,7 +788,7 @@
     "centroid_mm": [
       1154.1,
       -707.0,
-      25.2
+      26.6
     ]
   },
   {
@@ -812,8 +812,8 @@
   {
     "part": "PLF_HOOK_SLIDER_17_4PH_4",
     "stl": "PLF_HOOK_SLIDER_17_4PH_4.stl",
-    "volume_mm3": 2685.0,
-    "mass_kg": 0.021,
+    "volume_mm3": 4330.0,
+    "mass_kg": 0.034,
     "material": "17-4 PH stainless, H1025",
     "process": "wire-EDM from 10 mm plate + grind tooth faces",
     "finish": "passivate ASTM A967",
@@ -823,8 +823,8 @@
     "source_url": null,
     "centroid_mm": [
       1154.0,
-      -707.1,
-      -19.8
+      -707.4,
+      -16.9
     ]
   },
   {
@@ -3368,8 +3368,8 @@
   {
     "part": "HATCH_HATCH_SURROUND_6061",
     "stl": "HATCH_HATCH_SURROUND_6061.stl",
-    "volume_mm3": 1478274.5,
-    "mass_kg": 3.991,
+    "volume_mm3": 1661261.3,
+    "mass_kg": 4.485,
     "material": "6061-T6",
     "process": "CNC from 12 mm plate",
     "finish": "black anodise Type II",
@@ -3378,16 +3378,16 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1325.4,
+      1327.1,
       -0.0,
-      234.8
+      223.5
     ]
   },
   {
     "part": "HATCH_BULB_SEAL_DD6139",
     "stl": "HATCH_BULB_SEAL_DD6139.stl",
-    "volume_mm3": 169271.6,
-    "mass_kg": 0.118,
+    "volume_mm3": 159678.7,
+    "mass_kg": 0.112,
     "material": "EPDM sponge bulb on dense EPDM 70 Shore A base, aluminium wire carrier",
     "process": "purchased extrusion, cut and bonded at the joint",
     "finish": "black",
@@ -3396,16 +3396,16 @@
     "status": "ORDERABLE",
     "source_url": "https://www.trimlok.com/secure/Content/Images/Catalog-800/TrimLok-Catalog-800_Page23-coex.jpg",
     "centroid_mm": [
-      1341.0,
+      1334.4,
       -0.0,
-      233.5
+      258.1
     ]
   },
   {
     "part": "HATCH_LEAF_HATCH_LEAF_CARBON",
     "stl": "HATCH_LEAF_HATCH_LEAF_CARBON.stl",
-    "volume_mm3": 4212667.3,
-    "mass_kg": 0.939,
+    "volume_mm3": 5447543.8,
+    "mass_kg": 1.215,
     "material": "carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core",
     "process": "vacuum infusion, female mould",
     "finish": "UV clear",
@@ -3414,9 +3414,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1377.0,
+      1380.2,
       -0.0,
-      170.9
+      158.6
     ]
   },
   {

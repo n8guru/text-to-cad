@@ -1,0 +1,23 @@
+{
+  "step": "S7_topper_final",
+  "stills": {
+    "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_side.png",
+    "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_overhead.png",
+    "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_front.png"
+  },
+  "scores": {
+    "imported_parts": 220,
+    "roof_step_mm": -8.646875619888306,
+    "cab_gap_mm": 22.39999920129776,
+    "base_gap_max_mm": 4.0000006556510925,
+    "base_gap_min_mm": 4.0000006556510925,
+    "base_samples": 1,
+    "base_pad_expected_mm": 4.0,
+    "base_pad_error_mm": 6.556510924460301e-07,
+    "kind": "r1t_cad"
+  },
+  "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+  "arms": [],
+  "assert_ok": true,
+  "assert_fails": []
+}

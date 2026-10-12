@@ -1,0 +1,210 @@
+{
+  "scope": "provisional_mount_detail_not_fitment",
+  "states": {
+    "closed": {
+      "angle_deg": 0,
+      "parts": [
+        {
+          "name": "PLF_BODY_6061",
+          "stl": "PLF_BODY_6061_00.stl",
+          "sha256": "1c6a99885bc57aebeb0423a3ebf115bb3b3be8ed0700f26f5cf9aaa559b0fe39"
+        },
+        {
+          "name": "PLF_PADDLE_6061",
+          "stl": "PLF_PADDLE_6061_01.stl",
+          "sha256": "6fe3c3564c04fe2ba04c7cceb999eff0a4dad9426be06bacafd7640c0ad7c59d"
+        },
+        {
+          "name": "PLF_HOOK_SLIDER_17_4PH",
+          "stl": "PLF_HOOK_SLIDER_17_4PH_02.stl",
+          "sha256": "688999056f114ed79c12a7648ba2f3ec417a52f98150dd11be4c3c611e07ff08"
+        },
+        {
+          "name": "PLF_LOCK_CYLINDER_COMPX",
+          "stl": "PLF_LOCK_CYLINDER_COMPX_03.stl",
+          "sha256": "2116e210728205161006aa29e410ef19a8d2201cec1492c68698d6f11d967b67"
+        },
+        {
+          "name": "PLF_HINGE_PIN_5x76_A4",
+          "stl": "PLF_HINGE_PIN_5x76_A4_04.stl",
+          "sha256": "32d997216b0e52de76961caaab1a40817c24619b99eea916fc89fd1d4f788589"
+        },
+        {
+          "name": "PLF_DETENT_PLUNGER_M8",
+          "stl": "PLF_DETENT_PLUNGER_M8_05.stl",
+          "sha256": "962a086b8127d94196dd498fa942e7511ddf74d62bb915dbd5a8a350ff2747f9"
+        },
+        {
+          "name": "PLF_TUNE_SCREW_M6x20_A4",
+          "stl": "PLF_TUNE_SCREW_M6x20_A4_06.stl",
+          "sha256": "5234a0dd213ea2354b1adaa02011f1ab0475931955cf1902522054291b622137"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_07.stl",
+          "sha256": "eb430c44adb330c172f34547c2d8e2002d815e10ea84651d77eb3ba130f7c429"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_08.stl",
+          "sha256": "113954f771223c16a040083bb8e5789cd167b0b4a823c2df07c9efdc778ba993"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_09.stl",
+          "sha256": "ee68d5aab1dd6734b379df7242b232bf11ae0d8b637de2c0cf2719a8d81ad34f"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_10.stl",
+          "sha256": "b235bc518a994657e1da394d8a97f1c10153a47468ed6b4bb374b8d6009ce3d5"
+        },
+        {
+          "name": "PORT_REF_BRIDGE_PROVISIONAL",
+          "stl": "PORT_REF_BRIDGE_PROVISIONAL_11.stl",
+          "sha256": "e255faf6a1cf611d6779869d37dd74d8bd716162bfb3c865944f09820da353a0"
+        }
+      ],
+      "step": "STEP30_MOUNT_CLOSED_PROVISIONAL.step",
+      "step_sha256": "7fe859213e3de2f8029bd10e7ea2b8cde0f0386dbc875ae0ea40b25e880c437a"
+    },
+    "caught": {
+      "angle_deg": 68.0,
+      "parts": [
+        {
+          "name": "PLF_BODY_6061",
+          "stl": "PLF_BODY_6061_00.stl",
+          "sha256": "1c6a99885bc57aebeb0423a3ebf115bb3b3be8ed0700f26f5cf9aaa559b0fe39"
+        },
+        {
+          "name": "PLF_PADDLE_6061",
+          "stl": "PLF_PADDLE_6061_01.stl",
+          "sha256": "be110f3517a982cd67dcda41fcc5f27b044a7c57b36fab5d5e6c867a4cfba048"
+        },
+        {
+          "name": "PLF_HOOK_SLIDER_17_4PH",
+          "stl": "PLF_HOOK_SLIDER_17_4PH_02.stl",
+          "sha256": "379e2e62d502ff90d9be4ed18037b55d17bb0ab57b8e3bcdaf431b77f90002b0"
+        },
+        {
+          "name": "PLF_LOCK_CYLINDER_COMPX",
+          "stl": "PLF_LOCK_CYLINDER_COMPX_03.stl",
+          "sha256": "2116e210728205161006aa29e410ef19a8d2201cec1492c68698d6f11d967b67"
+        },
+        {
+          "name": "PLF_HINGE_PIN_5x76_A4",
+          "stl": "PLF_HINGE_PIN_5x76_A4_04.stl",
+          "sha256": "32d997216b0e52de76961caaab1a40817c24619b99eea916fc89fd1d4f788589"
+        },
+        {
+          "name": "PLF_DETENT_PLUNGER_M8",
+          "stl": "PLF_DETENT_PLUNGER_M8_05.stl",
+          "sha256": "962a086b8127d94196dd498fa942e7511ddf74d62bb915dbd5a8a350ff2747f9"
+        },
+        {
+          "name": "PLF_TUNE_SCREW_M6x20_A4",
+          "stl": "PLF_TUNE_SCREW_M6x20_A4_06.stl",
+          "sha256": "5234a0dd213ea2354b1adaa02011f1ab0475931955cf1902522054291b622137"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_07.stl",
+          "sha256": "eb430c44adb330c172f34547c2d8e2002d815e10ea84651d77eb3ba130f7c429"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_08.stl",
+          "sha256": "113954f771223c16a040083bb8e5789cd167b0b4a823c2df07c9efdc778ba993"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_09.stl",
+          "sha256": "ee68d5aab1dd6734b379df7242b232bf11ae0d8b637de2c0cf2719a8d81ad34f"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_10.stl",
+          "sha256": "b235bc518a994657e1da394d8a97f1c10153a47468ed6b4bb374b8d6009ce3d5"
+        },
+        {
+          "name": "PORT_REF_BRIDGE_PROVISIONAL",
+          "stl": "PORT_REF_BRIDGE_PROVISIONAL_11.stl",
+          "sha256": "e255faf6a1cf611d6779869d37dd74d8bd716162bfb3c865944f09820da353a0"
+        }
+      ],
+      "step": "STEP30_MOUNT_CAUGHT_PROVISIONAL.step",
+      "step_sha256": "6703eb8293487811827d965ae778921c24b1192302d6635253a8ea06b9e5c66f"
+    },
+    "released": {
+      "angle_deg": 82.0,
+      "parts": [
+        {
+          "name": "PLF_BODY_6061",
+          "stl": "PLF_BODY_6061_00.stl",
+          "sha256": "1c6a99885bc57aebeb0423a3ebf115bb3b3be8ed0700f26f5cf9aaa559b0fe39"
+        },
+        {
+          "name": "PLF_PADDLE_6061",
+          "stl": "PLF_PADDLE_6061_01.stl",
+          "sha256": "ea4298c888d51068631b8f8b502a1ec2fd0912072f06f2190956d1bc9e792bee"
+        },
+        {
+          "name": "PLF_HOOK_SLIDER_17_4PH",
+          "stl": "PLF_HOOK_SLIDER_17_4PH_02.stl",
+          "sha256": "bd205ccb7fb918f12114f0319381110d6964df28755bf88a346c073db1fc743d"
+        },
+        {
+          "name": "PLF_LOCK_CYLINDER_COMPX",
+          "stl": "PLF_LOCK_CYLINDER_COMPX_03.stl",
+          "sha256": "2116e210728205161006aa29e410ef19a8d2201cec1492c68698d6f11d967b67"
+        },
+        {
+          "name": "PLF_HINGE_PIN_5x76_A4",
+          "stl": "PLF_HINGE_PIN_5x76_A4_04.stl",
+          "sha256": "32d997216b0e52de76961caaab1a40817c24619b99eea916fc89fd1d4f788589"
+        },
+        {
+          "name": "PLF_DETENT_PLUNGER_M8",
+          "stl": "PLF_DETENT_PLUNGER_M8_05.stl",
+          "sha256": "962a086b8127d94196dd498fa942e7511ddf74d62bb915dbd5a8a350ff2747f9"
+        },
+        {
+          "name": "PLF_TUNE_SCREW_M6x20_A4",
+          "stl": "PLF_TUNE_SCREW_M6x20_A4_06.stl",
+          "sha256": "5234a0dd213ea2354b1adaa02011f1ab0475931955cf1902522054291b622137"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_07.stl",
+          "sha256": "eb430c44adb330c172f34547c2d8e2002d815e10ea84651d77eb3ba130f7c429"
+        },
+        {
+          "name": "PLF_RAIL_SCREW_M6x30_A4",
+          "stl": "PLF_RAIL_SCREW_M6x30_A4_08.stl",
+          "sha256": "113954f771223c16a040083bb8e5789cd167b0b4a823c2df07c9efdc778ba993"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_09.stl",
+          "sha256": "ee68d5aab1dd6734b379df7242b232bf11ae0d8b637de2c0cf2719a8d81ad34f"
+        },
+        {
+          "name": "PLF_SHIM_316_1p0",
+          "stl": "PLF_SHIM_316_1p0_10.stl",
+          "sha256": "b235bc518a994657e1da394d8a97f1c10153a47468ed6b4bb374b8d6009ce3d5"
+        },
+        {
+          "name": "PORT_REF_BRIDGE_PROVISIONAL",
+          "stl": "PORT_REF_BRIDGE_PROVISIONAL_11.stl",
+          "sha256": "e255faf6a1cf611d6779869d37dd74d8bd716162bfb3c865944f09820da353a0"
+        }
+      ],
+      "step": "STEP30_MOUNT_RELEASED_PROVISIONAL.step",
+      "step_sha256": "5d2098bbf7ff310d3b99af8a8d1920dce51997c50312be1639311bdd79827b3e"
+    }
+  },
+  "sources": {
+    "mounts.py": "9d557b5bb4b84bd829320397ab09a6280b8fca019c053d38669863a16e515c80",
+    "export_step30_mount.py": "cc696db06e219249cb2950df91511200681798cebb39af5ebdc1ccc0036eb17f"
+  }
+}

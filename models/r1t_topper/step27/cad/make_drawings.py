@@ -171,8 +171,8 @@ def main():
     made.append(sheet(
         "DWG-27-008_hatch_surround", HA.hatch_surround(), Plane.XY,
         "HATCH SURROUND, 6061-T6 TOP-HAT, 1 OFF", [
-            ("aperture W x H", f"{HA.W:.1f} x {HA.HH:.1f}"),
-            ("corner radius", f"{HA.CR:.1f}"),
+            ("aperture", f"upper nominal W {HA.W:.1f}; bottom W {2*HA.AX_BOT:.1f}; H {HA.HH:.1f}"),
+            ("corner radius", f"upper {HA.CR:.1f}; lower corners square; no fixed bottom crossbar"),
             ("seal, offset", f"{G.H_SEAL_OFF:.0f}"),
             ("recess wall, offsets", f"{G.H_RECESS_IN:.0f} .. {G.H_RECESS_OUT:.0f}"),
             ("bond flange, offsets", f"{G.H_RECESS_OUT:.0f} .. {G.H_BOND_OUT:.0f}"),
@@ -215,9 +215,9 @@ def main():
             ("seat flange (the pad STOP)", f'{MT["flange_x"]:.0f} x {MT["flange_u1"] - MT["flange_u0"]:.0f} x {MT["flange_t"]:.1f}; '
                                            f'top z {MT["flange_t"]:.2f} +0/-0.05, underside z 0 (bears on the rail cap)'),
             ("head (in the rail notch)", f'{MT["head_x"]:.0f} x {MT["head_u1"] - MT["head_u0"]:.0f}, z {MT["head_z0"]:.1f} .. {MT["head_top"]:.1f}'),
-            ("hook slider cross-slot", f'{MT["slot_x"]:.0f} wide, z {MT["slot_z0"]:.1f} .. {MT["slot_z1"]:.1f}; floor/roof parallel 0.03'),
-            ("pin channels (2)", f'{MT["chan_w"]:.0f} wide at x +/-{MT["pin_pitch"] / 2:.1f}, u {MT["chan_u0"]:.0f} .. {MT["chan_u1"]:.0f}, '
-                                  f'open at the stem bottom (the stem drops past the pins)'),
+            ("hook slider cross-slot", f'{MT["slot_x"]:.0f} wide, z {MT["slot_z0"]:.1f} .. {MT["pin_z"] + MT["pin_d"]/2 + 3:.1f}; PROVISIONAL'),
+            ("continuous bridge entry", f'{MT["pin_pitch"] + MT["pin_len"] + 1:.0f} wide, u {MT["chan_u0"]:.0f} .. {MT["chan_u1"]:.0f}; '
+                                  f'open at stem bottom; source-informed topology, not measured OEM fit'),
             ("hinge ears (2) + pin bore", f'x {MT["ear_x0"]:.1f} .. {MT["ear_x1"]:.0f}, bore 5.0 H7 coaxial 0.03 at '
                                           f'u {MT["hinge_u"]:.1f}, z {MT["hinge_z"]:.1f}'),
             ("lock bore", f'{MT["lock_bore"]:.1f} H11 x {MT["lock_len"]:.1f} deep from the inboard face, axis // u, z {MT["lock_z"]:.0f}; '
@@ -244,10 +244,10 @@ def main():
             ("paddle detent dimples", f'2 x sphere R2.3 +/-0.05 at {MT["detent_r"]:.1f} from the axis, at {mounts.DIMPLE_DEG[0]:.0f} / '
                                        f'{mounts.DIMPLE_DEG[1]:.0f} deg (closed / stage 1, {mounts.STAGE1_DEG:.0f} deg apart)'),
             ("paddle states", f'closed 0, stage 1 {mounts.STAGE1_DEG:.0f}, open {mounts.OPEN_DEG:.0f} deg (inboard)'),
-            ("hook slider", f'bar {MT["bar_x"]:.0f} x {MT["bar_u1"] - MT["bar_u0"]:.0f} x {MT["bar_z1"] - MT["bar_z0"]:.1f}; 2 teeth '
-                            f'{MT["tooth_w"]:.0f} wide at x +/-{MT["pin_pitch"] / 2:.1f}, z {MT["tooth_z0"]:.0f} .. {MT["tooth_z1"]:.0f}, '
-                            f'tip +{MT["tooth_tip"]:.0f} past the datum (clamped pose)'),
-            ("  tooth top faces", "ground flat 0.02; pin-bottom datum z -18.00 +/-0.05 from the cap"),
+            ("hook slider", f'bar {MT["bar_x"]:.0f} x {MT["bar_u1"] - MT["bar_u0"]:.0f} x {MT["bar_z1"] - MT["bar_z0"]:.1f}; 2 C-jaws '
+                            f'{MT["tooth_w"]:.0f} wide at x +/-{MT["pin_pitch"] / 2:.1f}, z {MT["bar_z0"]:.1f} .. {MT["pin_z"] + MT["pin_d"]/2 + 3:.1f}; '
+                            f'tip u=+{MT["tooth_tip"]:.0f}; all interface dimensions PROVISIONAL'),
+            ("  capture", "lower lip tangent to bridge underside; upper lip + web wrap bridge; see SEC-30-001"),
             ("  travel", f'{MT["slider_travel"]:.1f} along u: dwell closed -> stage 1 (0.45), retract by stage 1 -> open'),
             ("shim", "316, 1.0 +/-0.02, 42 x 14, two obround 6.6 x 12.6; kit 0.5 / 1.0 for a 0 - 4 mm pack"),
             ("finish", "paddle black anodise Type II; slider + shim passivate ASTM A967")],
@@ -260,7 +260,8 @@ def main():
     made.append(sheet(
         "DWG-27-011_hatch_leaf", HA.leaf_shell(), Plane.XY,
         "HATCH LEAF, CARBON 26 mm, INSIDE-GLAZED, 1 OFF", [
-            ("leaf outline", f"{2 * (HA.AX + G.H_LEAF_OUT):.0f} x {2 * (HA.AY + G.H_LEAF_OUT):.0f}"),
+            ("leaf outline", f"upper nominal {2 * (HA.AX + G.H_LEAF_OUT):.0f}; STRAIGHT BOTTOM {G.TAILGATE_WIDTH_ESTIMATE_MM:.0f}; height {2 * (HA.AY + G.H_LEAF_OUT):.0f}"),
+            ("bottom datum", "tailgate width ESTIMATE = drawing-derived bed width; not measured OEM fit"),
             ("windows (visible)", f'{HA.WIN["x1"] - HA.WIN["x0"]:.0f} x {2 * HA.WIN["y"]:.0f}, R{HA.WIN["r"]:.0f}'),
             ("outer lip / pane overlap", f'{HA.WIN["lip"]:.0f} / {HA.WIN["overlap"]:.0f}'),
             ("mullion (solid carbon)", f"{HA.MULLION:.0f}")],
@@ -335,7 +336,7 @@ def main():
             ("potted insert", "Dia 10 x 12, flange Dia 14 x 1, M4x0.7-6H thru, knurled OD (straight 0.8 pitch)"),
             ("insert installation", "core-out Dia 12, pot in 3M DP460, flange flush with the inner skin"),
             ("finish", "clear anodise Type II; bond faces masked"), ("general", gen)],
-        ["Hardpoint load is limited to the 24 kg dynamic roof allowance (check_mounting) until FEA."],
+        ["NO established custom-topper roof load rating. Legacy crossbar headroom arithmetic is not a capacity; FEA + interface qualification remain OPEN."],
         scale=2.0))
     made.append(sheet(
         "DWG-27-019_leaf_arm_strut_boss", _at_origin(HA.leaf_striker_arm(HA.LATCH_XS[1])), Plane.XY,

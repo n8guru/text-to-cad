@@ -273,9 +273,11 @@ def check_flanges_seat_on_flat_skin():
     e = (G.H_RECESS_OUT + G.H_BOND_OUT) / 2
     # Step 29: no bottom bond flange (the bottom run is gone, nothing below the rail plane) -> the
     # hatch surround bonds along the top and both sides only
-    for x, y in [(x, HH / 2 + e) for x in (-W / 2 + 60, 0, W / 2 - 60)] + \
-                [(sx * (W / 2 + e), 0) for sx in (-1, 1)] + \
-                [(sx * (W / 2 + e), -HH / 4) for sx in (-1, 1)]:
+    # Sample the actual flared bond strip, not the former rectangular aperture.
+    side_points = [(sx * (HA.AX + e + (HA.AX_BOT - HA.AX) *
+                    (HA.AY + e - y) / (2 * (HA.AY + e))), y)
+                   for y in (0, -HH / 4) for sx in (-1, 1)]
+    for x, y in [(x, HH / 2 + e) for x in (-W / 2 + 60, 0, W / 2 - 60)] + side_points:
         p = (hp * Pos(x, y, G.BOND_N[1])).position
         pr = Pos(p.X, p.Y, p.Z) * Box(1, 1, 1, align=CC)
         d = min_dist(pr, sh) + 0.5
@@ -788,7 +790,8 @@ def plf_strength(rating):
     le = st["screw_engagement"]
     pull = 0.5 * math.pi * 6.0 * le * S["al6061_T6_shear_MPa"]    # thread strip, 6061 internal thread
     floor_area = MT["bar_x"] * (MT["bar_u1"] - MT["bar_u0"])
-    return {"tooth_bending_MPa": round(sig, 1), "tooth_bending_allow_MPa": f * S["hook_17_4PH_H1025_Rp02_MPa"],
+    return {"scope": "legacy_lower_lip_screening_only_not_C_jaw_capacity",
+            "tooth_bending_MPa": round(sig, 1), "tooth_bending_allow_MPa": f * S["hook_17_4PH_H1025_Rp02_MPa"],
             "tooth_shear_MPa": round(tau, 1), "rail_screw_shear_MPa": round(tau_s, 1),
             "rail_screw_shear_allow_MPa": round(0.6 * f * S["a4_70_Rp02_MPa"] / 0.6, 1),
             "rail_thread_strip_N": round(pull), "slot_floor_bearing_MPa": round(rating / floor_area, 1),
@@ -868,7 +871,7 @@ def check_mounting():
     hook_ok = (c[2] < 0.02 and c[3] <= 0.0 and c[4] >= 0.9 and s1[2] < 0.02 and s1[3] <= 0.0 and s1[4] >= 0.4
                and o[2] >= 1.0 and o[3] <= 0.0 and abs(pitch - 25.0) < 0.01)
     check("plf_hook_engages_pin_pair", hook_ok,
-          f"2 teeth {pitch:.0f} mm apart under the dual-barrel pin pair (PROVISIONAL pin dia "
+          f"2 teeth {pitch:.0f} mm apart under the continuous reference bridge (two jaw bearing zones) (PROVISIONAL pin dia "
           f"{G.MT['pin_d']:.0f}, u {G.MT['pin_u']:.0f}, z {G.MT['pin_z']:.0f}): closed = tooth top on the pin, tip "
           f"{c[4]:.2f} mm past the pin centre; stage 1 = {s1[4]:.2f} past; open ({o[1]:.0f} deg) = hooks "
           f"retracted, {o[2]:.2f} mm clear of the pins; no overlap in any state")
@@ -975,7 +978,7 @@ def check_mounting():
           f"station x/half-y {G.T['bed_ports']} vs Upfit p.59 port symbols {meas} m: max {dev:.1f} mm")
     open_item("plf_port_internals_P-CAL-01b",
               "Rivian publishes NEITHER the accessory-port internals NOR the crossbar-foot drawing: the port recess "
-              f"({G.MT['port_x']:.0f} x {G.MT['port_u']:.0f} x {G.MT['port_depth']:.0f} mm), the dual-barrel pin pair "
+              f"({G.MT['port_x']:.0f} x {G.MT['port_u']:.0f} x {G.MT['port_depth']:.0f} mm), the continuous reference bridge (two jaw bearing zones) "
               f"(dia {G.MT['pin_d']:.0f}, pitch {G.MT['pin_pitch']:.0f}, u {G.MT['pin_u']:.0f}, z {G.MT['pin_z']:.0f}), the "
               "hook, paddle, lock position and tuning screw are ALL PROVISIONAL (mount.* in params.json). Buy one "
               "Rivian Cargo Crossbars set as the reference article, photograph + measure its foot and a real port, "
@@ -1014,12 +1017,13 @@ def check_mounting():
           f"{S_['tooth_bending_allow_MPa']:.0f} (0.6 x 17-4PH Rp0.2, {S_['tooth']['F_per_tooth_N']:.0f} N per tooth, "
           f"root-to-pin {S_['tooth']['L']:.1f} mm), rail-screw shear {S_['rail_screw_shear_MPa']:.0f} MPa <= "
           f"{S_['rail_screw_shear_allow_MPa']:.0f}, thread strip-out {S_['rail_thread_strip_N']} N, slot-floor bearing "
-          f"{S_['slot_floor_bearing_MPa']:.0f} MPa - hand calculation with ESTIMATED material values, not FEA")
+          f"{S_['slot_floor_bearing_MPa']:.0f} MPa - legacy lower-lip screening ONLY; does not validate C-jaw web/upper lip "
+          "or source-derived bridge, no allowable custom clamp load established", state="OPEN")
     bench = hw.HW["mounting"]["benchmark_kg"]
     check("mass_within_rivian_4_port_benchmark", A_["mass_kg"] <= bench,
           f"{A_['mass_kg']} kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar "
-          f"pair on 4 roof ports; roof payload on the topper hardpoints is therefore limited to "
-          f"{bench - A_['mass_kg']:.0f} kg dynamic until FEA")
+          f"pair on 4 roof ports; arithmetic headroom {bench - A_['mass_kg']:.0f} kg is NOT a topper "
+          "payload rating: different interface, load case and unvalidated custom jaws")
     (ROOT / "out" / "mounting_analysis.json").write_text(json.dumps(A_, indent=1) + "\n")
 
 

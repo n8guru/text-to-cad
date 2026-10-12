@@ -1,5 +1,11 @@
 # Step 27 rev 11 — attaching the topper to the truck: the Port Latch Foot
 
+> **Step30 supersession:** read [STEP30_MOUNTING.md](STEP30_MOUNTING.md) first.
+> The current CAD uses C-jaws around one provisional continuous bridge, not the
+> isolated-pin/flat-tooth concept described below. Historical screening values,
+> including the 24 kg roof-load arithmetic, are NOT ratings or operating limits
+> for the revised topper. This retained document is the Step29 rationale/history.
+
 **Task 139737, project r1t-topper Step 29, repo n8guru/text-to-cad.** Replaces the rev-10 design (task
 136191: a purchased Weistec adapter with an M10 stud / nut / Nord-Lock stack at each of four ports).
 Design package only: nothing purchased, quoted or fabricated; no fitment, structural or sealing result is

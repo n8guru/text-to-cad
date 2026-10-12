@@ -1,0 +1,20 @@
+{
+  "step": "S1_mount_closed",
+  "stills": {
+    "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_side.png",
+    "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_overhead.png",
+    "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_front.png"
+  },
+  "scores": {
+    "imported_mount_parts": 12,
+    "bridge_reference_count": 1,
+    "bridge_span_mm": 35.00008583068848,
+    "jaw_vertices": 48,
+    "release_state": 0.0,
+    "kind": "r1t_cad"
+  },
+  "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+  "arms": [],
+  "assert_ok": true,
+  "assert_fails": []
+}

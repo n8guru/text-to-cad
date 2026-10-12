@@ -1,0 +1,218 @@
+{
+  "run": "r1t-task147368",
+  "run_dir": "/home/n8/evidence/blender-loop/r1t-task147368",
+  "created": "2026-10-12T05:14:06Z",
+  "intent": "Decision2154445: tailgate-width hatch bottom and sourced provisional hook-around-port mounting, exact CAD evidence",
+  "steps": [
+    {
+      "step": "S0_reference",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_front.png"
+      },
+      "scores": {
+        "length_m": 5.318399906158447,
+        "width_m": 2.0139999389648438,
+        "roof_no_fin_above_ground_m": 1.8350999984741212,
+        "top_with_fin_above_ground_m": 1.8930000100135804,
+        "rail_above_ground_m": 1.366,
+        "bed_depth_m": 0.4650000333786011,
+        "cab_back_x": -0.15,
+        "wheelbase_m": 3.45,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S1_mount_closed",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S1_mount_closed_front.png"
+      },
+      "scores": {
+        "imported_mount_parts": 12,
+        "bridge_reference_count": 1,
+        "bridge_span_mm": 35.00008583068848,
+        "jaw_vertices": 48,
+        "release_state": 0.0,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S2_mount_released",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S2_mount_released_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S2_mount_released_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S2_mount_released_front.png"
+      },
+      "scores": {
+        "imported_mount_parts": 12,
+        "bridge_reference_count": 1,
+        "bridge_span_mm": 35.00008583068848,
+        "jaw_vertices": 48,
+        "release_state": 1.0,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S3_topper",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3_topper_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3_topper_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3_topper_front.png"
+      },
+      "scores": {
+        "imported_parts": 219,
+        "roof_step_mm": -8.646875619888306,
+        "cab_gap_mm": 22.39999920129776,
+        "base_gap_max_mm": 4.0000006556510925,
+        "base_gap_min_mm": 4.0000006556510925,
+        "base_samples": 1,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S3b_topper_pad_datum",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3b_topper_pad_datum_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3b_topper_pad_datum_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S3b_topper_pad_datum_front.png"
+      },
+      "scores": {
+        "imported_parts": 219,
+        "roof_step_mm": -8.646875619888306,
+        "cab_gap_mm": 22.39999920129776,
+        "base_gap_max_mm": 4.0000006556510925,
+        "base_gap_min_mm": 4.0000006556510925,
+        "base_samples": 1,
+        "base_pad_expected_mm": 4.0,
+        "base_pad_error_mm": 6.556510924460301e-07,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S4_closed_rear",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_front.png"
+      },
+      "scores": {
+        "mean_linear_luminance_S4_closed_rear_closed_rear.png": 0.8140738608774777,
+        "mean_linear_luminance_S4_closed_rear_closed_rear3q.png": 0.8529628335603471,
+        "cad_mesh_count": 219,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S5_rear_access",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S5_rear_access_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S5_rear_access_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S5_rear_access_front.png"
+      },
+      "scores": {
+        "imported_parts": 219,
+        "lowest_open_leaf_point_mm": 316.82804226875305,
+        "cargo_top_above_rail_mm": 134.99999999999994,
+        "cargo_exit_rays_clear": 10,
+        "cargo_exit_rays_total": 10,
+        "bed_floor_below_rail_mm": 465.0,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S6_reference_reset",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S6_reference_reset_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S6_reference_reset_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S6_reference_reset_front.png"
+      },
+      "scores": {
+        "length_m": 5.318399906158447,
+        "width_m": 2.0139999389648438,
+        "roof_no_fin_above_ground_m": 1.8350999984741212,
+        "top_with_fin_above_ground_m": 1.8930000100135804,
+        "rail_above_ground_m": 1.366,
+        "bed_depth_m": 0.4650000333786011,
+        "cab_back_x": -0.15,
+        "wheelbase_m": 3.45,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S7_topper_final",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S7_topper_final_front.png"
+      },
+      "scores": {
+        "imported_parts": 220,
+        "roof_step_mm": -8.646875619888306,
+        "cab_gap_mm": 22.39999920129776,
+        "base_gap_max_mm": 4.0000006556510925,
+        "base_gap_min_mm": 4.0000006556510925,
+        "base_samples": 1,
+        "base_pad_expected_mm": 4.0,
+        "base_pad_error_mm": 6.556510924460301e-07,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S8_closed_final",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S8_closed_final_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S8_closed_final_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S8_closed_final_front.png"
+      },
+      "scores": {
+        "mean_linear_luminance_S8_closed_final_closed_rear.png": 0.8140743205757116,
+        "mean_linear_luminance_S8_closed_final_closed_rear3q.png": 0.8529627792613789,
+        "cad_mesh_count": 220,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    },
+    {
+      "step": "S9_access_final",
+      "stills": {
+        "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_front.png"
+      },
+      "scores": {
+        "imported_parts": 220,
+        "lowest_open_leaf_point_mm": 316.82804226875305,
+        "cargo_top_above_rail_mm": 134.99999999999994,
+        "cargo_exit_rays_clear": 10,
+        "cargo_exit_rays_total": 10,
+        "bed_floor_below_rail_mm": 465.0,
+        "kind": "r1t_cad"
+      },
+      "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+      "arms": []
+    }
+  ],
+  "last_step": "S9_access_final"
+}

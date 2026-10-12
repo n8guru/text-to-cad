@@ -386,7 +386,7 @@ def export_sections():
     cut8 = Plane(origin=(xs0, 0, 0), x_dir=(0, 1, 0), z_dir=(1, 0, 0))
     made.append(_svg("SEC-27-008_plf_station", [shell] + stn + near + [TR.body_keepout()], cut8,
                      f"SEC-27-008  Port Latch Foot x={xs0:.0f}, paddle CLOSED: stem in the port recess "
-                     "(PROVISIONAL), hook teeth under the pin pair, seat flange = pad stop, rail notch, lock under paddle"))
+                     "(PROVISIONAL), C-jaws capture reference bridge (see SEC-30-001 at jaw), seat flange = pad stop; no OEM fit claim"))
     made.append(_detail(made[-1], "SEC-27-008D_plf_station_detail", ys0 - 90.0, 150.0, 200.0,
                         f"SEC-27-008D  Port Latch Foot detail (x={xs0:.0f}), 1:1 viewBox, mm"))
     loc = mounts.station_loc(xs0, ys0)

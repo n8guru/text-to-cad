@@ -1,5 +1,17 @@
 # Rivian crossbar / accessory-port attachment — research notes (2026-10-06, task 139737)
 
+## Step30 addendum — inspected 2026-10-12, task147368 attempt1
+
+See [STEP30_MOUNTING.md](../STEP30_MOUNTING.md) for dated Weistec/TWRAPS/OEM
+URLs, inspected image hashes, changed primary CAD capture geometry and explicit
+uncertainty. The Weistec adapter is an aftermarket bolted bridge capture, NOT a
+published OEM M10 stud. TWRAPS shows a wall-storage surrogate bridge, NOT a truck
+mount or vehicle load rating. The former isolated-pin assumption below is replaced
+by one PROVISIONAL continuous reference bridge with two custom C-jaw bearing zones.
+Neither source establishes proprietary port orientation or mating dimensions.
+
+## Retained Step29 research (historical assumptions, not new calibration)
+
 Nate's change request (card 2081357): "it appears you do not understand the rivian custom attach points that
 the topper needs to connect to. the topper is meant to connect to the truck bed the same way that the rivian
 crossbars attach. there is a clever hardware gizmo."

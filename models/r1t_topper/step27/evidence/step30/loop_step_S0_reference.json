@@ -1,0 +1,23 @@
+{
+  "step": "S0_reference",
+  "stills": {
+    "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_side.png",
+    "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_overhead.png",
+    "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S0_reference_front.png"
+  },
+  "scores": {
+    "length_m": 5.318399906158447,
+    "width_m": 2.0139999389648438,
+    "roof_no_fin_above_ground_m": 1.8350999984741212,
+    "top_with_fin_above_ground_m": 1.8930000100135804,
+    "rail_above_ground_m": 1.366,
+    "bed_depth_m": 0.4650000333786011,
+    "cab_back_x": -0.15,
+    "wheelbase_m": 3.45,
+    "kind": "r1t_cad"
+  },
+  "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+  "arms": [],
+  "assert_ok": true,
+  "assert_fails": []
+}

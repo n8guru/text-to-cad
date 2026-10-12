@@ -1,0 +1,18 @@
+{
+  "step": "S4_closed_rear",
+  "stills": {
+    "side": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_side.png",
+    "overhead": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_overhead.png",
+    "front": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S4_closed_rear_front.png"
+  },
+  "scores": {
+    "mean_linear_luminance_S4_closed_rear_closed_rear.png": 0.8140738608774777,
+    "mean_linear_luminance_S4_closed_rear_closed_rear3q.png": 0.8529628335603471,
+    "cad_mesh_count": 219,
+    "kind": "r1t_cad"
+  },
+  "blend": "/home/n8/evidence/blender-loop/r1t-task147368/scene.blend",
+  "arms": [],
+  "assert_ok": true,
+  "assert_fails": []
+}

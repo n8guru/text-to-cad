@@ -1,0 +1,234 @@
+{
+  "payload": {
+    "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S9_access_final_access_rear",
+    "engine": "external",
+    "session_label": "r1t-task147368-a1",
+    "notes": "generate_artifact registered CAD task147368 attempt1",
+    "skip_optimize": true,
+    "dry_run": true,
+    "strict": false,
+    "output_kind": "image",
+    "output_path": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_access_rear.png",
+    "render_metadata": {
+      "submitter": "generate_artifact",
+      "recipe": "REGISTERED_ARTIFACT_V1",
+      "generated": false,
+      "intent": "Inspect actual authored CAD mechanism/width; no independent QC claimed",
+      "tool": "blender-loop",
+      "params": {
+        "baseline_commit": "79935a1933381268592c8a1b6d80b61b6b40ef37",
+        "sha256": "a4b4117ec3aae1bdf90edbd50b7c39ae46400091b05a089906201abeca6bd6c6",
+        "step": "S9_access_final_access_rear",
+        "mount_manifest_sha256": "eacd5ac1e4c5def08cd6adb0b9b4839c33c4b60c1720c5923aa8c9c3384a685f"
+      }
+    }
+  },
+  "response": {
+    "request": {
+      "id": "a7acfb77b7f843fdb4c9501b43cbb630",
+      "created_at": "2026-10-12T06:31:49Z",
+      "parent_request_id": "0a2b7b3e69854bd28d05447b1a2abf91",
+      "engine": "external",
+      "recipe_name": null,
+      "prompt_positive": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S9_access_final_access_rear",
+      "prompt_negative": "",
+      "prompt_original": null,
+      "triggers": [],
+      "characters": [],
+      "loras": [],
+      "init_image_path": null,
+      "face_refs": [],
+      "seed": null,
+      "dimensions": {},
+      "sampling": {
+        "attempt_key": "task-147368:external:NonexNone:#4a74e267",
+        "purpose": "sfw_product",
+        "purpose_source": "default",
+        "family_id": "song_sfw_i2v",
+        "product_banking": true,
+        "generation_os_check_codes": [],
+        "producing_refs": []
+      },
+      "workflow_id": null,
+      "session_label": "r1t-task147368-a1",
+      "notes": "generate_artifact registered CAD task147368 attempt1"
+    },
+    "result": {
+      "id": "d78fe1e3c4804aea8bc65630a86ef6e8",
+      "request_id": "a7acfb77b7f843fdb4c9501b43cbb630",
+      "created_at": "2026-10-12T06:31:49Z",
+      "status": "success",
+      "output_path": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_access_rear.png",
+      "output_kind": "image",
+      "output_size_bytes": null,
+      "duration_seconds": 0.0,
+      "comfy_job_id": "dry-run",
+      "error_message": null,
+      "raw_metadata": {
+        "submitter": "generate_artifact",
+        "note": "no actual render performed; validate-and-log only",
+        "validator_issues": [],
+        "recipe": "REGISTERED_ARTIFACT_V1",
+        "generated": false,
+        "intent": "Inspect actual authored CAD mechanism/width; no independent QC claimed",
+        "tool": "blender-loop",
+        "params": {
+          "baseline_commit": "79935a1933381268592c8a1b6d80b61b6b40ef37",
+          "sha256": "a4b4117ec3aae1bdf90edbd50b7c39ae46400091b05a089906201abeca6bd6c6",
+          "step": "S9_access_final_access_rear",
+          "mount_manifest_sha256": "eacd5ac1e4c5def08cd6adb0b9b4839c33c4b60c1720c5923aa8c9c3384a685f"
+        }
+      }
+    },
+    "results": [
+      {
+        "id": "d78fe1e3c4804aea8bc65630a86ef6e8",
+        "request_id": "a7acfb77b7f843fdb4c9501b43cbb630",
+        "created_at": "2026-10-12T06:31:49Z",
+        "status": "success",
+        "output_path": "/home/n8/evidence/blender-loop/r1t-task147368/stills/S9_access_final_access_rear.png",
+        "output_kind": "image",
+        "output_size_bytes": null,
+        "duration_seconds": 0.0,
+        "comfy_job_id": "dry-run",
+        "error_message": null,
+        "raw_metadata": {
+          "submitter": "generate_artifact",
+          "note": "no actual render performed; validate-and-log only",
+          "validator_issues": [],
+          "recipe": "REGISTERED_ARTIFACT_V1",
+          "generated": false,
+          "intent": "Inspect actual authored CAD mechanism/width; no independent QC claimed",
+          "tool": "blender-loop",
+          "params": {
+            "baseline_commit": "79935a1933381268592c8a1b6d80b61b6b40ef37",
+            "sha256": "a4b4117ec3aae1bdf90edbd50b7c39ae46400091b05a089906201abeca6bd6c6",
+            "step": "S9_access_final_access_rear",
+            "mount_manifest_sha256": "eacd5ac1e4c5def08cd6adb0b9b4839c33c4b60c1720c5923aa8c9c3384a685f"
+          }
+        }
+      }
+    ],
+    "issues": [],
+    "submitted": true,
+    "ok": true,
+    "attempt": {
+      "key": "task-147368:external:NonexNone:#4a74e267",
+      "cap": 8,
+      "used": 12,
+      "tried": [
+        {
+          "request_id": "0a2b7b3e69854bd28d05447b1a2abf91",
+          "created_at": "2026-10-12T05:38:42Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S2_mount_released_mount_released_assembled",
+          "status": "success",
+          "result_id": "ba207efa880844ae9742f2228b2d8c97",
+          "stars": null
+        },
+        {
+          "request_id": "233e421231cd48a4b3da31f64a428fdb",
+          "created_at": "2026-10-12T05:38:42Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S2_mount_released_mount_released_capture_cutaway",
+          "status": "success",
+          "result_id": "c3ab72881cce46a9b9543dcb3c754afd",
+          "stars": null
+        },
+        {
+          "request_id": "98d694d51adc4adcb72772b2ddd7a242",
+          "created_at": "2026-10-12T05:38:42Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S1_mount_closed_mount_closed_capture_cutaway",
+          "status": "success",
+          "result_id": "d85ae45c96124f8e945828b339ea8dff",
+          "stars": null
+        },
+        {
+          "request_id": "d850d0d43bcd4afe8f4319415d4f05ad",
+          "created_at": "2026-10-12T05:38:42Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S1_mount_closed_mount_closed_assembled",
+          "status": "success",
+          "result_id": "3c12d8164cef4802926fe49713e09595",
+          "stars": null
+        },
+        {
+          "request_id": "8021315efc6048c9afaf49c054bee2c8",
+          "created_at": "2026-10-12T06:00:09Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S4_closed_rear_closed_rear",
+          "status": "success",
+          "result_id": "fe8ec8b5e24e44de8f3eca899f8da892",
+          "stars": null
+        },
+        {
+          "request_id": "8059498fa2ab436aacc60edf4cb55191",
+          "created_at": "2026-10-12T06:00:09Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S4_closed_rear_closed_rear3q",
+          "status": "success",
+          "result_id": "969b0972af294db9814aa930a2bb5428",
+          "stars": null
+        },
+        {
+          "request_id": "6903465ad87549c9a820169fd9a3157f",
+          "created_at": "2026-10-12T06:02:09Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S5_rear_access_access_rear3q",
+          "status": "success",
+          "result_id": "c024c73be0f34583aa728195c2907863",
+          "stars": null
+        },
+        {
+          "request_id": "9a39e1cbcfa34d2fa504ff123480258d",
+          "created_at": "2026-10-12T06:02:09Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S5_rear_access_access_rear",
+          "status": "success",
+          "result_id": "cfa51daa2e4449e29a7d6589881c61f4",
+          "stars": null
+        },
+        {
+          "request_id": "1d041c9d814349e080194183493452fe",
+          "created_at": "2026-10-12T06:26:00Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S8_closed_final_closed_rear",
+          "status": "success",
+          "result_id": "46e96211f5584969a32df0087cf19db2",
+          "stars": null
+        },
+        {
+          "request_id": "7a05983bc0064792834878a2f7dfa39d",
+          "created_at": "2026-10-12T06:26:00Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S8_closed_final_closed_rear3q",
+          "status": "success",
+          "result_id": "8a40fd7ea745484ea50b8013df832dec",
+          "stars": null
+        },
+        {
+          "request_id": "437a714b2e53490f8b883c3e2820ac0b",
+          "created_at": "2026-10-12T06:31:48Z",
+          "seed": null,
+          "session_label": "r1t-task147368-a1",
+          "prompt": "Source-derived CAD evidence for R1T step30: provisional reference interface, not measured OEM fit or load certification. S9_access_final_access_rear3q",
+          "status": "success",
+          "result_id": "0c75d81f70094e6d8e0a19975917e70f",
+          "stars": null
+        }
+      ],
+      "root_request_id": "0a2b7b3e69854bd28d05447b1a2abf91"
+    }
+  }
+}
