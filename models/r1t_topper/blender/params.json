@@ -12,7 +12,8 @@
   "truck.rail_flat_end_x / tailgate_top_z": "R1T side view: rail top flat to x 1.365, rounding down to the tailgate top 32 mm lower",
   "published": "overall_length, body_width, wheelbase, track, tire_r, bed_* from the R1T Upfitting Guide pp.28-30",
   "shell.*": "design decisions against R1T/R1S targets, see STYLE27.md; lean 21 deg = R1T C-pillar 21.8 / R1S D-pillar 20.1; rake 15 deg = R1S liftgate 15.2",
-  "socket.* / hatch.*": "derived from the flat-land and flat-rear-face budgets of the styled shell, checked by checks_step27"
+  "socket.* / hatch.*": "derived from the flat-land and flat-rear-face budgets of the styled shell, checked by checks_step27",
+  "hatch.width": "Step 30 (decision 2154445): 1.299 m = Upfitting Guide bed exposed cargo width 51.1 in, proxy for tailgate width per operator 'same width as tailgate, not swooped inward'; PROVISIONAL, tape-verify at calibration (Step 22)"
  },
  "truck": {
   "ground_z": -1.366,
@@ -66,7 +67,7 @@
   "shutline": 0.004
  },
  "hatch": {
-  "width": 1.000,
+  "width": 1.299,
   "height": 0.292,
   "sill_s": 0.034,
   "open_deg": 95,
