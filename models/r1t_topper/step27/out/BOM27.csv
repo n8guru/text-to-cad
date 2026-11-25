@@ -55,7 +55,7 @@ custom,FRONT_PASS_THROUGH_PANE_PC,FRONT_PASS_THROUGH_PANE_PC,custom,DWG-27-020,1
 custom,GLAZING_PANE,GLAZING_PANE,custom,DWG-27-014,2,ea,5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard),97.91,195.82,ROM,,,,CNC rout + polish,profile +/-0.5
 custom,GLAZING_RETAINER,GLAZING_RETAINER,custom,DWG-27-014,2,ea,6061-T6,132.86,265.72,ROM,,,,CNC,profile +/-0.3
 custom,HATCH_LEAF_CARBON,HATCH_LEAF_CARBON,custom,DWG-27-011,1,ea,"carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core",1344.96,1344.96,ROM,,,,"vacuum infusion, female mould",edge profile 0.5 to the surround (4 mm shut line)
-custom,HATCH_SURROUND_6061,HATCH_SURROUND_6061,custom,DWG-27-008,1,ea,6061-T6,1056.83,1056.83,ROM,,,,CNC from 12 mm plate,land flatness 0.3; latch pattern 0.2
+custom,HATCH_SURROUND_6061,HATCH_SURROUND_6061,custom,DWG-27-008,1,ea,6061-T6,1055.2,1055.2,ROM,,,,CNC from 12 mm plate,land flatness 0.3; latch pattern 0.2
 custom,J_HOOK_316,J_HOOK_316,custom,DWG-27-007,8,ea,316 stainless,46.49,371.92,ROM,,,,laser + press brake,fin seat height 0.1
 custom,LEAF_STRIKER_ARM_6061,LEAF_STRIKER_ARM_6061,custom,DWG-27-019,2,ea,6061-T6,105.44,210.88,ROM,,,,CNC,position 0.5 to hinge datum
 custom,LEAF_STRUT_BOSS_6061,LEAF_STRUT_BOSS_6061,custom,DWG-27-019,2,ea,"6061-T6 bonded boss, M8",53.25,106.5,ROM,,,,CNC,position 0.5 to hinge datum

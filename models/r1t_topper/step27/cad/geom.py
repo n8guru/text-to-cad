@@ -58,6 +58,23 @@ PIN_U = KEY["pin_u"]                   # u of the round + diamond locating pins 
 
 
 # ------------------------------------------------------------------------------ sketch helpers
+def placed(shape, loc):
+    """``shape`` at absolute location ``loc`` WITHOUT ``Shape.located``'s deepcopy.
+
+    build123d 0.11 ``located`` deep-copies the object's ``__dict__``, which for an assembly leaf
+    includes its anytree parent: every leaf dragged a BRep copy of the WHOLE assembly with it, and
+    flattening the 220-part closed assembly went past the 11 GB worker memory cap (Step 30a). The
+    leaf shares its TShape, so geometry, volume and tessellation are identical.
+    """
+    from build123d import Compound, Solid
+    from OCP.TopAbs import TopAbs_SOLID
+    w = shape.wrapped.Located(loc.wrapped)
+    out = Solid(w) if w.ShapeType() == TopAbs_SOLID else Compound(w)
+    out.label = shape.label
+    out.color = shape.color
+    return out
+
+
 def rrect(w: float, h: float, r: float):
     """Rounded-rectangle sketch on Plane.XY, centred."""
     r = min(r, w / 2 - 0.01, h / 2 - 0.01)

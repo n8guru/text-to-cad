@@ -288,7 +288,7 @@
     {
       "name": "hinge_coupler_curve",
       "state": "OPEN",
-      "detail": "GN 7233 is a multi-joint linkage; every hatch clearance here assumes pure rotation about the design-intent pivot, and the hinge is modelled as mounting blocks only - its 105 x 135 mm installation space is not placed. Re-run with JW Winco CAD"
+      "detail": "GN 7233 is a multi-joint linkage; every hatch clearance here assumes pure rotation about the design-intent pivot, and the hinge is modelled as mounting blocks only - its 105 x 135 mm installation space is not placed. Re-run with JW Winco CAD. Step 30a justification (not agent-closable): JW Winco publishes the coupler path only in its registered 2D/3D CAD download, not in the datasheet in hardware.json; inventing link lengths would be a fabricated kinematic. CLOSES WHEN: the GN 7233 size-50 CAD is downloaded into research/, the hinge envelope is placed and check_hatch_sweep re-runs on the true coupler curve (owner: next r1t-topper CAD step with vendor CAD in hand)"
     },
     {
       "name": "latch_fasteners_reachable_from_inside",
@@ -303,7 +303,7 @@
     {
       "name": "keyed_t_handle_grip",
       "state": "OPEN",
-      "detail": "Southco E3-18-15 grip 11.4-27.2 mm < 52.25 mm leaf + seal + land stack: re-select a keyed lock (longer grip or keeper standoff) - modelled as a lock body only, not an engaged cam"
+      "detail": "Southco E3-18-15 grip 11.4-27.2 mm < 52.25 mm leaf + seal + land stack, AND (Step 30a, measured) the fixed surround has 0.0 mm^3 of material behind the handle station (x = 0, open-bottom doorway): no keeper exists for any cam to engage, so re-selecting a longer-grip E3 would not close it. Leaf-only grip 26 mm is inside the E3 range. Justified OPEN (design decision, not a part swap): either move the keyed lock to a corner stub (|x| >= 390) with a standoff keeper on the land, or make the exterior key drive the existing rotary-latch release cable. CLOSES WHEN: the operator picks one route and the next CAD step models the keeper / keyed release and re-runs the sweep and interference checks"
     },
     {
       "name": "wet_zone_drains_out_of_open_bottom_run",
@@ -428,7 +428,7 @@
     {
       "name": "plf_drive_link_and_lock_interlock",
       "state": "OPEN",
-      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 216 N of dead weight per station"
+      "detail": "the link between the paddle cam and the hook slider (modelled only as the cam law in out/kinematics.json port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % reacts up to 2822 N per station (0.255 m^2, upper CFD x 1.3) before the seat flange bottoms on the cap, against 216 N of dead weight per station. Step 30a justification: the link geometry and the hook/detent forces are set by the port pin position and bridge stiffness, which are themselves PROVISIONAL (plf_port_internals_P-CAL-01b); drawing a link now would fix lengths to unmeasured numbers. CLOSES WHEN: P-CAL-01b measures the reference crossbar foot/port, then the next CAD step draws the cam->slider link and lock keeper, sweeps them, and computes hook preload and detent force"
     },
     {
       "name": "bed_port_positions_P-CAL-02",
@@ -438,12 +438,12 @@
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 88.3 kg, CG [699.6, 0.7, 206.2] mm; worst limit case LC1 vertical bump: 698 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 88.26 kg, CG [699.3, 0.7, 206.3] mm; worst limit case LC1 vertical bump: 698 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
       "state": "OPEN",
-      "detail": "LC6 forward crash pulse: 2518 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
+      "detail": "LC6 forward crash pulse: 2517 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
     },
     {
       "name": "plf_hook_and_screws_within_allowable_at_port_rating",
@@ -453,7 +453,7 @@
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "88.3 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
+      "detail": "88.26 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
     },
     {
       "name": "plf_kinematics_exported",
@@ -492,8 +492,8 @@
     },
     {
       "name": "no_interference_closed_assembly",
-      "state": "FAIL",
-      "detail": "1 clashes, worst [(491.0, '_STEP27_hatch0/HATCH_HATCH_SURROUND_6061', 'PER_STEP27_hatch0/HATCH_BULB_SEAL_DD6139')]"
+      "state": "PASS",
+      "detail": "220 parts, 24090 pairs, allow-list 9 designed contacts"
     },
     {
       "name": "topper_clear_of_r1t_keepouts",
@@ -533,7 +533,7 @@
     {
       "name": "rear_leaf_bottom_seal_on_tailgate",
       "state": "OPEN",
-      "detail": "The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is 32 mm below it; the bottom edge seal that closes on the tailgate cap (and the rounded rail ends) is not designed - select after T5 (supersedes rev-10 G9 for the removed bottom run)"
+      "detail": "The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is 32 mm below it; the bottom edge seal that closes on the tailgate cap (and the rounded rail ends) is not designed - select after T5 (supersedes rev-10 G9 for the removed bottom run). Step 30a justification (not agent-closable): the 39.7 mm seal gap and the tailgate-cap/rail-end profile are drawing-derived (TAILGATE_CONTROL.md T5, medium confidence); a seal chosen on that guess could be 5-10 mm out of its compression band. CLOSES WHEN: T5 rail-cap/tailgate-top section is taped, then a leaf-bottom seal is selected and swept against the closed and opening tailgate"
     },
     {
       "name": "no_self_hash_claim",
@@ -552,7 +552,7 @@
     "Attachment: Port Latch Foot hook / paddle / lock force, over-centre preload, detent force, port strength beyond Rivian's 2,500 N rating, crash retention, rail/foot bond strength and fatigue - load cases and the hand strength check are stated assumptions, not FEA or test",
     "Attachment: the port internals and the Rivian crossbar foot are NOT published - every PLF dimension at the port is PROVISIONAL until calibration P-CAL-01b (a physical Rivian crossbar + port)"
   ],
-  "pass": 95,
-  "fail": 1,
+  "pass": 96,
+  "fail": 0,
   "open": 12
 }

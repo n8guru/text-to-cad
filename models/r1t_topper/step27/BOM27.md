@@ -123,7 +123,7 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 | GLAZING_PANE | 5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard) | CNC rout + polish | hard coat both faces | DWG-27-014 | profile +/-0.5 | 2 | 0.586 | $97.91 | $195.82 |
 | GLAZING_RETAINER | 6061-T6 | CNC | black anodise Type II | DWG-27-014 | profile +/-0.3 | 2 | 0.26 | $132.86 | $265.72 |
 | HATCH_LEAF_CARBON | carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core | vacuum infusion, female mould | UV clear | DWG-27-011 | edge profile 0.5 to the surround (4 mm shut line) | 1 | 1.215 | $1,344.96 | $1,344.96 |
-| HATCH_SURROUND_6061 | 6061-T6 | CNC from 12 mm plate | black anodise Type II | DWG-27-008 | land flatness 0.3; latch pattern 0.2 | 1 | 4.485 | $1,056.83 | $1,056.83 |
+| HATCH_SURROUND_6061 | 6061-T6 | CNC from 12 mm plate | black anodise Type II | DWG-27-008 | land flatness 0.3; latch pattern 0.2 | 1 | 4.449 | $1,055.20 | $1,055.20 |
 | J_HOOK_316 | 316 stainless | laser + press brake | passivate | DWG-27-007 | fin seat height 0.1 | 8 | 0.183 | $46.49 | $371.92 |
 | LEAF_STRIKER_ARM_6061 | 6061-T6 | CNC | black anodise Type II | DWG-27-019 | position 0.5 to hinge datum | 2 | 0.035 | $105.44 | $210.88 |
 | LEAF_STRUT_BOSS_6061 | 6061-T6 bonded boss, M8 | CNC | black anodise Type II | DWG-27-019 | position 0.5 to hinge datum | 2 | 0.037 | $53.25 | $106.50 |
@@ -141,7 +141,7 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 | WINDOW_PANE_PC | 5 mm hard-coat polycarbonate | CNC rout + polish | hard coat both faces | DWG-27-017 | flatness 1.0; profile +/-0.5 | 2 | 0.49 | $93.55 | $187.10 |
 | POTTED_INSERT_M4_6061 | 6061-T6 | CNC turn + knurl | clear anodise Type II | DWG-27-018 | M4-6H; flange flush to inner skin | 28 | 0.003 | $9.35 | $261.80 |
 
-**ROM subtotal, fabricated parts (tooling excluded): $21,480.19**
+**ROM subtotal, fabricated parts (tooling excluded): $21,478.56**
 
 
 ## 5. Roll-up
@@ -150,8 +150,8 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 |---|---|---|---|
 | Purchased hardware | $1,934.23 | $2,264.26 | 6 |
 | Fasteners + consumables | $427.96 | $430.51 | 4 |
-| Fabricated parts (ROM) | $21,480.19 | — | 0 |
-| **Total (known)** | **$23,842.38** | | **10** |
+| Fabricated parts (ROM) | $21,478.56 | — | 0 |
+| **Total (known)** | **$23,840.75** | | **10** |
 
 The total is a floor, not a price: unpriced lines, composite tooling, freight, tax, finishing lot charges and assembly labour are outside it.
 

@@ -230,7 +230,7 @@ def _flatten(node, out=None, prefix="", loc=None):
         for c in kids:
             _flatten(c, out, full, here)
     else:
-        out.append((full, node.located(here)))
+        out.append((full, G.placed(node, here)))
     return out
 
 
@@ -470,20 +470,28 @@ def kinematics():
 
 
 def main():
+    # Step 30a: one assembly in memory at a time (the closed + open + access trio together peaked
+    # above the 11 GB worker memory cap); outputs are unchanged, only their build order.
+    import gc
     OUT.mkdir(parents=True, exist_ok=True)
-    print("building closed assembly ...")
+    print("building closed assembly ...", flush=True)
     shut = step27_assembly(0.0)
     export_step(shut, str(OUT / "R1T_TOPPER_STEP27.step"))
-    print("building open assembly ...")
+    print("exporting parts (closed) ...", flush=True)
+    man = export_parts(shut)
+    del shut
+    gc.collect()
+    print("building open assembly ...", flush=True)
     opened = step27_assembly(HA.OPEN_DEG, module_gap=160.0, state="open")
     export_step(opened, str(OUT / "R1T_TOPPER_STEP27_open.step"))
-    export_step(truck_reference(), str(OUT / "R1T_REFERENCE_KEEPOUTS.step"))
-    print("exporting parts (closed) ...")
-    man = export_parts(shut)
-    print("exporting parts (open) ...")
+    print("exporting parts (open) ...", flush=True)
     export_parts(opened, OUT / "parts_open", write_manifest=False)
-    print("exporting parts (rear-access: hatch open, modules fitted) ...")
+    del opened
+    gc.collect()
+    export_step(truck_reference(), str(OUT / "R1T_REFERENCE_KEEPOUTS.step"))
+    print("exporting parts (rear-access: hatch open, modules fitted) ...", flush=True)
     export_parts(step27_assembly(HA.OPEN_DEG), OUT / "parts_access", write_manifest=False)
+    gc.collect()
     export_parts(truck_reference(), OUT / "reference", write_manifest=False)
     export_parts(payload_set("L1"), OUT / "parts_payloads", write_manifest=False)
     kinematics()

@@ -211,8 +211,7 @@ def hatch_surround():
     part += ring(G.H_RECESS_IN, G.H_RECESS_OUT, LAND0, 0.0)            # recess wall
     part += ring(G.H_RECESS_OUT - 1.0, G.H_BOND_OUT, *G.BOND_N)        # bond flange
     part += ring(0.0, G.LIP_T, LIP0, LAND0)                            # return lip
-    part += ring(G.H_SEAL_OFF - sl["rib_t"] / 2, G.H_SEAL_OFF + sl["rib_t"] / 2,
-                 FACE_Z, FACE_Z + sl["rib_h"])                          # seal rib
+    part += seal_rib()                                                  # seal rib
     part += latch_carrier()
     for sx in (-1, 1):                                                  # hinge body blocks
         part += Pos(sx * HINGE_X, AY - 11.0, (LIP0 + LAND0) / 2) * Box(
@@ -257,6 +256,27 @@ def seal_land_path():
     edges = [edge for edge in sk.edges()
              if edge.center().Y > -AY - G.H_SEAL_OFF + 1e-6]
     return Pos(0, 0, FACE_Z) * Wire.combine(edges)[0]
+
+
+def seal_rib():
+    """The push-on rib, swept on the SAME open-bottom U path and Frenet frame as the DD6139 bead.
+
+    Step 30a: the rib used to be a ``border_ring_trapezoid`` at H_SEAL_OFF +/- rib_t/2. On the
+    tapered sides and shoulder fillets that vertex-shift construction is not a true offset of the
+    seal path, so the rib wandered out of the bead's 3.2 mm grip channel (and its closed bottom
+    run crossed the bead's end faces at the sharp lower corners): 491 mm^3 of surround/seal
+    interference. Sweeping the rib section with the bead keeps it centred in the channel
+    everywhere (0.1 mm/side) and ends it exactly where the bead ends."""
+    from build123d import Rectangle, sweep
+    sl = hw.d("bulb_seal")
+    path = seal_land_path()
+    start, tan = path @ 0, path % 0
+    pl = Plane(origin=start, x_dir=Vector(0, 0, 1).cross(tan), z_dir=tan)
+    sec = Rectangle(sl["rib_t"], sl["rib_h"] + 0.5, align=(CC, CMIN))   # 0.5 into the land: fused
+    rib = sweep(pl * (Pos(0, -0.5) * sec), path=path, is_frenet=True)
+    if not rib.is_valid or rib.volume <= 0:
+        raise ValueError("invalid hatch seal-rib sweep; do not export misleading geometry")
+    return rib
 
 
 def seal_bead(compressed: bool = True):

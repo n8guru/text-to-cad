@@ -3368,8 +3368,8 @@
   {
     "part": "HATCH_HATCH_SURROUND_6061",
     "stl": "HATCH_HATCH_SURROUND_6061.stl",
-    "volume_mm3": 1661261.3,
-    "mass_kg": 4.485,
+    "volume_mm3": 1647824.8,
+    "mass_kg": 4.449,
     "material": "6061-T6",
     "process": "CNC from 12 mm plate",
     "finish": "black anodise Type II",
@@ -3378,9 +3378,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1327.1,
+      1326.6,
       -0.0,
-      223.5
+      225.2
     ]
   },
   {

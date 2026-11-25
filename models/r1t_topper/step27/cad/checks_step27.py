@@ -32,6 +32,8 @@ import shell as SH  # noqa: E402
 import side_socket as SS  # noqa: E402
 import truck as TR  # noqa: E402
 
+LAND_PROBE_DEPTH = 80.0   # Step 30a: hatch-local depth below the skin probed for a T-handle keeper
+
 ROOT = Path(__file__).resolve().parents[1]          # step27/
 MODEL = ROOT.parent                                 # r1t_topper/
 RESULTS: list[tuple[str, str, str]] = []
@@ -56,7 +58,7 @@ def leaves(c, loc=None, pre=""):
         if getattr(k, "children", None):
             out += leaves(k, here, pre + (c.label or "") + "/")
         else:
-            out.append((pre + (c.label or "") + "/" + (k.label or "?"), k.located(here * k.location)))
+            out.append((pre + (c.label or "") + "/" + (k.label or "?"), G.placed(k, here * k.location)))
     return out
 
 
@@ -616,7 +618,12 @@ def check_hatch_misc():
     open_item("hinge_coupler_curve", "GN 7233 is a multi-joint linkage; every hatch clearance here "
               "assumes pure rotation about the design-intent pivot, and the hinge is modelled as "
               f"mounting blocks only - its {hg['envelope_l4']:.0f} x {hg['envelope_l5']:.0f} mm "
-              "installation space is not placed. Re-run with JW Winco CAD")
+              "installation space is not placed. Re-run with JW Winco CAD. Step 30a justification "
+              "(not agent-closable): JW Winco publishes the coupler path only in its registered 2D/3D "
+              "CAD download, not in the datasheet in hardware.json; inventing link lengths would be a "
+              "fabricated kinematic. CLOSES WHEN: the GN 7233 size-50 CAD is downloaded into research/, "
+              "the hinge envelope is placed and check_hatch_sweep re-runs on the true coupler curve "
+              "(owner: next r1t-topper CAD step with vendor CAD in hand)")
     # service: every latch mounts from inside (socket n < 0; hatch inboard of the leaf)
     n_sock = max(SS.latch_plane(u).origin.Z for u in G.LATCH_U)
     z_hatch = max(HA.latch_plane(x).origin.Z for x in HA.LATCH_XS)
@@ -634,10 +641,25 @@ def check_hatch_misc():
     th = hw.d("t_handle")
     stack = HA.LEAF_T + G.SEAL_COMPRESSED + G.LAND_T
     if th["grip_max"] < stack:
+        # Step 30a: measure what the cam would engage. Since Step 29's open bottom, the surround has
+        # no material behind the leaf at the handle station (|x| < STUB_X), so a longer grip alone
+        # cannot fix this: there is no keeper target to reach.
+        tp = HA.t_handle_plane()
+        behind = tp * Pos(0, 0, -LAND_PROBE_DEPTH) * Box(
+            th["tbar_l"], th["cutout_dia"] * 2, LAND_PROBE_DEPTH - HA.LEAF_T, align=(
+                Align.CENTER, Align.CENTER, Align.MIN))
+        keeper_v = clash_volume(HA.hatch_surround(), behind)
         open_item("keyed_t_handle_grip",
                   f"Southco E3-18-15 grip {th['grip_min']}-{th['grip_max']} mm < {stack:.2f} mm "
-                  f"leaf + seal + land stack: re-select a keyed lock (longer grip or keeper "
-                  f"standoff) - modelled as a lock body only, not an engaged cam")
+                  f"leaf + seal + land stack, AND (Step 30a, measured) the fixed surround has "
+                  f"{keeper_v:.1f} mm^3 of material behind the handle station (x = 0, open-bottom "
+                  f"doorway): no keeper exists for any cam to engage, so re-selecting a longer-grip "
+                  f"E3 would not close it. Leaf-only grip {HA.LEAF_T:.0f} mm is inside the "
+                  f"E3 range. Justified OPEN (design decision, not a part swap): either move the keyed "
+                  f"lock to a corner stub (|x| >= {HA.STUB_X:.0f}) with a standoff keeper on the land, "
+                  f"or make the exterior key drive the existing rotary-latch release cable. "
+                  f"CLOSES WHEN: the operator picks one route and the next CAD step models the keeper "
+                  f"/ keyed release and re-runs the sweep and interference checks")
     cut = HA.STUB_X
     bead_in_run = clash_volume(HA.seal_bead(), HA.bottom_run_cutter())
     check("wet_zone_drains_out_of_open_bottom_run", not HA.drain_tubes() and bead_in_run < 1.0,
@@ -707,7 +729,12 @@ def check_rear_access():
               f"The leaf's lower edge is 7.7 mm above the rail-cap plane and the tailgate top is "
               f"{-G.T['tailgate_top_z']:.0f} mm below it; the bottom edge seal that closes on the "
               f"tailgate cap (and the rounded rail ends) is not designed - select after T5 "
-              f"(supersedes rev-10 G9 for the removed bottom run)")
+              f"(supersedes rev-10 G9 for the removed bottom run). Step 30a justification (not "
+              f"agent-closable): the {7.7 - G.T['tailgate_top_z']:.1f} mm seal gap and the "
+              f"tailgate-cap/rail-end profile are drawing-derived (TAILGATE_CONTROL.md T5, medium "
+              f"confidence); a seal chosen on that guess could be 5-10 mm out of its compression "
+              f"band. CLOSES WHEN: T5 rail-cap/tailgate-top section is taped, then a leaf-bottom "
+              f"seal is selected and swept against the closed and opening tailgate")
 
 
 def check_controls_and_power():
@@ -991,7 +1018,12 @@ def check_mounting():
               "port_latch.cam_law_deg_to_retract_mm) and the lock-cam-to-paddle keeper interlock are NOT drawn; hook "
               f"force, over-centre preload and detent force are not computed. Needed from the clamp: the 2B2 pad at 33 % "
               f"reacts up to {seat:.0f} N per station ({pad_area:.3f} m^2, upper CFD x 1.3) before the seat flange "
-              f"bottoms on the cap, against {mounting_analysis_mass_n() / 4.0:.0f} N of dead weight per station")
+              f"bottoms on the cap, against {mounting_analysis_mass_n() / 4.0:.0f} N of dead weight per station. "
+              "Step 30a justification: the link geometry and the hook/detent forces are set by the port pin "
+              "position and bridge stiffness, which are themselves PROVISIONAL (plf_port_internals_P-CAL-01b); "
+              "drawing a link now would fix lengths to unmeasured numbers. CLOSES WHEN: P-CAL-01b measures the "
+              "reference crossbar foot/port, then the next CAD step draws the cam->slider link and lock keeper, "
+              "sweeps them, and computes hook preload and detent force")
     open_item("bed_port_positions_P-CAL-02",
               "port positions are drawing-derived (plan-view scale cross-check 0.6-1.2 %, i.e. up to "
               "+/-8 mm): tape all four port centres before the foot pockets are cut in the shell")
