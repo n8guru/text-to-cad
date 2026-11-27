@@ -94,3 +94,26 @@ the committed `out/parts_access` STLs. Both are imported onto the revised proxy 
 lane (`s12_topper.py`, `s13_hero.py`, `s17_access.py`) with blender-loop. Blender models no topper geometry. The
 images, hashes and in-scene scores are listed in `step27/evidence/step32/EVIDENCE_MANIFEST.json`. They are
 operator-visual context only. They are not a design sign-off (21b is Nate-only) and not a fitment approval.
+
+## 5. Revision after verify task 165492 (defect 61514): the lowered tailgate
+
+The first step-32 pin (`8024b241`) failed independent review. In the open-access scene (`s17_access.py`) the
+new rear bumper ran through the lowered tailgate: probes through the gate hit `R1T_BODY` at x = 1.484 m and
+1.549 m. The old cargo rays missed it. They started behind the interference and only counted topper parts as
+blockers. The manifest also hashed the 133-byte Git LFS pointer instead of the STEP payload.
+
+What was wrong, and the fix:
+
+| Cause | Fix |
+|---|---|
+| The bumper top (`_unsourced_form.rear_bumper_top_z = -0.505`) sat inside the folded slab (z -0.525..-0.465). | Now `-0.545`: bed floor 0.465 + gate 0.060 + 20 mm clearance. `s11_truck.py` asserts the bound, so a later form tweak cannot re-enter the gate. |
+| The loft ramped from the tailgate top down to the bumper across one 30 mm station bay behind the tailgate face. | `s11_truck.py` adds stations at `x_rear_tr` and `x_rear_tr + 2 mm`, so the tailgate face is vertical. |
+| `s17_access.py` cut the gate block only to `params.tailgate_x` (1.441). The traced face S11 lofts is at 1.461, which left an 18 mm wall across the doorway. The cut also stopped at z -0.477, inside the slab. The bed's end wall was a sloped loft bay before `bed_len`. | Two cuts: above the floor from `bed_len - 54 mm` to the traced face (`R1T_BODY["TAILGATE_FACE_X"]`), and below the floor through the slab plus 20 mm. The rear light bar (mounted on the gate) leaves with the gate. |
+| The checks did not cover the whole path. | `s17_access.py` now measures: (1) 33 rays along +x from the front of the bed to the end of the lowered gate, with every truck and topper mesh counted as a blocker; (2) 240 vertical probes on a 25 x 100 mm grid with the gate and cargo hidden, where the first surface each probe meets must be at least 10 mm below the gate's underside; (3) a BVH overlap of the gate (0.5 mm inset, so the hinge contact at the bed end is not counted) against every mesh. |
+| The manifest hashed the LFS pointer. | `evidence/step32/make_manifest.py` hashes the payload. For an LFS file it records the payload sha256 and size, and checks them against the pointer oid; the pointer hash is kept as a separate field. |
+
+The same new checks were also run against the parent proxy (blender-loop run `r1t-task165497-cf`):
+**12/33** path rays clear, **47/240** probes bad (bumper top found at z -0.505), and 71 gate/body
+overlapping faces. They reproduce the reviewer's finding. On the revised proxy the result is **33/33**,
+**0/240** and **0** overlaps, with 20.0 mm of clearance under the gate. Overall length, overhangs,
+approach/departure angles, mirror width and every topper datum are unchanged from `8024b241`.

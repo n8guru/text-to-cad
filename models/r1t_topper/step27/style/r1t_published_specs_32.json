@@ -20,7 +20,9 @@
  "height_no_antenna_m": 1.834,
  "_unsourced_form": {
   "front_bumper_top_z": -0.40,
-  "rear_bumper_top_z": -0.505,
+  "rear_bumper_top_z": -0.545,
+  "rear_bumper_gate_clearance_m": 0.02,
+  "_rear_bumper_doc": "Revised after verify task 165492: -0.505 intersected the lowered tailgate (S17 slab z -0.525..-0.465). The top now sits 20 mm below the lowered gate's underside (bed floor 0.465 + gate 0.060 + 0.020); s11_truck.py asserts the bound. Still an unsourced visual form.",
   "mirror_z_range": [0.02, 0.17],
   "_doc": "Bed-frame metres (z = 0 on the rail top). The x-EXTENT of the bumpers and mirrors is published (overhangs, width incl. mirrors) and located by Rivian's plan view (Upfitting Guide p.59 outline, already in rivian_reference.json r1t_plan); their vertical FORM is not dimensioned in any source found and is a visual assumption."
  }

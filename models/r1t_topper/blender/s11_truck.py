@@ -55,6 +55,13 @@ sill = side["sill_z"]
 fa, ra = side["front_axle_x"], side["rear_axle_x"]
 x_front, x_rear = fa - PUB["front_overhang_m"], ra + PUB["rear_overhang_m"]   # published overhangs
 x_rear = min(x_rear, float(po[:, 0].max()))      # plan view ends 4 mm short of it; keep its taper
+# Lowered-tailgate clearance (verify task 165492: the step-32 bumper top at -0.505 sat inside the
+# S17 lowered-gate slab, z -0.525..-0.465). The rear bumper top is a visual assumption, so it is
+# bound to stay below the gate's underside: bed floor - gate thickness - clearance.
+GATE_T = 0.06                                     # same slab as s17_access.py / truck.py keepout
+GATE_UNDERSIDE_Z = -T["bed_depth"] - GATE_T
+assert FORM["rear_bumper_top_z"] <= GATE_UNDERSIDE_Z - FORM["rear_bumper_gate_clearance_m"] + 1e-9, \
+    "rear bumper top must sit below the lowered tailgate underside"
 TAN_A = math.tan(math.radians(PUB["approach_angle_std_deg"]))
 TAN_D = math.tan(math.radians(PUB["departure_angle_std_deg"]))
 # ground point of the angle line tangent to the tyre (circle centre axle, radius tire_r above ground)
@@ -161,6 +168,10 @@ def section(x):
 stations = np.concatenate([np.linspace(x_front, x_front + 0.12, 6)[:-1],
                            np.arange(x_front + 0.12, x_rear - 0.10, 0.03),
                            np.linspace(x_rear - 0.10, x_rear, 5)])
+# a vertical tailgate face: without these two stations the loft ramps from the tailgate top down to
+# the bumper across one 30 mm bay behind x_rear_tr, i.e. through the lowered gate (165492 probes)
+stations = stations[np.abs(stations - x_rear_tr) > 0.004]
+stations = np.sort(np.concatenate([stations, [x_rear_tr, x_rear_tr + 0.002]]))
 bm = bmesh.new()
 rings = []
 for x in stations:
@@ -177,6 +188,7 @@ me = bpy.data.meshes.new("R1T_BODY")
 bm.to_mesh(me)
 bm.free()
 body = bpy.data.objects.new("R1T_BODY", me)
+body["TAILGATE_FACE_X"] = x_rear_tr               # s17_access.py cuts the gate block up to here
 bpy.context.scene.collection.objects.link(body)
 L.link(body, C)
 
@@ -301,6 +313,8 @@ scores = {
     "approach_angle_deg": angle_min([p for p in vz if p[0] < fa], X0_A, -1),
     "departure_angle_deg": angle_min([p for p in vz if p[0] > ra], X0_D, 1),
     "tailgate_face_x": x_rear_tr,
+    "rear_bumper_top_z": max(v.co.z for v in body.data.vertices if v.co.x > x_rear_tr + 0.001),
+    "lowered_gate_underside_z": GATE_UNDERSIDE_Z,
 }
 print("SCORE " + " ".join(f"{k}={v:.3f}" for k, v in scores.items()))
 L.report_scores(scores)
