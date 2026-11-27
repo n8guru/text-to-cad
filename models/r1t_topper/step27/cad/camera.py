@@ -20,8 +20,8 @@ SOURCES (Rivian PDFs, SHA-256 pinned in ../STEP31_CAMERA.md):
               any light sources within the camera's field of view".
   OG     R1T Owner's Guide 2024-05-27 (e6c54434...75b6) p.307 Gear Guard: "A camera monitors the
          truck bed".
-  FMVSS  49 CFR 571.111 S6.2 (trucks/MPVs <= 4,536 kg GVWR) and S14.1.4 test-object layout: seven
-         0.8 m x 0.3 m cylinders, F/G 0.3 m, D/E 3.05 m, A/B/C 6.1 m behind the rear bumper plane;
+  FMVSS  49 CFR 571.111 S6.2 (trucks/MPVs <= 4,536 kg GVWR); S14.1.3 seven 0.8 m x 0.3 m test
+         cylinders; S14.1.4 layout: F/G 0.3 m, D/E 3.05 m, A/B/C 6.1 m behind the rear bumper plane;
          A/D/F 1.52 m left, C/E/G 1.52 m right, B on the centreline.
 
 The camera POSITIONS are scaled off the p.49 line drawing (no Rivian dimension exists for them): two
@@ -82,7 +82,8 @@ FMVSS_OBJECTS = {  # S14.1.4: (metres behind the rear bumper plane, metres left(
 
 
 def fmvss_targets():
-    """Centre-axis points of each S14.1.4 test object: base+50, mid-height, top band (-75 mm).
+    """Centre-axis points of each S14.1.4 test object: base+50, mid-height, upper (-75 mm). (A-E
+    carry a top band, F/G a vertical stripe, S14.1.3; the sample heights are the same for all.)
 
     The axis point, not the surface: this is a line-of-sight screen, not the S14.1 photometric
     test (no image, no visual-angle measurement)."""
@@ -90,7 +91,7 @@ def fmvss_targets():
     for name, (back_m, left_m) in FMVSS_OBJECTS.items():
         x = T["rear_end_x"] + back_m * 1000.0
         y = left_m * 1000.0
-        for tag, dz in (("base", 50.0), ("mid", 400.0), ("top_band", 725.0)):
+        for tag, dz in (("base", 50.0), ("mid", 400.0), ("upper", 725.0)):
             out.append((f"{name}_{tag}", (x, y, GROUND_Z + dz)))
     return out
 

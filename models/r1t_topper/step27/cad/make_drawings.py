@@ -352,11 +352,11 @@ def main():
     made.append(sheet(
         "DWG-27-020_front_pass_through_pane", _at_origin(fp), Plane.YZ,
         "FRONT PASS-THROUGH PANE, 5 mm HARD-COAT PC, 1 OFF", [
-            ("envelope", _bb(fp)), ("bond", "DP460 is NOT used on PC: 3M VHB 5952 20 mm overlap all round"),
+            ("envelope", _bb(fp)), ("bond", "DP460 is NOT used on PC: 3M VHB 5952, 20 mm overlap (15 mm at the camera-tab top)"),
             ("profile tol", "+/-0.5"), ("general", gen)],
         ["Faces the R1T cab back glass; drain path below.",
-         "Step 31 camera tab (centre, top): keeps the R1T truck bed camera's view of the bed "
-         "(Upfit p.49/p.108). Shell cut raked 0.60 along the sight line; see STEP31_CAMERA.md.",
+         "Step 31 camera tab (centre, top): restores SAMPLED line of sight from the R1T truck bed "
+         "camera to the bed floor (Upfit p.49/p.108); no image/FOV claim. Shell cut raked 0.60.",
          "Optical window only: no camera, wire or light source in this zone (Upfit p.108)."],
         scale=0.5))
 

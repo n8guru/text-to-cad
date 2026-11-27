@@ -14,7 +14,7 @@ extension to feed the rear camera, that is on the back of cab."*
 |---|---|---|
 | UPFIT | Rivian R1T Upfitting Guide, September 2025, `https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/b83307f7e8f03838a1906bff88707f95/r1t-upfitting-guide-en-us-20250924.pdf`, sha256 `847d036f3977764d151689442ea54e4141bf70113b9d8380d46d796c3982552a` (same file the Step 27 package already pins) | p.49 rear view: item 10 **Truck bed camera** sits at the top centre of the cab back, under the roof edge between the two CHMSL lamps; item 11 **Rear surround view camera** sits at the centre of the rear bumper fascia above the hitch. p.105 item 5 repeats the bed camera. p.107: the bed camera view appears automatically *"When in R (Reverse) and the tailgate is down"*. p.108 *Modifications to Cameras*: *"Do not block the exterior camera field of view"*, *"Keep the camera in its current position"*, *"Do not modify the camera harness, including connectors"*, *"Avoid placing any light sources within the camera's field of view (FOV) limits"*, *"If a camera is moved … a calibration must be performed"*. p.109: sensors stay in their original positions; do not alter their mounting points or wiring. |
 | OG | Rivian R1T Owner's Guide 2024-05-27, `https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf`, sha256 `e6c544346ef87548d956934a46c2a656c24d3196ed271ff929ec213e59b775b6` | p.218 item 5 truck bed camera; p.219 automatic camera *"When in Reverse and the tailgate is down (truck bed view)"*; p.307 Gear Guard: *"A camera monitors the truck bed"*. |
-| FMVSS | 49 CFR 571.111 (read at law.cornell.edu/cfr/text/49/571.111, 2026-11-27) | S6.2: trucks/MPVs ≤ 4,536 kg GVWR display a rearview image meeting S6.2.1–S6.2.7. S14.1.4: seven 0.8 m × 0.3 m test objects; F/G 0.3 m, D/E 3.05 m, A/B/C 6.1 m behind the rear-bumper plane; A/D/F 1.52 m left, C/E/G 1.52 m right, B on the centreline. |
+| FMVSS | 49 CFR 571.111 (read at law.cornell.edu/cfr/text/49/571.111, 2026-11-27) | S6.2: trucks/MPVs ≤ 4,536 kg GVWR display a rearview image meeting S6.2.1–S6.2.7. S14.1.3: seven 0.8 m × 0.3 m test cylinders (A–E top band, F/G vertical stripe). S14.1.4: F/G 0.3 m, D/E 3.05 m, A/B/C 6.1 m behind the rear-bumper plane; A/D/F 1.52 m left, C/E/G 1.52 m right, B on the centreline. |
 | USC | 49 U.S.C. 30122(b) (make-inoperative prohibition) | A manufacturer, distributor, dealer, rental company or repair business may not knowingly make inoperative a device installed in compliance with an FMVSS. Relevant because the product is commercial (insight 83761). |
 
 Rivian rasters are **not** redistributed (same rule as the Step 4 reference package); the
@@ -50,14 +50,14 @@ BLOCKED; one that crosses only `*PANE*` parts is THROUGH_GLAZING. The truck itse
 occluder (it hides what it hides with or without a topper).
 
 Targets: (a) **bed view** — 121 points on the bed floor, x 100…1350, y −550…550; (b) **rear view**
-— the 21 axis points (base, mid, top band) of the seven S14.1.4 object positions. (b) is a
+— 21 axis points (base +50, mid-height, upper −75 mm) of the seven S14.1.4 object positions. (b) is a
 line-of-sight screen at those positions, **not** the S14.1 photometric test.
 
 | Measurement (nominal lens) | Pre-step-31 shell | Step 31 provision |
 |---|---|---|
 | Bed camera → bed floor, visible | **11 / 121 (9.1 %)**, 110 blocked by the shell front wall | **121 / 121 (100 %)** through the pane, all 11 rows x 100…1350 |
 | Bed camera → S14.1.4 points (tailgate-down reverse role) | 0 / 21 | 6 / 21 — **residual, not restored** |
-| Bumper camera → S14.1.4 points, hatch closed **and** open 95° | 21 / 21 at nominal + 4 band corners | 21 / 21 at nominal + 4 band corners — **the topper never enters this view** |
+| Bumper camera → S14.1.4 points, hatch closed **and** open 95° | 21 / 21 at nominal + 4 band corners | 21 / 21 at nominal + 4 band corners — **no topper part intersects any sampled sight line** |
 
 Lens-band sensitivity, bed view (baseline → provision): (−155, 405) 27 % → 100 %;
 (−155, 450) 9 % → 64 %; (−130, 405) 9 % → 100 %; (−130, 450) 0 % → 36 %. Improvement at every
@@ -79,13 +79,16 @@ rear rows of the bed again — tape-measure the lens at Step 22 and re-run the c
 
 * `cad/shell.py: CAMERA_TAB, _camera_tab_cut()` — a 440 mm wide centre **camera tab** extending
   the front window from z 280 to the top of the flat front face. The through-cut is **raked 0.60**
-  (dz/dx of the far-bed sight line): inner edge z 392, outer edge z 404.6 (measured), below the
-  outer R50 roll start z 412. The rake lets the shallow rays clear both skins of the 22 mm wall.
+  (dz/dx of the far-bed sight line): inner edge z 392, outer edge z 405.2 at the outer face
+  (SEC-31-001; the check's 1 mm probe 0.5 mm inside the face reads 404.6 and a measured rake of
+  0.600), below the outer R50 roll start z 412. The rake lets the shallow rays clear both skins of the 22 mm wall.
 * `cad/shell.py: front_pane()` — the front pane is now **one piece**: main outline + tab outline,
   each grown by its bond overlap (20 mm; 15 mm at the tab top so the pane stops 5 mm below the
   inner R28 roof roll). Measured pane-to-shell overlap 0 mm³.
 * `shell(camera_tab=False)` / `front_pane(camera_tab=False)` rebuild the previous geometry **only**
   as the measured baseline.
+* Line of sight is SAMPLED (121 + 21 points); the 1 mm lens/target trims and the face-only
+  intersector are documented limits of `SightLines.trace`.
 * Section **SEC-31-001** (`drawings/SEC-31-001_bed_camera_sightline.svg`): centreline side profile
   with cab keep-out, shell, pane and the `00_REFERENCE` bed-camera sight fan (nominal lens → bed
   floor x 100…1350). DWG-27-020 notes carry the tab and the p.108 rule. The STEP/STL outputs are
@@ -101,10 +104,12 @@ the regenerated package (counts in the commit message / step evidence).
 ## 6. Open items and boundaries (nothing here is claimed)
 
 1. **Bed-camera rear view with the tailgate down is not restored** (OPEN check
-   `residual_bed_camera_rear_view_not_restored`). With the topper fitted, reverse with the
-   tailgate **up** so the bumper camera is the view. Owner's-manual note for the product.
+   `residual_bed_camera_rear_view_not_restored`). When Automatic Cameras is enabled, Rivian shows
+   the bed camera in Reverse with the tailgate down (UPFIT p.107); with the topper fitted, most of
+   that view's sampled sight lines are blocked, so the product's owner notes must say not to rely
+   on it. This is guidance to write, not a tested workaround.
 2. **Which camera Rivian certifies for FMVSS 111 S6.2 is not published.** The measured result is
-   that the topper does not enter the bumper camera's sight lines to any S14.1.4 position (hatch
+   that the topper does not enter any sampled bumper-camera sight line to the S14.1.4 positions (hatch
    closed or open). If Rivian's certified image used the bed camera with the tailgate down, the
    residual in (1) becomes a 49 U.S.C. 30122 make-inoperative question — ask through the Rivian
    Upfit program (step 38 packet) before commercial release.

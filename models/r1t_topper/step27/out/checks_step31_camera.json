@@ -160,7 +160,7 @@
     {
       "name": "residual_bed_camera_rear_view_not_restored",
       "state": "OPEN",
-      "note": "the lens sits at cab-roof height and the topper roof continues that roofline (charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave through the roof header, not the window. Not restored and not claimed: with the topper fitted, reverse with the tailgate UP so the bumper camera is the view. Closes when a physically tested route (e.g. a separately sourced hatch camera) is chosen in a later step.",
+      "note": "the lens sits at cab-roof height and the topper roof continues that roofline (charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave through the roof header, not the window. Not restored and not claimed: with the topper fitted, do not rely on the tailgate-down bed-camera view (UPFIT p.107). Closes when a physically tested route (e.g. a separately sourced hatch camera) is chosen in a later step.",
       "baseline_visible_fraction": 0.0,
       "camera": "TRUCK_BED_CAMERA",
       "xyz": [

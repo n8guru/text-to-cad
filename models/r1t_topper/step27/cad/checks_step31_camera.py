@@ -83,7 +83,7 @@ def run():
           note=("the lens sits at cab-roof height and the topper roof continues that roofline "
                 "(charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave "
                 "through the roof header, not the window. Not restored and not claimed: with the "
-                "topper fitted, reverse with the tailgate UP so the bumper camera is the view. "
+                "topper fitted, do not rely on the tailgate-down bed-camera view (UPFIT p.107). "
                 "Closes when a physically tested route (e.g. a separately sourced hatch camera) "
                 "is chosen in a later step."),
           baseline_visible_fraction=base_fm["visible_fraction"], **new_fm)
@@ -141,9 +141,10 @@ def run():
           note="the provision is a window: nothing is added at or forward of the cab back, the "
                "camera is not moved and no wire is touched (UPFIT p.108)")
     removed = SH.shell(False).volume - sh.volume
-    check("carbon_removed_and_pc_added_recorded", removed > 0, state="PASS",
+    added = pane.volume - SH.front_pane(False).volume
+    check("carbon_removed_and_pc_added_recorded", removed > 0 and added > 0,
           carbon_removed_mm3=removed, carbon_removed_kg=removed / w * 5.8e-6,
-          pane_added_mm3=pane.volume - SH.front_pane(False).volume)
+          pane_added_mm3=added)
 
     OUT.parent.mkdir(exist_ok=True)
     n = {s: sum(r["state"] == s for r in rows) for s in ("PASS", "FAIL", "OPEN")}
