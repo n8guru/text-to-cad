@@ -1,0 +1,27 @@
+{
+ "_doc": "Step 32 (decision 2154445): published Gen-1 R1T vehicle specifications used by the render-lane truck proxy (blender/s11_truck.py) ONLY. Not read by any CAD/check module; params.json and rivian_reference.json (hashed in step27/out/PROVENANCE.json) are deliberately unchanged. Values are Rivian-published nominal specifications, not measurements of a specific truck; every value stays TAPE-REQUIRED before fabrication.",
+ "source": {
+  "title": "Rivian R1T Upfitting Guide, September 2025, 'Vehicle Dimensions and Packaging - Overall Vehicle Specifications'",
+  "url": "https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/b83307f7e8f03838a1906bff88707f95/r1t-upfitting-guide-en-us-20250924.pdf",
+  "sha256": "847d036f3977764d151689442ea54e4141bf70113b9d8380d46d796c3982552a",
+  "pages": "printed pp.27-28 (text-extracted 2026-11-27 from the local copy ~/r1t-topper-research/r1t-upfit.txt)"
+ },
+ "tyre_config": "34 in tyres, 275/65R20, standard ride height",
+ "front_overhang_m": 0.909,
+ "rear_overhang_m": 1.155,
+ "overall_length_m": 5.514,
+ "width_with_mirrors_m": 2.246,
+ "width_without_mirrors_m": 2.014,
+ "approach_angle_std_deg": 30.4,
+ "departure_angle_std_deg": 25.6,
+ "breakover_angle_std_deg": 20.8,
+ "ground_clearance_std_m": 0.288,
+ "bed_width_at_wheelhouse_m": 1.277,
+ "height_no_antenna_m": 1.834,
+ "_unsourced_form": {
+  "front_bumper_top_z": -0.40,
+  "rear_bumper_top_z": -0.505,
+  "mirror_z_range": [0.02, 0.17],
+  "_doc": "Bed-frame metres (z = 0 on the rail top). The x-EXTENT of the bumpers and mirrors is published (overhangs, width incl. mirrors) and located by Rivian's plan view (Upfitting Guide p.59 outline, already in rivian_reference.json r1t_plan); their vertical FORM is not dimensioned in any source found and is a visual assumption."
+ }
+}

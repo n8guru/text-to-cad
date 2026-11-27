@@ -1,0 +1,120 @@
+{
+ "task_id": 165486,
+ "attempt_id": 1,
+ "project_id": 924515,
+ "step": "32",
+ "base_cad_commit": "0bb4c68121eb6974c6f739c8db10159f3394a967",
+ "cad_identity": "topper geometry unchanged: closed parts regenerated from base-pin assembly_step27.step27_assembly(0.0); open-hatch parts = committed out/parts_access at the base pin; params.json / rivian_reference.json / step27/cad unchanged",
+ "truck": "render-lane proxy from Rivian line art + published specs; NOT a scan, NOT calibration, NO fitment approval",
+ "blender_loop_run": "r1t-task165486 (blender 5.3.0, Cycles 64 spp for S2/S3)",
+ "scores": {
+  "S0_truck_published": {
+   "length_m": 5.509999990463257,
+   "width_m": 2.0139999389648438,
+   "roof_no_fin_above_ground_m": 1.8350999984741212,
+   "top_with_fin_above_ground_m": 1.8930000100135804,
+   "rail_above_ground_m": 1.366,
+   "bed_depth_m": 0.4650000333786011,
+   "cab_back_x": -0.15,
+   "wheelbase_m": 3.45,
+   "front_overhang_m": 0.9089999813079834,
+   "rear_overhang_m": 1.1510000091552735,
+   "width_with_mirrors_m": 2.246000051498413,
+   "approach_angle_deg": 30.399994912882406,
+   "departure_angle_deg": 25.599996909224203,
+   "tailgate_face_x": 1.461,
+   "kind": "r1t_cad"
+  },
+  "S1_topper_closed": {
+   "imported_parts": 220,
+   "roof_step_mm": -8.646875619888306,
+   "cab_gap_mm": 24.59999918937683,
+   "base_gap_max_mm": 4.000001586973667,
+   "base_gap_min_mm": 4.000001586973667,
+   "base_samples": 1,
+   "base_pad_expected_mm": 4.0,
+   "base_pad_error_mm": 1.5869736670615087e-06,
+   "kind": "r1t_cad"
+  },
+  "S2_hero_closed": {
+   "lum_rear3q": 0.8726186679050446,
+   "lum_front3q": 0.8737086454482729,
+   "lum_side": 0.9225041012633959,
+   "lum_junction": 0.8354021548824563,
+   "roof_step_mm": -8.646875619888306,
+   "min_lum": 0.8354021548824563,
+   "max_lum": 0.9225041012633959,
+   "kind": "r1t_cad"
+  },
+  "S3_access_open": {
+   "imported_parts": 220,
+   "lowest_open_leaf_point_mm": 316.82804226875305,
+   "cargo_top_above_rail_mm": 134.99999999999994,
+   "cargo_exit_rays_clear": 10,
+   "cargo_exit_rays_total": 10,
+   "bed_floor_below_rail_mm": 465.0,
+   "kind": "r1t_cad"
+  }
+ },
+ "images": [
+  {
+   "file": "S0_truck_published_ctx_front3q.png",
+   "sha256": "90a865c280589ba98e549bc23567c9fc84562c0b5a8386433e7b455c71085f27"
+  },
+  {
+   "file": "S0_truck_published_ctx_rear3q.png",
+   "sha256": "1454c5b3f05eb014b83bc4dfe62825a47461e2d2d2c48f0ac6e72307eeda1f55"
+  },
+  {
+   "file": "S0_truck_published_ctx_side.png",
+   "sha256": "56ff388715b422c200ab115ded288fe580083a639538bd8e2b9c43365e72c4cb"
+  },
+  {
+   "file": "S0_truck_published_ctx_top.png",
+   "sha256": "e8d43a4e1f5efe79020d37ec17a4588ec69278f64f1461e1ab370c074c013c2c"
+  },
+  {
+   "file": "S2_hero_closed_hero_front3q.png",
+   "sha256": "d5a4a513a83d33e92cd5096fc1f8c4f5c63c8d3072f8dc16786ebae9aea19cfc"
+  },
+  {
+   "file": "S2_hero_closed_hero_junction.png",
+   "sha256": "8b7b4ffa91ff7be0caa78896e79adf9a6125213b2f0850641f3706d4576461b9"
+  },
+  {
+   "file": "S2_hero_closed_hero_rear3q.png",
+   "sha256": "5c4a6de37d0c30bf9b714a328a4fbf6caa961076234ba63bf3d4ad3b00cb10a4"
+  },
+  {
+   "file": "S2_hero_closed_hero_side.png",
+   "sha256": "6f8d9cc1028e8764f74c810928b89cd032e91477cd20ee9eea115e376f7403f9"
+  },
+  {
+   "file": "S3_access_open_access_rear.png",
+   "sha256": "a7e8dfc2192313431085805b12074810495513a24a5873e6cc36d1fab28b40e5"
+  },
+  {
+   "file": "S3_access_open_access_rear3q.png",
+   "sha256": "5d9173b2a3b9db99010e976a7296364a957718e31631f7b096c3f83914f3d25d"
+  },
+  {
+   "file": "S3_access_open_access_side.png",
+   "sha256": "2776bf3a1cbadb7f99e8b80b7c1a478ea4a7e9c114ed222f0744d16014dc75d1"
+  },
+  {
+   "file": "S3_access_open_access_top_rear.png",
+   "sha256": "424f11b0ddac6903847e1b4c992506931003d58b43247d5182fe43cdadcd8bb0"
+  }
+ ],
+ "sources": {
+  "models/r1t_topper/blender/s11_truck.py": "a897a42673f4f9f63c7b1ffe1813bc5d257cb38b279f9d2a035e63824adfa742",
+  "models/r1t_topper/blender/s12_topper.py": "35dbd367df18d16cd6842d10e5f8338cbb64921834c43eca6243be3cec1a8f0c",
+  "models/r1t_topper/blender/s13_hero.py": "98300fb58d211552e335960bfcdf92723ab3e9136e3ca3496e28fb68b2e8f44b",
+  "models/r1t_topper/blender/s17_access.py": "d059ed7bb64cde44bf64253b2cc66f242dec1e50acdc6ecfc97f2f8a597f6171",
+  "models/r1t_topper/blender/params.json": "a1432e8731c418d56e3272e992114a1a83ce92195f53cd0fab72a981fca5d639",
+  "models/r1t_topper/step27/style/rivian_reference.json": "129077551c56057ed2cb058d2edead158a118bed7b81885738b7b6d723ae879a",
+  "models/r1t_topper/step27/style/r1t_published_specs_32.json": "a93836b67fb3fa7d686e58c245d95424811f0b4299a13b976a201463382a7380",
+  "models/r1t_topper/step27/cad/assembly_step27.py": "fb195b1efd118616f181d53f446e80db1c375607125cc1c84c247490d7c3d316",
+  "models/r1t_topper/step27/out/R1T_TOPPER_STEP27.step": "daa3cd3cd596657c0eae5818c1ebfb841bf8f7dc5b81aef8cc2fefaf2e94f0b0"
+ }
+}

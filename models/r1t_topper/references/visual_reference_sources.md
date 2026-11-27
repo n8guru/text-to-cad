@@ -15,6 +15,8 @@ not establish mounting, clearance, or production body geometry.
 - “Rivian R1T 2022 [Free!]” by 3dblender_1, Sketchfab model
   `89ec895feb8145768f93382f356affb5`, 308,001 triangles, licensed CC BY 4.0:
   <https://sketchfab.com/3d-models/rivian-r1t-2022-free-89ec895feb8145768f93382f356affb5>
+  — **withdrawn**: the Sketchfab API returned 404 for this uid on 2026-11-27, so its current terms
+  cannot be confirmed; do not use it (Step 32 rights table, `step27/STEP32_REFERENCE_ASSETS.md`).
 
 The screenshots are perspective images, and the Sketchfab asset is an artist
 mesh rather than a scan or manufacturer CAD model. Neither can establish

@@ -7,6 +7,15 @@ Every shape input comes from step27/style/rivian_reference.json:
 and the published wheelbase / track / tyre size. The body is lofted station by station so the
 cab-back, spoiler, rail and tailgate positions the topper is checked against are the ones in the
 render, not a separately guessed proxy.
+
+Step 32 (decision 2154445) accuracy pass, render lane only (step27/style/r1t_published_specs_32.json,
+Upfitting Guide pp.27-28): the side-view trace is ~196 mm short of the published 5514 mm length, while
+Rivian's own plan view (p.59) spans the full length. The body now runs to the published front/rear
+overhangs (909 / 1155 mm) with the plan-view taper, the overhang undersides follow the published
+approach / departure angles (30.4 / 25.6 deg, standard height, tangent to the 275/65R20 tyre), and the
+plan-view mirror bump is restored as mirrors reaching the published 2246 mm width. Cab back, spoiler,
+rail, bed and tailgate face (the topper datums) are unchanged. Still a drawing/spec proxy: not a scan,
+not a measurement of any truck, not calibration.
 """
 import math
 import os
@@ -19,6 +28,10 @@ from mathutils import Vector
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import r1t_lib as L  # noqa: E402
+import json  # noqa: E402
+
+PUB = json.loads((L.STEP27 / "style" / "r1t_published_specs_32.json").read_text())
+FORM = PUB["_unsourced_form"]
 
 L.clear_scene()
 m = L.M()
@@ -37,12 +50,24 @@ xs_w, ws = po[keep, 0], po[keep, 1]
 ws = np.minimum(ws, T["body_width"] / 2)
 sec = np.array(rear["greenhouse_section_zfrac_halfwfrac"])   # (zfrac rail->roof, half/bodyhalf)
 sec = sec[np.argsort(sec[:, 0])]
-x_front, x_rear = float(xs_top.min()), float(xs_top.max())
+x_front_tr, x_rear_tr = float(xs_top.min()), float(xs_top.max())   # traced faces (lamps, tailgate)
 sill = side["sill_z"]
 fa, ra = side["front_axle_x"], side["rear_axle_x"]
+x_front, x_rear = fa - PUB["front_overhang_m"], ra + PUB["rear_overhang_m"]   # published overhangs
+x_rear = min(x_rear, float(po[:, 0].max()))      # plan view ends 4 mm short of it; keep its taper
+TAN_A = math.tan(math.radians(PUB["approach_angle_std_deg"]))
+TAN_D = math.tan(math.radians(PUB["departure_angle_std_deg"]))
+# ground point of the angle line tangent to the tyre (circle centre axle, radius tire_r above ground)
+X0_A = fa - T["tire_r"] * (1 / math.cos(math.atan(TAN_A)) - 1) / TAN_A
+X0_D = ra + T["tire_r"] * (1 / math.cos(math.atan(TAN_D)) - 1) / TAN_D
 
 
 def ztop(x):
+    """Traced silhouette; beyond it, the published-overhang bumper zones (top z: unsourced form)."""
+    if x < x_front_tr:
+        return FORM["front_bumper_top_z"]
+    if x > x_rear_tr:
+        return FORM["rear_bumper_top_z"]
     return float(np.interp(x, xs_top, zs_top))
 
 
@@ -51,11 +76,12 @@ def halfw(x):
 
 
 def zbot(x):
-    """Sill between the axles, rising through the overhangs (approach / departure)."""
-    if x < fa:
-        return sill + 0.30 * min(1.0, (fa - x) / (fa - x_front))
-    if x > ra:
-        return sill + 0.25 * min(1.0, (x - ra) / (x_rear - ra))
+    """Sill between the axles; in the overhangs, never below the published approach / departure
+    line (tangent to the tyre), so the lowest bumper points sit exactly on it."""
+    if x < X0_A:
+        return max(sill, g + TAN_A * (X0_A - x))
+    if x > X0_D:
+        return max(sill, g + TAN_D * (x - X0_D))
     return sill
 
 
@@ -210,7 +236,7 @@ for x in (fa, ra):
         L.link(r, C)
 
 # signature lighting: stadium headlamps + front bar, full-width rear bar
-xf = x_front
+xf = x_front_tr
 for sy in (1, -1):
     h = cyl(f"HEADLAMP_{sy}", 0.06, 0.03, (xf - 0.004, sy * (halfw(xf + 0.05) - 0.18), ztop(xf + 0.05) - 0.13),
             (0, math.pi / 2, 0), 32)
@@ -220,9 +246,21 @@ for sy in (1, -1):
 bar = box("FRONT_LIGHTBAR", (xf - 0.004, 0, ztop(xf + 0.05) - 0.035), (0.02, 2 * halfw(xf + 0.05) - 0.3, 0.016))
 L.assign(bar, m["light"])
 L.link(bar, C)
-rb = box("REAR_LIGHTBAR", (x_rear + 0.004, 0, -0.08), (0.012, 2 * halfw(x_rear - 0.05) - 0.16, 0.028))
+rb = box("REAR_LIGHTBAR", (x_rear_tr + 0.004, 0, -0.08), (0.012, 2 * halfw(x_rear_tr - 0.05) - 0.16, 0.028))
 L.assign(rb, m["tail"])
 L.link(rb, C)
+# mirrors: x-range of the plan-view bump (p.59), reaching the published width incl. mirrors
+bump = po[(po[:, 0] > x_mir0) & (po[:, 0] < x_mir1) & (po[:, 1] > T["body_width"] / 2 + 0.01)]
+mx0, mx1 = float(bump[:, 0].min()), float(bump[:, 0].max())
+y_out = PUB["width_with_mirrors_m"] / 2
+for sy in (1, -1):
+    y_in = halfw((mx0 + mx1) / 2) - 0.02
+    mr = box(f"MIRROR_{sy}", ((mx0 + mx1) / 2, sy * (y_in + y_out) / 2, sum(FORM["mirror_z_range"]) / 2),
+             (mx1 - mx0, y_out - y_in, FORM["mirror_z_range"][1] - FORM["mirror_z_range"][0]))
+    bev = mr.modifiers.new("b", "BEVEL")
+    bev.width, bev.segments = 0.03, 4
+    L.assign(mr, m["black"])
+    L.link(mr, C)
 gp = box("GROUND", (0, 0, g - 0.01), (60, 60, 0.02))
 L.assign(gp, m["ground"])
 L.link(gp, C)
@@ -236,6 +274,17 @@ V = {   # "ctx_" prefix: the blender-loop runtime writes its own side/front/over
 }
 L.look(V, res=(1400, 800))
 bmin, bmax = L.bbox(body)
+mirr = [o for o in bpy.data.objects if o.name.startswith("MIRROR_")]
+wmin, wmax = L.world_bbox(mirr)
+
+
+def angle_min(xs_zs, x0, sign):
+    """Smallest ground-line angle from the published tangent point to any overhang vertex."""
+    a = [math.degrees(math.atan2(z - g, sign * (x - x0))) for x, z in xs_zs if sign * (x - x0) > 0.05]
+    return min(a)
+
+
+vz = [(v.co.x, v.co.z) for v in body.data.vertices]
 fin = (-0.47, -0.36)                      # antenna fin x-range (side view)
 roof = max(v.co.z for v in body.data.vertices if not fin[0] < v.co.x < fin[1])
 top = max(v.co.z for v in body.data.vertices)
@@ -247,6 +296,11 @@ scores = {
     "roof_no_fin_above_ground_m": roof - g, "top_with_fin_above_ground_m": top - g,
     "rail_above_ground_m": -g, "bed_depth_m": -bed_floor,
     "cab_back_x": T["cab_back"][0][0], "wheelbase_m": ra - fa,
+    "front_overhang_m": fa - bmin[0], "rear_overhang_m": bmax[0] - ra,
+    "width_with_mirrors_m": wmax[1] - wmin[1],
+    "approach_angle_deg": angle_min([p for p in vz if p[0] < fa], X0_A, -1),
+    "departure_angle_deg": angle_min([p for p in vz if p[0] > ra], X0_D, 1),
+    "tailgate_face_x": x_rear_tr,
 }
 print("SCORE " + " ".join(f"{k}={v:.3f}" for k, v in scores.items()))
 L.report_scores(scores)
