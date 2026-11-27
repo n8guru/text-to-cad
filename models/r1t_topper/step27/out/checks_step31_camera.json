@@ -361,7 +361,7 @@
       "pane_top_mm": 426.0,
       "tongue_half_width_mm": 95.0,
       "inner_roll_start_mm": 412.0,
-      "pane_shell_overlap_mm3": 0.00619341339420453,
+      "pane_shell_overlap_mm3": 0.01,
       "pane_bbox": [
         [
           -78.0,
@@ -396,7 +396,7 @@
       "pane_bottom_mm": -116.00000000000034,
       "escutcheon_top_mm": -117.2,
       "bottom_overlap_mm": 10.5,
-      "leaf_mass_kg": 4.085904265251093
+      "leaf_mass_kg": 4.0859
     },
     {
       "name": "optical_only_no_part_forward_of_front_face_no_camera_or_harness_change",
@@ -407,9 +407,9 @@
     {
       "name": "carbon_removed_and_pc_added_recorded",
       "state": "PASS",
-      "carbon_removed_mm3": 863870.5849308223,
-      "carbon_removed_kg": 0.2277476996635804,
-      "pane_added_mm3": 180456.337974309
+      "carbon_removed_mm3": 863870.6,
+      "carbon_removed_kg": 0.2277,
+      "pane_added_mm3": 180456.3
     }
   ]
 }

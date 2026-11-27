@@ -153,7 +153,7 @@ def run():
           and abs(pb.min.X - (x0 + w)) < 1e-6 and pb.max.Z <= tongue_top + 1e-6
           and abs(above.volume - above_in_tongue.volume) < 1.0,
           pane_top_mm=pb.max.Z, tongue_half_width_mm=tongue_hw, inner_roll_start_mm=flat_top_inner,
-          pane_shell_overlap_mm3=(pane & sh).volume, pane_bbox=[tuple(pb.min), tuple(pb.max)],
+          pane_shell_overlap_mm3=round((pane & sh).volume, 2), pane_bbox=[tuple(round(v, 3) for v in pb.min), tuple(round(v, 3) for v in pb.max)],
           note="only the rear-view tongue rises above the inner roll start; it sits in "
                "rear_view_pocket (0.5 mm clear) and bonds to the slot's cut face")
     roof_top = sh.bounding_box().max.Z
@@ -184,7 +184,7 @@ def run():
           and len(leaf.solids()) == 1,
           striker_arm_footprint_on_carbon=arm_ok, pane_bottom_mm=hp.bounding_box().min.Y,
           escutcheon_top_mm=hole_top, bottom_overlap_mm=HA.WIN["y_bot"] - HA.WIN["y_clip"],
-          leaf_mass_kg=HA.leaf_mass_kg())
+          leaf_mass_kg=round(HA.leaf_mass_kg(), 4))
     lens = C.CAMERAS[cam]
     gaps = [min(abs(x0 - xyz[0]), math.inf) for xyz in [lens["xyz"]] + C.band_corners(cam)]
     check("optical_only_no_part_forward_of_front_face_no_camera_or_harness_change",
@@ -196,8 +196,8 @@ def run():
     removed = SH.shell(False).volume - sh.volume
     added = pane.volume - SH.front_pane(False).volume
     check("carbon_removed_and_pc_added_recorded", removed > 0 and added > 0,
-          carbon_removed_mm3=removed, carbon_removed_kg=removed / w * 5.8e-6,
-          pane_added_mm3=added)
+          carbon_removed_mm3=round(removed, 1), carbon_removed_kg=round(removed / w * 5.8e-6, 4),
+          pane_added_mm3=round(added, 1))
 
     OUT.parent.mkdir(exist_ok=True)
     n = {s: sum(r["state"] == s for r in rows) for s in ("PASS", "FAIL", "OPEN")}

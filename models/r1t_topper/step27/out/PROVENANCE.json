@@ -30,7 +30,7 @@
   "step27/cad/checks_step27.py": "ac7bda91b83815a910dc99631721a68e49713b8ae3b7ea1e0c883c5a1bf5af96",
   "step27/cad/checks_step30_hatch_width.py": "ea7ecbb4dc81590961ab5d4f7dca87272c3ba5221022360538cacc998f6de554",
   "step27/cad/checks_step30_mount.py": "827c1061d62b2ec0fd91ba15272981795cab94ea4e700805667c26e68130a3da",
-  "step27/cad/checks_step31_camera.py": "985e32df52bb84d876fc9c1cc09c25074444d4c9bd9d5d0a589ec5f6c8abab73",
+  "step27/cad/checks_step31_camera.py": "1b92b9d8b9f7d81336ab0a7073dd9eb005f191ac61083367204ba2897a359117",
   "step27/cad/export_step30_mount.py": "cc696db06e219249cb2950df91511200681798cebb39af5ebdc1ccc0036eb17f",
   "step27/cad/fasteners.py": "5c5ebf8f0166a544943b02b49d708c5707223340b7d01b082c391d6dc8cac276",
   "step27/cad/geom.py": "d6a4814433f1466a73275e8b664ce53220ba5eb7ec81a3aa29d8324fa147ae9e",
@@ -798,7 +798,7 @@
   "step27/out/reference/00_REFERENCE_R1T_KEEPOUTS__TAILGATE_KEEPOUT.stl": "fd92bcb251af7bac078b8ecc58abb04fe2cf69f2ad7504a7cebd58a533bd0d88",
   "step27/out/checks_step30_hatch_width.json": "52ba8955de4715f4bb20c4966f8ec2d2bec1a3f9edd9f15c0fa61b5914924d18",
   "step27/out/checks_step30_mount.json": "a1c1d7ebdc1b52a65b295846c8f4a999b70b00c4aaaebbd122e2e359e5c838a4",
-  "step27/out/checks_step31_camera.json": "b6545d8bd0b5fb9dc9f688ed9088fa3cd4f040362f17a2e4cf2bbb4ce5829d78",
+  "step27/out/checks_step31_camera.json": "dd70cd77983b06e40e0702fbb6bbaf1cc446dcc1edf9a5ee3d45c3056a5c680d",
   "step27/out/step30_mount_manifest.json": "4b3cb8cbe5319ea6aac8cf7f23e8df463cd452486df228a30d0528ceb7d466e8"
  }
 }
