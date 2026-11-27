@@ -56,8 +56,10 @@ line-of-sight screen at those positions, **not** the S14.1 photometric test.
 | Measurement (nominal lens) | Pre-step-31 shell | Step 31 provision |
 |---|---|---|
 | Bed camera → bed floor, visible | **11 / 121 (9.1 %)**, 110 blocked by the shell front wall | **121 / 121 (100 %)** through the pane, all 11 rows x 100…1350 |
-| Bed camera → S14.1.4 points (tailgate-down reverse role) | 0 / 21 | 6 / 21 — **residual, not restored** |
+| Bed camera → S14.1.4 points (tailgate-down reverse role, hatch closed) | 0 / 21 | **21 / 21** through the front pane + one-piece hatch pane (rev 2; rev 1 was 6 / 21) |
 | Bumper camera → S14.1.4 points, hatch closed **and** open 95° | 21 / 21 at nominal + 4 band corners | 21 / 21 at nominal + 4 band corners — **no topper part intersects any sampled sight line** |
+
+Rear-view lens-band sensitivity (baseline → provision, OPEN `rear_view_lens_band_sensitivity_recorded`): (−155, 405) 0 % → 76 %; (−130, 405) 0 % → 76 % (the steepest centre/near rays pass under the hatch pane's bottom chord in the T-handle zone); (−155, 450) 0 % → 29 %; (−130, 450) 0 % → 0 % (a lens above the modelled cab looks over the slot into the roof roll). The full rear view is therefore claimed **only at the nominal lens**; tape-measure the lens at Step 22 and re-run.
 
 Lens-band sensitivity, bed view (baseline → provision): (−155, 405) 27 % → 100 %;
 (−155, 450) 9 % → 64 %; (−130, 405) 9 % → 100 %; (−130, 450) 0 % → 36 %. Improvement at every
@@ -72,7 +74,7 @@ rear rows of the bed again — tape-measure the lens at Step 22 and re-run the c
 | **A. Optical window in the topper front wall, in front of the unmodified camera** | **SELECTED** | Nothing electrical; the camera stays put and keeps its calibration; no harness work; it only *removes* an obstruction the topper itself created (UPFIT p.108). Same 5 mm hard-coat PC and VHB 5952 bond as the existing front pass-through pane (DWG-27-020, BOM line already sourced). |
 | B. Relocate the bed camera to the topper hatch / extend its harness | Rejected | UPFIT p.108–109 forbid moving the camera, modifying its harness/connectors or mounting points, and require recalibration if moved. |
 | C. "Fiber-optic extension" (coherent imaging bundle relaying the hatch view to the OEM lens) | Rejected, **no capability claimed** | No product was sourced that does this, and it would put an object directly in front of the lens (p.108: do not block the FOV, do not touch the lens). Resolution, FOV and light loss of such a relay are unknown; inventing them is exactly what this step must not do. |
-| D. Notch or lower the topper roof header in front of the lens | Rejected | Breaks the charter's uninterrupted R1S-like top plane; would also weaken the front frame. |
+| D. Notch or lower the topper roof header in front of the lens | Rejected as a **header-wide** change; rev 2 uses only a **160 mm glazed slot** in the front roll | A full-width notch breaks the charter's uninterrupted R1S-like top plane and weakens the front frame. The glazed slot stays below the roof plane (z 418–421 vs roof 462) and is the narrowest cut the measured rear rays need. |
 | E. Separate aftermarket hatch camera + own display | Not selected here (OPEN) | Does not "feed" the Rivian camera; adds electronics and an unsourced part. Candidate for a later optional accessory step with its own sourcing. |
 
 ## 4. What is drawn (authoritative CAD)
@@ -87,6 +89,30 @@ rear rows of the bed again — tape-measure the lens at Step 22 and re-run the c
   inner R28 roof roll). Measured pane-to-shell overlap 0 mm³.
 * `shell(camera_tab=False)` / `front_pane(camera_tab=False)` rebuild the previous geometry **only**
   as the measured baseline.
+* **Rev 2 (defect 61517, verify 165504: "does not restore its rearward view with the tailgate
+  down").** Rev 1 left 15 / 21 rear sight lines blocked: all 15 crossed the front wall at
+  z 407–415 (above the tab, in the inner R28 / outer R50 roof rolls) and 5 of them also hit the
+  hatch leaf (3 on the 140 mm solid mullion, 2 at the lower outboard corners x ≈ ±490,
+  y −90…−104 hatch-local). Two sourced-geometry changes, no new material or supplier:
+  * `cad/shell.py: REAR_VIEW_SLOT, _raked_cut(), rear_view_pocket()` — a **160 mm centre slot**
+    raked 0.15 (the shallowest sampled rear ray is 0.136) from z 360 to z 418 on the inner face
+    (≈ 421 at the outer face). The rays fan only ±25 mm across the wall because the lens is
+    ~37 mm away, so the slot stays narrow; it notches the front roll below the roof plane and the
+    R1S-like top plane (z 462) is untouched (check `rear_view_slot_narrow_raked_and_roof_top_plane_untouched`).
+    The one-piece front pane grows a 190 mm tongue to z 426 that bonds to the slot's cut face; a
+    0.5 mm-clear pocket removes the inner-roll laminate that overhangs it (pane-to-shell
+    overlap still ≈ 0 mm³).
+  * `cad/hatch.py: WIN, _win_outline()` — the hatch's two windows + solid mullion become **one
+    inside-glazed pane** (same 5 mm PC, 3 mm lip, screwed 6061 retainer). Bottom chord y −105.5,
+    a 42 mm relief over each striker arm keeps the arm's full bonded footprint on carbon, and
+    outboard of the arm the window drops to y −108 and widens to x ±520 for the D/E rays. The
+    pocket/retainer is clipped at y −116 (10.5 mm overlap there) so it stays off the T-handle hole
+    (check `hatch_one_piece_pane_keeps_striker_arms_on_carbon_and_clears_t_handle`). DWG-27-011 and
+    DWG-27-014 (now 1 + 1 OFF) are regenerated; leaf mass and the retainer screw count follow
+    the new outline.
+  * Not claimed: the leaf's stiffness without the mullion (the Step 33 load pack did not include
+    it — re-run its hatch hand-calc on this pin), image quality through two PC panes and a cabin
+    in between, glare/reflections, or any Rivian software behaviour.
 * Line of sight is SAMPLED (121 + 21 points); the 1 mm lens/target trims and the face-only
   intersector are documented limits of `SightLines.trace`.
 * Section **SEC-31-001** (`drawings/SEC-31-001_bed_camera_sightline.svg`): centreline side profile
@@ -98,20 +124,20 @@ rear rows of the bed again — tape-measure the lens at Step 22 and re-run the c
 ## 5. Checks
 
 `python step27/cad/checks_step31_camera.py` → `out/checks_step31_camera.json`
-(12 PASS / 0 FAIL / 1 OPEN at this pin). The full Step 27 suite and provenance check are re-run on
+(15 PASS / 0 FAIL / 1 OPEN at this pin). The full Step 27 suite and provenance check are re-run on
 the regenerated package (counts in the commit message / step evidence).
 
 ## 6. Open items and boundaries (nothing here is claimed)
 
-1. **Bed-camera rear view with the tailgate down is not restored** (OPEN check
-   `residual_bed_camera_rear_view_not_restored`). When Automatic Cameras is enabled, Rivian shows
-   the bed camera in Reverse with the tailgate down (UPFIT p.107); with the topper fitted, most of
-   that view's sampled sight lines are blocked, so the product's owner notes must say not to rely
-   on it. This is guidance to write, not a tested workaround.
+1. **Bed-camera rear view with the tailgate down: restored at the nominal lens only** (rev 2,
+   check `provision_restores_bed_camera_rear_view_tailgate_down_at_nominal_lens`, 21 / 21 sampled
+   sight lines through glazing, hatch closed). It depends on the drawing-scaled lens height (OPEN
+   `rear_view_lens_band_sensitivity_recorded`); until the lens is measured, owner notes must not
+   promise the view. Line of sight only — two PC panes and the topper interior sit in the image.
 2. **Which camera Rivian certifies for FMVSS 111 S6.2 is not published.** The measured result is
    that the topper does not enter any sampled bumper-camera sight line to the S14.1.4 positions (hatch
    closed or open). If Rivian's certified image used the bed camera with the tailgate down, the
-   residual in (1) becomes a 49 U.S.C. 30122 make-inoperative question — ask through the Rivian
+   rear view in (1), if it fails at the measured lens, becomes a 49 U.S.C. 30122 make-inoperative question — ask through the Rivian
    Upfit program (step 38 packet) before commercial release.
 3. **Image quality through 5 mm PC at 30–55 mm from the lens** (reflections, haze, night glare,
    dirt/condensation between cab and topper) is untested — physical check at the prototype

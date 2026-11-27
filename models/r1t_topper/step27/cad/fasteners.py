@@ -43,12 +43,10 @@ def _rr_perimeter(w, h, r):
 
 
 def glazing_retainer_screws() -> int:
-    """Hatch glazing retainers: M4 at <= 90 mm pitch round each window's retainer centreline."""
+    """Hatch glazing retainer: M4 at <= 90 mm pitch round the window's retainer centreline (Step 31:
+    one pane; the window outline length is a close, slightly short proxy for that centreline)."""
     import hatch as HA
-    w = HA.WIN
-    pw = (w["x1"] - w["x0"]) + 2 * w["overlap"] - 10
-    ph = 2 * w["y"] + 2 * w["overlap"] - 10
-    return max(6, math.ceil(_rr_perimeter(pw, ph, w["r"]) / 90.0))
+    return max(6, math.ceil((HA.window_perimeter() + 2 * math.pi * 3.5) / 90.0))
 
 
 def bond_area_m2() -> dict:

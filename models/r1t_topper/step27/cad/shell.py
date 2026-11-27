@@ -239,10 +239,50 @@ def _camera_tab_cut():
         sk, amount=span * d.length, dir=d)
 
 
+# Step 31 (defect 61517): the bed camera's REAR view with the tailgate down (UPFIT p.107). Its sight
+# lines to the FMVSS 111 S14.1.4 object positions descend at only 0.14..0.37 and so cross this wall at
+# z 397..415 -- above the camera tab, through the inner/outer roof rolls. A narrow centre SLOT, raked
+# along those rays, carries the glazing up into the front roll; the rays fan out only +/-25 mm across
+# the wall (the lens is ~37 mm away), so 160 mm is enough and the roof top plane (z = roof_z) is
+# untouched. The one-piece pane grows a matching tongue; because the inner R28 roll curves rearward
+# over it, a 0.5 mm-clear POCKET (rear_view_pocket) is cut so the pane does not overlap the laminate.
+REAR_VIEW_SLOT = {"w": 160.0, "z_bot": 360.0, "z_top_inner": 418.0, "r": 20.0,
+                  "rake": 0.15,         # dz/dx: the shallowest sampled rear ray is 0.136
+                  "overlap_top": 8.0}   # tongue top 426 (bonded to the cut face of the roll)
+
+
+def _raked_cut(spec):
+    w = G.WALL
+    zc = (spec["z_bot"] + spec["z_top_inner"]) / 2
+    h = spec["z_top_inner"] - spec["z_bot"]
+    sk = Plane(origin=(S["x0"] + w, 0, zc), x_dir=(0, 1, 0), z_dir=(-1, 0, 0)) * G.rrect(
+        spec["w"], h, spec["r"])
+    d = Vector(-1.0, 0.0, spec["rake"])
+    span = 40.0 + w
+    return Pos(*(d.normalized() * -20.0 * d.length).to_tuple()) * extrude(
+        sk, amount=span * d.length, dir=d)
+
+
+def _rear_view_tongue_bounds():
+    ov, sp = FRONT_WIN["overlap"], REAR_VIEW_SLOT
+    return (sp["w"] / 2 + ov - 5.0, sp["z_bot"] - ov, sp["z_top_inner"] + sp["overlap_top"])
+
+
+def rear_view_pocket():
+    """Laminate removed behind the pane tongue where the inner roof roll overhangs it."""
+    t = FRONT_WIN["t"]
+    hw_, _, z1 = _rear_view_tongue_bounds()
+    zlo = G.S["roof_z"] - G.WALL - (G.S["front_r"] - G.WALL)          # inner roll start
+    return Pos(S["x0"] + G.WALL + t / 2, 0, (zlo + z1 + 0.5) / 2) * Box(
+        t + 1.0, 2 * hw_ + 1.0, z1 + 0.5 - zlo, align=(CC, CC, CC))
+
+
 def front_window_cut(camera_tab: bool = True):
     pl = Plane(origin=(S["x0"], 0, FRONT_WIN["zc"]), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
     cut = _rrect_prism(pl, FRONT_WIN["w"] / 2, FRONT_WIN["h"] / 2, FRONT_WIN["r"], -60.0, 40.0)
-    return cut + _camera_tab_cut() if camera_tab else cut
+    if not camera_tab:
+        return cut
+    return cut + _camera_tab_cut() + _raked_cut(REAR_VIEW_SLOT) + rear_view_pocket()
 
 
 def front_pane(camera_tab: bool = True):
@@ -259,6 +299,10 @@ def front_pane(camera_tab: bool = True):
         tpl = Plane(origin=(S["x0"] + G.WALL, 0, (z0 + z1) / 2), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
         pane = pane + tpl * (Pos(0, 0, -t) * extrude(
             G.rrect(tab["w"] + 2 * ov, z1 - z0, tab["r"] + ov), amount=t))
+        hw_, z0, z1 = _rear_view_tongue_bounds()
+        tpl = Plane(origin=(S["x0"] + G.WALL, 0, (z0 + z1) / 2), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
+        pane = pane + tpl * (Pos(0, 0, -t) * extrude(
+            G.rrect(2 * hw_, z1 - z0, REAR_VIEW_SLOT["r"] + 5.0), amount=t))
     pane.label = "FRONT_PASS_THROUGH_PANE_PC"
     return pane
 

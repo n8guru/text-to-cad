@@ -262,9 +262,9 @@ def main():
         "HATCH LEAF, CARBON 26 mm, INSIDE-GLAZED, 1 OFF", [
             ("leaf outline", f"upper nominal {2 * (HA.AX + G.H_LEAF_OUT):.0f}; STRAIGHT BOTTOM {G.TAILGATE_WIDTH_ESTIMATE_MM:.0f}; height {2 * (HA.AY + G.H_LEAF_OUT):.0f}"),
             ("bottom datum", "tailgate width ESTIMATE = drawing-derived bed width; not measured OEM fit"),
-            ("windows (visible)", f'{HA.WIN["x1"] - HA.WIN["x0"]:.0f} x {2 * HA.WIN["y"]:.0f}, R{HA.WIN["r"]:.0f}'),
+            ("window (visible, ONE pane)", f'{2 * HA.WIN["x_out"]:.0f} max x {HA.WIN["y"] - HA.WIN["y_out"]:.0f}, top R{HA.WIN["r"]:.0f}; striker-arm reliefs x {HA.WIN["arm_x0"]:.0f}..{HA.WIN["arm_x1"]:.0f}'),
             ("outer lip / pane overlap", f'{HA.WIN["lip"]:.0f} / {HA.WIN["overlap"]:.0f}'),
-            ("mullion (solid carbon)", f"{HA.MULLION:.0f}")],
+            ("mullion", "none (Step 31: truck-bed-camera rear sight lines, STEP31_CAMERA.md)")],
         ["Pane sits behind a 3 mm carbon lip (cannot leave outward) and is clamped by a screwed "
          "6061 retainer (cannot fall inward)."],
         scale=0.3))
@@ -286,7 +286,7 @@ def main():
     ret = HA.glazing_retainer(1)
     made.append(sheet(
         "DWG-27-014_hatch_glazing_pane_retainer", _at_origin(ret), Plane.XY,
-        "HATCH GLAZING PANE (PC) + RETAINER (6061), 2 + 2 OFF (L/R mirror)", [
+        "HATCH GLAZING PANE (PC) + RETAINER (6061), 1 + 1 OFF (Step 31 one-piece)", [
             ("pane envelope", _bb(pane)), ("pane", "5 mm hard-coat PC (Makrolon AR / Lexan Margard MR10)"),
             ("pane profile tol", "+/-0.5; edges routed + flame-free polish"),
             ("retainer envelope", _bb(ret)), ("retainer", f"6061-T6 5 mm plate, CNC; {an}"),

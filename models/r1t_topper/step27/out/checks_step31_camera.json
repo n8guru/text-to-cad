@@ -1,7 +1,7 @@
 {
   "scope": "nominal_line_of_sight_not_image_quality_or_fitment",
   "counts": {
-    "PASS": 12,
+    "PASS": 15,
     "FAIL": 0,
     "OPEN": 1
   },
@@ -91,7 +91,6 @@
       "BLOCKED": 21,
       "visible_fraction": 0.0,
       "blocked_by": {
-        "HATCH_LEAF_CARBON": 5,
         "SHELL_CARBON_SANDWICH": 21
       }
     },
@@ -117,7 +116,7 @@
     {
       "name": "provision_improves_bed_view_across_lens_position_band",
       "state": "PASS",
-      "min_provision": 0.3636,
+      "min_provision": 0.5455,
       "corners": [
         {
           "xyz": [
@@ -135,7 +134,7 @@
             450.0
           ],
           "baseline": 0.0909,
-          "provision": 0.6364
+          "provision": 1.0
         },
         {
           "xyz": [
@@ -153,14 +152,14 @@
             450.0
           ],
           "baseline": 0.0,
-          "provision": 0.3636
+          "provision": 0.5455
         }
       ]
     },
     {
-      "name": "residual_bed_camera_rear_view_not_restored",
-      "state": "OPEN",
-      "note": "the lens sits at cab-roof height and the topper roof continues that roofline (charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave through the roof header, not the window. Not restored and not claimed: with the topper fitted, do not rely on the tailgate-down bed-camera view (UPFIT p.107). Closes when a physically tested route (e.g. a separately sourced hatch camera) is chosen in a later step.",
+      "name": "provision_restores_bed_camera_rear_view_tailgate_down_at_nominal_lens",
+      "state": "PASS",
+      "note": "tailgate-down reverse role (UPFIT p.107), hatch CLOSED: every sampled sight line to the 21 S14.1.4 axis points passes only through glazing -- the front pane (camera tab + raked rear-view slot, shell.REAR_VIEW_SLOT) and the one-piece hatch pane (hatch.WIN, no mullion). Line of sight only, not the S14.1 photometric test, not image quality.",
       "baseline_visible_fraction": 0.0,
       "camera": "TRUCK_BED_CAMERA",
       "xyz": [
@@ -171,13 +170,70 @@
       "camera_tab": true,
       "n": 21,
       "CLEAR": 0,
-      "THROUGH_GLAZING": 6,
-      "BLOCKED": 15,
-      "visible_fraction": 0.2857,
-      "blocked_by": {
-        "HATCH_LEAF_CARBON": 5,
-        "SHELL_CARBON_SANDWICH": 15
-      }
+      "THROUGH_GLAZING": 21,
+      "BLOCKED": 0,
+      "visible_fraction": 1.0,
+      "blocked_by": {}
+    },
+    {
+      "name": "rear_view_lens_band_sensitivity_recorded",
+      "state": "OPEN",
+      "corners": [
+        {
+          "xyz": [
+            -155.0,
+            0.0,
+            405.0
+          ],
+          "baseline": 0.0,
+          "provision": 0.7619,
+          "blocked_by": {
+            "GLAZING_RETAINER_C": 5,
+            "HATCH_LEAF_CARBON": 5,
+            "T_HANDLE_E3-18-15": 1
+          }
+        },
+        {
+          "xyz": [
+            -155.0,
+            0.0,
+            450.0
+          ],
+          "baseline": 0.0,
+          "provision": 0.2857,
+          "blocked_by": {
+            "SHELL_CARBON_SANDWICH": 15
+          }
+        },
+        {
+          "xyz": [
+            -130.0,
+            0.0,
+            405.0
+          ],
+          "baseline": 0.0,
+          "provision": 0.7619,
+          "blocked_by": {
+            "GLAZING_RETAINER_C": 5,
+            "HATCH_LEAF_CARBON": 5,
+            "T_HANDLE_E3-18-15": 1
+          }
+        },
+        {
+          "xyz": [
+            -130.0,
+            0.0,
+            450.0
+          ],
+          "baseline": 0.0,
+          "provision": 0.0,
+          "blocked_by": {
+            "HATCH_HATCH_SURROUND_6061": 2,
+            "SHELL_CARBON_SANDWICH": 21
+          }
+        }
+      ],
+      "note": "NOT claimed beyond the nominal lens: the lens position is scaled off the p.49 drawing (camera.py band). A lens higher than the modelled cab (z 450 corners) looks over the slot into the roof roll; a lower lens (z 405 corners) sends the steepest centre/near rays under the hatch pane's bottom chord (T-handle zone). Closes when the lens is tape-measured (Step 22) and this check is re-run at the measured point."
     },
     {
       "name": "rear_surround_camera_sightlines_unoccluded_hatch_closed_and_open",
@@ -300,11 +356,12 @@
       "flat_face_top_outer_mm": 412.0
     },
     {
-      "name": "one_piece_pane_bonds_below_inner_roof_roll_and_clears_shell",
+      "name": "one_piece_pane_bonds_below_inner_roof_roll_except_pocketed_tongue_and_clears_shell",
       "state": "PASS",
-      "pane_top_mm": 407.0,
+      "pane_top_mm": 426.0,
+      "tongue_half_width_mm": 95.0,
       "inner_roll_start_mm": 412.0,
-      "pane_shell_overlap_mm3": 0,
+      "pane_shell_overlap_mm3": 0.00619341339420453,
       "pane_bbox": [
         [
           -78.0,
@@ -314,9 +371,32 @@
         [
           -73.0,
           470.0,
-          407.0
+          426.0
         ]
-      ]
+      ],
+      "note": "only the rear-view tongue rises above the inner roll start; it sits in rear_view_pocket (0.5 mm clear) and bonds to the slot's cut face"
+    },
+    {
+      "name": "rear_view_slot_narrow_raked_and_roof_top_plane_untouched",
+      "state": "PASS",
+      "roof_top_mm": 462.00000009999843,
+      "roof_z": 462.0,
+      "slot_cut_top_mm": 424.30000000244866,
+      "slot_w_mm": 160.0,
+      "rake": 0.15,
+      "note": "the slot notches the front roll below the roof plane; the R1S-like top plane (charter) is not cut"
+    },
+    {
+      "name": "hatch_one_piece_pane_keeps_striker_arms_on_carbon_and_clears_t_handle",
+      "state": "PASS",
+      "striker_arm_footprint_on_carbon": [
+        1.0,
+        1.0
+      ],
+      "pane_bottom_mm": -116.00000000000034,
+      "escutcheon_top_mm": -117.2,
+      "bottom_overlap_mm": 10.5,
+      "leaf_mass_kg": 4.085904265251093
     },
     {
       "name": "optical_only_no_part_forward_of_front_face_no_camera_or_harness_change",
@@ -327,9 +407,9 @@
     {
       "name": "carbon_removed_and_pc_added_recorded",
       "state": "PASS",
-      "carbon_removed_mm3": 789235.6816595495,
-      "carbon_removed_kg": 0.20807122516479032,
-      "pane_added_mm3": 163733.072403542
+      "carbon_removed_mm3": 863870.5849308223,
+      "carbon_removed_kg": 0.2277476996635804,
+      "pane_added_mm3": 180456.337974309
     }
   ]
 }

@@ -66,7 +66,7 @@
         }
       ],
       "step": "STEP30_MOUNT_CLOSED_PROVISIONAL.step",
-      "step_sha256": "eb886d3bc393808ca69a2d1629cfb65ebd089fcf6d24c895423071e91edda2d0"
+      "step_sha256": "5b083d044b320ddc14240bd39f486283170fa521603be6e2df9dbba3d138d644"
     },
     "caught": {
       "angle_deg": 68.0,
@@ -133,7 +133,7 @@
         }
       ],
       "step": "STEP30_MOUNT_CAUGHT_PROVISIONAL.step",
-      "step_sha256": "3dbaa5f7a2095dc92a6c16d4e64350dd37809141f56f40322d0cfddbf7a55d94"
+      "step_sha256": "7177e727b2b73c9c3eff0ebf405cc511545cd7ab53e7a9874ceaff812e0c5f4c"
     },
     "released": {
       "angle_deg": 82.0,
@@ -200,7 +200,7 @@
         }
       ],
       "step": "STEP30_MOUNT_RELEASED_PROVISIONAL.step",
-      "step_sha256": "ef60b9c9d4331f56090189bee538829f20707015f4625fa24a9ea63d77c1170a"
+      "step_sha256": "b49db8c1461c94891c6e92b2f2c7fc0fa0920e80c5528ed43ca2bd8b1c273d07"
     }
   },
   "sources": {

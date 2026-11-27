@@ -2,7 +2,7 @@
 
     python step27/cad/checks_step31_camera.py   -> out/checks_step31_camera.json, exit 1 on FAIL
 
-PASS = measured from the solids; OPEN = measured and recorded but NOT restored/claimed; FAIL = defect.
+PASS = measured from the solids; OPEN = measured and recorded but NOT claimed; FAIL = defect.
 Scope is nominal line-of-sight geometry against camera positions scaled off Rivian's Upfitting Guide
 line drawing (camera.py). Nothing here claims image quality, field-of-view coverage, calibration,
 Rivian software behaviour, FMVSS 111 compliance or fitment on a real truck.
@@ -79,14 +79,28 @@ def run():
           all(c["provision"] > c["baseline"] for c in corners),
           min_provision=min(c["provision"] for c in corners), corners=corners)
     new_fm = C.measure(cam, fm, True, sl=sl1)
-    check("residual_bed_camera_rear_view_not_restored", True, state="OPEN",
-          note=("the lens sits at cab-roof height and the topper roof continues that roofline "
-                "(charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave "
-                "through the roof header, not the window. Not restored and not claimed: with the "
-                "topper fitted, do not rely on the tailgate-down bed-camera view (UPFIT p.107). "
-                "Closes when a physically tested route (e.g. a separately sourced hatch camera) "
-                "is chosen in a later step."),
+    check("provision_restores_bed_camera_rear_view_tailgate_down_at_nominal_lens",
+          new_fm["visible_fraction"] == 1.0 and not new_fm["blocked_by"]
+          and base_fm["visible_fraction"] < 1.0,
+          note=("tailgate-down reverse role (UPFIT p.107), hatch CLOSED: every sampled sight line "
+                "to the 21 S14.1.4 axis points passes only through glazing -- the front pane "
+                "(camera tab + raked rear-view slot, shell.REAR_VIEW_SLOT) and the one-piece "
+                "hatch pane (hatch.WIN, no mullion). Line of sight only, not the S14.1 "
+                "photometric test, not image quality."),
           baseline_visible_fraction=base_fm["visible_fraction"], **new_fm)
+    rcorners = []
+    for xyz in C.band_corners(cam):
+        r0 = C.measure(cam, fm, False, xyz=xyz, sl=sl0)["visible_fraction"]
+        r1 = C.measure(cam, fm, True, xyz=xyz, sl=sl1)
+        rcorners.append({"xyz": list(xyz), "baseline": r0, "provision": r1["visible_fraction"],
+                         "blocked_by": r1["blocked_by"]})
+    check("rear_view_lens_band_sensitivity_recorded", True, state="OPEN",
+          corners=rcorners,
+          note=("NOT claimed beyond the nominal lens: the lens position is scaled off the p.49 "
+                "drawing (camera.py band). A lens higher than the modelled cab (z 450 corners) "
+                "looks over the slot into the roof roll; a lower lens (z 405 corners) sends the "
+                "steepest centre/near rays under the hatch pane's bottom chord (T-handle zone). Closes when the lens is tape-measured "
+                "(Step 22) and this check is re-run at the measured point."))
 
     # ---------------------------------------------------------------- the camera the topper must never touch
     worst = []
@@ -111,7 +125,8 @@ def run():
 
     def header_bottom(x):
         """Lowest shell material on the centreline above the tab, in a 1 mm slab at x."""
-        probe = Pos(x, 0, (tab["z_bot"] + G.S["roof_z"]) / 2 + 40) * Box(
+        # y = 150: inside the 440 mm tab, outboard of the 160 mm rear-view slot (own check below)
+        probe = Pos(x, 150.0, (tab["z_bot"] + G.S["roof_z"]) / 2 + 40) * Box(
             1.0, 20.0, G.S["roof_z"] - tab["z_bot"] + 40, align=(Align.CENTER,) * 3)
         hit = sh & probe
         return hit.bounding_box().min.Z if hit.volume > 1e-3 else None
@@ -127,11 +142,49 @@ def run():
           flat_face_top_outer_mm=flat_top_outer)
     pane = SH.front_pane(True)
     pb = pane.bounding_box()
-    check("one_piece_pane_bonds_below_inner_roof_roll_and_clears_shell",
-          pane.is_valid and len(pane.solids()) == 1 and pb.max.Z <= flat_top_inner + 1e-6
-          and (pane & sh).volume < 0.5 and abs(pb.min.X - (x0 + w)) < 1e-6,
-          pane_top_mm=pb.max.Z, inner_roll_start_mm=flat_top_inner,
-          pane_shell_overlap_mm3=(pane & sh).volume, pane_bbox=[tuple(pb.min), tuple(pb.max)])
+    slot = SH.REAR_VIEW_SLOT
+    tongue_hw, _, tongue_top = SH._rear_view_tongue_bounds()
+    above = pane & (Pos(0, 0, flat_top_inner + 500.0) * Box(
+        200.0, 4000.0, 1000.0, align=(Align.CENTER,) * 3))
+    above_in_tongue = above & (Pos(0, 0, flat_top_inner + 500.0) * Box(
+        200.0, 2 * tongue_hw + 0.2, 1000.0, align=(Align.CENTER,) * 3))
+    check("one_piece_pane_bonds_below_inner_roof_roll_except_pocketed_tongue_and_clears_shell",
+          pane.is_valid and len(pane.solids()) == 1 and (pane & sh).volume < 0.5
+          and abs(pb.min.X - (x0 + w)) < 1e-6 and pb.max.Z <= tongue_top + 1e-6
+          and abs(above.volume - above_in_tongue.volume) < 1.0,
+          pane_top_mm=pb.max.Z, tongue_half_width_mm=tongue_hw, inner_roll_start_mm=flat_top_inner,
+          pane_shell_overlap_mm3=(pane & sh).volume, pane_bbox=[tuple(pb.min), tuple(pb.max)],
+          note="only the rear-view tongue rises above the inner roll start; it sits in "
+               "rear_view_pocket (0.5 mm clear) and bonds to the slot's cut face")
+    roof_top = sh.bounding_box().max.Z
+    slot_cut = SH._raked_cut(slot)
+    sc = slot_cut.bounding_box()
+    check("rear_view_slot_narrow_raked_and_roof_top_plane_untouched",
+          abs(roof_top - G.S["roof_z"]) < 0.5 and sc.max.Z < G.S["roof_z"] - 25.0
+          and slot["w"] <= 200.0 and abs(slot["rake"] - 0.15) < 1e-9,
+          roof_top_mm=roof_top, roof_z=G.S["roof_z"], slot_cut_top_mm=sc.max.Z,
+          slot_w_mm=slot["w"], rake=slot["rake"],
+          note="the slot notches the front roll below the roof plane; the R1S-like top plane "
+               "(charter) is not cut")
+    leaf = HA.leaf_shell()
+    arm_ok = []
+    for x in HA.LATCH_XS:
+        ab = HA.leaf_striker_arm(x).bounding_box()
+        foot = Pos((ab.min.X + ab.max.X) / 2, (ab.min.Y + ab.max.Y) / 2, -HA.LEAF_T + 0.5) * Box(
+            ab.max.X - ab.min.X, ab.max.Y - ab.min.Y, 1.0, align=(Align.CENTER,) * 3)
+        arm_ok.append(round((foot & leaf).volume / foot.volume, 4))
+    th = HA.hw.d("t_handle")
+    hole_top = -HA.AY + 14.0 + th["escutcheon_dia"] / 2 + 0.3
+    hp, hr = HA.glazing_pane(), HA.glazing_retainer()
+    check("hatch_one_piece_pane_keeps_striker_arms_on_carbon_and_clears_t_handle",
+          len([c for c in HA.hatch_leaf(0.0).children if "GLAZING_PANE" in (c.label or "")]) == 1
+          and all(a > 0.999 for a in arm_ok) and hp.bounding_box().min.Y > hole_top
+          and hr.bounding_box().min.Y > hole_top
+          and HA.WIN["y_bot"] - HA.WIN["y_clip"] >= 10.0 and leaf.is_valid
+          and len(leaf.solids()) == 1,
+          striker_arm_footprint_on_carbon=arm_ok, pane_bottom_mm=hp.bounding_box().min.Y,
+          escutcheon_top_mm=hole_top, bottom_overlap_mm=HA.WIN["y_bot"] - HA.WIN["y_clip"],
+          leaf_mass_kg=HA.leaf_mass_kg())
     lens = C.CAMERAS[cam]
     gaps = [min(abs(x0 - xyz[0]), math.inf) for xyz in [lens["xyz"]] + C.band_corners(cam)]
     check("optical_only_no_part_forward_of_front_face_no_camera_or_harness_change",

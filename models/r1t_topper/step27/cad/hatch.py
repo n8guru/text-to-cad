@@ -50,9 +50,21 @@ HINGE_Y = AY + G.H_LEAF_OUT + 2.0
 HINGE_Z = 2.0
 HINGE_X = AX - 48.0
 
-# glazing: two inside-glazed windows either side of the mullion
-WIN = {"x0": MULLION / 2 + 12.0, "x1": AX - 80.0, "y": AY - 20.0, "r": 40.0,
-       "lip": 3.0, "overlap": 12.0, "pane_t": 5.0, "ret_t": 5.0}
+# glazing. Steps 27-31 rev 1 had two inside-glazed windows either side of a 140 mm solid mullion.
+# Step 31 (defect 61517): with the tailgate down Rivian shows the cab-back TRUCK BED CAMERA in
+# Reverse (Upfitting Guide 2025-09-24 p.107); its sight lines to the FMVSS 111 S14.1.4 object
+# positions cross this leaf at the centreline (the mullion) and at the lower outboard corners
+# (x ~490, y -90..-104), so the leaf now carries ONE wide inside-glazed pane (camera.py measures it):
+#   * no mullion;  * the bottom chord drops to y_bot (clear of the T-handle escutcheon);
+#   * a 42 mm relief over each striker arm (x arm_x0..arm_x1, bottom raised to y_relief) keeps the
+#     arm's whole bonded footprint on carbon;  * outboard of the arm the pane drops to y_out and
+#     widens to x_out (the D/E sight lines); the side then runs straight to the R40 top corners.
+# The pocket / pane / retainer bottom is clipped at y_clip (10.5 mm overlap there, >= the 10 mm
+# glazing_retained_both_ways floor) so the pocket stays off the T-handle hole.
+WIN = {"x0": 0.0, "x1": AX - 80.0, "y": AY - 20.0, "r": 40.0,
+       "lip": 3.0, "overlap": 12.0, "pane_t": 5.0, "ret_t": 5.0,
+       "y_bot": -105.5, "arm_x0": 432.0, "arm_x1": 474.0, "y_relief": -91.0,
+       "y_out": -108.0, "x_out": 520.0, "y_clip": -116.0}
 
 # latch stations (bottom corners, symmetric). The leaf swings about the hinge axis at the TOP, so
 # a striker hung ~100 mm inboard of the skin (the previous stations, latch below the return lip)
@@ -293,18 +305,39 @@ def seal_bead(compressed: bool = True):
 
 # ------------------------------------------------------------------------------ leaf
 def _win_centres():
-    cx = (WIN["x0"] + WIN["x1"]) / 2
-    return (-cx, cx)
+    return (0.0,)                                   # Step 31: one pane on the centreline
 
 
-def _win_sketch(grow):
-    w = WIN["x1"] - WIN["x0"] + 2 * grow
-    h = 2 * WIN["y"] + 2 * grow
-    return G.rrect(w, h, WIN["r"] + grow)
+def _win_outline():
+    """Visible (through-cut) window outline, hatch-local, mirror-symmetric about x = 0 (see WIN)."""
+    from build123d import Polygon, fillet
+    w = WIN
+    right = [(w["arm_x0"], w["y_bot"]), (w["arm_x0"], w["y_relief"]), (w["arm_x1"], w["y_relief"]),
+             (w["arm_x1"], w["y_out"]), (w["x_out"], w["y_out"]), (w["x1"], w["y"])]
+    left = [(-x, y) for x, y in reversed(right)]
+    poly = Polygon(*(left + right), align=None)
+    return fillet([v for v in poly.vertices() if v.center().Y > 0], radius=w["r"])
+
+
+def _win_sketch(grow, clip=False):
+    from build123d import Rectangle, offset
+    sk = _win_outline()
+    if grow:
+        sk = offset(sk, amount=grow)
+    if clip:                                        # keep the pocket / retainer off the T-handle
+        big = 4 * AX
+        sk = sk & (Pos(0, WIN["y_clip"] + big / 2, 0) * Rectangle(big, big))
+    return sk
+
+
+def window_perimeter() -> float:
+    """Visible window outline length (retainer screw pitch, fasteners.py)."""
+    return sum(e.length for e in _win_outline().edges())
 
 
 def leaf_shell():
-    """Carbon leaf, flush: outer skin lip over each pane, inside-glazed pockets, solid mullion.
+    """Carbon leaf, flush: outer skin lip over the pane, inside-glazed pocket. Step 31: ONE pane,
+    no mullion (WIN; the truck-bed-camera rear sight lines, camera.py).
 
     Step 30: the leaf's bottom chord widens from AX (top, unchanged) to AX_BOT (the tailgate-width
     estimate) so the leaf's lower edge tracks the tailgate instead of swooping inward short of it.
@@ -314,26 +347,26 @@ def leaf_shell():
     part = Pos(0, 0, -LEAF_T) * extrude(sk, amount=LEAF_T)
     for cx in _win_centres():
         part -= Pos(cx, 0, -LEAF_T - 1) * extrude(_win_sketch(0.0), amount=LEAF_T + 2)
-        part -= Pos(cx, 0, -LEAF_T - 1) * extrude(_win_sketch(WIN["overlap"] + 0.5),
+        part -= Pos(cx, 0, -LEAF_T - 1) * extrude(_win_sketch(WIN["overlap"] + 0.5, clip=True),
                                                   amount=LEAF_T + 1 - WIN["lip"])
     return _lab(part, "HATCH_LEAF_CARBON")
 
 
 def glazing_pane(side: int = 1):
-    cx = _win_centres()[0 if side < 0 else 1]
+    """The single hatch pane (``side`` is kept for old callers; no L/R pair since Step 31)."""
     z1 = -WIN["lip"]
-    pane = Pos(cx, 0, z1 - WIN["pane_t"]) * extrude(_win_sketch(WIN["overlap"]), amount=WIN["pane_t"])
-    return _lab(pane, f"GLAZING_PANE_{'L' if side > 0 else 'R'}")
+    pane = Pos(0, 0, z1 - WIN["pane_t"]) * extrude(_win_sketch(WIN["overlap"], clip=True),
+                                                   amount=WIN["pane_t"])
+    return _lab(pane, "GLAZING_PANE_C")
 
 
 def glazing_retainer(side: int = 1):
-    cx = _win_centres()[0 if side < 0 else 1]
     z1 = -WIN["lip"] - WIN["pane_t"]
-    outer = _win_sketch(WIN["overlap"])
+    outer = _win_sketch(WIN["overlap"], clip=True)
     inner = _win_sketch(-5.0)
-    ring_ = (Pos(cx, 0, z1 - WIN["ret_t"]) * extrude(outer, amount=WIN["ret_t"])
-             - Pos(cx, 0, z1 - WIN["ret_t"] - 1) * extrude(inner, amount=WIN["ret_t"] + 2))
-    return _lab(ring_, f"GLAZING_RETAINER_{'L' if side > 0 else 'R'}")
+    ring_ = (Pos(0, 0, z1 - WIN["ret_t"]) * extrude(outer, amount=WIN["ret_t"])
+             - Pos(0, 0, z1 - WIN["ret_t"] - 1) * extrude(inner, amount=WIN["ret_t"] + 2))
+    return _lab(ring_, "GLAZING_RETAINER_C")
 
 
 def leaf_striker_arm(x: float):
@@ -378,8 +411,7 @@ def hatch_leaf(angle_deg: float = 0.0):
 
     leaf.label = "HATCH_LEAF_CARBON"
     kids = [leaf]
-    for s in (-1, 1):
-        kids += [glazing_pane(s), glazing_retainer(s)]
+    kids += [glazing_pane(), glazing_retainer()]
     kids.append(t_handle_plane() * hw.t_handle())
     kids.append(Pos(0, AY + G.H_LEAF_OUT - 20.0, 0) * hw.chmsl())
     for x in LATCH_XS:

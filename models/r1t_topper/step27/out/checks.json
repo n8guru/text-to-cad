@@ -78,7 +78,7 @@
     {
       "name": "shell_one_valid_solid",
       "state": "PASS",
-      "detail": "1 solid(s), valid=True, 18.0 kg at 5.8 kg/m^2"
+      "detail": "1 solid(s), valid=True, 17.9 kg at 5.8 kg/m^2"
     },
     {
       "name": "shell_wall_22mm",
@@ -93,7 +93,7 @@
     {
       "name": "fabricated_parts_are_single_solids",
       "state": "PASS",
-      "detail": "104 distinct parts checked"
+      "detail": "102 distinct parts checked"
     },
     {
       "name": "socket_identity_4x",
@@ -258,7 +258,7 @@
     {
       "name": "struts_hold_open_with_margin",
       "state": "PASS",
-      "detail": "leaf 4.06 kg: 10.64 N.m vs gravity 6.71 N.m (ratio 1.59)"
+      "detail": "leaf 4.09 kg: 10.64 N.m vs gravity 6.76 N.m (ratio 1.57)"
     },
     {
       "name": "hatch_close_force_reasonable",
@@ -438,12 +438,12 @@
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 88.25 kg, CG [699.4, 0.7, 206.3] mm; worst limit case LC1 vertical bump: 697 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 88.28 kg, CG [699.7, 0.7, 206.3] mm; worst limit case LC1 vertical bump: 697 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
       "state": "OPEN",
-      "detail": "LC6 forward crash pulse: 2517 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
+      "detail": "LC6 forward crash pulse: 2518 N per port vs 2500 N - information only (no regulation covers a cap; Rivian rates the port, not a crash case)"
     },
     {
       "name": "plf_hook_and_screws_within_allowable_at_port_rating",
@@ -453,7 +453,7 @@
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "88.25 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
+      "detail": "88.28 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
     },
     {
       "name": "plf_kinematics_exported",
@@ -473,7 +473,7 @@
     {
       "name": "every_fastener_is_specified",
       "state": "PASS",
-      "detail": "210 fasteners of 14 specs, each with standard/size/material"
+      "detail": "212 fasteners of 14 specs, each with standard/size/material"
     },
     {
       "name": "no_hardcoded_home_paths",
@@ -493,7 +493,7 @@
     {
       "name": "no_interference_closed_assembly",
       "state": "PASS",
-      "detail": "220 parts, 24090 pairs, allow-list 9 designed contacts"
+      "detail": "218 parts, 23653 pairs, allow-list 9 designed contacts"
     },
     {
       "name": "topper_clear_of_r1t_keepouts",
@@ -513,7 +513,7 @@
     {
       "name": "rear_doorway_free_hatch_open",
       "state": "PASS",
-      "detail": "hatch at 95 deg: 220 topper parts vs the 778 x 324 mm doorway (rail-cap plane to aperture top, through the wall): no volume"
+      "detail": "hatch at 95 deg: 218 topper parts vs the 778 x 324 mm doorway (rail-cap plane to aperture top, through the wall): no volume"
     },
     {
       "name": "no_fixed_crossbar_across_rear_opening",

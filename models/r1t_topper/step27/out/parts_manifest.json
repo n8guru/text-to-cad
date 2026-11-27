@@ -2,8 +2,8 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 68158898.3,
-    "mass_kg": 17.969,
+    "volume_mm3": 68084263.4,
+    "mass_kg": 17.949,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
@@ -12,9 +12,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      587.1,
+      587.8,
       -1.2,
-      332.4
+      332.3
     ]
   },
   {
@@ -92,8 +92,8 @@
   {
     "part": "FRONT_PASS_THROUGH_PANE_PC",
     "stl": "FRONT_PASS_THROUGH_PANE_PC.stl",
-    "volume_mm3": 1414599.2,
-    "mass_kg": 1.698,
+    "volume_mm3": 1431322.5,
+    "mass_kg": 1.718,
     "material": "5 mm hard-coat polycarbonate",
     "process": "CNC rout + polish",
     "finish": "hard coat both faces",
@@ -103,8 +103,8 @@
     "source_url": null,
     "centroid_mm": [
       -75.5,
-      0.0,
-      219.7
+      -0.0,
+      222.0
     ]
   },
   {
@@ -3404,8 +3404,8 @@
   {
     "part": "HATCH_LEAF_HATCH_LEAF_CARBON",
     "stl": "HATCH_LEAF_HATCH_LEAF_CARBON.stl",
-    "volume_mm3": 5447543.8,
-    "mass_kg": 1.215,
+    "volume_mm3": 4190417.3,
+    "mass_kg": 0.934,
     "material": "carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core",
     "process": "vacuum infusion, female mould",
     "finish": "UV clear",
@@ -3414,34 +3414,34 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1380.2,
+      1383.8,
+      0.0,
+      145.6
+    ]
+  },
+  {
+    "part": "HATCH_LEAF_GLAZING_PANE_C",
+    "stl": "HATCH_LEAF_GLAZING_PANE_C.stl",
+    "volume_mm3": 1219783.4,
+    "mass_kg": 1.464,
+    "material": "5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard)",
+    "process": "CNC rout + polish",
+    "finish": "hard coat both faces",
+    "manufacturer": null,
+    "pn": null,
+    "status": "CUSTOM",
+    "source_url": null,
+    "centroid_mm": [
+      1382.5,
       -0.0,
-      158.6
+      178.5
     ]
   },
   {
-    "part": "HATCH_LEAF_GLAZING_PANE_R",
-    "stl": "HATCH_LEAF_GLAZING_PANE_R.stl",
-    "volume_mm3": 487954.3,
-    "mass_kg": 0.586,
-    "material": "5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard)",
-    "process": "CNC rout + polish",
-    "finish": "hard coat both faces",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1384.1,
-      -251.0,
-      172.4
-    ]
-  },
-  {
-    "part": "HATCH_LEAF_GLAZING_RETAINER_R",
-    "stl": "HATCH_LEAF_GLAZING_RETAINER_R.stl",
-    "volume_mm3": 96332.1,
-    "mass_kg": 0.26,
+    "part": "HATCH_LEAF_GLAZING_RETAINER_C",
+    "stl": "HATCH_LEAF_GLAZING_RETAINER_C.stl",
+    "volume_mm3": 199510.1,
+    "mass_kg": 0.539,
     "material": "6061-T6",
     "process": "CNC",
     "finish": "black anodise Type II",
@@ -3450,45 +3450,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      1379.3,
-      -251.0,
-      171.1
-    ]
-  },
-  {
-    "part": "HATCH_LEAF_GLAZING_PANE_L",
-    "stl": "HATCH_LEAF_GLAZING_PANE_L.stl",
-    "volume_mm3": 487954.3,
-    "mass_kg": 0.586,
-    "material": "5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard)",
-    "process": "CNC rout + polish",
-    "finish": "hard coat both faces",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1384.1,
-      251.0,
-      172.4
-    ]
-  },
-  {
-    "part": "HATCH_LEAF_GLAZING_RETAINER_L",
-    "stl": "HATCH_LEAF_GLAZING_RETAINER_L.stl",
-    "volume_mm3": 96332.1,
-    "mass_kg": 0.26,
-    "material": "6061-T6",
-    "process": "CNC",
-    "finish": "black anodise Type II",
-    "manufacturer": null,
-    "pn": null,
-    "status": "CUSTOM",
-    "source_url": null,
-    "centroid_mm": [
-      1379.3,
-      251.0,
-      171.1
+      1378.6,
+      -0.0,
+      173.7
     ]
   },
   {
