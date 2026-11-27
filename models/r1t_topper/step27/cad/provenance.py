@@ -28,11 +28,12 @@ OUTPUT_GLOBS = ["step27/out/*.step", "step27/out/parts_manifest.json", "step27/o
                 "step27/out/checks.json", "step27/out/mounting_analysis.json", "step27/out/BOM27.csv",
                 "step27/drawings/*.svg", "step27/BOM27.md",
                 "step27/out/parts*/*.stl", "step27/out/reference/*.stl",
-                "step27/out/checks_step30*.json", "step27/out/step30_mount_manifest.json"]
+                "step27/out/checks_step30*.json", "step27/out/checks_step31*.json", "step27/out/step30_mount_manifest.json"]
 COMMANDS = ["python step27/style/rivian_reference.py", "python step27/cad/assembly_step27.py",
             "python step27/cad/make_drawings.py", "python step27/cad/make_bom.py",
             "python step27/cad/export_step30_mount.py", "python step27/cad/checks_step30_mount.py",
             "python step27/cad/checks_step30_hatch_width.py",
+            "python step27/cad/checks_step31_camera.py",
             "python step27/cad/provenance.py", "python step27/cad/checks_step27.py",
             "python step27/cad/provenance.py", "python step27/cad/provenance.py --check"]
 

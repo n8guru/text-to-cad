@@ -78,7 +78,7 @@
     {
       "name": "shell_one_valid_solid",
       "state": "PASS",
-      "detail": "1 solid(s), valid=True, 18.2 kg at 5.8 kg/m^2"
+      "detail": "1 solid(s), valid=True, 18.0 kg at 5.8 kg/m^2"
     },
     {
       "name": "shell_wall_22mm",
@@ -438,7 +438,7 @@
     {
       "name": "port_loads_within_rivian_rating",
       "state": "PASS",
-      "detail": "topper 88.26 kg, CG [699.3, 0.7, 206.3] mm; worst limit case LC1 vertical bump: 698 N per port <= 2500 N (Upfit p.59)"
+      "detail": "topper 88.25 kg, CG [699.4, 0.7, 206.3] mm; worst limit case LC1 vertical bump: 697 N per port <= 2500 N (Upfit p.59)"
     },
     {
       "name": "port_crash_pulse_vs_rating",
@@ -453,7 +453,7 @@
     {
       "name": "mass_within_rivian_4_port_benchmark",
       "state": "PASS",
-      "detail": "88.26 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
+      "detail": "88.25 kg on 4 bed ports vs Rivian's own 113 kg dynamic allowance for a crossbar pair on 4 roof ports; arithmetic headroom 25 kg is NOT a topper payload rating: different interface, load case and unvalidated custom jaws"
     },
     {
       "name": "plf_kinematics_exported",

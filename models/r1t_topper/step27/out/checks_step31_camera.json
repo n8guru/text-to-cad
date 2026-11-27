@@ -1,0 +1,335 @@
+{
+  "scope": "nominal_line_of_sight_not_image_quality_or_fitment",
+  "counts": {
+    "PASS": 12,
+    "FAIL": 0,
+    "OPEN": 1
+  },
+  "results": [
+    {
+      "name": "camera_positions_carry_source_and_band",
+      "state": "PASS",
+      "cameras": {
+        "TRUCK_BED_CAMERA": {
+          "xyz": [
+            -136.7,
+            0.0,
+            420.0
+          ],
+          "band": {
+            "x": [
+              -155.0,
+              -130.0
+            ],
+            "z": [
+              405.0,
+              450.0
+            ]
+          },
+          "source": "UPFIT p.49 item 10 / p.105 item 5 (top centre of cab back, under roof edge)"
+        },
+        "REAR_SURROUND_VIEW_CAMERA": {
+          "xyz": [
+            1554.0,
+            0.0,
+            -690.0
+          ],
+          "band": {
+            "x": [
+              1534.0,
+              1564.0
+            ],
+            "z": [
+              -750.0,
+              -630.0
+            ]
+          },
+          "source": "UPFIT p.49 item 11 (rear bumper fascia centre, above the hitch)"
+        }
+      }
+    },
+    {
+      "name": "nominal_bed_camera_lens_lies_on_modelled_cab_back",
+      "state": "PASS",
+      "lens_to_cab_keepout_mm": 0.027735009811267763,
+      "note": "the lens is placed ON the side-photo cab model, not floating in front of it"
+    },
+    {
+      "name": "gap_measured_bed_camera_bed_view_baseline",
+      "state": "PASS",
+      "note": "pre-Step-31 shell: the carbon front wall fills the bed camera's view of the bed",
+      "camera": "TRUCK_BED_CAMERA",
+      "xyz": [
+        -136.7,
+        0.0,
+        420.0
+      ],
+      "camera_tab": false,
+      "n": 121,
+      "CLEAR": 0,
+      "THROUGH_GLAZING": 11,
+      "BLOCKED": 110,
+      "visible_fraction": 0.0909,
+      "blocked_by": {
+        "SHELL_CARBON_SANDWICH": 110
+      }
+    },
+    {
+      "name": "gap_measured_bed_camera_rear_view_baseline",
+      "state": "PASS",
+      "note": "tailgate-down reverse role (UPFIT p.107) toward the S14.1.4 object positions",
+      "camera": "TRUCK_BED_CAMERA",
+      "xyz": [
+        -136.7,
+        0.0,
+        420.0
+      ],
+      "camera_tab": false,
+      "n": 21,
+      "CLEAR": 0,
+      "THROUGH_GLAZING": 0,
+      "BLOCKED": 21,
+      "visible_fraction": 0.0,
+      "blocked_by": {
+        "HATCH_LEAF_CARBON": 5,
+        "SHELL_CARBON_SANDWICH": 21
+      }
+    },
+    {
+      "name": "provision_restores_bed_view_at_nominal_lens",
+      "state": "PASS",
+      "floor": 0.7,
+      "baseline_visible_fraction": 0.0909,
+      "camera": "TRUCK_BED_CAMERA",
+      "xyz": [
+        -136.7,
+        0.0,
+        420.0
+      ],
+      "camera_tab": true,
+      "n": 121,
+      "CLEAR": 0,
+      "THROUGH_GLAZING": 121,
+      "BLOCKED": 0,
+      "visible_fraction": 1.0,
+      "blocked_by": {}
+    },
+    {
+      "name": "provision_improves_bed_view_across_lens_position_band",
+      "state": "PASS",
+      "min_provision": 0.3636,
+      "corners": [
+        {
+          "xyz": [
+            -155.0,
+            0.0,
+            405.0
+          ],
+          "baseline": 0.2727,
+          "provision": 1.0
+        },
+        {
+          "xyz": [
+            -155.0,
+            0.0,
+            450.0
+          ],
+          "baseline": 0.0909,
+          "provision": 0.6364
+        },
+        {
+          "xyz": [
+            -130.0,
+            0.0,
+            405.0
+          ],
+          "baseline": 0.0909,
+          "provision": 1.0
+        },
+        {
+          "xyz": [
+            -130.0,
+            0.0,
+            450.0
+          ],
+          "baseline": 0.0,
+          "provision": 0.3636
+        }
+      ]
+    },
+    {
+      "name": "residual_bed_camera_rear_view_not_restored",
+      "state": "OPEN",
+      "note": "the lens sits at cab-roof height and the topper roof continues that roofline (charter: uninterrupted R1S-like top plane), so shallow rearward sight lines leave through the roof header, not the window. Not restored and not claimed: with the topper fitted, reverse with the tailgate UP so the bumper camera is the view. Closes when a physically tested route (e.g. a separately sourced hatch camera) is chosen in a later step.",
+      "baseline_visible_fraction": 0.0,
+      "camera": "TRUCK_BED_CAMERA",
+      "xyz": [
+        -136.7,
+        0.0,
+        420.0
+      ],
+      "camera_tab": true,
+      "n": 21,
+      "CLEAR": 0,
+      "THROUGH_GLAZING": 6,
+      "BLOCKED": 15,
+      "visible_fraction": 0.2857,
+      "blocked_by": {
+        "HATCH_LEAF_CARBON": 5,
+        "SHELL_CARBON_SANDWICH": 15
+      }
+    },
+    {
+      "name": "rear_surround_camera_sightlines_unoccluded_hatch_closed_and_open",
+      "state": "PASS",
+      "cases": [
+        {
+          "hatch_deg": 0.0,
+          "xyz": [
+            1554.0,
+            0.0,
+            -690.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 0.0,
+          "xyz": [
+            1534.0,
+            0.0,
+            -750.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 0.0,
+          "xyz": [
+            1534.0,
+            0.0,
+            -630.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 0.0,
+          "xyz": [
+            1564.0,
+            0.0,
+            -750.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 0.0,
+          "xyz": [
+            1564.0,
+            0.0,
+            -630.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 95.0,
+          "xyz": [
+            1554.0,
+            0.0,
+            -690.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 95.0,
+          "xyz": [
+            1534.0,
+            0.0,
+            -750.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 95.0,
+          "xyz": [
+            1534.0,
+            0.0,
+            -630.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 95.0,
+          "xyz": [
+            1564.0,
+            0.0,
+            -750.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        },
+        {
+          "hatch_deg": 95.0,
+          "xyz": [
+            1564.0,
+            0.0,
+            -630.0
+          ],
+          "visible_fraction": 1.0,
+          "blocked_by": {}
+        }
+      ],
+      "note": "line of sight to all 21 S14.1.4 object points; not the S14.1 photometric test"
+    },
+    {
+      "name": "shell_single_valid_solid",
+      "state": "PASS",
+      "solids": 1
+    },
+    {
+      "name": "camera_tab_raked_along_sight_line_and_on_flat_front_face",
+      "state": "PASS",
+      "header_bottom_outer_mm": 404.5999999,
+      "header_bottom_inner_mm": 391.9999999,
+      "rake_measured": 0.6000000000000011,
+      "flat_face_top_outer_mm": 412.0
+    },
+    {
+      "name": "one_piece_pane_bonds_below_inner_roof_roll_and_clears_shell",
+      "state": "PASS",
+      "pane_top_mm": 407.0,
+      "inner_roll_start_mm": 412.0,
+      "pane_shell_overlap_mm3": 0,
+      "pane_bbox": [
+        [
+          -78.0,
+          -470.0,
+          65.0
+        ],
+        [
+          -73.0,
+          470.0,
+          407.0
+        ]
+      ]
+    },
+    {
+      "name": "optical_only_no_part_forward_of_front_face_no_camera_or_harness_change",
+      "state": "PASS",
+      "min_lens_to_wall_mm": 30.0,
+      "note": "the provision is a window: nothing is added at or forward of the cab back, the camera is not moved and no wire is touched (UPFIT p.108)"
+    },
+    {
+      "name": "carbon_removed_and_pc_added_recorded",
+      "state": "PASS",
+      "carbon_removed_mm3": 789235.6816595495,
+      "carbon_removed_kg": 0.20807122516479032,
+      "pane_added_mm3": 163733.072403542
+    }
+  ]
+}

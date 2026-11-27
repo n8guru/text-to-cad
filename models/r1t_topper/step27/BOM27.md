@@ -119,7 +119,7 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 | CAGE_BAR_316 | 316 stainless, Dia 10 | cut + TIG to rails | electropolish | DWG-27-015 | length +/-0.3 | 11 | 0.117 | $17.37 | $191.07 |
 | CAGE_RAIL_316 | 316 stainless 8 x 4 bar | laser + TIG | electropolish | DWG-27-015 | welded-cage flatness 1.0 | 2 | 0.115 | $63.34 | $126.68 |
 | COMPRESSION_LIMITER_custom_UHMW | UHMW-PE virgin | waterjet + surface grind to 7.40 +0/-0.05 | as machined | DWG-27-006 | thickness 7.40 +0/-0.05 | 12 | 0.004 | $18.30 | $219.60 |
-| FRONT_PASS_THROUGH_PANE_PC | 5 mm hard-coat polycarbonate | CNC rout + polish | hard coat both faces | DWG-27-020 | profile +/-0.5 | 1 | 1.501 | $163.30 | $163.30 |
+| FRONT_PASS_THROUGH_PANE_PC | 5 mm hard-coat polycarbonate | CNC rout + polish | hard coat both faces | DWG-27-020 | profile +/-0.5 | 1 | 1.698 | $172.26 | $172.26 |
 | GLAZING_PANE | 5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard) | CNC rout + polish | hard coat both faces | DWG-27-014 | profile +/-0.5 | 2 | 0.586 | $97.91 | $195.82 |
 | GLAZING_RETAINER | 6061-T6 | CNC | black anodise Type II | DWG-27-014 | profile +/-0.3 | 2 | 0.26 | $132.86 | $265.72 |
 | HATCH_LEAF_CARBON | carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core | vacuum infusion, female mould | UV clear | DWG-27-011 | edge profile 0.5 to the surround (4 mm shut line) | 1 | 1.215 | $1,344.96 | $1,344.96 |
@@ -133,7 +133,7 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 | PLF_PADDLE_6061 | 6061-T6 | CNC from 50 x 32 bar | black anodise Type II | DWG-27-013 | hinge bore 5.2 H8; plate flat 0.1; dimples r 2.3 +/-0.05 at 7.5 from the axis | 4 | 0.039 | $119.98 | $479.92 |
 | PLF_SHIM_316 | 316 stainless shim stock 1.0 mm | laser cut, deburr | passivate | DWG-27-013 | thickness 1.00 +/-0.02 (kit 0.5 / 1.0) | 8 | 0.004 | $7.40 | $59.20 |
 | ROOF_HARDPOINT | 6061-T6 bonded insert, M8 | CNC turn | clear anodise | DWG-27-018 | top flush 0/-0.3 | 4 | 0.053 | $41.23 | $164.92 |
-| SHELL_CARBON_SANDWICH | carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin | vacuum infusion, female tool, post-cure | UV-stable clear coat | DWG-27-000 | profile 1.0 to A-surface; foot underside flatness 1.0 (pad band) | 1 | 18.177 | $6,517.49 | $6,517.49 |
+| SHELL_CARBON_SANDWICH | carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin | vacuum infusion, female tool, post-cure | UV-stable clear coat | DWG-27-000 | profile 1.0 to A-surface; foot underside flatness 1.0 (pad band) | 1 | 17.969 | $6,487.54 | $6,487.54 |
 | SOCKET_FRAME_6061 | 6061-T6 | 3+2-axis CNC, one program + one fixture for all four | black anodise Type II | DWG-27-001 | bushing true position 0.05; land flatness 0.3 | 4 | 4.941 | $765.56 | $3,062.24 |
 | STRIKER_BRACKET_custom | 316 stainless | laser + machine, slotted +/-3 mm | passivate | DWG-27-004 | slot +/-3 mm travel; hole 10.6 | 10 | 0.041 | $40.65 | $406.50 |
 | TOOLBOX_DOOR_CARBON | carbon/PET sandwich 6 mm | vacuum infusion | UV clear | DWG-27-016 | profile 0.3 to the module flange | 1 | 0.252 | $296.29 | $296.29 |
@@ -141,7 +141,7 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 | WINDOW_PANE_PC | 5 mm hard-coat polycarbonate | CNC rout + polish | hard coat both faces | DWG-27-017 | flatness 1.0; profile +/-0.5 | 2 | 0.49 | $93.55 | $187.10 |
 | POTTED_INSERT_M4_6061 | 6061-T6 | CNC turn + knurl | clear anodise Type II | DWG-27-018 | M4-6H; flange flush to inner skin | 28 | 0.003 | $9.35 | $261.80 |
 
-**ROM subtotal, fabricated parts (tooling excluded): $21,478.56**
+**ROM subtotal, fabricated parts (tooling excluded): $21,457.57**
 
 
 ## 5. Roll-up
@@ -150,8 +150,8 @@ ROM unit cost = mass x buy-to-fly x stock $/kg + cycle h x shop rate + setup h x
 |---|---|---|---|
 | Purchased hardware | $1,934.23 | $2,264.26 | 6 |
 | Fasteners + consumables | $427.96 | $430.51 | 4 |
-| Fabricated parts (ROM) | $21,478.56 | — | 0 |
-| **Total (known)** | **$23,840.75** | | **10** |
+| Fabricated parts (ROM) | $21,457.57 | — | 0 |
+| **Total (known)** | **$23,819.76** | | **10** |
 
 The total is a floor, not a price: unpriced lines, composite tooling, freight, tax, finishing lot charges and assembly labour are outside it.
 

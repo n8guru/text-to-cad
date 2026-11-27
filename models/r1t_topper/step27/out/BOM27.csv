@@ -51,7 +51,7 @@ custom,BASE_RAIL_6061,BASE_RAIL_6061,custom,DWG-27-010,2,ea,6061-T6,408.86,817.7
 custom,CAGE_BAR_316,CAGE_BAR_316,custom,DWG-27-015,11,ea,"316 stainless, Dia 10",17.37,191.07000000000002,ROM,,,,cut + TIG to rails,length +/-0.3
 custom,CAGE_RAIL_316,CAGE_RAIL_316,custom,DWG-27-015,2,ea,316 stainless 8 x 4 bar,63.34,126.68,ROM,,,,laser + TIG,welded-cage flatness 1.0
 custom,COMPRESSION_LIMITER_custom_UHMW,COMPRESSION_LIMITER_custom_UHMW,custom,DWG-27-006,12,ea,UHMW-PE virgin,18.3,219.60000000000002,ROM,,,,waterjet + surface grind to 7.40 +0/-0.05,thickness 7.40 +0/-0.05
-custom,FRONT_PASS_THROUGH_PANE_PC,FRONT_PASS_THROUGH_PANE_PC,custom,DWG-27-020,1,ea,5 mm hard-coat polycarbonate,163.3,163.3,ROM,,,,CNC rout + polish,profile +/-0.5
+custom,FRONT_PASS_THROUGH_PANE_PC,FRONT_PASS_THROUGH_PANE_PC,custom,DWG-27-020,1,ea,5 mm hard-coat polycarbonate,172.26,172.26,ROM,,,,CNC rout + polish,profile +/-0.5
 custom,GLAZING_PANE,GLAZING_PANE,custom,DWG-27-014,2,ea,5 mm hard-coat polycarbonate (Makrolon AR / Lexan Margard),97.91,195.82,ROM,,,,CNC rout + polish,profile +/-0.5
 custom,GLAZING_RETAINER,GLAZING_RETAINER,custom,DWG-27-014,2,ea,6061-T6,132.86,265.72,ROM,,,,CNC,profile +/-0.3
 custom,HATCH_LEAF_CARBON,HATCH_LEAF_CARBON,custom,DWG-27-011,1,ea,"carbon/PET sandwich, 200 gsm 2x2 twill + 300 gsm biax over 20 mm core",1344.96,1344.96,ROM,,,,"vacuum infusion, female mould",edge profile 0.5 to the surround (4 mm shut line)
@@ -65,7 +65,7 @@ custom,PLF_HOOK_SLIDER_17_4PH,PLF_HOOK_SLIDER_17_4PH,custom,DWG-27-013,4,ea,"17-
 custom,PLF_PADDLE_6061,PLF_PADDLE_6061,custom,DWG-27-013,4,ea,6061-T6,119.98,479.92,ROM,,,,CNC from 50 x 32 bar,hinge bore 5.2 H8; plate flat 0.1; dimples r 2.3 +/-0.05 at 7.5 from the axis
 custom,PLF_SHIM_316,PLF_SHIM_316,custom,DWG-27-013,8,ea,316 stainless shim stock 1.0 mm,7.4,59.2,ROM,,,,"laser cut, deburr",thickness 1.00 +/-0.02 (kit 0.5 / 1.0)
 custom,ROOF_HARDPOINT,ROOF_HARDPOINT,custom,DWG-27-018,4,ea,"6061-T6 bonded insert, M8",41.23,164.92,ROM,,,,CNC turn,top flush 0/-0.3
-custom,SHELL_CARBON_SANDWICH,SHELL_CARBON_SANDWICH,custom,DWG-27-000,1,ea,"carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",6517.49,6517.49,ROM,,,,"vacuum infusion, female tool, post-cure",profile 1.0 to A-surface; foot underside flatness 1.0 (pad band)
+custom,SHELL_CARBON_SANDWICH,SHELL_CARBON_SANDWICH,custom,DWG-27-000,1,ea,"carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",6487.54,6487.54,ROM,,,,"vacuum infusion, female tool, post-cure",profile 1.0 to A-surface; foot underside flatness 1.0 (pad band)
 custom,SOCKET_FRAME_6061,SOCKET_FRAME_6061,custom,DWG-27-001,4,ea,6061-T6,765.56,3062.24,ROM,,,,"3+2-axis CNC, one program + one fixture for all four",bushing true position 0.05; land flatness 0.3
 custom,STRIKER_BRACKET_custom,STRIKER_BRACKET_custom,custom,DWG-27-004,10,ea,316 stainless,40.65,406.5,ROM,,,,"laser + machine, slotted +/-3 mm",slot +/-3 mm travel; hole 10.6
 custom,TOOLBOX_DOOR_CARBON,TOOLBOX_DOOR_CARBON,custom,DWG-27-016,1,ea,carbon/PET sandwich 6 mm,296.29,296.29,ROM,,,,vacuum infusion,profile 0.3 to the module flange

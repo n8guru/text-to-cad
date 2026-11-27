@@ -211,17 +211,54 @@ def drain_exit_holes():
 FRONT_WIN = {"w": 900.0, "h": 230.0, "r": 45.0, "zc": 200.0, "overlap": 20.0, "t": 5.0}
 
 
-def front_window_cut():
+# Step 31 (decision 2154445): the R1T TRUCK BED CAMERA sits at the top centre of the cab back
+# (Upfitting Guide 2025-09-24 p.49 item 10 / p.105 item 5), about 40 mm in front of this wall and
+# ABOVE the original window (top z 315), so the topper's carbon front wall filled its view of the
+# bed. Rivian p.108: do not block the exterior camera FOV, keep the camera in place, do not modify
+# its harness. The provision is therefore OPTICAL ONLY: a centre "camera tab" that extends the same
+# front window upward to the top of the flat front face. Its through-cut is RAKED along the camera's
+# sight lines (outer edge higher than the inner edge by WALL * rake), because the rays to the rear of
+# the bed descend through the 22 mm wall. Sizing and the measured before/after occlusion are in
+# camera.py / checks_step31_camera.py / ../STEP31_CAMERA.md. PROVISIONAL like every truck number.
+CAMERA_TAB = {"w": 440.0, "z_bot": 280.0, "z_top_inner": 392.0, "r": 45.0,
+              "rake": 0.60,            # dz/dx of the cut = slope of the far-bed sight line (camera.py)
+              "overlap_top": 15.0}     # pane top 407: 5 mm under the R28 inner roof roll (z 412 on
+#                                        the centreline, ~2.5 mm lower at the pane corners: crown)
+
+
+def _camera_tab_cut():
+    tab, w = CAMERA_TAB, G.WALL
+    zc = (tab["z_bot"] + tab["z_top_inner"]) / 2
+    h = tab["z_top_inner"] - tab["z_bot"]
+    # sketch on the INNER face, extruded outward/up along the sight line (-x, +z*rake per mm of x)
+    sk = Plane(origin=(S["x0"] + w, 0, zc), x_dir=(0, 1, 0), z_dir=(-1, 0, 0)) * G.rrect(
+        tab["w"], h, tab["r"])
+    d = Vector(-1.0, 0.0, tab["rake"])
+    span = 40.0 + w                                   # from 20 mm inside to 20 mm outside
+    return Pos(*(d.normalized() * -20.0 * d.length).to_tuple()) * extrude(
+        sk, amount=span * d.length, dir=d)
+
+
+def front_window_cut(camera_tab: bool = True):
     pl = Plane(origin=(S["x0"], 0, FRONT_WIN["zc"]), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
-    return _rrect_prism(pl, FRONT_WIN["w"] / 2, FRONT_WIN["h"] / 2, FRONT_WIN["r"], -60.0, 40.0)
+    cut = _rrect_prism(pl, FRONT_WIN["w"] / 2, FRONT_WIN["h"] / 2, FRONT_WIN["r"], -60.0, 40.0)
+    return cut + _camera_tab_cut() if camera_tab else cut
 
 
-def front_pane():
-    """5 mm hard-coat PC, bonded to the inner skin with a 20 mm overlap all round."""
+def front_pane(camera_tab: bool = True):
+    """5 mm hard-coat PC, bonded to the inner skin with a 20 mm overlap all round. With the Step 31
+    camera tab the pane is ONE piece: the main window outline plus the tab outline, both grown by
+    their overlap (the tab top stops 5 mm below the inner roof roll, z 412)."""
     t, ov = FRONT_WIN["t"], FRONT_WIN["overlap"]
     pl = Plane(origin=(S["x0"] + G.WALL, 0, FRONT_WIN["zc"]), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
     sk = G.rrect(FRONT_WIN["w"] + 2 * ov, FRONT_WIN["h"] + 2 * ov, FRONT_WIN["r"] + ov)
     pane = pl * (Pos(0, 0, -t) * extrude(sk, amount=t))
+    if camera_tab:
+        tab = CAMERA_TAB
+        z0, z1 = tab["z_bot"] - ov, tab["z_top_inner"] + tab["overlap_top"]
+        tpl = Plane(origin=(S["x0"] + G.WALL, 0, (z0 + z1) / 2), x_dir=(0, 1, 0), z_dir=(-1, 0, 0))
+        pane = pane + tpl * (Pos(0, 0, -t) * extrude(
+            G.rrect(tab["w"] + 2 * ov, z1 - z0, tab["r"] + ov), amount=t))
     pane.label = "FRONT_PASS_THROUGH_PANE_PC"
     return pane
 
@@ -250,15 +287,16 @@ def section_top_z(y: float) -> float:
     return Oc[1] + math.sqrt(max(Rc ** 2 - y ** 2, 0.0))
 
 
-@lru_cache(maxsize=1)
-def shell():
-    """The carbon shell: hollow envelope + foot, minus every interface through-cut."""
+@lru_cache(maxsize=2)
+def shell(camera_tab: bool = True):
+    """The carbon shell: hollow envelope + foot, minus every interface through-cut.
+    ``camera_tab=False`` rebuilds the pre-Step-31 shell, used ONLY as the measured baseline."""
     sh = hollow() + foot()
     for side in "LR":
         for i in range(2):
             sh -= socket_cut(side, i)
     sh -= hatch_cut()
-    sh -= front_window_cut()
+    sh -= front_window_cut(camera_tab)
     import mounts                                        # noqa: WPS433 (avoid a cycle at import)
     for c in mounts.foot_cuts():
         sh -= c

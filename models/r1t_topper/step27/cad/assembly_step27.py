@@ -379,6 +379,11 @@ def export_sections():
                      + shut, cut7,
                      "SEC-27-007  centreline side profile: R1T cab back + spoiler keep-out, front face, "
                      f"{G.S['rear_rake_deg']:.0f} deg rear rake"))
+    import camera as CAM                                 # Step 31 bed-camera sight lines
+    made.append(_svg("SEC-31-001_bed_camera_sightline", [shell, SH.front_pane(), TR.cab_keepout(),
+                                                         CAM.sight_wedge()], cut7,
+                     "SEC-31-001  centreline: R1T truck bed camera (Upfit p.49 item 10, PROVISIONAL "
+                     "position) -> raked camera tab + one-piece front pane -> bed floor fan x 100-1350"))
     xs0, ys0 = mounts.stations()[0]
     near = [G.socket_plane("L", 0) * k for k in _leaves(SS.socket_assembly("closed"))]
     rec, pins = mounts.port_reference(xs0, ys0)

@@ -2,8 +2,8 @@
   {
     "part": "SHELL_CARBON_SANDWICH",
     "stl": "SHELL_CARBON_SANDWICH.stl",
-    "volume_mm3": 68948133.9,
-    "mass_kg": 18.177,
+    "volume_mm3": 68158898.3,
+    "mass_kg": 17.969,
     "material": "carbon/PET-foam sandwich, 22 mm: 2x 200 gsm 2x2 twill + 300 gsm biax each skin",
     "process": "vacuum infusion, female tool, post-cure",
     "finish": "UV-stable clear coat",
@@ -12,9 +12,9 @@
     "status": "CUSTOM",
     "source_url": null,
     "centroid_mm": [
-      579.3,
+      587.1,
       -1.2,
-      332.6
+      332.4
     ]
   },
   {
@@ -92,8 +92,8 @@
   {
     "part": "FRONT_PASS_THROUGH_PANE_PC",
     "stl": "FRONT_PASS_THROUGH_PANE_PC.stl",
-    "volume_mm3": 1250866.1,
-    "mass_kg": 1.501,
+    "volume_mm3": 1414599.2,
+    "mass_kg": 1.698,
     "material": "5 mm hard-coat polycarbonate",
     "process": "CNC rout + polish",
     "finish": "hard coat both faces",
@@ -104,7 +104,7 @@
     "centroid_mm": [
       -75.5,
       0.0,
-      200.0
+      219.7
     ]
   },
   {
