@@ -4,7 +4,22 @@
   "title": "Rivian R1T Upfitting Guide, September 2025, 'Vehicle Dimensions and Packaging - Overall Vehicle Specifications'",
   "url": "https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/b83307f7e8f03838a1906bff88707f95/r1t-upfitting-guide-en-us-20250924.pdf",
   "sha256": "847d036f3977764d151689442ea54e4141bf70113b9d8380d46d796c3982552a",
-  "pages": "printed pp.27-28 (text-extracted 2026-11-27 from the local copy ~/r1t-topper-research/r1t-upfit.txt)"
+  "pages": "printed pp.28-29 (printed page number = PDF page number in this 130-page file); text-extracted from the local copy ~/r1t-topper-research/r1t-upfit.txt and re-read page by page 2026-11-28. Printed p.27 holds no specification.",
+  "page_of_value": {
+   "overall_length_m": 28,
+   "height_no_antenna_m": 28,
+   "width_with_mirrors_m": 28,
+   "width_without_mirrors_m": 28,
+   "front_overhang_m": 28,
+   "rear_overhang_m": 28,
+   "bed_width_at_wheelhouse_m": 28,
+   "tyre_config": 29,
+   "approach_angle_std_deg": 29,
+   "departure_angle_std_deg": 29,
+   "breakover_angle_std_deg": 29,
+   "ground_clearance_std_m": 29
+  },
+  "_pages_correction": "Earlier revisions of this file (8024b241, 2a282d69) cited pp.27-28. That was wrong: the angles, tyre size and ground clearance are on p.29 (verify task 165502)."
  },
  "tyre_config": "34 in tyres, 275/65R20, standard ride height",
  "front_overhang_m": 0.909,

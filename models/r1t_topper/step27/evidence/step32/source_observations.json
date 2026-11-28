@@ -1,0 +1,162 @@
+{
+ "_doc": "Step 32 source observations (task 165622). Each entry is what the source returned when read; 'not_established' lists what this project did NOT find out and makes no claim about. API fields that change between reads (view counts and the like) are left out, so a re-read can be compared field by field. Not a legal opinion.",
+ "observed_utc": "2026-11-28T04:29Z to 04:35Z",
+ "sketchfab_api": [
+  {
+   "asset": "A5",
+   "endpoint": "https://api.sketchfab.com/v3/models/6eca29c11ca44840baf93f47ef800006",
+   "http_status": 200,
+   "name": "Rivian R1T (2022)",
+   "uploader": "geyges",
+   "licence_label": "Free Standard",
+   "licence_requirements_text": "Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works",
+   "downloadable": true,
+   "face_count": 394462,
+   "published_at": "2026-10-12T13:09:55.196309",
+   "description": "2022 Rivian R1T",
+   "tags": [
+    "truck",
+    "pickup",
+    "offroad",
+    "forza",
+    "animated",
+    "interior",
+    "electric",
+    "rivian",
+    "r1t"
+   ],
+   "not_established": [
+    "origin or author of the mesh",
+    "meaning of the uploader's `forza` tag",
+    "whether the uploader can grant the labelled licence for this model",
+    "dimensional provenance"
+   ]
+  },
+  {
+   "asset": "A6",
+   "endpoint": "https://api.sketchfab.com/v3/models/ec0499cccfa74b52939e1491b2434a71",
+   "http_status": 200,
+   "name": "Rivian R1S (2022)",
+   "uploader": "geyges",
+   "licence_label": "Free Standard",
+   "licence_requirements_text": "Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works",
+   "downloadable": true,
+   "face_count": 298611,
+   "published_at": "2026-10-12T13:10:02.019603",
+   "description": "2022 Rivian R1S",
+   "tags": [
+    "suv",
+    "offroad",
+    "ev",
+    "forza",
+    "animated",
+    "interior",
+    "electric",
+    "rows",
+    "rivian",
+    "r1s"
+   ],
+   "not_established": [
+    "origin or author of the mesh",
+    "meaning of the uploader's `forza` tag",
+    "whether the uploader can grant the labelled licence for this model",
+    "dimensional provenance"
+   ]
+  },
+  {
+   "asset": "A7",
+   "endpoint": "https://api.sketchfab.com/v3/models/89ec895feb8145768f93382f356affb5",
+   "http_status": 404,
+   "body": {
+    "detail": "Not found."
+   },
+   "not_established": [
+    "why the API returns 404 (the public page answered automated requests with an empty HTTP 202, as did control URLs)",
+    "the listing's current terms",
+    "the CC BY 4.0 label recorded in the 2026-07-28 project note (no capture kept)"
+   ]
+  },
+  {
+   "asset": "A8",
+   "endpoint": "https://api.sketchfab.com/v3/models/36d35d51942a4e7d8effd7fe02ad0520",
+   "http_status": 200,
+   "name": "Rivian R1T Charging Pad Scan",
+   "uploader": "acheparev",
+   "licence_label": "CC Attribution",
+   "licence_requirements_text": "Author must be credited. Commercial use is allowed.",
+   "downloadable": true,
+   "face_count": 1000012,
+   "published_at": "2023-01-15T16:54:19.092135",
+   "description": "",
+   "tags": [
+    "realityscan"
+   ],
+   "not_established": [
+    "whether the uploader's licence label reaches Rivian's design or marks"
+   ]
+  },
+  {
+   "asset": "A8",
+   "endpoint": "https://api.sketchfab.com/v3/models/55b1874953b14bc89b8344db6eec366a",
+   "http_status": 200,
+   "name": "Rivian R1T Front Divider Storage Scan",
+   "uploader": "acheparev",
+   "licence_label": "CC Attribution",
+   "licence_requirements_text": "Author must be credited. Commercial use is allowed.",
+   "downloadable": true,
+   "face_count": 999976,
+   "published_at": "2023-01-18T14:03:51.593136",
+   "description": "",
+   "tags": [
+    "realityscan"
+   ],
+   "not_established": [
+    "whether the uploader's licence label reaches Rivian's design or marks"
+   ]
+  }
+ ],
+ "rivian_documents": [
+  {
+   "asset": "A1",
+   "title": "R1T Upfitting Guide (September 2025)",
+   "url": "https://assets.ctfassets.net/2md5qhoeajym/5ysf6K5UtGtHedY1fMeClC/b83307f7e8f03838a1906bff88707f95/r1t-upfitting-guide-en-us-20250924.pdf",
+   "sha256": "847d036f3977764d151689442ea54e4141bf70113b9d8380d46d796c3982552a",
+   "pages": 130,
+   "read_from": "local copy of 2026-10-13; downloaded again 2026-11-28 (HTTP 200), same sha256",
+   "copyright_line_p2": "© 2025 Rivian Automotive, LLC. All rights reserved.",
+   "notice_p2": "This material may not be modified, reproduced, or copied, in whole or in part, without the prior written permission of Rivian Automotive, LLC, its affiliates, or its licensors.",
+   "spec_pages": {
+    "28": "overall length, heights, widths, overhangs, wheelbase, track, bed dimensions",
+    "29": "wheel and tyre sizes, turning circle, approach/departure/breakover angles, ground clearance",
+    "30": "storage dimensions incl. bed length at rail and at floor with tailgate down",
+    "27": "'Vehicle Shipping Mode' text; no specification",
+    "59": "accessory-port plan view (outline traced)"
+   }
+  },
+  {
+   "asset": "A2",
+   "title": "R1T Owner's Guide Model Year 2022-2024 - VERSION 2024.19",
+   "url": "https://assets.rivian.com/2md5qhoeajym/530xs9hu11xOKefT2JrvA5/46f6cb5d5756b8320d3eb494a902e66c/r1t-og-en-us-20240527.pdf",
+   "sha256": "e6c544346ef87548d956934a46c2a656c24d3196ed271ff929ec213e59b775b6",
+   "pages": 450,
+   "read_from": "downloaded 2026-11-28 (HTTP 200)",
+   "copyright_line_p2": "© 2021-2024 Rivian Automotive, LLC. All rights reserved.",
+   "notice_p2": "This material may not be modified, reproduced, or copied, in whole or in part, without the prior written permission of Rivian Automotive, LLC, its affiliates, or its licensors."
+  },
+  {
+   "asset": "A3",
+   "title": "R1S Owner's Guide Model Year 2022-2024 - VERSION 2024.27",
+   "url": "https://assets.rivian.com/2md5qhoeajym/7Ao7NIFkLxOZtvdc7Fqh70/c8c4a585ae141effce63b41ead2b8ce0/r1s-og-en-us-20240722.pdf",
+   "sha256": "27eda35d31ee2d38baae97d336d2fb38e128f1fdc04ab9f9334c21e8e8977061",
+   "pages": 465,
+   "read_from": "downloaded 2026-11-28 (HTTP 200)",
+   "copyright_line_p2": "© 2021-2024 Rivian Automotive, LLC. All rights reserved.",
+   "notice_p2": "This material may not be modified, reproduced, or copied, in whole or in part, without the prior written permission of Rivian Automotive, LLC, its affiliates, or its licensors."
+  }
+ ],
+ "not_reread": {
+  "A9": "Front Runner install PDFs: reuse terms not read",
+  "A10": "Hum3D/3DModels.org: last read 2026-10-13",
+  "A11": "TurboSquid/CGTrader/GrabCAD: last attempted 2026-10-13; catalogues never read"
+ }
+}

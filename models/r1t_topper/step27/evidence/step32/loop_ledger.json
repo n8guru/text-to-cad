@@ -1,15 +1,15 @@
 {
-  "run": "r1t-task165497-final",
-  "run_dir": "/home/n8/evidence/blender-loop/r1t-task165497-final",
-  "created": "2026-11-27T22:00:36Z",
-  "intent": "Defect 61514 step 32 (final clean chain): rear bumper below the lowered tailgate, whole gate block folded, bed-to-tailgate path clear of truck+topper; matched renders of unchanged base-pin CAD",
+  "run": "r1t-task165622",
+  "run_dir": "/home/n8/evidence/blender-loop/r1t-task165622",
+  "created": "2026-11-28T04:35:29Z",
+  "intent": "Defect 61514 step 32 (verify 165502): reference record corrected (provenance claims, bumper z, page cites); geometry unchanged from 2a282d69; fresh matched renders of unchanged base-pin CAD from the corrected hashed inputs",
   "steps": [
     {
       "step": "S0_truck_published",
       "stills": {
-        "side": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S0_truck_published_side.png",
-        "overhead": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S0_truck_published_overhead.png",
-        "front": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S0_truck_published_front.png"
+        "side": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S0_truck_published_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S0_truck_published_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S0_truck_published_front.png"
       },
       "scores": {
         "length_m": 5.509999990463257,
@@ -30,15 +30,15 @@
         "lowered_gate_underside_z": -0.525,
         "kind": "r1t_cad"
       },
-      "blend": "/home/n8/evidence/blender-loop/r1t-task165497-final/scene.blend",
+      "blend": "/home/n8/evidence/blender-loop/r1t-task165622/scene.blend",
       "arms": []
     },
     {
       "step": "S1_topper_closed",
       "stills": {
-        "side": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S1_topper_closed_side.png",
-        "overhead": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S1_topper_closed_overhead.png",
-        "front": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S1_topper_closed_front.png"
+        "side": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S1_topper_closed_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S1_topper_closed_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S1_topper_closed_front.png"
       },
       "scores": {
         "imported_parts": 220,
@@ -51,35 +51,35 @@
         "base_pad_error_mm": 1.5869736670615087e-06,
         "kind": "r1t_cad"
       },
-      "blend": "/home/n8/evidence/blender-loop/r1t-task165497-final/scene.blend",
+      "blend": "/home/n8/evidence/blender-loop/r1t-task165622/scene.blend",
       "arms": []
     },
     {
       "step": "S2_hero_closed",
       "stills": {
-        "side": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S2_hero_closed_side.png",
-        "overhead": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S2_hero_closed_overhead.png",
-        "front": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S2_hero_closed_front.png"
+        "side": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S2_hero_closed_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S2_hero_closed_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S2_hero_closed_front.png"
       },
       "scores": {
-        "lum_rear3q": 0.8722333821774938,
-        "lum_front3q": 0.8737073630883577,
-        "lum_side": 0.9225027073990726,
-        "lum_junction": 0.8354018012971792,
+        "lum_rear3q": 0.8722332717624208,
+        "lum_front3q": 0.8737073834226703,
+        "lum_side": 0.9225028399987085,
+        "lum_junction": 0.8354018117765585,
         "roof_step_mm": -8.646875619888306,
-        "min_lum": 0.8354018012971792,
-        "max_lum": 0.9225027073990726,
+        "min_lum": 0.8354018117765585,
+        "max_lum": 0.9225028399987085,
         "kind": "r1t_cad"
       },
-      "blend": "/home/n8/evidence/blender-loop/r1t-task165497-final/scene.blend",
+      "blend": "/home/n8/evidence/blender-loop/r1t-task165622/scene.blend",
       "arms": []
     },
     {
       "step": "S3_access_open",
       "stills": {
-        "side": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S3_access_open_side.png",
-        "overhead": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S3_access_open_overhead.png",
-        "front": "/home/n8/evidence/blender-loop/r1t-task165497-final/stills/S3_access_open_front.png"
+        "side": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S3_access_open_side.png",
+        "overhead": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S3_access_open_overhead.png",
+        "front": "/home/n8/evidence/blender-loop/r1t-task165622/stills/S3_access_open_front.png"
       },
       "scores": {
         "imported_parts": 220,
@@ -94,7 +94,7 @@
         "bed_floor_below_rail_mm": 465.0,
         "kind": "r1t_cad"
       },
-      "blend": "/home/n8/evidence/blender-loop/r1t-task165497-final/scene.blend",
+      "blend": "/home/n8/evidence/blender-loop/r1t-task165622/scene.blend",
       "arms": []
     }
   ],

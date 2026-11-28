@@ -13,15 +13,17 @@ not establish mounting, clearance, or production body geometry.
 - Rivian model comparison, used for published overall and cargo-bed dimensions:
   <https://rivian.com/en-CA/compare>
 - “Rivian R1T 2022 [Free!]” by 3dblender_1, Sketchfab model
-  `89ec895feb8145768f93382f356affb5`, 308,001 triangles, licensed CC BY 4.0:
+  `89ec895feb8145768f93382f356affb5`, 308,001 triangles. The listing was read as CC BY 4.0 when
+  this note was written (2026-07-28); no capture of it was kept:
   <https://sketchfab.com/3d-models/rivian-r1t-2022-free-89ec895feb8145768f93382f356affb5>
-  — **withdrawn**: the Sketchfab API returned 404 for this uid on 2026-11-27, so its current terms
-  cannot be confirmed; do not use it (Step 32 rights table, `step27/STEP32_REFERENCE_ASSETS.md`).
+  — **do not use**: the Sketchfab API returned HTTP 404 for this uid on 2026-11-27 and 2026-11-28.
+  Why is not established, and its current terms cannot be read (Step 32 rights table,
+  `step27/STEP32_REFERENCE_ASSETS.md`, row A7).
 
 The screenshots are perspective images, and the Sketchfab asset is an artist
 mesh rather than a scan or manufacturer CAD model. Neither can establish
-dimensions or fit. The artist mesh is used only as a visual proportion
-cross-check and is not redistributed in this repository. A later vehicle scan
+dimensions or fit. The artist mesh was used only as a visual proportion
+cross-check in the early silhouette work and is not redistributed in this repository. A later vehicle scan
 should replace the numeric section rows in `cad/parameters.py` while preserving
 the loft and assembly workflow.
 

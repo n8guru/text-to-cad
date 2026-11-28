@@ -9,7 +9,7 @@ cab-back, spoiler, rail and tailgate positions the topper is checked against are
 render, not a separately guessed proxy.
 
 Step 32 (decision 2154445) accuracy pass, render lane only (step27/style/r1t_published_specs_32.json,
-Upfitting Guide pp.27-28): the side-view trace is ~196 mm short of the published 5514 mm length, while
+Upfitting Guide pp.28-29): the side-view trace is ~196 mm short of the published 5514 mm length, while
 Rivian's own plan view (p.59) spans the full length. The body now runs to the published front/rear
 overhangs (909 / 1155 mm) with the plan-view taper, the overhang undersides follow the published
 approach / departure angles (30.4 / 25.6 deg, standard height, tangent to the 275/65R20 tyre), and the

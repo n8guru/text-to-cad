@@ -1,13 +1,72 @@
 {
- "task_id": 165497,
+ "task_id": 165622,
  "project_id": 924515,
  "step": "32",
  "defect": 61514,
- "revises": "8024b24117cfcee762950e153ebb6116fc22ed2f (failed verify task 165492)",
- "built_on_commit": "8024b24117cfcee762950e153ebb6116fc22ed2f",
- "cad_identity": "topper geometry unchanged: closed parts regenerated from base-pin assembly_step27.step27_assembly(0.0); open-hatch parts = committed out/parts_access; params.json / rivian_reference.json / step27/cad unchanged",
+ "revises": "2a282d696952bf9cceb18619daa7728fea8e0537 (failed verify task 165502: reference record); before it 8024b24117cfcee762950e153ebb6116fc22ed2f (failed verify task 165492: tailgate)",
+ "built_on_commit": "2a282d696952bf9cceb18619daa7728fea8e0537",
+ "cad_identity": "topper geometry unchanged: closed parts = out/parts as exported by base-pin assembly_step27.step27_assembly(0.0) (gitignored); open-hatch parts = committed out/parts_access; both sha256-checked against out/PROVENANCE.json (parts_identity); params.json / rivian_reference.json / step27/cad unchanged",
+ "parts_identity": {
+  "provenance_file": "models/r1t_topper/step27/out/PROVENANCE.json",
+  "provenance_sha256": "16dda2cde7600f5f56c54fbe319affe0616fa71ca6cba841fc95ccadafdd0841",
+  "identical_to_base_pin": "0bb4c68121eb6974c6f739c8db10159f3394a967",
+  "parts": {
+   "stl_files": 220,
+   "sha256_match_provenance": 220
+  },
+  "parts_access": {
+   "stl_files": 220,
+   "sha256_match_provenance": 220
+  }
+ },
+ "reference_record": {
+  "models/r1t_topper/step27/STEP32_REFERENCE_ASSETS.md": {
+   "sha256": "a4f01626106a06653c2d9e6ff05c7ba4308765514b20590215895ea68eff3e97",
+   "bytes": 21350
+  },
+  "models/r1t_topper/step27/evidence/step32/source_observations.json": {
+   "sha256": "e830e754d696779e167eef5dbc7568185b7b14f2587f683c5f090013f1c233e8",
+   "bytes": 6530
+  },
+  "models/r1t_topper/references/visual_reference_sources.md": {
+   "sha256": "8ef0bd2442d4d485028d6166d02fa163b3ff767b8c20461be7d90a9445c997fe",
+   "bytes": 2314
+  }
+ },
+ "reference_record_matches_scores": {
+  "Overall length": [
+   "5510"
+  ],
+  "Front overhang": [
+   "909"
+  ],
+  "Rear overhang": [
+   "1151",
+   "The bumper top is unsourced: z -0.545 m",
+   "underside (z -0.525 m)",
+   "traced rear face (x 1.461 m)"
+  ],
+  "Approach angle (standard)": [
+   "30.40 deg"
+  ],
+  "Departure angle (standard)": [
+   "25.60 deg"
+  ],
+  "Width without mirrors": [
+   "2014"
+  ],
+  "Width with mirrors": [
+   "2246"
+  ],
+  "Roof height, no antenna": [
+   "1835"
+  ],
+  "Rail height above ground": [
+   "1366"
+  ]
+ },
  "truck": "render-lane proxy from Rivian line art + published specs; NOT a scan, NOT calibration, NO fitment approval",
- "blender_loop_run": "r1t-task165497-final",
+ "blender_loop_run": "r1t-task165622",
  "scores": {
   "S0_truck_published": {
    "length_m": 5.509999990463257,
@@ -40,13 +99,13 @@
    "kind": "r1t_cad"
   },
   "S2_hero_closed": {
-   "lum_rear3q": 0.8722333821774938,
-   "lum_front3q": 0.8737073630883577,
-   "lum_side": 0.9225027073990726,
-   "lum_junction": 0.8354018012971792,
+   "lum_rear3q": 0.8722332717624208,
+   "lum_front3q": 0.8737073834226703,
+   "lum_side": 0.9225028399987085,
+   "lum_junction": 0.8354018117765585,
    "roof_step_mm": -8.646875619888306,
-   "min_lum": 0.8354018012971792,
-   "max_lum": 0.9225027073990726,
+   "min_lum": 0.8354018117765585,
+   "max_lum": 0.9225028399987085,
    "kind": "r1t_cad"
   },
   "S3_access_open": {
@@ -66,56 +125,56 @@
  "images": [
   {
    "file": "S0_truck_published_ctx_front3q.png",
-   "sha256": "4ac12052b99b2f05fda334b2570d66eacc7848dc727234f8c39ae75cd9ebbcf9"
+   "sha256": "e431235bf6e5abd6d7368bc503cadb8f42817e1ccbe02bc6979cf9310ff5fb6d"
   },
   {
    "file": "S0_truck_published_ctx_rear3q.png",
-   "sha256": "589e5f29d737c19807666a301b5ef9d30b5f5dbed8bcea84fdc83c5148d68687"
+   "sha256": "d8dc7174cab898c8ae1203d3ea0c15a736d181223f4412322a0deb3f6912d30c"
   },
   {
    "file": "S0_truck_published_ctx_side.png",
-   "sha256": "7095276bb1230fde639256d888dd94e59ed9033016a1285d8e68649ab906201b"
+   "sha256": "53ac3727d3c5e25b0a8a0cf4394ebd4c1889bf82573c8519c83813a92ed55b2b"
   },
   {
    "file": "S0_truck_published_ctx_top.png",
-   "sha256": "6a8a2241165230d61daef7c3057f57d4c1bf4b2600a0c936d249facf7df98268"
+   "sha256": "63959e6b8ac1653bfbf619bf3e7873bdaa178b14cf61139098f63519dfc557db"
   },
   {
    "file": "S2_hero_closed_hero_front3q.png",
-   "sha256": "f9c7c21a6200f2edea6e571a052e90166a43a199f83f2fbe02f6a832d29b6cdb"
+   "sha256": "7b819edb77e6da358788ccfaf240879aee001f5d01eb31966a6534d90df4ad4e"
   },
   {
    "file": "S2_hero_closed_hero_junction.png",
-   "sha256": "6246732bf22029a980802979f68c59e7fd5242a5a72c23d25913656736ed6bd0"
+   "sha256": "67d1331f711c8d1943a86c75823edc67e400fc785f4287aa76596efb7bd0e8ea"
   },
   {
    "file": "S2_hero_closed_hero_rear3q.png",
-   "sha256": "60ca1cf224a125395b94afbe8de155e14ebf22321fb365f79392709d47724ae1"
+   "sha256": "32934ffb0c43d1af9b5005a3598464b9f65e58260133a0d9bae06320602fb82e"
   },
   {
    "file": "S2_hero_closed_hero_side.png",
-   "sha256": "de58fbf534eba586a5c61fc96deb56c550a872f3ecb7c0d2807110536001956b"
+   "sha256": "1ef96d333df1263eed2b74a0e5dc4271de0a4939fa2b2a4859614b3f3b2d89f4"
   },
   {
    "file": "S3_access_open_access_rear.png",
-   "sha256": "ad1331c04d49925e05255fd0425265c7494d40215ae5ef916ff79ee6199e6693"
+   "sha256": "a9890d35260772e1f13f43153ead2c70bf2078b8980c93858a0c5cad3e6784b7"
   },
   {
    "file": "S3_access_open_access_rear3q.png",
-   "sha256": "2bcb4a16aa2a65ddf7bffb6a08a90ec965d7afc1243315f8bfe7dd48dcf00683"
+   "sha256": "f6fefd61850f92b2bb9e7186b1fa292b6a946ddf851c47820d08640701b20ef4"
   },
   {
    "file": "S3_access_open_access_side.png",
-   "sha256": "1a625a1656d04a525c6526b95d142e8e0e990f33efbdf4d55c8182133a45bf7e"
+   "sha256": "40a44d6808ba97f53d7e6fe4139cbd2d3edef0b4e1193bef64b5bfb871aed7f1"
   },
   {
    "file": "S3_access_open_access_top_rear.png",
-   "sha256": "63913849fdde9e904b882465b0cc2136c07ecab334d3bc292cc1fd6700c90ffa"
+   "sha256": "f01896f8e3f3713f8d8c58e909854810603eb4b87b1ba49efbf627f6b445d36d"
   }
  ],
  "sources": {
   "models/r1t_topper/blender/s11_truck.py": {
-   "sha256": "1722b93d04443b1fa4989530f5a1e4cebf2db668d77b03df59d9780816b97968",
+   "sha256": "d87f035450a8b73e79dcb8fd54117cbba5d36dcd401bcd69a02fcf29b6d850a8",
    "bytes": 13950
   },
   "models/r1t_topper/blender/s12_topper.py": {
@@ -143,8 +202,8 @@
    "bytes": 31444
   },
   "models/r1t_topper/step27/style/r1t_published_specs_32.json": {
-   "sha256": "07988fdefcf90207c62e100af5a53f67edb705370273149dfac963ffe18e4fe9",
-   "bytes": 2123
+   "sha256": "c2dc5af766af838cb5f99505ef43881229a0e62533ecd370495ad6d2506ceb5e",
+   "bytes": 2826
   },
   "models/r1t_topper/step27/cad/assembly_step27.py": {
    "sha256": "fb195b1efd118616f181d53f446e80db1c375607125cc1c84c247490d7c3d316",
@@ -165,7 +224,7 @@
  },
  "counterfactual_parent_proxy": {
   "run": "r1t-task165497-cf",
-  "doc": "parent 8024b241 s11_truck.py + style json under the revised s17_access.py checks",
+  "doc": "parent 8024b241 s11_truck.py + style json under the revised s17_access.py checks; run under task 165497 and carried over (s17_access.py is unchanged since)",
   "scores": {
    "S0_truck_parent": {
     "length_m": 5.509999990463257,
